@@ -15,12 +15,11 @@
     },
     "scripts": {
         "start": "webpack serve --mode=development",
-        "build": "webpack --mode=production",
+        "build": "webpack --mode=production --stats-error-details",
         "deploy": "gh-pages -d build/",
         "lint": "eslint -c .eslintrc.yml 'src/**/*.ts' 'src/**/*.tsx'",
         "format": "prettier --write ./src/",
-        "test": "jest",
-        "postinstall": "npm link @tolokoban/ui"
+        "test": "jest"
     },
     "eslintConfig": {
         "extends": "react-app"

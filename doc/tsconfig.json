@@ -12,11 +12,7 @@
         "extendedDiagnostics": false,
         "incremental": false,
         "jsx": "react",
-        "lib": [
-            "dom",
-            "dom.iterable",
-            "es6"
-        ],
+        "lib": ["dom", "dom.iterable", "es6"],
         "module": "CommonJS",
         "moduleResolution": "node",
         "noImplicitAny": false,
@@ -24,6 +20,7 @@
         "noImplicitThis": true,
         "outDir": "./dist/",
         "paths": {
+            "@tolokoban/ui/*": ["../lib/src/*"],
             "@/*": ["*"],
             "*": ["src/*", "node_modules/*"]
         },
@@ -46,10 +43,5 @@
         "./src/**/*.jpeg",
         "./src/**/*.gif"
     ],
-    "exclude": [
-        "node_modules/",
-        "doc/",
-        "**/*.spec.*",
-        "**/*.test.*"
-    ]
+    "exclude": ["node_modules/", "doc/", "**/*.spec.*", "**/*.test.*"]
 }
