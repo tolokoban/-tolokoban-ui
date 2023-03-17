@@ -1,10 +1,12 @@
 import App from "./App"
 import React from "react"
 import { createRoot } from "react-dom/client"
+import { Theme } from "@tolokoban/ui"
 import "./index.css"
 
 function start() {
     console.log("VERSION", React.version)
+    new Theme({}).apply()
     const container = document.getElementById("root") as HTMLElement
     const root = createRoot(container)
     root.render(

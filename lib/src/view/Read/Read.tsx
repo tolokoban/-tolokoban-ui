@@ -1,5 +1,5 @@
 import React from "react"
-import Theme from "@/theme"
+import { Theme } from "../../theme"
 import Style from "./Read.module.css"
 
 const $ = Theme.classNames
@@ -9,6 +9,6 @@ export interface ReadProps {
     children: React.ReactNode
 }
 
-export default function Read({ className, children }: ReadProps) {
+export function Read({ className, children }: ReadProps) {
     return <div className={$.join(className, Style.Read)}>{children}</div>
 }

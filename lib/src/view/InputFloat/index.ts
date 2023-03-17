@@ -1,1 +1,1 @@
-export { default } from "./InputFloat"
+export * from "./InputFloat"

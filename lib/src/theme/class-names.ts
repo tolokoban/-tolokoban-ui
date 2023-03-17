@@ -34,8 +34,8 @@ export default class ClassNames {
         return this.cls(`margin-${vertical}-${horizontal}`)
     }
 
-    display(type: "flex") {
-        const classes = [this.cls("display-flex")]
+    display(type: "flex" | "grid") {
+        const classes = [this.cls(`display-${type}`)]
         return classes.join(" ")
     }
 

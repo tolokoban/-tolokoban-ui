@@ -1,6 +1,6 @@
 import JSON5 from "json5"
 import React from "react"
-import Dialog from "../view/Dialog"
+import { Dialog, Spinner } from "../view"
 import Style from "./manager.module.css"
 import {
     ConfirmParams,
@@ -8,7 +8,6 @@ import {
     ModalManagerInterface,
     ModalParams,
 } from "./types"
-import Spinner from "../view/Spinner"
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const EMPTY_FUNCTION = () => {}

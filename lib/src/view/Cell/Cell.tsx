@@ -1,6 +1,6 @@
 import React from "react"
-import Theme from "@/theme"
-import Style from "./Cell.module.css"
+import { Theme } from "../../theme"
+import Classes from "./Cell.module.css"
 
 const $ = Theme.classNames
 
@@ -55,7 +55,7 @@ export interface CellProps {
         | "unset"
 }
 
-export default function Cell({
+export function Cell({
     className,
     children,
     gridRow,
@@ -70,7 +70,7 @@ export default function Cell({
         justifySelf,
     }
     return (
-        <div className={$.join(className, Style.Cell)} style={style}>
+        <div className={$.join(className, Classes.Cell)} style={style}>
             {children}
         </div>
     )

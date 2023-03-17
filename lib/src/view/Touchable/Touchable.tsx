@@ -1,5 +1,5 @@
 import React from "react"
-import Theme from "@/theme"
+import { Theme } from "../../theme"
 import Style from "./Touchable.module.css"
 
 const $ = Theme.classNames
@@ -12,7 +12,7 @@ export interface TouchableProps<T> {
     onClick?(tag: T | undefined): void
 }
 
-export default function Touchable<T>({
+export function Touchable<T>({
     className,
     children,
     tag,

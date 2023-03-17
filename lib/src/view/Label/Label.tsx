@@ -1,5 +1,5 @@
 import React from "react"
-import Theme from "../../theme"
+import { Theme } from "../../theme"
 import Style from "./Label.module.css"
 import { ColorName } from "../../theme/styles/types"
 
@@ -8,12 +8,13 @@ const $ = Theme.classNames
 export interface LabelProps {
     className?: string
     value?: string
+    /** Tooltip */
     title?: string
     color?: ColorName
     children?: React.ReactNode
 }
 
-export default function Label({
+export function Label({
     color,
     className,
     value,

@@ -1,6 +1,6 @@
 import React from "react"
-import Theme from "../../theme"
-import Style from "./Button.module.css"
+import { Theme } from "../../theme"
+import Classes from "./Button.module.css"
 import { Circumference, OpaqueColorName } from "../../theme/styles/types"
 import {
     DimensionStyleProps,
@@ -29,7 +29,7 @@ export type ButtonProps = {
     padding?: Circumference
 } & DimensionStyleProps
 
-function Button({
+export function Button({
     className,
     children,
     onClick,
@@ -54,16 +54,16 @@ function Button({
     return (
         <button
             style={style}
-            className={$.join(className, Style.Button, Style[type])}
+            className={$.join(className, Classes.Button, Classes[type])}
             disabled={!enabled}
             type="button"
             onClick={onClick}
         >
             {(type === "filled" || type === "elevated") && (
-                <div className={Style.glow}></div>
+                <div className={Classes.glow}></div>
             )}
             <div
-                className={Style.content}
+                className={Classes.content}
                 style={{
                     ...styleDimension({ width, height }),
                     borderRadius: cssForGaps(borderRadius),
@@ -85,5 +85,3 @@ export function makeCustomButton(
             ...props,
         })
 }
-
-export default Button

@@ -1,5 +1,5 @@
 import React from "react"
-import Theme from "@/theme"
+import { Theme } from "../../theme"
 import Style from "./Scroll.module.css"
 import { ColorName } from "../../theme/styles/types"
 
@@ -12,7 +12,7 @@ export interface ScrollProps {
     bannerSize?: string
 }
 
-export default function Scroll({
+export function Scroll({
     className,
     children,
     color,

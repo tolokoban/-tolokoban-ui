@@ -1,6 +1,5 @@
-import React from "react"
-import InputText from "../InputText"
-import Theme from "../../theme"
+import { InputText } from "../InputText"
+import { Theme } from "../../theme"
 import Style from "./InputInteger.module.css"
 import { ViewWithValue } from "../../types"
 import { SpaceStyleProps } from "../../theme/styles/space"
@@ -17,7 +16,7 @@ export type InputIntegerProps = ViewWithValue<number> & {
     max?: number
 } & SpaceStyleProps
 
-export default function InputInteger({
+export function InputInteger({
     className,
     value,
     label,
@@ -32,8 +31,8 @@ export default function InputInteger({
             label={label}
             placeholder={placeholder}
             value={`${value}`}
-            onChange={v => onChange?.(parseFloat(v))}
-            validator={value => {
+            onChange={(v) => onChange?.(parseFloat(v))}
+            validator={(value) => {
                 const num = parseFloat(value)
                 if (!isNaN(num) || !Number.isInteger(num)) return false
                 return num >= min && num <= max

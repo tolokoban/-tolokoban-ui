@@ -1,8 +1,7 @@
-import * as React from "react"
 import { useChangeableValue } from "../../hooks/changeable-value"
 import { ViewWithValue } from "../../types"
-import Label from "../Label"
-import Touchable from "../Touchable"
+import { Label } from "../Label"
+import { Touchable } from "../Touchable"
 import Styles from "./Options.module.css"
 
 export type OptionsViewProps<T extends string> = ViewWithValue<T> & {
@@ -12,9 +11,7 @@ export type OptionsViewProps<T extends string> = ViewWithValue<T> & {
     options: { [key: string]: string | JSX.Element }
 }
 
-export default function OptionsView<T extends string>(
-    props: OptionsViewProps<T>
-) {
+export function OptionsView<T extends string>(props: OptionsViewProps<T>) {
     const { label, options } = props
     const [value, setValue] = useChangeableValue(props)
     return (

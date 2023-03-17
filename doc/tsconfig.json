@@ -1,38 +1,27 @@
 {
     "compilerOptions": {
-        "alwaysStrict": false,
+        "allowJs": true,
         "allowSyntheticDefaultImports": true,
-        "baseUrl": "./src/",
-        "composite": false,
-        "declaration": true,
-        "declarationMap": true,
         "diagnostics": true,
-        "downlevelIteration": true,
+        "declaration": true,
         "esModuleInterop": true,
-        "extendedDiagnostics": false,
-        "incremental": false,
+        "forceConsistentCasingInFileNames": false,
         "jsx": "react",
-        "lib": ["dom", "dom.iterable", "es6"],
-        "module": "CommonJS",
+        "module": "esnext",
         "moduleResolution": "node",
-        "noImplicitAny": false,
-        "noImplicitReturns": false,
-        "noImplicitThis": true,
-        "outDir": "./dist/",
-        "paths": {
-            "@tolokoban/ui/*": ["../lib/src/*"],
-            "@/*": ["*"],
-            "*": ["src/*", "node_modules/*"]
-        },
-        "removeComments": false,
-        "resolveJsonModule": true,
+        "skipLibCheck": true,
         "sourceMap": true,
-        "strict": false,
-        "strictNullChecks": true,
-        "target": "es5"
+        "strict": true,
+        "target": "es6",
+        "plugins": [{ "name": "typescript-plugin-css-modules" }]
     },
-    "output": ["./dist"],
-    "files": ["src/index.tsx"],
+    "exclude": [
+        "dist",
+        "node_modules",
+        "src/**/*.test.tsx",
+        "src/**/*.stories.tsx",
+        "doc"
+    ],
     "include": [
         "./src/**/*.ts",
         "./src/**/*.tsx",
@@ -43,5 +32,5 @@
         "./src/**/*.jpeg",
         "./src/**/*.gif"
     ],
-    "exclude": ["node_modules/", "doc/", "**/*.spec.*", "**/*.test.*"]
+    "files": ["src/index.tsx"]
 }

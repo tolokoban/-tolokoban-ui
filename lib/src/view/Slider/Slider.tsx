@@ -1,5 +1,5 @@
 import React from "react"
-import Theme from "@/theme"
+import { Theme } from "../../theme"
 import Style from "./Slider.module.css"
 import { ViewWithValue } from "../../types"
 import { useChangeableValue } from "../../hooks/changeable-value"
@@ -16,7 +16,7 @@ export type SliderProps = ViewWithValue<number> & {
     step?: number
 }
 
-export default function Slider({
+export function Slider({
     min,
     max,
     step,

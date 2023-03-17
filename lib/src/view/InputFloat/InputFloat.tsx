@@ -1,7 +1,6 @@
-import React from "react"
-import InputText from "../InputText"
-import Theme from "@/theme"
-import Style from "./InputFloat.module.css"
+import { InputText } from "../InputText"
+import { Theme } from "../../theme"
+import Classes from "./InputFloat.module.css"
 import { ViewWithValue } from "../../types"
 import { SpaceStyleProps } from "../../theme/styles/space"
 
@@ -17,7 +16,7 @@ export type InputFloatProps = ViewWithValue<number> & {
     label?: string
 } & SpaceStyleProps
 
-export default function InputFloat({
+export function InputFloat({
     className,
     value,
     onChange,
@@ -28,11 +27,11 @@ export default function InputFloat({
 }: InputFloatProps) {
     return (
         <InputText
-            className={$.join(className, Style.InputFloat)}
+            className={$.join(className, Classes.InputFloat)}
             label={label}
             placeholder={placeholder}
             value={`${value}`}
-            onChange={(v) => onChange?.(parseFloat(v))}
+            onChange={(v: string) => onChange?.(parseFloat(v))}
             validator={(value) => {
                 const num = parseFloat(value)
                 if (!isNaN(num)) return false

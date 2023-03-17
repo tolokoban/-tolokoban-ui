@@ -1,6 +1,6 @@
 import React from "react"
 import "./App.css"
-import Button from "@tolokoban/ui/view/Button"
+import { Button } from "@tolokoban/ui"
 
 export default function App() {
     const [message, setMessage] = React.useState("You are ready to play!")

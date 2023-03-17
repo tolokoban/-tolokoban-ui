@@ -1,4 +1,4 @@
-import { ColorName, OpaqueColorName } from "./types"
+import { ColorName } from "./types"
 
 export interface ColorStyleProps {
     color?: ColorName
@@ -34,11 +34,6 @@ export function styleColorVars({
         "--custom-color-text": "inherit",
         "--custom-color-back": "inherit",
     }
-    // if (!color && !textColor && !backColor) {
-    //     color = defaults.color
-    //     textColor = defaults.textColor
-    //     backColor = defaults.backColor
-    // }
     if (color) {
         style["--custom-color-text"] = `var(--theme-color-on-${color})`
         style["--custom-color-back"] = `var(--theme-color-${color})`

@@ -1,5 +1,5 @@
 import React from "react"
-import Theme from "@/theme"
+import { Theme } from "../../theme"
 import Style from "./Panel.module.css"
 import { Circumference } from "../../theme/styles/types"
 import { ColorStyleProps, styleColor } from "../../theme/styles/color"
@@ -26,7 +26,7 @@ export type PanelProps = {
     OverflowStyleProps &
     DisplayStyleProps
 
-function Panel(props: PanelProps) {
+export function Panel(props: PanelProps) {
     const {
         className,
         children,
@@ -60,5 +60,3 @@ export function makeCustomPanel(
             ...props,
         })
 }
-
-export default Panel

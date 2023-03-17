@@ -1,7 +1,7 @@
 import React from "react"
-import Theme from "../../theme"
+import { Theme } from "../../theme"
 import Style from "./Tabs.module.css"
-import Tab, { TabProps } from "../Tab"
+import { Tab, TabProps } from "../Tab"
 
 const $ = Theme.classNames
 
@@ -13,7 +13,7 @@ export type TabsProps = {
     children: React.ReactElement<TabProps> | React.ReactElement<TabProps>[]
 }
 
-export default function Tabs({
+export function Tabs({
     className,
     children,
     vertical = false,

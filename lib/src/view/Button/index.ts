@@ -1,1 +1,1 @@
-export { default, ButtonProps, makeCustomButton } from "./Button"
+export * from "./Button"

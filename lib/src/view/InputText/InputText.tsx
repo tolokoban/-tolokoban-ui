@@ -1,8 +1,8 @@
 import React from "react"
-import Theme from "../../theme"
+import { Theme } from "../../theme"
 import Style from "./InputText.module.css"
 import { SpaceStyleProps, styleSpace } from "../../theme/styles/space"
-import Label from "../Label"
+import { Label } from "../Label"
 import { ViewWithValue } from "../../types"
 
 const $ = Theme.classNames
@@ -18,7 +18,7 @@ export type InputTextProps = ViewWithValue<string> & {
     onEnterKeyPressed?(value: string): void
 } & SpaceStyleProps
 
-export default function InputText(props: InputTextProps) {
+export function InputText(props: InputTextProps) {
     const {
         className,
         placeholder,

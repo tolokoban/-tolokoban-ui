@@ -1,7 +1,7 @@
 import React from "react"
-import Theme from "@/theme"
-import Style from "./Dialog.module.css"
-import Button, { ButtonProps } from "../Button"
+import { Theme } from "../../theme"
+import Classes from "./Dialog.module.css"
+import { Button, ButtonProps } from "../Button"
 
 const $ = Theme.classNames
 
@@ -15,7 +15,7 @@ export interface DialogProps {
     children: React.ReactNode
 }
 
-export default function Dialog({
+export function Dialog({
     className,
     buttonCancel,
     buttonValidate,
@@ -37,7 +37,7 @@ export default function Dialog({
               } as ButtonProps)
             : null
     return (
-        <div className={$.join(className, Style.Dialog)}>
+        <div className={$.join(className, Classes.Dialog)}>
             {title && <header>{title}</header>}
             <main>{children}</main>
             {(cancelProps || validateProps) && (

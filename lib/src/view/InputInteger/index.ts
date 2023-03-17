@@ -1,1 +1,1 @@
-export { default } from "./InputInteger"
+export * from "./InputInteger"

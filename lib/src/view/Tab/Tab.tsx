@@ -1,5 +1,5 @@
 import React from "react"
-import Theme from "../../theme"
+import { Theme } from "../../theme"
 import Style from "./Tab.module.css"
 
 const $ = Theme.classNames
@@ -10,6 +10,6 @@ export interface TabProps {
     children: React.ReactNode
 }
 
-export default function Tab({ className, children }: TabProps) {
+export function Tab({ className, children }: TabProps) {
     return <div className={$.join(className, Style.Tab)}>{children}</div>
 }

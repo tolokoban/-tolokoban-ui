@@ -7,7 +7,7 @@ htmlWhitespaceSensitivity: css
 insertPragma: false
 jsxSingleQuote: false
 printWidth: 80
-proseWrap: preserve
+proseWrap: always
 quoteProps: as-needed
 requirePragma: false
 semi: false
@@ -17,3 +17,4 @@ tabWidth: 4
 useTabs: false
 vueIndentScriptAndStyle: false
 trailingComma: es5
+

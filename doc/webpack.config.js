@@ -3,7 +3,6 @@ const Path = require("path")
 const package = require("./package.json")
 const WorkboxPlugin = require("workbox-webpack-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
-const WebpackShellPlugin = require("webpack-shell-plugin-next")
 const CopyPlugin = require("copy-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
@@ -19,13 +18,17 @@ if (typeof package.port !== "number") {
     console.log("A random port has been set for dev server:", package.port)
 }
 
-module.exports = (env) => {
-    const isProdMode = env.WEBPACK_BUILD === true
+module.exports = (env, argv) => {
+    const isProdMode = argv.mode === "production"
     const isTestMode = !isProdMode
     if (isProdMode) {
-        console.log("+-----------------+")
-        console.log("| Production Mode |")
-        console.log("+-----------------+")
+        console.log("+=================+")
+        console.log("| PRODUCTION Mode |")
+        console.log("+=================+")
+    } else {
+        console.log("+------------------+")
+        console.log("| Development Mode |")
+        console.log("+------------------+")
     }
     return {
         cache: {
@@ -44,7 +47,6 @@ module.exports = (env) => {
             extensions: [".tsx", ".ts", ".js", ".jsx", ".wasm"],
             enforceExtension: false,
             alias: {
-                "@tolokoban/ui": Path.resolve(__dirname, "../lib/src"),
                 "@": Path.resolve(__dirname, "src"),
                 // react: require.resolve("react"),
                 // colord: require.resolve("colord"),
