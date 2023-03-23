@@ -8,12 +8,10 @@ import {
 
 export function listProperties(
     file: SourceFile | undefined,
-    typeName?: string
+    expectedName: string
 ): PropertySignature[] {
     if (!file) return []
 
-    const expectedName =
-        typeName ?? `${file.getBaseNameWithoutExtension()}Props`
     const props: PropertySignature[] = listPropertiesFromInterface(
         file,
         expectedName

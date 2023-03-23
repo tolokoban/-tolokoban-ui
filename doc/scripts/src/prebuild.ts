@@ -15,7 +15,8 @@ function printProps(properties: PropertySignature[]) {
             prop.getName(),
             prop.hasQuestionToken() ? "?:" : ":",
             prop.getTypeNode()?.getText(),
-            expandType(type)
+            "  >",
+            JSON.stringify(expandType(type))
         )
     }
 }
@@ -25,14 +26,14 @@ const prj = new Project({
     tsConfigFilePath,
 })
 
-console.log("--------------------------------------------------------")
-const button = prj.getSourceFile("Button.tsx")
-printProps(listProperties(button))
-
-console.log("--------------------------------------------------------")
-const label = prj.getSourceFile("Label.tsx")
-printProps(listProperties(label))
-
-console.log("--------------------------------------------------------")
-const panel = prj.getSourceFile("Panel.tsx")
-printProps(listProperties(panel))
+const components = ["Button", "Label", "Panel"]
+for (const name of components) {
+    try {
+        console.log("----------", name, "----------")
+        const button = prj.getSourceFile(`${name}.tsx`)
+        printProps(listProperties(button, `View${name}Props`))
+    } catch (ex) {
+        console.error("========================================")
+        console.error(`${ex}`)
+    }
+}

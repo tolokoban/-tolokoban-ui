@@ -6,7 +6,7 @@ import { useChangeableValue } from "../../hooks/changeable-value"
 
 const $ = Theme.classNames
 
-export type SliderProps = ViewWithValue<number> & {
+export type ViewSliderProps = ViewWithValue<number> & {
     className?: string
     /** If defined, displayed at the right of the slider. */
     text?: string | number | ((value: number) => string)
@@ -16,7 +16,7 @@ export type SliderProps = ViewWithValue<number> & {
     step?: number
 }
 
-export function Slider({
+export function ViewSlider({
     min,
     max,
     step,
@@ -25,7 +25,7 @@ export function Slider({
     text,
     value,
     onChange,
-}: SliderProps) {
+}: ViewSliderProps) {
     const [val, setVal] = useChangeableValue({ value, onChange })
     return (
         <div className={$.join(className, Style.Slider, wide ? "wide" : "")}>

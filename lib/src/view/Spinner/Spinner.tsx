@@ -1,12 +1,12 @@
 import React from "react"
 import styles from "./Spinner.module.css"
 
-export interface SpinnerProps {
+export interface ViewSpinnerProps {
     className?: string
     children?: React.ReactNode
 }
 
-export function Spinner({ className, children }: SpinnerProps) {
+export function ViewSpinner({ className, children }: ViewSpinnerProps) {
     return (
         <div className={`${styles.Spinner} ${className ?? ""}`}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

@@ -4,11 +4,11 @@ import Classes from "./Center.module.css"
 
 const $ = Theme.classNames
 
-export interface CenterProps {
+export interface ViewCenterProps {
     className?: string
     children: React.ReactNode
 }
 
-export function Center({ className, children }: CenterProps) {
+export function ViewCenter({ className, children }: ViewCenterProps) {
     return <div className={$.join(className, Classes.Center)}>{children}</div>
 }

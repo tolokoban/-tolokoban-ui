@@ -1,4 +1,4 @@
-import { InputText } from "../InputText"
+import { ViewInputText } from "../InputText"
 import { Theme } from "../../theme"
 import Classes from "./InputFloat.module.css"
 import { ViewWithValue } from "../../types"
@@ -6,7 +6,7 @@ import { SpaceStyleProps } from "../../theme/styles/space"
 
 const $ = Theme.classNames
 
-export type InputFloatProps = ViewWithValue<number> & {
+export type ViewInputFloatProps = ViewWithValue<number> & {
     className?: string
     placeholder?: string
     type?: "text" | "email" | "password" | "number"
@@ -16,7 +16,7 @@ export type InputFloatProps = ViewWithValue<number> & {
     label?: string
 } & SpaceStyleProps
 
-export function InputFloat({
+export function ViewInputFloat({
     className,
     value,
     onChange,
@@ -24,9 +24,9 @@ export function InputFloat({
     max = Number.MAX_VALUE,
     label,
     placeholder,
-}: InputFloatProps) {
+}: ViewInputFloatProps) {
     return (
-        <InputText
+        <ViewInputText
             className={$.join(className, Classes.InputFloat)}
             label={label}
             placeholder={placeholder}

@@ -1,13 +1,13 @@
 import React from "react"
 import { Theme } from "../../theme"
 import Classes from "./Dialog.module.css"
-import { Button, ButtonProps } from "../Button"
+import { ViewButton, ViewButtonProps } from "../Button"
 
 const $ = Theme.classNames
 
-type CustomButtonProps = Partial<ButtonProps>
+type CustomButtonProps = Partial<ViewButtonProps>
 
-export interface DialogProps {
+export interface ViewDialogProps {
     className?: string
     title?: string
     buttonCancel?: CustomButtonProps
@@ -15,26 +15,26 @@ export interface DialogProps {
     children: React.ReactNode
 }
 
-export function Dialog({
+export function ViewDialog({
     className,
     buttonCancel,
     buttonValidate,
     title,
     children,
-}: DialogProps) {
-    const cancelProps: ButtonProps | null =
+}: ViewDialogProps) {
+    const cancelProps: ViewButtonProps | null =
         buttonCancel && buttonCancel.onClick
             ? ({
                   children: "Cancel",
                   ...buttonCancel,
-              } as ButtonProps)
+              } as ViewButtonProps)
             : null
-    const validateProps: ButtonProps | null =
+    const validateProps: ViewButtonProps | null =
         buttonValidate && buttonValidate.onClick
             ? ({
                   children: "OK",
                   ...buttonValidate,
-              } as ButtonProps)
+              } as ViewButtonProps)
             : null
     return (
         <div className={$.join(className, Classes.Dialog)}>
@@ -42,8 +42,8 @@ export function Dialog({
             <main>{children}</main>
             {(cancelProps || validateProps) && (
                 <footer>
-                    {cancelProps && <Button {...cancelProps} />}
-                    {validateProps && <Button {...validateProps} />}
+                    {cancelProps && <ViewButton {...cancelProps} />}
+                    {validateProps && <ViewButton {...validateProps} />}
                 </footer>
             )}
         </div>

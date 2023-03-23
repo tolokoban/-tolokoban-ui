@@ -1,26 +1,28 @@
 import React from "react"
 import { Theme } from "../../theme"
 import Style from "./Tabs.module.css"
-import { Tab, TabProps } from "../Tab"
+import { ViewTab, ViewTabProps } from "../Tab"
 
 const $ = Theme.classNames
 
-export type TabsProps = {
+export type ViewTabsProps = {
     className?: string
     value?: string
     vertical?: boolean
     onChange?(value?: string): void
-    children: React.ReactElement<TabProps> | React.ReactElement<TabProps>[]
+    children:
+        | React.ReactElement<ViewTabProps>
+        | React.ReactElement<ViewTabProps>[]
 }
 
-export function Tabs({
+export function ViewTabs({
     className,
     children,
     vertical = false,
     value,
     onChange,
-}: TabsProps) {
-    const tabs: Array<React.ReactElement<TabProps> & { key: string }> =
+}: ViewTabsProps) {
+    const tabs: Array<React.ReactElement<ViewTabProps> & { key: string }> =
         addMissingKeys(children)
     const [tabKey, setTabKey] = React.useState(value ?? tabs[0]?.key ?? "Tab#0")
     const tab = tabs.find((item) => item.key === tabKey)
@@ -57,9 +59,9 @@ export function Tabs({
 }
 
 function wrap(
-    tabs: Array<React.ReactElement<TabProps> & { key: string }>,
-    tab: (React.ReactElement<TabProps> & { key: string }) | undefined
-): Array<React.ReactElement<TabProps> & { key: string }> {
+    tabs: Array<React.ReactElement<ViewTabProps> & { key: string }>,
+    tab: (React.ReactElement<ViewTabProps> & { key: string }) | undefined
+): Array<React.ReactElement<ViewTabProps> & { key: string }> {
     if (!tab) return tabs
 
     const index = tabs.indexOf(tab)
@@ -69,14 +71,16 @@ function wrap(
 }
 
 function addMissingKeys(
-    children: React.ReactElement<TabProps> | React.ReactElement<TabProps>[]
-): Array<React.ReactElement<TabProps> & { key: string }> {
-    const rawTabs: React.ReactElement<TabProps>[] = Array.isArray(children)
+    children:
+        | React.ReactElement<ViewTabProps>
+        | React.ReactElement<ViewTabProps>[]
+): Array<React.ReactElement<ViewTabProps> & { key: string }> {
+    const rawTabs: React.ReactElement<ViewTabProps>[] = Array.isArray(children)
         ? children
         : [children]
     return rawTabs.map((tab, index) => (
-        <Tab {...tab.props} key={tab.key ?? `Tab#${index}`}>
+        <ViewTab {...tab.props} key={tab.key ?? `Tab#${index}`}>
             {tab.props.children}
-        </Tab>
-    )) as Array<React.ReactElement<TabProps> & { key: string }>
+        </ViewTab>
+    )) as Array<React.ReactElement<ViewTabProps> & { key: string }>
 }

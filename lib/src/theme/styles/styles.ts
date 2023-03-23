@@ -1,4 +1,4 @@
-import { Circumference, OpaqueColorName } from "./types"
+import { Circumference, OpaqueColorName } from "../../types"
 
 export function cssForColor(name: OpaqueColorName, alpha = 1): string {
     if (alpha <= 0) return "transparent"
@@ -12,7 +12,7 @@ export function cssForColorOn(name: OpaqueColorName): string {
 
 export function cssForGaps(params: Circumference, unit = "em") {
     if (!Array.isArray(params)) return cssForGap(params, unit)
-    return params.map(item => cssForGap(item, unit)).join(" ")
+    return params.map((item) => cssForGap(item, unit)).join(" ")
 }
 
 function cssForGap(item: string | number, unit = "em") {

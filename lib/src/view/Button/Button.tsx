@@ -1,7 +1,7 @@
 import React from "react"
 import { Theme } from "../../theme"
 import Classes from "./Button.module.css"
-import { Circumference, OpaqueColorName } from "../../theme/styles/types"
+import { Circumference, OpaqueColorName } from "../../types"
 import {
     DimensionStyleProps,
     styleDimension,
@@ -14,7 +14,7 @@ import {
 
 const $ = Theme.classNames
 
-export type ButtonProps = {
+export type ViewButtonProps = {
     className?: string
     /**
      * Default to __filled__.
@@ -29,7 +29,7 @@ export type ButtonProps = {
     padding?: Circumference
 } & DimensionStyleProps
 
-export function Button({
+export function ViewButton({
     className,
     children,
     onClick,
@@ -41,7 +41,7 @@ export function Button({
     width = "auto",
     height = "2em",
     variant: type = "elevated",
-}: ButtonProps) {
+}: ViewButtonProps) {
     const style: React.CSSProperties = {
         "--custom-color-main-alpha": cssForColor(color, 0.5),
         "--custom-color-main": cssForColor(color),
@@ -77,10 +77,10 @@ export function Button({
 }
 
 export function makeCustomButton(
-    defaultProps: Partial<ButtonProps>
-): (props: ButtonProps) => JSX.Element {
-    return (props: ButtonProps) =>
-        Button({
+    defaultProps: Partial<ViewButtonProps>
+): (props: ViewButtonProps) => JSX.Element {
+    return (props: ViewButtonProps) =>
+        ViewButton({
             ...defaultProps,
             ...props,
         })

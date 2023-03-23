@@ -1,23 +1,23 @@
 import React from "react"
 import { Theme } from "../../theme"
 import Style from "./Scroll.module.css"
-import { ColorName } from "../../theme/styles/types"
+import { ColorName } from "../../types"
 
 const $ = Theme.classNames
 
-export interface ScrollProps {
+export interface ViewScrollProps {
     className?: string
     children: React.ReactNode
     color?: ColorName
     bannerSize?: string
 }
 
-export function Scroll({
+export function ViewScroll({
     className,
     children,
     color,
     bannerSize = "10rem",
-}: ScrollProps) {
+}: ViewScrollProps) {
     const ref = React.useRef<HTMLDivElement | null>(null)
     React.useEffect(() => {
         const div = ref.current

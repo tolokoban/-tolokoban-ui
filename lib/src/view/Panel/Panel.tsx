@@ -1,7 +1,7 @@
 import React from "react"
 import { Theme } from "../../theme"
 import Style from "./Panel.module.css"
-import { Circumference } from "../../theme/styles/types"
+import { Circumference } from "../../types"
 import { ColorStyleProps, styleColor } from "../../theme/styles/color"
 import { SpaceStyleProps, styleSpace } from "../../theme/styles/space"
 import { OverflowStyleProps, styleOverflow } from "../../theme/styles/overflow"
@@ -14,7 +14,7 @@ import { cssForGaps } from "../../theme/styles/styles"
 
 const $ = Theme.classNames
 
-export type PanelProps = {
+export type ViewPanelProps = {
     className?: string
     children: React.ReactNode
     borderRadius?: Circumference
@@ -26,7 +26,7 @@ export type PanelProps = {
     OverflowStyleProps &
     DisplayStyleProps
 
-export function Panel(props: PanelProps) {
+export function ViewPanel(props: ViewPanelProps) {
     const {
         className,
         children,
@@ -52,10 +52,10 @@ export function Panel(props: PanelProps) {
 }
 
 export function makeCustomPanel(
-    defaultProps: Partial<PanelProps>
-): (props: PanelProps) => JSX.Element {
-    return (props: PanelProps) =>
-        Panel({
+    defaultProps: Partial<ViewPanelProps>
+): (props: ViewPanelProps) => JSX.Element {
+    return (props: ViewPanelProps) =>
+        ViewPanel({
             ...defaultProps,
             ...props,
         })

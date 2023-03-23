@@ -1,4 +1,5 @@
 import Color from "../color"
+import { ThemeColor, ThemeSettings } from "../types"
 import ClassNames from "./class-names"
 import "./theme.css"
 
@@ -15,37 +16,6 @@ const DEFAULT_COLOR_NEUTRAL: ThemeColor = {
 const DEFAULT_COLOR_INPUT = "#fff"
 const DEFAULT_COLOR_ERROR = "#d00"
 const DEFAULT_COLOR_VALID = "#0f0"
-
-export type ThemeColor =
-    | string[]
-    | {
-          hue: number | [number, number]
-          chroma?: number | [number, number]
-          lightness?: number | [number, number]
-      }
-
-interface ThemeSettingsColors {
-    textLight: string
-    textDark: string
-    primary: ThemeColor
-    secondary: ThemeColor
-    tertiary: ThemeColor
-    neutral: ThemeColor
-    input: string
-    error: string
-    valid: string
-}
-
-export interface ThemeSettings {
-    colors?: Partial<ThemeSettingsColors>
-    gap?: {
-        XS: string
-        S: string
-        M: string
-        L: string
-        XL: string
-    }
-}
 
 export default class Theme {
     public static readonly classNames = new ClassNames()

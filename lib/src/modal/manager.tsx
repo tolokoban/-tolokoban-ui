@@ -1,6 +1,6 @@
 import JSON5 from "json5"
 import React from "react"
-import { Dialog, Spinner } from "../view"
+import { ViewDialog, ViewSpinner } from "../view"
 import Style from "./manager.module.css"
 import {
     ConfirmParams,
@@ -44,7 +44,7 @@ export default class ModalManager implements ModalManagerInterface {
                 ...params,
                 content: (
                     <div className={Style.wait}>
-                        <Spinner>{content}</Spinner>
+                        <ViewSpinner>{content}</ViewSpinner>
                     </div>
                 ),
             })
@@ -73,7 +73,7 @@ export default class ModalManager implements ModalManagerInterface {
                     resolve()
                 },
                 content: (
-                    <Dialog
+                    <ViewDialog
                         buttonValidate={{
                             onClick() {
                                 hide()
@@ -84,7 +84,7 @@ export default class ModalManager implements ModalManagerInterface {
                         <div className={Style.error}>
                             {renderHumanFriendlyErrorContent(content)}
                         </div>
-                    </Dialog>
+                    </ViewDialog>
                 ),
             })
         })
@@ -99,7 +99,7 @@ export default class ModalManager implements ModalManagerInterface {
                     resolve(false)
                 },
                 content: (
-                    <Dialog
+                    <ViewDialog
                         buttonCancel={{
                             onClick() {
                                 hide()
@@ -125,7 +125,7 @@ export default class ModalManager implements ModalManagerInterface {
                         title={params.title}
                     >
                         {params.content}
-                    </Dialog>
+                    </ViewDialog>
                 ),
             })
         })
@@ -144,7 +144,7 @@ export default class ModalManager implements ModalManagerInterface {
                     resolve()
                 },
                 content: (
-                    <Dialog
+                    <ViewDialog
                         buttonValidate={{
                             variant: "text",
                             onClick() {
@@ -154,7 +154,7 @@ export default class ModalManager implements ModalManagerInterface {
                         }}
                     >
                         {content}
-                    </Dialog>
+                    </ViewDialog>
                 ),
             })
         })

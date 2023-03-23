@@ -1,11 +1,11 @@
 import React from "react"
 import { Theme } from "../../theme"
 import Style from "./Label.module.css"
-import { ColorName } from "../../theme/styles/types"
+import { ColorName } from "../../types"
 
 const $ = Theme.classNames
 
-export interface LabelProps {
+export interface ViewLabelProps {
     className?: string
     value?: string
     /** Tooltip */
@@ -14,13 +14,13 @@ export interface LabelProps {
     children?: React.ReactNode
 }
 
-export function Label({
+export function ViewLabel({
     color,
     className,
     value,
     title,
     children,
-}: LabelProps): JSX.Element {
+}: ViewLabelProps): JSX.Element {
     const id = `labelled/${React.useId()}`
     if (!value) return <>{children}</>
 

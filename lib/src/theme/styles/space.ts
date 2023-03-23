@@ -1,5 +1,5 @@
+import { Circumference } from "../../types"
 import { cssForGaps } from "./styles"
-import { Circumference } from "./types"
 
 export interface SpaceStyleProps {
     borderRadius?: Circumference

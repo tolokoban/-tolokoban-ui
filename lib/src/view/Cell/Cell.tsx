@@ -4,7 +4,7 @@ import Classes from "./Cell.module.css"
 
 const $ = Theme.classNames
 
-export interface CellProps {
+export interface ViewCellProps {
     className?: string
     children: React.ReactNode
     gridRow?: string
@@ -55,14 +55,14 @@ export interface CellProps {
         | "unset"
 }
 
-export function Cell({
+export function ViewCell({
     className,
     children,
     gridRow,
     gridColumn,
     alignSelf,
     justifySelf,
-}: CellProps) {
+}: ViewCellProps) {
     const style: React.CSSProperties = {
         gridRow,
         gridColumn,

@@ -1,4 +1,4 @@
-import { ColorName } from "./types"
+import { ColorName } from "../../types"
 
 export interface ColorStyleProps {
     color?: ColorName

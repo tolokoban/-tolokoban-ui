@@ -2,12 +2,12 @@ import React from "react"
 import { Theme } from "../../theme"
 import Style from "./InputText.module.css"
 import { SpaceStyleProps, styleSpace } from "../../theme/styles/space"
-import { Label } from "../Label"
+import { ViewLabel } from "../Label"
 import { ViewWithValue } from "../../types"
 
 const $ = Theme.classNames
 
-export type InputTextProps = ViewWithValue<string> & {
+export type ViewInputTextProps = ViewWithValue<string> & {
     className?: string
     placeholder?: string
     label?: string
@@ -18,7 +18,7 @@ export type InputTextProps = ViewWithValue<string> & {
     onEnterKeyPressed?(value: string): void
 } & SpaceStyleProps
 
-export function InputText(props: InputTextProps) {
+export function ViewInputText(props: ViewInputTextProps) {
     const {
         className,
         placeholder,
@@ -79,5 +79,5 @@ export function InputText(props: InputTextProps) {
             onKeyDown={handleKeydown}
         />
     )
-    return label ? <Label value={label}>{input}</Label> : input
+    return label ? <ViewLabel value={label}>{input}</ViewLabel> : input
 }

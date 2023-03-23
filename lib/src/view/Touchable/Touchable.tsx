@@ -4,7 +4,7 @@ import Style from "./Touchable.module.css"
 
 const $ = Theme.classNames
 
-export interface TouchableProps<T> {
+export interface ViewTouchableProps<T> {
     className?: string
     children: React.ReactNode
     title?: string
@@ -12,13 +12,13 @@ export interface TouchableProps<T> {
     onClick?(tag: T | undefined): void
 }
 
-export function Touchable<T>({
+export function ViewTouchable<T>({
     className,
     children,
     tag,
     title,
     onClick,
-}: TouchableProps<T>) {
+}: ViewTouchableProps<T>) {
     if (!onClick) return <>{children}</>
 
     return (

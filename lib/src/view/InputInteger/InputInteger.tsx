@@ -1,4 +1,4 @@
-import { InputText } from "../InputText"
+import { ViewInputText } from "../InputText"
 import { Theme } from "../../theme"
 import Style from "./InputInteger.module.css"
 import { ViewWithValue } from "../../types"
@@ -6,7 +6,7 @@ import { SpaceStyleProps } from "../../theme/styles/space"
 
 const $ = Theme.classNames
 
-export type InputIntegerProps = ViewWithValue<number> & {
+export type ViewInputIntegerProps = ViewWithValue<number> & {
     className?: string
     placeholder?: string
     label?: string
@@ -16,7 +16,7 @@ export type InputIntegerProps = ViewWithValue<number> & {
     max?: number
 } & SpaceStyleProps
 
-export function InputInteger({
+export function ViewInputInteger({
     className,
     value,
     label,
@@ -24,9 +24,9 @@ export function InputInteger({
     onChange,
     min = -Number.MAX_SAFE_INTEGER,
     max = Number.MAX_SAFE_INTEGER,
-}: InputIntegerProps) {
+}: ViewInputIntegerProps) {
     return (
-        <InputText
+        <ViewInputText
             className={$.join(className, Style.InputInteger)}
             label={label}
             placeholder={placeholder}
