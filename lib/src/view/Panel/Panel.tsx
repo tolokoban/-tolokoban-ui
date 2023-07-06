@@ -11,6 +11,7 @@ import {
     styleDimension,
 } from "../../theme/styles/dimension"
 import { cssForGaps } from "../../theme/styles/styles"
+import { PositionStyleProps, stylePosition } from "../../theme/styles/position"
 
 const $ = Theme.classNames
 
@@ -24,7 +25,8 @@ export type ViewPanelProps = {
     SpaceStyleProps &
     DimensionStyleProps &
     OverflowStyleProps &
-    DisplayStyleProps
+    DisplayStyleProps &
+    PositionStyleProps
 
 export function ViewPanel(props: ViewPanelProps) {
     const {
@@ -41,6 +43,7 @@ export function ViewPanel(props: ViewPanelProps) {
         ...styleDimension(props),
         ...styleOverflow(props),
         ...styleDisplay(props),
+        ...stylePosition(props),
     }
     if (aspectRatio > 0) style["--custom-aspect-ratio"] = aspectRatio
     if (borderRadius) style.borderRadius = cssForGaps(borderRadius)

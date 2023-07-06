@@ -13,7 +13,9 @@ export type GenericIconProps = {
     onClick?(): void
 } & ColorStyleProps
 
-export type Icon = ((props: Omit<GenericIconProps, "value">) => JSX.Element) & {
+export type IconProps = Omit<GenericIconProps, "value">
+
+export type Icon = ((props: IconProps) => JSX.Element) & {
     id: string
 }
 

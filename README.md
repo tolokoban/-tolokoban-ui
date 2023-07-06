@@ -15,4 +15,11 @@ or:
 import "@tolokoban/ui/global.d"
 ```
 
-This is because this library uses CSS modules and custome CSS variables.
+This is because this library uses CSS modules and custom CSS variables.
+
+## Build and Publish
+
+```bash
+npm run build
+npm run pub
+```

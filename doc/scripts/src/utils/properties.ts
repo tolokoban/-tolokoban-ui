@@ -1,24 +1,64 @@
+import { TypeDef } from "./guards"
 import {
     Node,
     PropertySignature,
     SourceFile,
     SyntaxKind,
-    TypeReferenceNode,
+    TypeNode,
 } from "ts-morph"
+import { expandType } from "./types"
 
-export function listProperties(
+export interface PropDef {
+    name: string
+    type: TypeDef
+    comment: string
+    optional: boolean
+}
+
+export function parseProperties(
+    file: SourceFile | undefined,
+    expectedName: string
+): PropDef[] {
+    const props = listProperties(file, expectedName)
+    const list: PropDef[] = []
+    for (const prop of props) {
+        const name = prop.getName()
+        try {
+            const type = expandType(prop.getTypeNode())
+            if (!type) continue
+
+            list.push({
+                name,
+                type,
+                comment: extractDoc(prop),
+                optional: prop.hasQuestionToken(),
+            })
+        } catch (ex) {
+            throw Error(`Error in prop "${name}"!\n${ex}`)
+        }
+    }
+    return list
+}
+
+function listProperties(
     file: SourceFile | undefined,
     expectedName: string
 ): PropertySignature[] {
     if (!file) return []
 
-    const props: PropertySignature[] = listPropertiesFromInterface(
-        file,
-        expectedName
-    )
-    if (props.length > 0) return props
+    try {
+        const props: PropertySignature[] = listPropertiesFromInterface(
+            file,
+            expectedName
+        )
+        if (props.length > 0) return props
 
-    return listPropertiesFromType(file, expectedName)
+        return listPropertiesFromType(file, expectedName)
+    } catch (ex) {
+        throw Error(
+            `Error while looking for type "${expectedName}" in file\n    "${file.getFilePath()}"!\n${ex}`
+        )
+    }
 }
 
 function listPropertiesFromInterface(
@@ -44,87 +84,127 @@ function listPropertiesFromType(
 ): PropertySignature[] {
     const props: PropertySignature[] = []
     const children = file.getChildrenOfKind(SyntaxKind.TypeAliasDeclaration)
-    for (const child of children) {
-        if (child.getName() !== expectedName) continue
+    const child = children.find((node) => node.getName() === expectedName)
+    if (!child) throw Error("cannot find any TypeAliasDeclaration!")
 
-        const typeLiteralNode = child.getFirstChildByKind(
-            SyntaxKind.TypeLiteral
-        )
-        if (typeLiteralNode) {
-            return typeLiteralNode.getDescendantsOfKind(
-                SyntaxKind.PropertySignature
-            )
-        }
-
-        const properties = child.getChildrenOfKind(SyntaxKind.PropertySignature)
-        for (const property of properties) {
-            props.push(property)
-        }
-
-        const intersectionTypeNode = child.getFirstChildByKind(
-            SyntaxKind.IntersectionType
-        )
-        if (intersectionTypeNode) {
-            for (const node of child.getChildren()) {
-                switch (node.getKindName()) {
-                    case "TypeLiteral":
-                        node.getChildrenOfKind(
-                            SyntaxKind.PropertySignature
-                        ).forEach((prop) => props.push(prop))
-                        break
-                    case "IntersectionType":
-                        parseIntersectionTypeNode(node, props)
-                        break
-                    case "TypeKeyword":
-                    case "Identifier":
-                    case "EqualsToken":
-                    case "SyntaxList":
-                        // Just ignore these tokens.
-                        break
-                    default:
-                        console.error(
-                            "Don't know what to do with",
-                            node.getKindName()
-                        )
-                }
-            }
-        }
+    const type = child.getTypeNode()
+    if (!type) {
+        throw Error(`No type found in ${child.print()}`)
     }
-    return props
+
+    try {
+        if (TypeNode.isTypeLiteral(type)) {
+            return type.getDescendantsOfKind(SyntaxKind.PropertySignature)
+        }
+        if (TypeNode.isIntersectionTypeNode(type)) {
+            parseIntersectionTypeNode(type.getTypeNodes(), props)
+            return props
+        }
+        if (TypeNode.isUnionTypeNode(type)) {
+            parseUnionTypeNode(type.getTypeNodes(), props)
+            return props
+        }
+        throw Error(`Don't know what to do with "${type.getKindName()}"!`)
+    } catch (ex) {
+        throw Error(
+            `Error while parsing properties in "${expectedName}"!\n${type.print()}\n${ex}`
+        )
+    }
 }
 
-function parseIntersectionTypeNode(root: Node, props: PropertySignature[]) {
-    for (const node of root.getChildren()) {
-        switch (node.getKindName()) {
-            case "TypeReference":
-                const typeReferenceNode = node as TypeReferenceNode
-                const identifier = typeReferenceNode.getFirstChildByKind(
-                    SyntaxKind.Identifier
-                )
-                if (identifier) {
-                    const [def] = identifier.getDefinitions()
-                    if (def) {
-                        const additionalProps = listProperties(
-                            def.getSourceFile(),
-                            def.getName()
-                        )
-                        additionalProps.forEach((prop) => props.push(prop))
-                    }
+function parseIntersectionTypeNode(
+    nodes: Node[],
+    props: PropertySignature[]
+): void {
+    for (const node of nodes) {
+        if (TypeNode.isTypeReference(node)) {
+            const identifier = node.getFirstChildByKind(SyntaxKind.Identifier)
+            if (identifier) {
+                const [def] = identifier.getDefinitions()
+                if (def) {
+                    const additionalProps = listProperties(
+                        def.getSourceFile(),
+                        def.getName()
+                    )
+                    additionalProps.forEach((prop) => props.push(prop))
                 }
-                break
-            case "SyntaxList":
-                parseIntersectionTypeNode(node, props)
-                break
-            case "TypeLiteral":
-                node.getChildrenOfKind(SyntaxKind.PropertySignature).forEach(
-                    (prop) => props.push(prop)
-                )
-                break
-            case "AmpersandToken":
-                // Ignore these tokens.
-                break
-            default:
-                console.error("Don't know what to do with", node.getKindName())
+            }
+            continue
+        }
+
+        if (TypeNode.isTypeLiteral(node)) {
+            node.getChildrenOfKind(SyntaxKind.PropertySignature).forEach(
+                (prop) => props.push(prop)
+            )
+            continue
+        }
+
+        throw Error(
+            `Don't know what to do with "${node.getKindName()}"!\n${node.print()}`
+        )
+    }
+}
+
+function parseUnionTypeNode(nodes: Node[], props: PropertySignature[]): void {
+    const unionProps: PropertySignature[][] = []
+    for (const node of nodes) {
+        if (TypeNode.isTypeReference(node)) {
+            const identifier = node.getFirstChildByKind(SyntaxKind.Identifier)
+            if (identifier) {
+                const [def] = identifier.getDefinitions()
+                if (def) {
+                    const additionalProps = listProperties(
+                        def.getSourceFile(),
+                        def.getName()
+                    )
+                    unionProps.push(additionalProps)
+                }
+            }
+            continue
+        }
+
+        if (TypeNode.isTypeLiteral(node)) {
+            unionProps.push(
+                node.getChildrenOfKind(SyntaxKind.PropertySignature)
+            )
+            continue
+        }
+
+        throw Error(
+            `Don't know what to do with "${node.getKindName()}"!\n${node.print()}`
+        )
+    }
+    const [commonNames, ...otherNames] = unionProps.map((a) =>
+        a.map((b) => b.getName())
+    )
+    let intersection: string[] = commonNames
+    for (const names of otherNames) {
+        intersection = computeIntersection(intersection, names)
+    }
+    for (const propsList of unionProps) {
+        for (const prop of propsList) {
+            const name = prop.getName()
+            if (intersection.includes(name)) props.push(prop)
         }
     }
+}
+
+function computeIntersection(list1: string[], list2: string[]): string[] {
+    const list: string[] = []
+    for (const item1 of list1) {
+        if (list2.includes(item1)) list.push(item1)
+    }
+    for (const item2 of list2) {
+        if (list.includes(item2)) continue
+
+        if (list1.includes(item2)) list.push(item2)
+    }
+    return list
+}
+
+function extractDoc(prop: PropertySignature): string {
+    const docs = prop.getJsDocs()
+    if (docs.length === 0)
+        throw Error(`JSDoc is missing for property "${prop.getName()}"!`)
+    return docs.map((doc) => doc.getCommentText()).join("\n")
 }

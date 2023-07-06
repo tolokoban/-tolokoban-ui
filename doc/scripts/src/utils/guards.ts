@@ -4,9 +4,11 @@ export type TypeDef =
     | "undefined"
     | "string"
     | "number"
+    | "function"
     | "unknown"
     | [type: "unknown", value: string]
     | [type: "extra", value: string]
+    | [type: "element", value: string]
     | [type: "string", value: string]
     | ["number", { min?: number; max?: number }]
     | ["|", ...TypeDef[]]

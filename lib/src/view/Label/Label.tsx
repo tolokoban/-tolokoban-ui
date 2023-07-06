@@ -2,15 +2,21 @@ import React from "react"
 import { Theme } from "../../theme"
 import Style from "./Label.module.css"
 import { ColorName } from "../../types"
+import { CommonProps } from "../../theme/styles/common"
 
 const $ = Theme.classNames
 
-export interface ViewLabelProps {
-    className?: string
+export type ViewLabelProps = CommonProps & {
+    /** Text to display as label. */
     value?: string
     /** Tooltip */
     title?: string
+    /** Color of the label. Default to `currentColor`. */
     color?: ColorName
+    /**
+     * Content this label describes.
+     * When the label is clicked, the content will get focus.
+     */
     children?: React.ReactNode
 }
 

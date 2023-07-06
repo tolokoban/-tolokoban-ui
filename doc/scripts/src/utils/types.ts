@@ -7,8 +7,11 @@ import {
     SyntaxList,
     LiteralTypeNode,
     TupleTypeNode,
+    ArrayTypeNode,
 } from "ts-morph"
 import { TypeDef } from "./guards"
+
+const AVAILABLE_EXTRA_TYPES = ["React.ReactNode", "JSX.Element"]
 
 export function expandType(type: Node | undefined): TypeDef | undefined {
     if (!type) return undefined
@@ -23,12 +26,16 @@ export function expandType(type: Node | undefined): TypeDef | undefined {
                 return "number"
             case "BooleanKeyword":
                 return "boolean"
+            case "ParenthesizedType":
+                return "function"
             case "TypeReference":
                 return getReferenceDefinition(
                     type.asKind(SyntaxKind.TypeReference)
                 )
             case "UnionType":
                 return getUnionDefinition(type.asKind(SyntaxKind.UnionType))
+            case "ArrayType":
+                return getArrayDefinition(type.asKind(SyntaxKind.ArrayType))
             case "SyntaxList":
                 return getSyntaxListDefinition(
                     type.asKind(SyntaxKind.SyntaxList)
@@ -38,8 +45,7 @@ export function expandType(type: Node | undefined): TypeDef | undefined {
             case "TupleType":
                 return getTupeDefinition(type.asKind(SyntaxKind.TupleType))
             default:
-                console.error("Unknown type: ", kind)
-                return ["unknown", type.print()]
+                throw Error(`Unknown type: "${kind}"!`)
         }
     } catch (ex) {
         throw Error(
@@ -53,17 +59,24 @@ function getReferenceDefinition(
 ): TypeDef | undefined {
     if (!node) return undefined
 
-    const identifiers = node.getDescendantsOfKind(SyntaxKind.Identifier)
-    if (identifiers.length === 0) {
-        throw Error(`No identifier name in TypeReference: ${node.print()}`)
-    }
-
-    if (identifiers.length > 1) {
-        const names = identifiers.map((item) => item.getText())
-        const name = names.join(".")
+    const name = node.getTypeName().print()
+    if (AVAILABLE_EXTRA_TYPES.includes(name)) {
         return ["extra", name]
     }
-    const [identifier] = identifiers
+    if (name === "React.ReactElement") {
+        const args = node.getTypeArguments()
+        if (args.length === 1) {
+            const elemName = args[0].print()
+            if (elemName.startsWith("View") && elemName.endsWith("Props")) {
+                return [
+                    "element",
+                    elemName.substring(0, elemName.length - "Props".length),
+                ]
+            }
+        }
+        return ["element", "any"]
+    }
+    const identifier = node.getFirstChildByKindOrThrow(SyntaxKind.Identifier)
     const [def] = identifier.getDefinitions()
     if (def) {
         const file = def.getSourceFile()
@@ -198,4 +211,15 @@ function getTupeDefinition(
         }
         return ["tuple", map]
     }
+}
+
+function getArrayDefinition(
+    array: ArrayTypeNode | undefined
+): TypeDef | undefined {
+    if (!array) return undefined
+
+    const subType = expandType(array.getElementTypeNode())
+    if (!subType) return undefined
+
+    return ["array", subType]
 }
