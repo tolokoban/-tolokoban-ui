@@ -1,7 +1,6 @@
 import styles from "./Spinner.module.css"
 import React from "react"
 import IconLoading from "../icons/IconLoading"
-import { ColorName } from "../../types"
 import { ColorStyleProps, styleColor } from "../../theme/styles/color"
 
 export type ViewSpinnerProps = {
