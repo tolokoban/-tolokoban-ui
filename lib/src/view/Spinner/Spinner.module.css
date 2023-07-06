@@ -1,14 +1,14 @@
 .SpinnerHorizontal {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     gap: 1em;
 }
 
 .SpinnerHorizontal > svg {
-    width: 1.5em;
-    height: 1.5em;
+    width: 1em;
+    height: 1em;
 }
 
 .SpinnerVertical {

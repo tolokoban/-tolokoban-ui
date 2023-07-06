@@ -1,5 +1,5 @@
 import React from "react"
-import { ViewPanel, ViewScroll } from "@tolokoban/ui"
+import { ViewPanel } from "@tolokoban/ui"
 
 import PageViewSpinner from "../routes/view/Spinner"
 import "./App.css"
@@ -24,8 +24,16 @@ export default function App() {
             position="absolute"
             width="100%"
             height="100%"
+            display="flex"
+            alignItems="stretch"
+            justifyContent="flex-start"
         >
-            <ViewPanel display="flex" alignItems="stretch" color="primary-5">
+            <ViewPanel
+                display="flex"
+                alignItems="stretch"
+                color="primary-5"
+                padding="M"
+            >
                 <ul>
                     <li>View</li>
                     <ul>
@@ -35,9 +43,9 @@ export default function App() {
                     </ul>
                 </ul>
             </ViewPanel>
-            <ViewScroll color="neutral-7">
+            <ViewPanel color="neutral-7" flex="1" padding="M" overflow="auto">
                 <RouterProvider router={router} />
-            </ViewScroll>
+            </ViewPanel>
         </ViewPanel>
     )
 }

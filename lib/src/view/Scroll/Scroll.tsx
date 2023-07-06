@@ -58,7 +58,7 @@ export function ViewScroll({
                 ...styleChild(props),
             }}
         >
-            <>{children}</>
+            <div>{children}</div>
         </div>
     )
 }

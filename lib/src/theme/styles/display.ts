@@ -124,10 +124,10 @@ function styleDisplayFlex({
     gap,
     rowGap,
     columnGap,
-    justifyContent = "space-between",
-    alignItems = "center",
-    flexDirection = "row",
-    flexWrap = "nowrap",
+    justifyContent,
+    alignItems,
+    flexDirection,
+    flexWrap,
 }: DisplayFlexStyleProps): React.CSSProperties {
     const style: React.CSSProperties = {
         display,
@@ -147,8 +147,8 @@ function styleDisplayGrid({
     columnGap,
     gridTemplateRows,
     gridTemplateColumns,
-    justifyContent = "center",
-    alignItems = "center",
+    justifyContent,
+    alignItems,
 }: DisplayGridStyleProps): React.CSSProperties {
     const style: React.CSSProperties = {
         display,
