@@ -43,10 +43,13 @@ export type OverflowValues =
     | "auto"
 
 export interface OverflowStyleProps {
+    /** CSS `overlow` property. */
     overflow?:
         | OverflowValues
         | [overflowX: OverflowValues, overflowY: OverflowValues]
+    /** CSS `overlow-x` property. */
     overflowX?: OverflowValues
+    /** CSS `overlow-y` property. */
     overflowY?: OverflowValues
 }
 

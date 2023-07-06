@@ -12,21 +12,26 @@ import {
 } from "../../theme/styles/dimension"
 import { cssForGaps } from "../../theme/styles/styles"
 import { PositionStyleProps, stylePosition } from "../../theme/styles/position"
+import { ChildStyleProps, styleChild } from "../../theme/styles/child"
 
 const $ = Theme.classNames
 
 export type ViewPanelProps = {
     className?: string
     children: React.ReactNode
+    /** CSS `borderRadius` property. */
     borderRadius?: Circumference
+    /** CSS `fontSize` property. */
     fontSize?: string
+    /**If defined, the panel will keep `width / height = aspectRatio`. */
     aspectRatio?: number
 } & ColorStyleProps &
     SpaceStyleProps &
     DimensionStyleProps &
     OverflowStyleProps &
     DisplayStyleProps &
-    PositionStyleProps
+    PositionStyleProps &
+    ChildStyleProps
 
 export function ViewPanel(props: ViewPanelProps) {
     const {
@@ -44,6 +49,7 @@ export function ViewPanel(props: ViewPanelProps) {
         ...styleOverflow(props),
         ...styleDisplay(props),
         ...stylePosition(props),
+        ...styleChild(props),
     }
     if (aspectRatio > 0) style["--custom-aspect-ratio"] = aspectRatio
     if (borderRadius) style.borderRadius = cssForGaps(borderRadius)

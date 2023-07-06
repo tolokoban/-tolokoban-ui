@@ -1,4 +1,17 @@
-.Spinner {
+.SpinnerHorizontal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1em;
+}
+
+.SpinnerHorizontal > svg {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.SpinnerVertical {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -6,19 +19,7 @@
     gap: 1em;
 }
 
-.Spinner > svg {
+.SpinnerVertical > svg {
     width: 5em;
     height: 5em;
-    animation: rotation-animation linear 0.6s infinite;
-    stroke: currentColor;
-    fill: currentColor;
-}
-
-@keyframes rotation-animation {
-    0% {
-        transform: rotate(0);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
 }

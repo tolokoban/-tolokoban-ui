@@ -1,4 +1,5 @@
 export interface PositionStyleProps {
+    /** CSS `position` property. */
     position?:
         | "static"
         | "relative"
@@ -10,10 +11,15 @@ export interface PositionStyleProps {
         | "revert"
         | "revert-layer"
         | "unset"
+    /** CSS `left` property. */
     left?: string
+    /** CSS `top` property. */
     top?: string
+    /** CSS `right` property. */
     right?: string
+    /** CSS `bottom` property. */
     bottom?: string
+    /** CSS `zIndex` property. */
     zIndex?: number | "auto"
 }
 

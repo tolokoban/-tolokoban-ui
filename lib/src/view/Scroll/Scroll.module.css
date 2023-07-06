@@ -1,10 +1,10 @@
 .Scroll {
+    --banner-color: var(--theme-color-neutral-7);
     position: relative;
     margin: 0;
     padding: 0;
-    background: var(--theme-color-neutral-5);
-    color: var(--theme-color-on-neutral-5);
-    --banner-color: var(--theme-color-neutral-5);
+    background: var(--theme-color-neutral-7);
+    color: var(--theme-color-on-neutral-7);
     height: 100%;
 }
 

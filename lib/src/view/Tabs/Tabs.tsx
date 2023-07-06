@@ -7,8 +7,17 @@ const $ = Theme.classNames
 
 export type ViewTabsProps = {
     className?: string
+    /** Key of the active Tab. */
     value?: string
-    vertical?: boolean
+    /**
+     * * `horizontal`: the tabs' headers are on the top.
+     * * `vertical`: the tabs' headers are on the left.
+     */
+    orientation?: "horizontal" | "vertical"
+    /**
+     * Callback to call when a new tab is active.
+     * @param value Key of the newly activated tab.
+     */
     onChange?(value?: string): void
     children:
         | React.ReactElement<ViewTabProps>
@@ -18,7 +27,7 @@ export type ViewTabsProps = {
 export function ViewTabs({
     className,
     children,
-    vertical = false,
+    orientation = "horizontal",
     value,
     onChange,
 }: ViewTabsProps) {
@@ -31,7 +40,7 @@ export function ViewTabs({
             className={$.join(
                 className,
                 Style.Tabs,
-                vertical && Style.vertical
+                orientation === "vertical" && Style.vertical
             )}
         >
             <header>

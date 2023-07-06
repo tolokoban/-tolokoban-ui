@@ -2,6 +2,7 @@ import { cssForGaps } from "./styles"
 
 export type DisplayStyleProps =
     | {
+          /** CSS `display` property. */
           display?:
               | "none"
               | "block"
@@ -18,6 +19,7 @@ export type DisplayStyleProps =
     | DisplayGridStyleProps
 
 interface DisplayFlexStyleProps {
+    /** CSS `display` property. */
     display: "flex" | "inline-flex"
     /* Default to `space-between` */
     justifyContent?:
@@ -63,6 +65,7 @@ interface DisplayFlexStyleProps {
     flexWrap?: "wrap" | "nowrap" | "wrap-reverse"
 }
 interface DisplayGridStyleProps {
+    /** CSS `display` property. */
     display: "grid" | "inline-grid"
     gap?: string | [column: string, row: string]
     columnGap?: string

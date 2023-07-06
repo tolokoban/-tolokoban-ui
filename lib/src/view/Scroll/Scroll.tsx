@@ -1,36 +1,64 @@
 import React from "react"
 import { Theme } from "../../theme"
+import { OpaqueColorName } from "../../types"
 import Style from "./Scroll.module.css"
-import { ColorName } from "../../types"
+import { ColorStyleProps, styleColor } from "../../theme/styles/color"
+import { SpaceStyleProps, styleSpace } from "../../theme/styles/space"
+import {
+    DimensionStyleProps,
+    styleDimension,
+} from "../../theme/styles/dimension"
+import { DisplayStyleProps, styleDisplay } from "../../theme/styles/display"
+import { PositionStyleProps, stylePosition } from "../../theme/styles/position"
+import { ChildStyleProps, styleChild } from "../../theme/styles/child"
 
 const $ = Theme.classNames
 
-export interface ViewScrollProps {
+export type ViewScrollProps = {
     className?: string
     children: React.ReactNode
-    color?: ColorName
+    /**
+     * Define the color of the background.
+     * This will be used for the fading effect at the top and bottom
+     * of the scroll area to let the user see that this is scrollable.
+     * Default to `neutral-7`.
+     */
+    color?: OpaqueColorName
+    /**
+     * The banner is the area where the content is fading to the background.
+     * This attribute will set its CSS height.
+     * Defautl to `5em`;
+     */
     bannerSize?: string
-}
+} & ColorStyleProps &
+    SpaceStyleProps &
+    DimensionStyleProps &
+    DisplayStyleProps &
+    PositionStyleProps &
+    ChildStyleProps
 
 export function ViewScroll({
     className,
     children,
-    color,
-    bannerSize = "10rem",
+    color = "neutral-7",
+    bannerSize = "5em",
+    ...props
 }: ViewScrollProps) {
-    const ref = React.useRef<HTMLDivElement | null>(null)
-    React.useEffect(() => {
-        const div = ref.current
-        if (!div || !color) return
-
-        div.style.setProperty("--banner-size", bannerSize)
-        div.style.setProperty("--banner-color", `var(--theme-color-${color})`)
-        div.style.color = `var(--theme-color-on-${color})`
-        div.style.backgroundColor = `var(--theme-color-${color})`
-    }, [ref.current, color])
     return (
-        <div className={$.join(className, Style.Scroll)} ref={ref}>
-            <div>{children}</div>
+        <div
+            className={$.join(className, Style.Scroll)}
+            style={{
+                "--custom-banner-size": bannerSize,
+                "--custom-banner-color": `var(--theme-color-${color})`,
+                ...styleColor({ color }),
+                ...styleSpace(props),
+                ...styleDimension(props),
+                ...styleDisplay(props),
+                ...stylePosition(props),
+                ...styleChild(props),
+            }}
+        >
+            <>{children}</>
         </div>
     )
 }

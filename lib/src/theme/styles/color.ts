@@ -1,8 +1,19 @@
 import { ColorName } from "../../types"
 
 export interface ColorStyleProps {
+    /**
+     * Define the color of the component background.
+     * The text color will be adjusted for maximum
+     * contrast.
+     */
     color?: ColorName
+    /**
+     * Set the text color only.
+     */
     textColor?: ColorName
+    /**
+     * Set the background color only.
+     */
     backColor?: ColorName
 }
 

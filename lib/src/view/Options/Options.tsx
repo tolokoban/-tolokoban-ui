@@ -6,7 +6,9 @@ import Styles from "./Options.module.css"
 
 export type ViewOptionsProps<T extends string | number> = ViewWithValue<T> & {
     className?: string
+    /** Optional label to display above the options. */
     label?: string
+    /** If true, set the with to `100%`. */
     wide?: boolean
     children: Array<React.ReactElement<ViewOptionsItemProps<T>>>
 }

@@ -6,7 +6,8 @@ const $ = Theme.classNames
 
 export interface ViewTabProps {
     className?: string
-    label: string | JSX.Element
+    /** Label of the tab. Displayed in the header. */
+    label: React.ReactNode
     children: React.ReactNode
 }
 

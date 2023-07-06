@@ -1,15 +1,43 @@
 import React from "react"
+import { ViewPanel, ViewScroll } from "@tolokoban/ui"
+
+import PageViewSpinner from "../routes/view/Spinner"
 import "./App.css"
-import { Button } from "@tolokoban/ui"
+import { RouterProvider, createHashRouter } from "react-router-dom"
+
+const router = createHashRouter([
+    {
+        path: "/view/Spinner",
+        element: <PageViewSpinner />,
+    },
+    {
+        path: "/",
+        element: <p>Click on something on the left navigation panel...</p>,
+        errorElement: <p>This page does not exist!</p>,
+    },
+])
 
 export default function App() {
-    const [message, setMessage] = React.useState("You are ready to play!")
     return (
-        <div className="App">
-            <p>{message}</p>
-            <Button onClick={() => setMessage("So, let's play!")}>
-                Click me!
-            </Button>
-        </div>
+        <ViewPanel
+            className="App"
+            position="absolute"
+            width="100%"
+            height="100%"
+        >
+            <ViewPanel display="flex" alignItems="stretch" color="primary-5">
+                <ul>
+                    <li>View</li>
+                    <ul>
+                        <li>
+                            <a href="#/view/Spinner">Spinner</a>
+                        </li>
+                    </ul>
+                </ul>
+            </ViewPanel>
+            <ViewScroll color="neutral-7">
+                <RouterProvider router={router} />
+            </ViewScroll>
+        </ViewPanel>
     )
 }

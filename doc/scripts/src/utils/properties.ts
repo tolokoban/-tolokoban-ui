@@ -7,6 +7,7 @@ import {
     TypeNode,
 } from "ts-morph"
 import { expandType } from "./types"
+import DefaultDoc from "./default-doc"
 
 export interface PropDef {
     name: string
@@ -204,7 +205,11 @@ function computeIntersection(list1: string[], list2: string[]): string[] {
 
 function extractDoc(prop: PropertySignature): string {
     const docs = prop.getJsDocs()
-    if (docs.length === 0)
+    if (docs.length === 0) {
+        const defaultDoc = DefaultDoc[prop.getName()]
+        if (typeof defaultDoc === "string") return defaultDoc
+
         throw Error(`JSDoc is missing for property "${prop.getName()}"!`)
+    }
     return docs.map((doc) => doc.getCommentText()).join("\n")
 }
