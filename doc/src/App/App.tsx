@@ -1,14 +1,15 @@
 import React from "react"
 import { ViewPanel } from "@tolokoban/ui"
-
-import PageViewSpinner from "../routes/view/Spinner"
-import "./App.css"
 import { RouterProvider, createHashRouter } from "react-router-dom"
+
+import ViewsList from "@/view/generated/ViewsList"
+import ViewsRoutes from "@/routes/view"
+import "./App.css"
 
 const router = createHashRouter([
     {
-        path: "/view/Spinner",
-        element: <PageViewSpinner />,
+        path: "/view/:name",
+        element: <ViewsRoutes />,
     },
     {
         path: "/",
@@ -28,22 +29,11 @@ export default function App() {
             alignItems="stretch"
             justifyContent="flex-start"
         >
-            <ViewPanel
-                display="flex"
-                alignItems="stretch"
-                color="primary-5"
-                padding="M"
-            >
-                <ul>
-                    <li>View</li>
-                    <ul>
-                        <li>
-                            <a href="#/view/Spinner">Spinner</a>
-                        </li>
-                    </ul>
-                </ul>
+            <ViewPanel color="primary-1" padding="M">
+                <h1>View</h1>
+                <ViewsList />
             </ViewPanel>
-            <ViewPanel color="neutral-7" flex="1" padding="M" overflow="auto">
+            <ViewPanel color="neutral-5" flex="1" padding={0} overflow="auto">
                 <RouterProvider router={router} />
             </ViewPanel>
         </ViewPanel>

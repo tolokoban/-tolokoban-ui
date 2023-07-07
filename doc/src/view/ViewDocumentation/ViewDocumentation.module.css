@@ -1,0 +1,6 @@
+.ViewDocumentation > header {
+    background-color: var(--theme-color-primary-2);
+    color: var(--theme-color-on-primary-2);
+    padding: var(--theme-gap-M);
+    margin: 0;
+}

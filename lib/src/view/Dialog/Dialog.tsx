@@ -7,7 +7,7 @@ import { styleColor } from "../../theme/styles/color"
 
 const $ = Theme.classNames
 
-type CustomButtonProps = Partial<ViewButtonProps>
+export type CustomButtonProps = Partial<ViewButtonProps>
 
 export interface ViewDialogProps {
     className?: string
@@ -45,17 +45,22 @@ export function ViewDialog({
     buttonCancel,
     buttonValidate,
     title,
-    headColor = "primary-5",
-    bodyColor = "neutral-7",
-    footColor = "neutral-5",
+    headColor = "primary-3",
+    bodyColor = "neutral-6",
+    footColor = "neutral-4",
     children,
 }: ViewDialogProps) {
-    const cancelProps = checkClickHandler("Cancel", buttonCancel)
+    const cancelProps = checkClickHandler("Cancel", buttonCancel, {
+        variant: "text",
+    })
     const validateProps = checkClickHandler("Validate", buttonValidate)
     return (
         <div className={$.join(className, Classes.Dialog)}>
             {title && (
-                <header style={styleColor({ color: headColor })}>
+                <header
+                    className={Classes.header}
+                    style={styleColor({ color: headColor })}
+                >
                     {title}
                 </header>
             )}
@@ -72,12 +77,14 @@ export function ViewDialog({
 
 function checkClickHandler(
     label: string,
-    props?: CustomButtonProps
+    props?: CustomButtonProps,
+    override?: CustomButtonProps
 ): ViewButtonProps | null {
     if (!props || !props.onClick) return null
 
     return {
         children: label,
         ...props,
+        ...override,
     } as ViewButtonProps
 }

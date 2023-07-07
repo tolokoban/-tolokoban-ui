@@ -1,6 +1,5 @@
-// This file has been generated on Thu, 06 Jul 2023 15:20:19 GMT
+// This file has been generated on Fri, 07 Jul 2023 11:35:52 GMT
 export * from "./Button"
-export * from "./Cell"
 export * from "./Dialog"
 export * from "./InputText"
 export * from "./Label"

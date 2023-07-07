@@ -49,7 +49,6 @@ module.exports = (env, argv) => {
             alias: {
                 "@": Path.resolve(__dirname, "src"),
                 // react: require.resolve("react"),
-                // colord: require.resolve("colord"),
             },
         },
         devtool: "inline-source-map",

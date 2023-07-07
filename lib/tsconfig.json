@@ -10,6 +10,7 @@
         "jsx": "react-jsx",
         "module": "esnext",
         "moduleResolution": "node",
+        "noErrorTruncation": true,
         "noImplicitAny": true,
         "noImplicitOverride": true,
         "noImplicitThis": true,

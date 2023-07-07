@@ -2,6 +2,7 @@
     --custom-color-main-alpha: #f908;
     --custom-color-main: #f90;
     --custom-color-text: #000;
+    --custom-thickness: 0.125em;
     font: inherit;
     appearance: none;
     border: none;
@@ -10,63 +11,34 @@
     cursor: pointer;
     border-radius: 999vmax;
     transition: all 0.2s;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    position: relative;
-    padding: 1px;
-}
-
-div.content {
     position: relative;
     font-variant: small-caps;
-    margin: 0;
-    padding: 0;
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    z-index: 1;
     overflow: hidden;
 }
 
-div.glow {
-    content: " ";
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 100%;
-    height: 0;
-    padding-top: 100%;
-    background: linear-gradient(to top, white, var(--custom-color-main));
-    animation: infinite linear 5s rotate-anim;
-    transform: scale(1.1) translateY(-50%) rotate(0deg);
-    z-index: 0;
+.Button:focus {
+    outline-offset: var(--custom-thickness);
+    outline-style: dotted;
+    outline-width: var(--custom-thickness);
+    outline-color: var(--custom-color-main);
 }
 
-.Button:focus > div.glow {
-    animation: infinite linear 2s rotate-anim;
-}
-
-@keyframes rotate-anim {
-    to {
-        transform: scale(1.1) translateY(-50%) rotate(360deg);
-    }
+.elevated,
+.filled {
+    background: var(--custom-color-main);
+    color: var(--custom-color-text);
 }
 
 .elevated {
     box-shadow: 0 0.125em 0.25em #0007;
 }
 
-.filled > div.content,
-.elevated > div.content {
-    background-color: var(--custom-color-main-alpha);
-    color: var(--custom-color-text);
-    z-index: 1;
-}
-
 .outlined {
-    border: 1px solid var(--custom-color-main);
+    border: var(--custom-thickness) solid var(--custom-color-main);
     color: var(--custom-color-text);
     background-color: transparent;
 }
@@ -78,16 +50,27 @@ div.glow {
     background-color: transparent;
 }
 
-.Button[disabled] {
+.Button:disabled {
     cursor: default;
     box-shadow: none;
     filter: grayscale(100%);
 }
 
-.Button:active {
-    filter: brightness(130%);
+.Button:not(:disabled):active {
+    transform: translateY(0.25em);
 }
 
-.Button.elevated:active {
+.Button.elevated:not(:disabled):active {
     box-shadow: 0 0.25em 0.5em #0005;
+}
+
+.Button:not(:disabled):hover {
+    filter: brightness(150%);
+    backdrop-filter: brightness(50%);
+}
+
+.Button.elevated:not(:disabled):hover,
+.Button.filled:not(:disabled):hover {
+    filter: brightness(120%);
+    backdrop-filter: none;
 }

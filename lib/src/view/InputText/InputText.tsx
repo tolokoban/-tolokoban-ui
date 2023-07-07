@@ -9,7 +9,7 @@ import { CommonProps } from "../../theme/styles/common"
 
 const $ = Theme.classNames
 
-export type ViewInputTextProps = ViewWithValue<string> &
+export type ViewInputTextProps = Partial<ViewWithValue<string>> &
     SpaceStyleProps &
     DimensionStyleProps &
     CommonProps & {
@@ -59,7 +59,7 @@ export function ViewInputText(props: ViewInputTextProps) {
     const {
         className,
         placeholder,
-        value,
+        value = "",
         label,
         autofocus = false,
         onChange,

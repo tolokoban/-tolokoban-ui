@@ -1,2 +1,13 @@
 .App {
+    font-family: sans-serif;
+}
+
+.App a,
+.App a:visited {
+    color: inherit;
+}
+
+.App h1 {
+    font-size: 1.2rem;
+    font-weight: bold;
 }

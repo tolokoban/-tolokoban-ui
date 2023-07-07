@@ -1,17 +1,14 @@
 import React from "react"
 import { Theme } from "../../theme"
 import Classes from "./Button.module.css"
-import { Circumference, OpaqueColorName } from "../../types"
-import {
-    DimensionStyleProps,
-    styleDimension,
-} from "../../theme/styles/dimension"
+import { OpaqueColorName } from "../../types"
 import {
     cssForColor,
     cssForColorOn,
     cssForGaps,
 } from "../../theme/styles/styles"
-import { CommonProps } from "../../theme/styles/common"
+import { CommonProps, styleCommon } from "../../theme/styles/common"
+import { setDefaults } from "../../util/set-defaults"
 
 const $ = Theme.classNames
 
@@ -28,8 +25,9 @@ export type ViewButtonProps = {
      */
     variant?: "elevated" | "filled" | "outlined" | "text"
     /** Content of the button. Most often a text, but can be anything. */
-    children: React.ReactNode
-    onClick(this: void): void
+    children?: React.ReactNode
+    /** Click handler. */
+    onClick?(this: void): void
     /**
      * Default to `true`.
      *
@@ -37,75 +35,49 @@ export type ViewButtonProps = {
      */
     enabled?: boolean
     /**
-     * Corners can be rounded with this prop.
-     */
-    borderRadius?: Circumference
-    /**
-     * If the button has a background (depending on `variant`) then `color` is
-     * the color of this background and the text will be black or white depending
-     * on the contrast ratio.
-     *
-     * For _text_ or _outlined_ buttons, `color` is the color of the text itself.
+     * Main color of the button.
+     * It will be the background, unless we use `variant="text"`
+     * or `variant="outline"`.
      */
     color?: OpaqueColorName
     /**
-     * Margin can be overriden.
-     *
-     * Default to `["S", "M"]`.
+     * Thickness of the button's border.
      */
-    margin?: Circumference
-    /**
-     * Padding can be overriden.
-     *
-     * Default to `[0, "M"]`.
-     */
-    padding?: Circumference
-} & DimensionStyleProps &
-    CommonProps
+    thickness?: string | number
+} & CommonProps
 
-export function ViewButton({
-    className,
-    children,
-    onClick,
-    enabled = true,
-    borderRadius = ".5em",
-    color = "secondary-5",
-    margin = ["S", "M"],
-    padding = [0, "M"],
-    width = "auto",
-    height = "2em",
-    variant: type = "elevated",
-}: ViewButtonProps) {
+export function ViewButton(partialProps: ViewButtonProps) {
+    const props = setDefaults(partialProps, {
+        children: "Button",
+        enabled: true,
+        borderRadius: ".5em",
+        color: "secondary-5",
+        margin: ["S", "M"],
+        padding: [0, "M"],
+        onClick: DEFAULT_CLICK_HANDLER,
+        width: "auto",
+        height: "2em",
+        variant: "elevated",
+        thickness: 0.125,
+    })
+    const { className, children, color, enabled, variant, onClick } = props
+    const thickness = cssForGaps(props.thickness)
     const style: React.CSSProperties = {
         "--custom-color-main-alpha": cssForColor(color, 0.5),
         "--custom-color-main": cssForColor(color),
         "--custom-color-text": cssForColorOn(color),
-        margin: cssForGaps(margin),
-        width,
-        height,
-        borderRadius: cssForGaps(borderRadius),
+        "--custom-thickness": thickness,
+        ...styleCommon(props),
     }
     return (
         <button
             style={style}
-            className={$.join(className, Classes.Button, Classes[type])}
+            className={$.join(className, Classes.Button, Classes[variant])}
             disabled={!enabled}
             type="button"
             onClick={onClick}
         >
-            {(type === "filled" || type === "elevated") && (
-                <div className={Classes.glow}></div>
-            )}
-            <div
-                className={Classes.content}
-                style={{
-                    ...styleDimension({ width, height }),
-                    borderRadius: cssForGaps(borderRadius),
-                    padding: cssForGaps(padding),
-                }}
-            >
-                {children}
-            </div>
+            {children}
         </button>
     )
 }
@@ -118,4 +90,8 @@ export function makeCustomButton(
             ...defaultProps,
             ...props,
         })
+}
+
+const DEFAULT_CLICK_HANDLER = () => {
+    console.log("Click!")
 }
