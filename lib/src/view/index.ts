@@ -1,5 +1,6 @@
 // This file has been generated on Fri, 07 Jul 2023 11:35:52 GMT
 export * from "./Button"
+export * from "./CodeHighlighter"
 export * from "./Dialog"
 export * from "./InputText"
 export * from "./Label"

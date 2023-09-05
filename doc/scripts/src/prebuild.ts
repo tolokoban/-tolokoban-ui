@@ -2,7 +2,7 @@
 import Path from "node:path"
 import { Project } from "ts-morph"
 import { absPath } from "./utils/fs"
-import { logError } from "./utils/log"
+import { color, logError } from "./utils/log"
 import { parseProperties } from "./utils/properties"
 import { isCapitalized } from "./utils/string"
 import { writeView } from "./doc/view"
@@ -27,21 +27,27 @@ async function start() {
             Path.resolve(directory.getPath(), `./${name}.tsx`)
         )
         try {
-            console.log(`<View${name} ... />`)
             const props = parseProperties(file, `View${name}Props`)
-            // console.log("Number of props:", props.length)
-            // printProps(props)
-
             if (viewsToSkip.includes(name)) {
-                console.log("    ...this is a subcomponent.")
+                console.log(
+                    `<${color(`View${name}`, "LightCyan")} ${props
+                        .map(prop => prop.name)
+                        .join(" ")} /> Sub-component.`
+                )
                 continue
             }
+
+            console.log(
+                `<${color(`View${name}`, "LightGreen")} ${props
+                    .map(prop => prop.name)
+                    .join(" ")} />`
+            )
 
             viewShortNames.push(name)
             await writeView(name)
         } catch (ex) {
             logError("========================================")
-            logError("Error in file:", file.getFilePath())
+            logError(`Error in <${name} />:`, file.getFilePath())
             logError(`${ex}`)
         }
     }

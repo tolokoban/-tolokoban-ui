@@ -1,0 +1,10 @@
+.ErrorBoundary {
+    color: #fff;
+    background-color: #e30;
+    padding: 1em;
+    margin: 1em;
+    border-radius: 1em;
+    box-shadow:
+        0 0.25em 0.5em #000,
+        0 0 0 0.25em #fffd inset;
+}

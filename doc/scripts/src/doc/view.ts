@@ -84,6 +84,7 @@ async function aggregateDemos(
             "<ViewDemo",
             [
                 `description={${JSON.stringify(description)}}`,
+                "// eslint-disable-next-line no-template-curly-in-string",
                 `example={${JSON.stringify(example)}}`,
             ],
             ">",
@@ -103,7 +104,7 @@ async function aggregateDemos(
         ],
         "}",
     ]
-        .map((line) => codeToString(line))
+        .map(line => codeToString(line))
         .join("\n")
 }
 

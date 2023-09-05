@@ -8,9 +8,9 @@
         "module": "CommonJS",
         "moduleResolution": "node",
         "skipLibCheck": true,
-        "sourceMap": false,
+        "sourceMap": true,
         "strict": true,
-        "target": "ES6",
+        "target": "ES5",
         "outDir": "./dist"
     },
     "exclude": [

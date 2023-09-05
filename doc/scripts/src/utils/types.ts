@@ -63,7 +63,7 @@ function getReferenceDefinition(
     if (AVAILABLE_EXTRA_TYPES.includes(name)) {
         return ["extra", name]
     }
-    if (name === "React.ReactElement") {
+    if (name === "React.ReactElement" || name === "React.FC") {
         const args = node.getTypeArguments()
         if (args.length === 1) {
             const elemName = args[0].print()

@@ -57,7 +57,17 @@ function listProperties(
         return listPropertiesFromType(file, expectedName)
     } catch (ex) {
         throw Error(
-            `Error while looking for type "${expectedName}" in file\n    "${file.getFilePath()}"!\n${ex}`
+            `Error while looking for type "${expectedName}" in file
+    "${file.getFilePath()}"!
+
+Please make sure that:
+  * your exported component is called "${expectedName.substring(
+      0,
+      expectedName.length - "Props".length
+  )}",
+  * and the props type is called "${expectedName}"
+
+${ex}`
         )
     }
 }
@@ -66,50 +76,60 @@ function listPropertiesFromInterface(
     file: SourceFile,
     expectedName: string
 ): PropertySignature[] {
-    const props: PropertySignature[] = []
-    const children = file.getChildrenOfKind(SyntaxKind.InterfaceDeclaration)
-    for (const child of children) {
-        if (child.getName() !== expectedName) continue
+    try {
+        const props: PropertySignature[] = []
+        const children = file.getChildrenOfKind(SyntaxKind.InterfaceDeclaration)
+        for (const child of children) {
+            if (child.getName() !== expectedName) continue
 
-        const properties = child.getChildrenOfKind(SyntaxKind.PropertySignature)
-        for (const property of properties) {
-            props.push(property)
+            const properties = child.getChildrenOfKind(
+                SyntaxKind.PropertySignature
+            )
+            for (const property of properties) {
+                props.push(property)
+            }
         }
+        return props
+    } catch (ex) {
+        throw Error(`Error while looking by ininterface\n\n${ex}`)
     }
-    return props
 }
 
 function listPropertiesFromType(
     file: SourceFile,
     expectedName: string
 ): PropertySignature[] {
-    const props: PropertySignature[] = []
-    const children = file.getChildrenOfKind(SyntaxKind.TypeAliasDeclaration)
-    const child = children.find((node) => node.getName() === expectedName)
-    if (!child) throw Error("cannot find any TypeAliasDeclaration!")
-
-    const type = child.getTypeNode()
-    if (!type) {
-        throw Error(`No type found in ${child.print()}`)
-    }
-
     try {
-        if (TypeNode.isTypeLiteral(type)) {
-            return type.getDescendantsOfKind(SyntaxKind.PropertySignature)
+        const props: PropertySignature[] = []
+        const children = file.getChildrenOfKind(SyntaxKind.TypeAliasDeclaration)
+        const child = children.find((node) => node.getName() === expectedName)
+        if (!child) throw Error("cannot find any TypeAliasDeclaration!")
+
+        const type = child.getTypeNode()
+        if (!type) {
+            throw Error(`No type found in ${child.print()}`)
         }
-        if (TypeNode.isIntersectionTypeNode(type)) {
-            parseIntersectionTypeNode(type.getTypeNodes(), props)
-            return props
+
+        try {
+            if (TypeNode.isTypeLiteral(type)) {
+                return type.getDescendantsOfKind(SyntaxKind.PropertySignature)
+            }
+            if (TypeNode.isIntersectionTypeNode(type)) {
+                parseIntersectionTypeNode(type.getTypeNodes(), props)
+                return props
+            }
+            if (TypeNode.isUnionTypeNode(type)) {
+                parseUnionTypeNode(type.getTypeNodes(), props)
+                return props
+            }
+            throw Error(`Don't know what to do with "${type.getKindName()}"!`)
+        } catch (ex) {
+            throw Error(
+                `Error while parsing properties in "${expectedName}"!\n${type.print()}\n${ex}`
+            )
         }
-        if (TypeNode.isUnionTypeNode(type)) {
-            parseUnionTypeNode(type.getTypeNodes(), props)
-            return props
-        }
-        throw Error(`Don't know what to do with "${type.getKindName()}"!`)
     } catch (ex) {
-        throw Error(
-            `Error while parsing properties in "${expectedName}"!\n${type.print()}\n${ex}`
-        )
+        throw Error(`Error while looking by type\n\n${ex}`)
     }
 }
 

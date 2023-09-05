@@ -9,7 +9,7 @@ import { CommonProps } from "../../theme/styles/common"
 
 const $ = Theme.classNames
 
-export type ViewInputTextProps = Partial<ViewWithValue<string>> &
+export type ViewInputTextProps = ViewWithValue<string> &
     SpaceStyleProps &
     DimensionStyleProps &
     CommonProps & {
@@ -74,6 +74,8 @@ export function ViewInputText(props: ViewInputTextProps) {
         if (invalid) return
 
         if (evt.key === "Enter") {
+            evt.preventDefault()
+            evt.stopPropagation()
             onEnterKeyPressed?.(text)
         }
     }
@@ -95,7 +97,7 @@ export function ViewInputText(props: ViewInputTextProps) {
     }
     React.useEffect(() => {
         onChange?.(text)
-    }, [text])
+    }, [onChange, text])
     const style: React.CSSProperties = {
         ...styleSpace(props),
     }
