@@ -1,4 +1,3 @@
-export { version } from "../package.json"
 export * from "./types"
 export * from "./hooks"
 export * from "./view"
