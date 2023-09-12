@@ -13,7 +13,7 @@ import { logWarning } from "../utils/log"
 import { CodeSection, codeToString } from "../utils/code"
 
 export async function writeView(viewShortName: string) {
-    const root = absPath(`doc/src/routes/view/${viewShortName}/`)
+    const root = absPath(`doc/src/app/view/${viewShortName}/`)
     await mkdir(Path.resolve(root, `demo/Default`))
     await saveTextIfNew(
         Path.resolve(root, `demo/Default/Default.tsx`),
@@ -39,25 +39,13 @@ export default function Demo() {
         await aggregateDemos(Path.resolve(root, "demo"), viewShortName)
     )
     await saveText(
-        Path.resolve(root, "index.tsx"),
+        Path.resolve(root, "page.tsx"),
         `${getHeader()}
 import React from "react"
-import { ViewSpinner } from "@tolokoban/ui"
+import View${viewShortName} from "./${viewShortName}"
 
-const LazyView = React.lazy(() => import("./${viewShortName}"))
-
-export default function Doc${viewShortName}() {
-    return (
-        <React.Suspense
-            fallback={
-                <ViewSpinner>
-                    Loading <b>${viewShortName}</b> documentation...
-                </ViewSpinner>
-            }
-        >
-            <LazyView />
-        </React.Suspense>
-    )
+export default function PageView${viewShortName}() {
+    return <View${viewShortName} />
 }
 `
     )
@@ -104,7 +92,7 @@ async function aggregateDemos(
         ],
         "}",
     ]
-        .map(line => codeToString(line))
+        .map((line) => codeToString(line))
         .join("\n")
 }
 

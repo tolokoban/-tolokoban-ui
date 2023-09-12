@@ -18,7 +18,7 @@ const $ = Theme.classNames
 
 export type ViewPanelProps = {
     className?: string
-    children: React.ReactNode
+    children?: React.ReactNode
     /** CSS `borderRadius` property. */
     borderRadius?: Circumference
     /** CSS `fontSize` property. */

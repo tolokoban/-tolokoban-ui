@@ -1,7 +1,6 @@
 .Panel {
     margin: 0;
     padding: 0;
-    place-items: center;
 }
 
 .Panel > :global(*.flex-0) {

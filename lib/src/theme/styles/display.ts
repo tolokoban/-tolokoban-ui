@@ -1,5 +1,43 @@
 import { cssForGaps } from "./styles"
 
+type AlignMode =
+    | "normal"
+    | "flex-start"
+    | "flex-end"
+    | "center"
+    | "start"
+    | "end"
+    | "self-start"
+    | "self-end"
+    | "baseline"
+    | "first baseline"
+    | "last baseline"
+    | "stretch"
+    | "safe"
+    | "unsafe"
+
+type JustifyMode =
+    | "normal"
+    | "start"
+    | "end"
+    | "flex-start"
+    | "flex-end"
+    | "self-start"
+    | "self-end"
+    | "center"
+    | "left"
+    | "right"
+    | "baseline"
+    | "first baseline"
+    | "last baseline"
+    | "stretch"
+    | "safe"
+    | "unsafe"
+    | "legacy"
+    | "space-between"
+    | "space-around"
+    | "space-evenly"
+
 export type DisplayStyleProps =
     | {
           /** CSS `display` property. */
@@ -22,40 +60,10 @@ interface DisplayFlexStyleProps {
     /** CSS `display` property. */
     display: "flex" | "inline-flex"
     /* Default to `space-between` */
-    justifyContent?:
-        | "start"
-        | "end"
-        | "flex-start"
-        | "flex-end"
-        | "center"
-        | "left"
-        | "right"
-        | "normal"
-        | "baseline"
-        | "first baseline"
-        | "last baseline"
-        | "space-between"
-        | "space-around"
-        | "space-evenly"
-        | "stretch"
-        | "safe"
-        | "unsafe"
+    justifyContent?: JustifyMode
     /** Default to `center` */
-    alignItems?:
-        | "normal"
-        | "flex-start"
-        | "flex-end"
-        | "center"
-        | "start"
-        | "end"
-        | "self-start"
-        | "self-end"
-        | "baseline"
-        | "first baseline"
-        | "last baseline"
-        | "stretch"
-        | "safe"
-        | "unsafe"
+    alignItems?: AlignMode
+    placeItems?: AlignMode | `${AlignMode} ${JustifyMode}`
     gap?: string | [column: string, row: string]
     columnGap?: string
     rowGap?: string
@@ -72,40 +80,10 @@ interface DisplayGridStyleProps {
     rowGap?: string
     gridTemplateColumns?: string
     gridTemplateRows?: string
-    justifyContent?:
-        | "start"
-        | "end"
-        | "flex-start"
-        | "flex-end"
-        | "center"
-        | "left"
-        | "right"
-        | "normal"
-        | "baseline"
-        | "first baseline"
-        | "last baseline"
-        | "space-between"
-        | "space-around"
-        | "space-evenly"
-        | "stretch"
-        | "safe"
-        | "unsafe"
+    justifyContent?: JustifyMode
     /** Default to `center` */
-    alignItems?:
-        | "normal"
-        | "flex-start"
-        | "flex-end"
-        | "center"
-        | "start"
-        | "end"
-        | "self-start"
-        | "self-end"
-        | "baseline"
-        | "first baseline"
-        | "last baseline"
-        | "stretch"
-        | "safe"
-        | "unsafe"
+    alignItems?: AlignMode
+    placeItems?: AlignMode | `${AlignMode} ${JustifyMode}`
 }
 
 export function styleDisplay(props: DisplayStyleProps): React.CSSProperties {
@@ -126,6 +104,7 @@ function styleDisplayFlex({
     columnGap,
     justifyContent,
     alignItems,
+    placeItems,
     flexDirection,
     flexWrap,
 }: DisplayFlexStyleProps): React.CSSProperties {
@@ -137,6 +116,7 @@ function styleDisplayFlex({
     style.alignItems = alignItems
     style.flexWrap = flexWrap
     style.flexDirection = flexDirection
+    style.placeItems = placeItems
     return style
 }
 
@@ -149,6 +129,7 @@ function styleDisplayGrid({
     gridTemplateColumns,
     justifyContent,
     alignItems,
+    placeItems,
 }: DisplayGridStyleProps): React.CSSProperties {
     const style: React.CSSProperties = {
         display,
@@ -158,6 +139,7 @@ function styleDisplayGrid({
     style.gridTemplateColumns = gridTemplateColumns
     style.justifyContent = justifyContent
     style.alignItems = alignItems
+    style.placeItems = placeItems
     return style
 }
 
@@ -172,7 +154,7 @@ function styleGap({
 }) {
     const style: React.CSSProperties = {}
     if (gap) style.gap = cssForGaps(gap)
-    if (columnGap) style.columnGap = cssForGaps(columnGap)
     if (rowGap) style.rowGap = cssForGaps(rowGap)
+    if (columnGap) style.columnGap = cssForGaps(columnGap)
     return style
 }

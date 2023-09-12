@@ -1,0 +1,19 @@
+.Link,
+.Link:visited {
+    all: inherit;
+    display: inline-block;
+    line-height: 2;
+    padding: 0 0.5em;
+    text-align: left;
+    background-color: var(--theme-color-secondary-4);
+    color: var(--theme-color-on-secondary-4);
+    transition: all 0.2s;
+    cursor: pointer;
+    margin: 0.125em;
+    font-weight: bold;
+}
+
+.Link:hover {
+    background-color: var(--theme-color-secondary-6);
+    color: var(--theme-color-on-secondary-6);
+}

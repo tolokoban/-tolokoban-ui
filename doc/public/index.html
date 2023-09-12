@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
@@ -9,7 +9,10 @@
         />
         <meta name="theme-color" content="#2ca600" />
         <link rel="manifest" href="manifest.json" />
-        <title><%= htmlWebpackPlugin.options.title %> v<%= htmlWebpackPlugin.options.version %></title>
+        <title>
+            <%= htmlWebpackPlugin.options.title %> v<%=
+            htmlWebpackPlugin.options.version %>
+        </title>
         <style>
             #tgd-logo-powered {
                 position: absolute;
@@ -106,9 +109,9 @@
         </style>
     </head>
 
-    <body class="thm-bg0">
+    <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>
-        <div id="root" class="theme-color-screen"></div>
+        <div id="root" class="theme-color-neutral-1"></div>
         <div id="tgd-logo" style="background: #0083cb">
             <svg
                 version="1.1"

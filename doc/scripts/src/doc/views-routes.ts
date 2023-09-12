@@ -6,39 +6,23 @@ export async function writeViewsRoutes(viewShortNames: string[]) {
     const content = codeLinesToString([
         getHeader(),
         `import React from "react"`,
-        `import { useParams } from "react-router-dom"`,
+        `import { ViewPanel } from "@tolokoban/ui"`,
+        `import Link from "@/view/Link"`,
         "",
-        ...viewShortNames.map((name) => `import Doc${name} from "./${name}"`),
-        "",
-        "export default function ViewsRoutes() {",
+        "export default function ViewsLayout({ children }: { children: React.ReactNode }) {",
         [
-            "const { name } = useParams()",
-            "switch (name) {",
-            viewShortNames.map(
-                (name) => `case "${name}": return <Doc${name} />`
-            ),
-            "}",
-            `return <div>No documentation for component <b>{name}</b>!</div>`,
+            `return <ViewPanel display="flex" alignItems="stretch" height="100%">`,
+            [
+                `<ViewPanel display="flex" flexDirection="column" alignItems="stretch" padding="M" overflow="auto" color="primary-2">`,
+                viewShortNames.map(
+                    (name) => `<Link hash="/view/${name}">${name}</Link>`
+                ),
+                "</ViewPanel>",
+                `<ViewPanel color="neutral-5" flex="1 1 auto">{children}</ViewPanel>`,
+            ],
+            "</ViewPanel>",
         ],
         "}",
     ])
-    await saveText(absPath("doc/src/routes/view/index.tsx"), content)
-    await mkdir(absPath("doc/src/view/generated/ViewsList"))
-    await saveText(
-        absPath("doc/src/view/generated/ViewsList/index.tsx"),
-        codeLinesToString([
-            getHeader(),
-            `import React from "react"`,
-            "",
-            `export default function ViewsList() {`,
-            [
-                "return <>",
-                viewShortNames.map(
-                    (name) => `<div><a href="#/view/${name}">${name}</a></div>`
-                ),
-                "</>",
-            ],
-            "}",
-        ])
-    )
+    await saveText(absPath("doc/src/app/view/layout.tsx"), content)
 }
