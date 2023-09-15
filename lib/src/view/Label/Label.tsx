@@ -42,9 +42,11 @@ export function ViewLabel({
             >
                 {value}
             </label>
-            <div id={id} className={Style.LabelContent}>
-                {children}
-            </div>
+            {children && (
+                <div id={id} className={Style.LabelContent}>
+                    {children}
+                </div>
+            )}
         </>
     )
 }

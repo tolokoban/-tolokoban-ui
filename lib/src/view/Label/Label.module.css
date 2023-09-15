@@ -6,6 +6,7 @@
 }
 
 .Label {
-    opacity: 0.6;
-    font-size: 85%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
