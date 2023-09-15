@@ -79,7 +79,9 @@ interface DisplayGridStyleProps {
     columnGap?: string
     rowGap?: string
     gridTemplateColumns?: string
+    gridAutoColumns?: string
     gridTemplateRows?: string
+    gridAutoRows?: string
     justifyContent?: JustifyMode
     /** Default to `center` */
     alignItems?: AlignMode
@@ -127,6 +129,8 @@ function styleDisplayGrid({
     columnGap,
     gridTemplateRows,
     gridTemplateColumns,
+    gridAutoRows,
+    gridAutoColumns,
     justifyContent,
     alignItems,
     placeItems,
@@ -137,6 +141,8 @@ function styleDisplayGrid({
     }
     style.gridTemplateRows = gridTemplateRows
     style.gridTemplateColumns = gridTemplateColumns
+    style.gridAutoRows = gridAutoRows
+    style.gridAutoColumns = gridAutoColumns
     style.justifyContent = justifyContent
     style.alignItems = alignItems
     style.placeItems = placeItems
