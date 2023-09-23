@@ -1,14 +1,19 @@
 .Options {
     display: inline-block;
+    box-shadow: var(--theme-shadow-2);
+    overflow: hidden;
+    border-radius: 0.5rem;
 }
 
 .OptionsWide {
+    composes: Options;
     display: block;
 }
 
 .OptionsWide :global(div.options) {
     display: flex;
-    background-color: var(--theme-color-primary);
+    background-color: var(--theme-color-primary-5);
+    color: var(--theme-color-on-primary-5);
 }
 
 .Options :global(div.options) {
@@ -31,10 +36,11 @@
 
 .Options :global(div.options) > :global(.button.selected) {
     font-weight: 900;
-    background-color: var(--theme-color-secondary-7);
+    background-color: var(--theme-color-primary-6);
+    color: var(--theme-color-on-primary-6);
 }
 
 .Options :global(div.options) > :global(.button.not-selected) {
-    background-color: var(--theme-color-primary);
-    color: var(--theme-color-on-primary-5);
+    background-color: var(--theme-color-primary-4);
+    color: var(--theme-color-on-primary-4);
 }

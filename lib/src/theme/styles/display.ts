@@ -106,7 +106,6 @@ function styleDisplayFlex({
     columnGap,
     justifyContent,
     alignItems,
-    placeItems,
     flexDirection,
     flexWrap,
 }: DisplayFlexStyleProps): React.CSSProperties {
@@ -118,7 +117,6 @@ function styleDisplayFlex({
     style.alignItems = alignItems
     style.flexWrap = flexWrap
     style.flexDirection = flexDirection
-    style.placeItems = placeItems
     return style
 }
 

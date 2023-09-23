@@ -1,6 +1,6 @@
 {
     "name": "@tolokoban/ui",
-    "version": "0.9.2",
+    "version": "0.11.0",
     "private": false,
     "main": "dist/cjs/index.js",
     "module": "dist/esm/index.js",
@@ -21,8 +21,7 @@
         "lint": "eslint -c .eslintrc.yml 'src/**/*.ts' 'src/**/*.tsx'",
         "prepub": "npm run build",
         "pub": "npm publish --access public",
-        "prewatch": "npm run generate",
-        "watch": "rollup -cw",
+        "prestart": "npm run generate",
         "start": "rollup -cw",
         "storybook": "start-storybook -p 6006",
         "build-storybook": "build-storybook"
@@ -58,7 +57,7 @@
         "rollup": "^3.27.1",
         "rollup-plugin-postcss": "^4.0.2",
         "rollup-plugin-typescript2": "^0.35.0",
-        "typescript": "^5.1.6",
+        "typescript": "^5.2.2",
         "typescript-plugin-css-modules": "^5.0.1"
     },
     "peerDependencies": {

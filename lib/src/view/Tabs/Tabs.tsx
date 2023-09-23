@@ -1,7 +1,9 @@
 import React from "react"
+
 import { Theme } from "../../theme"
-import Style from "./Tabs.module.css"
 import { ViewTab, ViewTabProps } from "../Tab"
+
+import Styles from "./Tabs.module.css"
 
 const $ = Theme.classNames
 
@@ -39,8 +41,8 @@ export function ViewTabs({
         <div
             className={$.join(
                 className,
-                Style.Tabs,
-                orientation === "vertical" && Style.vertical
+                Styles.Tabs,
+                orientation === "vertical" && Styles.vertical
             )}
         >
             <header>

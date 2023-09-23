@@ -1,6 +1,8 @@
 import * as React from "react"
+
 import { ColorStyleProps, styleColor } from "../../../theme/styles/color"
-import Style from "./generic-icon.module.css"
+
+import Styles from "./generic-icon.module.css"
 
 export type GenericIconProps = {
     className?: string
@@ -9,7 +11,7 @@ export type GenericIconProps = {
     /** Starts the animation if `true` */
     animate?: boolean
     /** Description of the drawing. Ex.: `M8,20L12,10L16,20Z` */
-    value: string
+    value?: string
     onClick?(): void
 } & ColorStyleProps
 
@@ -20,7 +22,9 @@ export type Icon = ((props: IconProps) => JSX.Element) & {
 }
 
 export default function GenericIcon(props: GenericIconProps) {
-    const { value } = props
+    const {
+        value = "M12,10A2,2 0 0,0 10,12C10,13.11 10.9,14 12,14C13.11,14 14,13.11 14,12A2,2 0 0,0 12,10Z",
+    } = props
     const type = props.type ?? "filled"
     const style: React.CSSProperties = {
         ...styleColor(props),
@@ -32,7 +36,7 @@ export default function GenericIcon(props: GenericIconProps) {
             style={style}
             viewBox="0 0 24 24"
             preserveAspectRatio="xMidYMid meet"
-            onClick={props.onClick}
+            onClick={() => props.onClick?.()}
             tabIndex={props.onClick ? 1 : undefined}
             strokeWidth={1.5}
         >
@@ -61,12 +65,12 @@ export default function GenericIcon(props: GenericIconProps) {
 }
 
 function getClassName(props: GenericIconProps): string {
-    const classNames = [Style.GenericIcon]
+    const classNames = [Styles.GenericIcon]
     if (typeof props.className === "string") {
         classNames.push(props.className)
     }
-    if (props.animate === true) classNames.push(Style.animate)
-    if (props.onClick) classNames.push(Style.clickable)
+    if (props.animate === true) classNames.push(Styles.animate)
+    if (props.onClick) classNames.push(Styles.clickable)
 
     return classNames.join(" ")
 }

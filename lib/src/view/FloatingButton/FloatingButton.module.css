@@ -1,0 +1,36 @@
+.FloatingButton {
+    --custom-color-back: #7df;
+    --custom-color-text: #000;
+    --custom-color-hover-back: 0;
+    --custom-color-hover-text: 0;
+    --custom-shadow: var(--theme-shadow-3);
+    all: inherit;
+    overflow: hidden;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+    background-color: var(--custom-color-back);
+    color: var(--custom-color-text);
+    transition: 0.2s all;
+    box-shadow: var(--custom-shadow);
+}
+
+.FloatingButton:hover {
+    background-color: var(--custom-color-hover-back);
+    color: var(--custom-color-hover-text);
+}
+
+button.FloatingButton:active {
+    transform: scale(0.8);
+}
+
+button.FloatingButton[disabled] {
+    pointer-events: none;
+    box-shadow: none;
+    filter: grayscale(100%);
+}

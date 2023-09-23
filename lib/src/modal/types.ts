@@ -1,6 +1,6 @@
-import React from "react"
+import { Children } from "../types"
 
-export type ModalParams = Partial<Modal> & { content: React.ReactNode }
+export type ModalParams = Partial<Modal> & { content: Children }
 
 export interface ConfirmParams extends ModalParams {
     /** If defined, it will be the header of the modal dialog box. */
@@ -14,7 +14,7 @@ export interface ConfirmParams extends ModalParams {
 }
 
 export interface ModalOptions {
-    content: React.ReactNode
+    content: Children
     align:
         | ""
         | "L"
@@ -59,7 +59,7 @@ export interface ModalManagerInterface {
     show(params: ModalParams): () => void
 
     wait<T>(
-        content: React.ReactNode,
+        content: Children,
         promise: Promise<T>,
         params?: Partial<Omit<ModalParams, "content">>
     ): Promise<T>
@@ -69,7 +69,7 @@ export interface ModalManagerInterface {
     confirm(params: ConfirmParams): Promise<boolean>
 
     info(
-        content: React.ReactNode,
+        content: Children,
         params?: Partial<Omit<ModalParams, "content">>
     ): Promise<void>
 }

@@ -15,10 +15,16 @@ export interface ColorStyleProps {
      * Set the background color only.
      */
     backColor?: ColorName
+    /**
+     * Shadow under the Panel.
+     * 0 means no shadow, then shadow is bigger
+     * from 1 to 9.
+     */
+    shadow?: number
 }
 
 export function styleColor(
-    { color, textColor, backColor }: ColorStyleProps,
+    { color, textColor, backColor, shadow }: ColorStyleProps,
     defaults: Partial<ColorStyleProps> = {}
 ): React.CSSProperties {
     const style: React.CSSProperties = {}
@@ -33,6 +39,7 @@ export function styleColor(
     }
     if (textColor) style.color = `var(--theme-color-${textColor})`
     if (backColor) style.backgroundColor = `var(--theme-color-${backColor})`
+    if (shadow) style.boxShadow = `var(--theme-shadow-${shadow}, none)`
     return style
 }
 

@@ -61,6 +61,10 @@ export default class Theme {
             "neutral",
             makeColors(colors.neutral ?? DEFAULT_COLOR_NEUTRAL)
         )
+        for (let shadow = 0; shadow < 10; shadow++) {
+            const y = shadow
+            this.add(`shadow-${shadow}`, `0 ${y}px ${y * 2}px #000e`)
+        }
     }
 
     /**

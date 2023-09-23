@@ -1,13 +1,16 @@
 import JSON5 from "json5"
 import React from "react"
+
+import { Children } from "../types"
 import { ViewDialog, ViewSpinner } from "../view"
-import Style from "./manager.module.css"
 import {
     ConfirmParams,
     Modal,
     ModalManagerInterface,
     ModalParams,
 } from "./types"
+
+import Styles from "./manager.module.css"
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const EMPTY_FUNCTION = () => {}
@@ -35,7 +38,7 @@ export default class ModalManager implements ModalManagerInterface {
     }
 
     async wait<T>(
-        content: React.ReactNode,
+        content: Children,
         promise: Promise<T>,
         params?: Partial<Omit<ModalParams, "content">>
     ): Promise<T> {
@@ -43,7 +46,7 @@ export default class ModalManager implements ModalManagerInterface {
             const hide = this.show({
                 ...params,
                 content: (
-                    <div className={Style.wait}>
+                    <div className={Styles.wait}>
                         <ViewSpinner>{content}</ViewSpinner>
                     </div>
                 ),
@@ -81,7 +84,7 @@ export default class ModalManager implements ModalManagerInterface {
                             },
                         }}
                     >
-                        <div className={Style.error}>
+                        <div className={Styles.error}>
                             {renderHumanFriendlyErrorContent(content)}
                         </div>
                     </ViewDialog>
@@ -132,7 +135,7 @@ export default class ModalManager implements ModalManagerInterface {
     }
 
     info(
-        content: React.ReactNode,
+        content: Children,
         params?: Partial<Omit<ModalParams, "content">> | undefined
     ): Promise<void> {
         return new Promise((resolve) => {
@@ -161,9 +164,7 @@ export default class ModalManager implements ModalManagerInterface {
     }
 }
 
-export function renderHumanFriendlyErrorContent(
-    content: unknown
-): React.ReactNode {
+export function renderHumanFriendlyErrorContent(content: unknown): Children {
     if (typeof content === "string") return <div>{content}</div>
     if (content instanceof Error)
         return (

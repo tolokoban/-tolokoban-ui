@@ -1,12 +1,13 @@
-import React from "react"
 import { Theme } from "../../theme"
-import Style from "./Touchable.module.css"
+import { Children } from "../../types"
+
+import Styles from "./Touchable.module.css"
 
 const $ = Theme.classNames
 
 export interface ViewTouchableProps<T> {
     className?: string
-    children: React.ReactNode
+    children: Children
     /**
      * HTML tooltip, used in the `title` attribute.
      */
@@ -31,7 +32,7 @@ export function ViewTouchable<T>({
 
     return (
         <div
-            className={$.join(className, Style.Touchable)}
+            className={$.join(className, Styles.Touchable)}
             title={tooltip}
             onClick={() => onClick(tag)}
         >

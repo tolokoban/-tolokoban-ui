@@ -1,0 +1,7 @@
+{
+    name: "View",
+    params: {
+        name: "Component's name",
+    },
+    open: "{{name}}/{{name}}.tsx",
+}

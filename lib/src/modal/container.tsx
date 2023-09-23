@@ -1,6 +1,8 @@
 import React from "react"
-import Style from "./container.module.css"
+
 import { ModalOptions } from "./types"
+
+import Styles from "./container.module.css"
 
 export interface ModalContainerProps {
     options: ModalOptions
@@ -43,9 +45,9 @@ export default function ModalContainer({
 }
 
 function getClassNames(options: ModalOptions) {
-    const classes = [Style.container]
+    const classes = [Styles.container]
     for (const align of options.align ?? "") {
-        const cls = Style[align]
+        const cls = Styles[align]
         if (cls) classes.push(cls)
     }
     return classes.join(" ")

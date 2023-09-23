@@ -2,7 +2,7 @@ export type ThemeSize = "none" | "XS" | "S" | "M" | "L" | "XL"
 
 export interface ViewWithValue<T> {
     value: T
-    onChange?(this: void, value: T): void
+    onChange(this: void, value: T): void
 }
 
 export type ThemeColor =
@@ -61,3 +61,12 @@ export type Circumference =
           bottom: string | number,
           left: string | number
       ]
+
+export type Children =
+    | React.ReactElement
+    | string
+    | number
+    | boolean
+    | null
+    | undefined
+    | Iterable<Children>

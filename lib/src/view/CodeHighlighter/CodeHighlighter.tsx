@@ -1,7 +1,10 @@
 import React from "react"
+
 import { Theme } from "../../theme"
-import Style from "./CodeHighlighter.module.css"
 import { ColoredCode, TypeGrammar } from "./types"
+import { Children } from "../../types"
+
+import Styles from "./CodeHighlighter.module.css"
 
 const $ = Theme.classNames
 
@@ -32,13 +35,13 @@ export function ViewCodeHighlighter({
         setCode(parseCode(children, grammar))
     }, [children, grammar])
     return (
-        <div className={$.join(className, Style.CodeHighlighter)}>
+        <div className={$.join(className, Styles.CodeHighlighter)}>
             {code.map(buildCode)}
         </div>
     )
 }
 
-function buildCode(code: ColoredCode, index: number): React.ReactNode {
+function buildCode(code: ColoredCode, index: number): Children {
     if (typeof code === "string") return code
 
     return (

@@ -1,8 +1,10 @@
 import React from "react"
+
 import { Theme } from "../../theme"
-import Style from "./Label.module.css"
-import { ColorName } from "../../types"
+import { Children, ColorName } from "../../types"
 import { CommonProps } from "../../theme/styles/common"
+
+import Styles from "./Label.module.css"
 
 const $ = Theme.classNames
 
@@ -17,7 +19,7 @@ export type ViewLabelProps = CommonProps & {
      * Content this label describes.
      * When the label is clicked, the content will get focus.
      */
-    children?: React.ReactNode
+    children?: Children
 }
 
 export function ViewLabel({
@@ -37,13 +39,13 @@ export function ViewLabel({
             <label
                 htmlFor={id}
                 title={title}
-                className={$.join(className, Style.Label)}
+                className={$.join(className, Styles.Label)}
                 style={style}
             >
                 {value}
             </label>
             {children && (
-                <div id={id} className={Style.LabelContent}>
+                <div id={id} className={Styles.LabelContent}>
                     {children}
                 </div>
             )}

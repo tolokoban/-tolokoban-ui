@@ -1,7 +1,7 @@
 import React from "react"
 import { Theme } from "../../theme"
 import Classes from "./Button.module.css"
-import { OpaqueColorName } from "../../types"
+import { Children, OpaqueColorName } from "../../types"
 import {
     cssForColor,
     cssForColorOn,
@@ -25,7 +25,7 @@ export type ViewButtonProps = {
      */
     variant?: "elevated" | "filled" | "outlined" | "text"
     /** Content of the button. Most often a text, but can be anything. */
-    children?: React.ReactNode
+    children?: Children
     /** Click handler. */
     onClick?(this: void): void
     /**
@@ -50,7 +50,7 @@ export function ViewButton(partialProps: ViewButtonProps) {
     const props = setDefaults(partialProps, {
         children: "Button",
         enabled: true,
-        borderRadius: ".5em",
+        borderRadius: ".125em",
         color: "secondary-5",
         margin: ["S", "M"],
         padding: [0, "M"],

@@ -1,7 +1,10 @@
 import React from "react"
+
 import { ColorStyleProps, styleColor } from "../../theme/styles/color"
 import IconLoading from "../icons/IconLoading"
-import styles from "./Spinner.module.css"
+import { Children } from "../../types"
+
+import Styles from "./Spinner.module.css"
 
 export type ViewSpinnerProps = {
     className?: string
@@ -14,7 +17,7 @@ export type ViewSpinnerProps = {
      * is at least twice bigger.
      */
     orientation?: "horizontal" | "vertical"
-    children?: React.ReactNode
+    children?: Children
 } & ColorStyleProps
 
 export function ViewSpinner({
@@ -29,8 +32,8 @@ export function ViewSpinner({
         <div
             className={`${
                 orientation === "horizontal"
-                    ? styles.SpinnerHorizontal
-                    : styles.SpinnerVertical
+                    ? Styles.SpinnerHorizontal
+                    : Styles.SpinnerVertical
             } ${className ?? ""}`}
             style={styleColor(props)}
         >

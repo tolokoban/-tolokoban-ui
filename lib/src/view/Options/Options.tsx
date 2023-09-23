@@ -1,7 +1,8 @@
 import { useChangeableValue } from "../../hooks/changeable-value"
-import { ViewWithValue } from "../../types"
+import { Children, ViewWithValue } from "../../types"
 import { ViewLabel } from "../Label"
 import { ViewTouchable } from "../Touchable"
+
 import Styles from "./Options.module.css"
 
 export type ViewOptionsProps<T extends string | number> = ViewWithValue<T> & {
@@ -15,7 +16,7 @@ export type ViewOptionsProps<T extends string | number> = ViewWithValue<T> & {
 
 export type ViewOptionsItemProps<T extends string | number> = {
     key: T
-    children: React.ReactNode
+    children: Children
 }
 
 export function ViewOptions<T extends string>(props: ViewOptionsProps<T>) {

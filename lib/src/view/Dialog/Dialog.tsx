@@ -1,8 +1,7 @@
-import React from "react"
 import { Theme } from "../../theme"
 import Classes from "./Dialog.module.css"
 import { ViewButton, ViewButtonProps } from "../Button"
-import { ColorName } from "../../types"
+import { Children, ColorName } from "../../types"
 import { styleColor } from "../../theme/styles/color"
 
 const $ = Theme.classNames
@@ -14,7 +13,7 @@ export interface ViewDialogProps {
     /**
      * If defined, the `title` will appear in the dialog header.
      */
-    title?: React.ReactNode
+    title?: Children
     /**
      * Customize the __Cancel__ button.
      * The buton will appear only if you set at least the `onClick` attribute.
@@ -37,7 +36,7 @@ export interface ViewDialogProps {
      * Color of the footer. Default to `neutral-5`.
      */
     footColor?: ColorName
-    children: React.ReactNode
+    children: Children
 }
 
 export function ViewDialog({

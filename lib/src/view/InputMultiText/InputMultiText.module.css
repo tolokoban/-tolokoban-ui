@@ -1,0 +1,40 @@
+.InputMultiText {
+    display: grid;
+    gap: 0;
+    place-items: stretch;
+    grid-template-rows: auto 1fr;
+    box-shadow: var(--theme-shadow-1);
+    margin: 2px;
+}
+
+.InputMultiText > input {
+    border: none;
+    height: 2em;
+    line-height: 2em;
+    padding: 0 0.5em;
+    background-color: var(--theme-color-input);
+    color: var(--theme-color-on-input);
+}
+
+.InputMultiText > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: stretch;
+    color: var(--theme-color-on-primary-5);
+    background: var(--theme-color-primary-5);
+    overflow: hidden;
+    border-radius: 0 0 0.25em 0.25em;
+}
+
+.InputMultiText > div > button {
+    all: inherit;
+    flex: 1 1 auto;
+    min-width: 3em;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    position: relative;
+    padding: 0;
+    margin: 0;
+}

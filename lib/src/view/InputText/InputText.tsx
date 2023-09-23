@@ -1,11 +1,13 @@
 import React from "react"
+
 import { Theme } from "../../theme"
-import Style from "./InputText.module.css"
 import { SpaceStyleProps, styleSpace } from "../../theme/styles/space"
 import { ViewLabel } from "../Label"
 import { ViewWithValue } from "../../types"
 import { DimensionStyleProps } from "../../theme/styles/dimension"
 import { CommonProps } from "../../theme/styles/common"
+
+import Styles from "./InputText.module.css"
 
 const $ = Theme.classNames
 
@@ -106,8 +108,8 @@ export function ViewInputText(props: ViewInputTextProps) {
         <input
             className={$.join(
                 className,
-                Style.InputText,
-                invalid && Style.invalid
+                Styles.InputText,
+                invalid && Styles.invalid
             )}
             style={style}
             autoFocus={autofocus}

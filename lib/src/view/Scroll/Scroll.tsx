@@ -1,7 +1,5 @@
-import React from "react"
 import { Theme } from "../../theme"
-import { OpaqueColorName } from "../../types"
-import Style from "./Scroll.module.css"
+import { Children, OpaqueColorName } from "../../types"
 import { ColorStyleProps, styleColor } from "../../theme/styles/color"
 import { SpaceStyleProps, styleSpace } from "../../theme/styles/space"
 import {
@@ -12,11 +10,13 @@ import { DisplayStyleProps, styleDisplay } from "../../theme/styles/display"
 import { PositionStyleProps, stylePosition } from "../../theme/styles/position"
 import { ChildStyleProps, styleChild } from "../../theme/styles/child"
 
+import Styles from "./Scroll.module.css"
+
 const $ = Theme.classNames
 
 export type ViewScrollProps = {
     className?: string
-    children: React.ReactNode
+    children: Children
     /**
      * Define the color of the background.
      * This will be used for the fading effect at the top and bottom
@@ -46,7 +46,7 @@ export function ViewScroll({
 }: ViewScrollProps) {
     return (
         <div
-            className={$.join(className, Style.Scroll)}
+            className={$.join(className, Styles.Scroll)}
             style={{
                 "--custom-banner-size": bannerSize,
                 "--custom-banner-color": `var(--theme-color-${color})`,

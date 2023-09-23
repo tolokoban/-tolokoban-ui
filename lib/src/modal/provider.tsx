@@ -1,15 +1,18 @@
 import React, { useContext } from "react"
+
+import { Children } from "../types"
 import ModalContainer from "./container"
 import ModalManager from "./manager"
-import Style from "./provider.module.css"
 import { Modal, ModalManagerInterface } from "./types"
+
+import Styles from "./provider.module.css"
 
 const ModalContext = React.createContext<ModalManager | null>(
     new ModalManager()
 )
 
 export interface ModalProviderProps {
-    children: React.ReactNode
+    children: Children
 }
 
 export function ModalProvider({ children }: ModalProviderProps) {
@@ -29,7 +32,7 @@ export function ModalProvider({ children }: ModalProviderProps) {
     return (
         <ModalContext.Provider value={manager}>
             {children}
-            <div className={Style.screen}>
+            <div className={Styles.screen}>
                 {modals.map((modal, index) => (
                     <ModalContainer
                         key={index}

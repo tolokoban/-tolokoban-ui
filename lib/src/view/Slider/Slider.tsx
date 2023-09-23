@@ -1,8 +1,8 @@
-import React from "react"
 import { Theme } from "../../theme"
-import Style from "./Slider.module.css"
-import { ViewWithValue } from "../../types"
+import { Children, ViewWithValue } from "../../types"
 import { useChangeableValue } from "../../hooks/changeable-value"
+
+import Styles from "./Slider.module.css"
 
 const $ = Theme.classNames
 
@@ -32,7 +32,7 @@ export function ViewSlider({
 }: ViewSliderProps) {
     const [val, setVal] = useChangeableValue({ value, onChange })
     return (
-        <div className={$.join(className, Style.Slider, wide ? "wide" : "")}>
+        <div className={$.join(className, Styles.Slider, wide ? "wide" : "")}>
             <input
                 type="range"
                 min={min ?? 0}
@@ -48,7 +48,7 @@ export function ViewSlider({
 function computeText(
     text: string | number | ((value: number) => string),
     value: number
-): React.ReactNode {
+): Children {
     if (typeof text === "string") return text
     if (typeof text === "number") return `${text}`
     return text(value)

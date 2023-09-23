@@ -1,7 +1,7 @@
 import React from "react"
+
 import { Theme } from "../../theme"
-import Style from "./Panel.module.css"
-import { Circumference } from "../../types"
+import { Children, Circumference } from "../../types"
 import { ColorStyleProps, styleColor } from "../../theme/styles/color"
 import { SpaceStyleProps, styleSpace } from "../../theme/styles/space"
 import { OverflowStyleProps, styleOverflow } from "../../theme/styles/overflow"
@@ -14,11 +14,13 @@ import { cssForGaps } from "../../theme/styles/styles"
 import { PositionStyleProps, stylePosition } from "../../theme/styles/position"
 import { ChildStyleProps, styleChild } from "../../theme/styles/child"
 
+import Styles from "./Panel.module.css"
+
 const $ = Theme.classNames
 
 export type ViewPanelProps = {
     className?: string
-    children?: React.ReactNode
+    children?: Children
     /** CSS `borderRadius` property. */
     borderRadius?: Circumference
     /** CSS `fontSize` property. */
@@ -54,7 +56,7 @@ export function ViewPanel(props: ViewPanelProps) {
     if (aspectRatio > 0) style["--custom-aspect-ratio"] = aspectRatio
     if (borderRadius) style.borderRadius = cssForGaps(borderRadius)
     return (
-        <div className={$.join(className, Style.Panel)} style={style}>
+        <div className={$.join(className, Styles.Panel)} style={style}>
             {children}
         </div>
     )
