@@ -25,7 +25,7 @@ export default class ModalManager implements ModalManagerInterface {
             padding: "1em",
             transitionDuration: 300,
             autoClosable: true,
-            background: "var(--theme-color-neutral-2-opacity-40)",
+            background: "var(--theme-color-neutral-2-4)",
             onClose: EMPTY_FUNCTION,
             status: "new",
             ...params,

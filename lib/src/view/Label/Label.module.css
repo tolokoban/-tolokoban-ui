@@ -9,4 +9,6 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    font-size: 90%;
+    opacity: 0.5;
 }

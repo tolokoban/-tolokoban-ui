@@ -47,9 +47,11 @@ export function ViewStrip(props: StripProps) {
     if (orientation === "row") {
         style.gridTemplateColumns = templateDef
         style.gridAutoColumns = "auto"
+        style.gridTemplateRows = "minmax(0, 1fr)"
     } else {
         style.gridTemplateRows = templateDef
         style.gridAutoRows = "auto"
+        style.gridTemplateColumns = "minmax(0, 1fr)"
     }
     return (
         <div

@@ -28,7 +28,7 @@ export default function GenericIcon(props: GenericIconProps) {
     const type = props.type ?? "filled"
     const style: React.CSSProperties = {
         ...styleColor(props),
-        fontSize: props.size ?? "1.5em",
+        fontSize: sizeToFontSize(props.size ?? "M"),
     }
     return (
         <svg
@@ -73,4 +73,16 @@ function getClassName(props: GenericIconProps): string {
     if (props.onClick) classNames.push(Styles.clickable)
 
     return classNames.join(" ")
+}
+
+const SIZES: Record<string, string> = {
+    XS: ".75em",
+    S: "1em",
+    M: "1.5em",
+    L: "2em",
+    XL: "3em",
+}
+
+function sizeToFontSize(value: string): string {
+    return SIZES[value] ?? value
 }

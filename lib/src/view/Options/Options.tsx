@@ -19,7 +19,9 @@ export type ViewOptionsItemProps<T extends string | number> = {
     children: Children
 }
 
-export function ViewOptions<T extends string>(props: ViewOptionsProps<T>) {
+export function ViewOptions<T extends string | number>(
+    props: ViewOptionsProps<T>
+) {
     const { label, children } = props
     const [value, setValue] = useChangeableValue(props)
     return (
@@ -27,7 +29,10 @@ export function ViewOptions<T extends string>(props: ViewOptionsProps<T>) {
             <ViewLabel value={label}>
                 <div className="options theme-shadow-button">
                     {children.map((child) => {
-                        const key = child.key
+                        const key =
+                            typeof value === "number"
+                                ? parseFloat(`${child.key ?? "0"}`)
+                                : child.key
                         return key === value ? (
                             <div
                                 className="button selected theme-color-accent-light"
@@ -51,7 +56,9 @@ export function ViewOptions<T extends string>(props: ViewOptionsProps<T>) {
     )
 }
 
-function getClassNames<T extends string>(props: ViewOptionsProps<T>): string {
+function getClassNames<T extends string | number>(
+    props: ViewOptionsProps<T>
+): string {
     const classNames = [Styles.Options]
     if (typeof props.className === "string") classNames.push(props.className)
     if (props.wide === true) classNames.push(Styles.OptionsWide)

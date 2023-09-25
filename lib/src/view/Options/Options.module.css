@@ -41,6 +41,6 @@
 }
 
 .Options :global(div.options) > :global(.button.not-selected) {
-    background-color: var(--theme-color-primary-4);
-    color: var(--theme-color-on-primary-4);
+    background-color: var(--theme-color-primary-2);
+    color: var(--theme-color-on-primary-2);
 }

@@ -1,4 +1,4 @@
-// This file has been generated on Sat, 23 Sep 2023 10:23:06 GMT
+// This file has been generated on Sun, 24 Sep 2023 10:52:59 GMT
 export * from "./Button"
 export * from "./CodeHighlighter"
 export * from "./Dialog"
@@ -16,6 +16,7 @@ export * from "./Strip"
 export * from "./Tab"
 export * from "./Tabs"
 export * from "./Touchable"
+export * from "./ViewSwitch"
 export {default as IconAdd} from "./icons/IconAdd"
 export {default as IconArrowDown} from "./icons/IconArrowDown"
 export {default as IconArrowLeft} from "./icons/IconArrowLeft"
