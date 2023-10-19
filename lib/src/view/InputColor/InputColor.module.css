@@ -1,0 +1,18 @@
+.InputColor {
+    --custom-shadow: var(--theme-shadow-3);
+    all: inherit;
+    overflow: hidden;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 50%;
+    padding: 0;
+    width: 2em;
+    height: 2em;
+    transition: 0.2s all;
+    box-shadow: var(--custom-shadow), 0 0 0 2px currentColor inset;
+    appearance: none;
+}
+
+.InputColor > input {
+    visibility: hidden;
+}

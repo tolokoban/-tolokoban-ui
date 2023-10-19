@@ -11,7 +11,7 @@
         "@tolokoban/ui": "file:../lib",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-markdown": "^8.0.7"
+        "react-markdown": "^9.0.0"
     },
     "scripts": {
         "pregenerate": "tsc -p scripts/tsconfig.json",

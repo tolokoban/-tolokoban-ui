@@ -6,12 +6,13 @@ import * as React from "react"
  */
 export function useDebouncedEffect(
     effect: React.EffectCallback,
-    delay: number,
-    deps?: React.DependencyList | undefined
+    deps?: React.DependencyList | undefined,
+    delay = 300
 ): void {
     const refTimeout = React.useRef(-1)
-    React.useEffect(()=>{
+    React.useEffect(() => {
         window.clearTimeout(refTimeout.current)
         refTimeout.current = window.setTimeout(effect, delay)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, deps)
 }

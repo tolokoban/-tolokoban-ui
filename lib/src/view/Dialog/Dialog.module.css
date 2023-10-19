@@ -11,3 +11,9 @@
 .Dialog > header.header {
     padding: var(--theme-gap-S) var(--theme-gap-M);
 }
+
+.Dialog > footer {
+    display: flex;
+    justify-content: space-around;
+    gap: 1em;
+}

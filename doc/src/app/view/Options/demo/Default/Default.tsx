@@ -5,9 +5,11 @@ export default function Demo() {
     const [value, setValue] = React.useState("M")
     return (
         <ViewOptions label="Select a size" value={value} onChange={setValue}>
+            <div key="S">Extra Small</div>
             <div key="S">Small</div>
             <div key="M">Medium</div>
             <div key="L">Large</div>
+            <div key="XL">Extra Large</div>
         </ViewOptions>
     )
 }

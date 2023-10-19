@@ -12,32 +12,32 @@ import Styles from "./InputMultiText.module.css"
 import { Children, ViewWithValue } from "../../types"
 
 export interface InputMultiTextProps
-    extends ViewWithValue<Record<string, string>>,
+    extends ViewWithValue<{ [lang: string]: string }>,
         ChildStyleProps,
         PositionStyleProps,
         DimensionStyleProps {
     className?: string
     /** What element of the `value` to edit. */
-    selection: string
-    onSelectionChange(this: void, selection: string): void
+    lang: string
+    onLangChange(this: void, lang: string): void
     /**
      * Set this function to change how the keys will be
      * rendered.
      * By default, the keys are rendered as the string
      * they are, verbatim.
      */
-    renderSelection?(this: void, selection: string, selected: boolean): Children
+    renderLang?(this: void, lang: string, selected: boolean): Children
 }
 
 export function ViewInputMultiText(props: InputMultiTextProps) {
     const {
         value,
         onChange,
-        onSelectionChange,
-        renderSelection = (item: string, selected: boolean) =>
+        onLangChange,
+        renderLang = (item: string, selected: boolean) =>
             selected ? <b>{item}</b> : <span>{item}</span>,
     } = props
-    const [keys, itemKey, itemVal] = useSelection(props)
+    const [keys, itemKey, itemVal] = useLang(props)
     const style: React.CSSProperties = {
         ...styleDimension(props),
         ...stylePosition(props),
@@ -61,8 +61,8 @@ export function ViewInputMultiText(props: InputMultiTextProps) {
             <input value={itemVal} onChange={handleChange} />
             <div>
                 {keys.map((key) => (
-                    <button key={key} onClick={() => onSelectionChange(key)}>
-                        {renderSelection(key, key === itemKey)}
+                    <button key={key} onClick={() => onLangChange(key)}>
+                        {renderLang(key, key === itemKey)}
                     </button>
                 ))}
             </div>
@@ -70,16 +70,16 @@ export function ViewInputMultiText(props: InputMultiTextProps) {
     )
 }
 
-function useSelection({
+function useLang({
     value,
     onChange,
-    selection,
-    onSelectionChange,
+    lang,
+    onLangChange,
 }: {
-    value: Record<string, string>
-    onChange: (this: void, value: Record<string, string>) => void
-    selection: string
-    onSelectionChange(this: void, selection: string): void
+    value: { [lang: string]: string }
+    onChange: (this: void, value: { [lang: string]: string }) => void
+    lang: string
+    onLangChange(this: void, lang: string): void
 }): [keys: string[], itemKey: string, itemVal: string] {
     const keys = Object.keys(value)
     React.useEffect(() => {
@@ -88,31 +88,31 @@ function useSelection({
                 [navigator.language]: "",
             })
     }, [value, onChange, keys.length])
-    const key = findBestKey(keys, selection)
+    const key = findBestKey(keys, lang)
     React.useEffect(() => {
-        if (key && key !== selection) {
-            onSelectionChange(key)
+        if (key && key !== lang) {
+            onLangChange(key)
         }
-    }, [key, onSelectionChange, selection])
+    }, [key, onLangChange, lang])
     return [keys, key ?? "", value[key ?? ""] ?? ""]
 }
 
 /**
  * if `keys` is empty, return `null`.
- * If `selection` is in `keys`, return it.
+ * If `lang` is in `keys`, return it.
  * Otherwise, find the first key that starts
- * like `selection`.
+ * like `lang`.
  * If nothing has been found, return the first
  * element in `keys`.
  */
-function findBestKey(keys: string[], selection: string): string | undefined {
+function findBestKey(keys: string[], lang: string): string | undefined {
     if (keys.length === 0) return undefined
-    if (keys.includes(selection)) return selection
+    if (keys.includes(lang)) return lang
     for (const key of keys) {
-        if (key.startsWith(selection)) return key
+        if (key.startsWith(lang)) return key
     }
     for (const key of keys) {
-        if (key.toLowerCase().startsWith(selection.toLowerCase())) return key
+        if (key.toLowerCase().startsWith(lang.toLowerCase())) return key
     }
     return keys[0]
 }

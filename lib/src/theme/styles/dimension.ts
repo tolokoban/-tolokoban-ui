@@ -1,16 +1,24 @@
+import { NumberWithUnit } from "./common"
+
 export interface DimensionStyleProps {
     /** CSS width. */
-    width?: string
+    width?: NumberWithUnit
     /** CSS height. */
-    height?: string
+    height?: NumberWithUnit
     /** CSS maxWidth. */
-    maxWidth?: string
+    maxWidth?: NumberWithUnit
     /** CSS maxHeight. */
-    maxHeight?: string
+    maxHeight?: NumberWithUnit
     /** CSS minWidth. */
-    minWidth?: string
+    minWidth?: NumberWithUnit
     /** CSS minHeight. */
-    minHeight?: string
+    minHeight?: NumberWithUnit
+    /** If true, set width=100% and height=100%. Default to false. */
+    fullsize?: boolean
+    /** If true, set width=100%. Default to false. */
+    fullwidth?: boolean
+    /** If true, set height=100%. Default to false. */
+    fullheight?: boolean
 }
 
 export function styleDimension({
@@ -20,6 +28,9 @@ export function styleDimension({
     maxHeight,
     minWidth,
     minHeight,
+    fullsize = false,
+    fullwidth = false,
+    fullheight = false,
 }: DimensionStyleProps) {
     const style: React.CSSProperties = {
         width,
@@ -29,5 +40,7 @@ export function styleDimension({
         minWidth,
         minHeight,
     }
+    if (fullsize || fullwidth) style.width = "100%"
+    if (fullsize || fullheight) style.height = "100%"
     return style
 }

@@ -1,6 +1,11 @@
 import React from "react"
-import { ViewLabel } from "@tolokoban/ui"
+import { ViewInputText, ViewLabel } from "@tolokoban/ui"
 
 export default function Demo() {
-    return <ViewLabel />
+    const [name, setName] = React.useState("Mr Bean")
+    return (
+        <ViewLabel value="What's your name?" title="This is a tooltip...">
+            <ViewInputText value={name} onChange={setName} />
+        </ViewLabel>
+    )
 }

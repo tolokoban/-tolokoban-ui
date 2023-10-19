@@ -25,7 +25,7 @@ export type ViewPanelProps = {
     borderRadius?: Circumference
     /** CSS `fontSize` property. */
     fontSize?: string
-    /**If defined, the panel will keep `width / height = aspectRatio`. */
+    /** If defined, the panel will keep `width / height = aspectRatio`. */
     aspectRatio?: number
 } & ColorStyleProps &
     SpaceStyleProps &

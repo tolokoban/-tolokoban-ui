@@ -3,6 +3,7 @@ import Classes from "./Dialog.module.css"
 import { ViewButton, ViewButtonProps } from "../Button"
 import { Children, ColorName } from "../../types"
 import { styleColor } from "../../theme/styles/color"
+import { ViewStrip } from "../Strip"
 
 const $ = Theme.classNames
 
@@ -54,7 +55,11 @@ export function ViewDialog({
     })
     const validateProps = checkClickHandler("Validate", buttonValidate)
     return (
-        <div className={$.join(className, Classes.Dialog)}>
+        <ViewStrip
+            className={$.join(className, Classes.Dialog)}
+            orientation="column"
+            template="-1"
+        >
             {title && (
                 <header
                     className={Classes.header}
@@ -70,7 +75,7 @@ export function ViewDialog({
                     {validateProps && <ViewButton {...validateProps} />}
                 </footer>
             )}
-        </div>
+        </ViewStrip>
     )
 }
 

@@ -3,6 +3,8 @@ import { ThemeColor, ThemeSettings } from "../types"
 import ClassNames from "./class-names"
 import "./theme.css"
 
+export * from "./styles/common"
+
 const DEFAULT_COLOR_TEXT_LIGHT = "#fffe"
 const DEFAULT_COLOR_TEXT_DARK = "#000e"
 const DEFAULT_COLOR_PRIMARY: ThemeColor = { hue: 215 }

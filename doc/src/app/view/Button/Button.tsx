@@ -1,5 +1,5 @@
 /**
- * 2023-09-12T14:15:16.120Z
+ * 2023-10-16T13:46:37.392Z
  *
  * This file has been automatically generated with:
  * npm run generate
@@ -16,7 +16,7 @@ export default function ButtonDocumentation() {
         <ViewDemo
             description={"# Default usage\n"}
             // eslint-disable-next-line no-template-curly-in-string
-            example={"import React from \"react\"\nimport { ViewButton } from \"@tolokoban/ui\"\n\nexport default function Demo() {\n    return <ViewButton />\n}\n"}
+            example={"import React from \"react\"\nimport { IconGear, ViewButton, ViewPanel } from \"@tolokoban/ui\"\n\nexport default function Demo() {\n    return (\n        <div>\n            <ViewPanel\n                display=\"grid\"\n                gridTemplateColumns=\"auto repeat(4, 1fr)\"\n                gap=\"M\"\n            >\n                <div>Enabled</div>\n                <ViewButton variant=\"elevated\">Elevated</ViewButton>\n                <ViewButton variant=\"filled\">Filled</ViewButton>\n                <ViewButton variant=\"outlined\">Outlined</ViewButton>\n                <ViewButton variant=\"text\">Text</ViewButton>\n                <div>Enabled</div>\n                <ViewButton color=\"primary-5\" variant=\"elevated\">\n                    Elevated\n                </ViewButton>\n                <ViewButton color=\"primary-5\" variant=\"filled\">\n                    Filled\n                </ViewButton>\n                <ViewButton color=\"primary-5\" variant=\"outlined\">\n                    Outlined\n                </ViewButton>\n                <ViewButton color=\"primary-5\" variant=\"text\">\n                    Text\n                </ViewButton>\n                <div>Disabled</div>\n                <ViewButton enabled={false} variant=\"elevated\">\n                    Elevated\n                </ViewButton>\n                <ViewButton enabled={false} variant=\"filled\">\n                    Filled\n                </ViewButton>\n                <ViewButton enabled={false} variant=\"outlined\">\n                    Outlined\n                </ViewButton>\n                <ViewButton enabled={false} variant=\"text\">\n                    Text\n                </ViewButton>\n            </ViewPanel>\n            <ViewPanel>\n                <ViewButton icon={IconGear}>With icon</ViewButton>\n            </ViewPanel>\n        </div>\n    )\n}\n"}
         >
             <DemoDefault />
         </ViewDemo>

@@ -2,7 +2,7 @@ import JSON5 from "json5"
 import React from "react"
 
 import { Children } from "../types"
-import { ViewDialog, ViewSpinner } from "../view"
+import { ViewDialog, ViewPanel, ViewSpinner } from "../view"
 import {
     ConfirmParams,
     Modal,
@@ -102,33 +102,35 @@ export default class ModalManager implements ModalManagerInterface {
                     resolve(false)
                 },
                 content: (
-                    <ViewDialog
-                        buttonCancel={{
-                            onClick() {
-                                hide()
-                                resolve(false)
-                            },
-                            children: params.labelCancel,
-                        }}
-                        buttonValidate={{
-                            onClick() {
-                                hide()
-                                resolve(true)
-                            },
-                            color:
-                                params.accent === true
-                                    ? "tertiary-5"
-                                    : "secondary-5",
-                            children:
-                                params.labelOK ??
-                                (typeof params.content === "string"
-                                    ? params.content
-                                    : "OK"),
-                        }}
-                        title={params.title}
-                    >
-                        {params.content}
-                    </ViewDialog>
+                    <ViewPanel shadow={9}>
+                        <ViewDialog
+                            buttonCancel={{
+                                onClick() {
+                                    hide()
+                                    resolve(false)
+                                },
+                                children: params.labelCancel,
+                            }}
+                            buttonValidate={{
+                                onClick() {
+                                    hide()
+                                    resolve(true)
+                                },
+                                color:
+                                    params.accent === true
+                                        ? "tertiary-5"
+                                        : "secondary-5",
+                                children:
+                                    params.labelOK ??
+                                    (typeof params.content === "string"
+                                        ? params.content
+                                        : "OK"),
+                            }}
+                            title={params.title}
+                        >
+                            {params.content}
+                        </ViewDialog>
+                    </ViewPanel>
                 ),
             })
         })

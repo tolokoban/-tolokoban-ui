@@ -5,7 +5,7 @@ import { ChildStyleProps, styleChild } from "../../theme/styles/child"
 import { PositionStyleProps, stylePosition } from "../../theme/styles/position"
 import { Children, ViewWithValue } from "../../types"
 
-import Styles from "./ViewSwitch.module.css"
+import Styles from "./Switch.module.css"
 
 export interface ViewSwitchProps
     extends ViewWithValue<boolean>,

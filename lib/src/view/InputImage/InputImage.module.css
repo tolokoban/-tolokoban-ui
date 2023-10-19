@@ -1,0 +1,23 @@
+.InputImage {
+    position: relative;
+    background-image: url(./back.jpg);
+    background-repeat: repeat;
+}
+
+.InputImage > * {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.busy {
+    transition: all 0.3s;
+    opacity: 1;
+}
+
+.notBusy {
+    transition: all 0.3s;
+    opacity: 0;
+}

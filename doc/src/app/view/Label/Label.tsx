@@ -1,5 +1,5 @@
 /**
- * 2023-09-12T14:15:16.182Z
+ * 2023-10-16T13:46:37.418Z
  *
  * This file has been automatically generated with:
  * npm run generate
@@ -16,7 +16,7 @@ export default function LabelDocumentation() {
         <ViewDemo
             description={"# Default usage\n"}
             // eslint-disable-next-line no-template-curly-in-string
-            example={"import React from \"react\"\nimport { ViewLabel } from \"@tolokoban/ui\"\n\nexport default function Demo() {\n    return <ViewLabel />\n}\n"}
+            example={"import React from \"react\"\nimport { ViewInputText, ViewLabel } from \"@tolokoban/ui\"\n\nexport default function Demo() {\n    const [name, setName] = React.useState(\"Mr Bean\")\n    return (\n        <ViewLabel value=\"What's your name?\" title=\"This is a tooltip...\">\n            <ViewInputText value={name} onChange={setName} />\n        </ViewLabel>\n    )\n}\n"}
         >
             <DemoDefault />
         </ViewDemo>

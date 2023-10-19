@@ -27,22 +27,24 @@ async function start() {
             Path.resolve(directory.getPath(), `./${name}.tsx`)
         )
         try {
-            const props = parseProperties(file, `View${name}Props`)
-            if (viewsToSkip.includes(name)) {
-                console.log(
-                    `<${color(`View${name}`, "LightCyan")} ${props
-                        .map(prop => prop.name)
-                        .join(" ")} /> Sub-component.`
-                )
-                continue
-            }
+            // const props = parseProperties(file, `View${name}Props`)
+            // if (viewsToSkip.includes(name)) {
+            //     console.log(
+            //         `<${color(`View${name}`, "LightCyan")} ${props
+            //             .map(prop => prop.name)
+            //             .join(" ")} /> Sub-component.`
+            //     )
+            //     continue
+            // }
 
-            console.log(
-                `<${color(`View${name}`, "LightGreen")} ${props
-                    .map(prop => prop.name)
-                    .join(" ")} />`
-            )
+            // console.log(
+            //     `<${color(`View${name}`, "LightGreen")} ${props
+            //         .map(prop => prop.name)
+            //         .join(" ")} />`
+            // )
+            if (viewsToSkip.includes(name)) continue
 
+            console.log(`<${color(`View${name}`, "LightGreen")} ... />`)
             viewShortNames.push(name)
             await writeView(name)
         } catch (ex) {

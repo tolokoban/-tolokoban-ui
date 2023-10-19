@@ -1,6 +1,6 @@
 import React from "react"
 import { Theme } from "../../theme"
-import Classes from "./Button.module.css"
+import Styles from "./Button.module.css"
 import { Children, OpaqueColorName } from "../../types"
 import {
     cssForColor,
@@ -9,6 +9,7 @@ import {
 } from "../../theme/styles/styles"
 import { CommonProps, styleCommon } from "../../theme/styles/common"
 import { setDefaults } from "../../util/set-defaults"
+import { GenericIconProps } from "../icons/generic"
 
 const $ = Theme.classNames
 
@@ -41,6 +42,10 @@ export type ViewButtonProps = {
      */
     color?: OpaqueColorName
     /**
+     * Icon to display to the left.
+     */
+    icon?: React.FC<GenericIconProps>
+    /**
      * Thickness of the button's border.
      */
     thickness?: string | number
@@ -69,15 +74,22 @@ export function ViewButton(partialProps: ViewButtonProps) {
         "--custom-thickness": thickness,
         ...styleCommon(props),
     }
+    const Icon = props.icon
     return (
         <button
             style={style}
-            className={$.join(className, Classes.Button, Classes[variant])}
+            className={$.join(
+                className,
+                Styles.Button,
+                Styles[variant],
+                Boolean(Icon) && Styles.icon
+            )}
             disabled={!enabled}
             type="button"
             onClick={onClick}
         >
-            {children}
+            {Icon && <Icon />}
+            <div className={Styles.text}>{children}</div>
         </button>
     )
 }

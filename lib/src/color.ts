@@ -4,7 +4,7 @@ import { colord, Colord, extend } from "colord"
 extend([lchPlugin])
 
 export default class Color {
-    private color: Colord
+    private readonly color: Colord
 
     static isLight(color: string | Color): boolean {
         if (typeof color === "string") {
@@ -15,7 +15,6 @@ export default class Color {
     }
 
     /**
-     *
      * @param red 0.0 to 1.1
      * @param green 0.0 to 1.1
      * @param blue 0.0 to 1.1
@@ -134,5 +133,5 @@ function clamp(value: number): number {
 }
 
 function getColors(values: Array<Color | string>): Color[] {
-    return values.map(v => (typeof v === "string" ? new Color(v) : v))
+    return values.map((v) => (typeof v === "string" ? new Color(v) : v))
 }

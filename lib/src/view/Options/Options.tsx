@@ -5,7 +5,7 @@ import { ViewTouchable } from "../Touchable"
 
 import Styles from "./Options.module.css"
 
-export type ViewOptionsProps<T extends string | number> = ViewWithValue<T> & {
+export type ViewOptionsProps<T> = ViewWithValue<T> & {
     className?: string
     /** Optional label to display above the options. */
     label?: string
@@ -14,14 +14,12 @@ export type ViewOptionsProps<T extends string | number> = ViewWithValue<T> & {
     children: Array<React.ReactElement<ViewOptionsItemProps<T>>>
 }
 
-export type ViewOptionsItemProps<T extends string | number> = {
+export type ViewOptionsItemProps<T> = {
     key: T
     children: Children
 }
 
-export function ViewOptions<T extends string | number>(
-    props: ViewOptionsProps<T>
-) {
+export function ViewOptions<T>(props: ViewOptionsProps<T>) {
     const { label, children } = props
     const [value, setValue] = useChangeableValue(props)
     return (
@@ -56,9 +54,7 @@ export function ViewOptions<T extends string | number>(
     )
 }
 
-function getClassNames<T extends string | number>(
-    props: ViewOptionsProps<T>
-): string {
+function getClassNames<T>(props: ViewOptionsProps<T>): string {
     const classNames = [Styles.Options]
     if (typeof props.className === "string") classNames.push(props.className)
     if (props.wide === true) classNames.push(Styles.OptionsWide)

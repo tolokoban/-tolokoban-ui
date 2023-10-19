@@ -15,9 +15,31 @@
     font-variant: small-caps;
     display: inline-flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
+    gap: 1em;
     overflow: hidden;
+}
+
+.Button > * {
+    flex: 0 0 auto;
+}
+
+.Button > div.text {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1em;
+}
+
+.Button.icon {
+    justify-content: space-between;
 }
 
 .Button:focus {
@@ -39,13 +61,6 @@
 
 .outlined {
     border: var(--custom-thickness) solid var(--custom-color-main);
-    color: var(--custom-color-text);
-    background-color: transparent;
-}
-
-.text {
-    border: none;
-    box-shadow: none;
     color: var(--custom-color-main);
     background-color: transparent;
 }

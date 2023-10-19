@@ -21,3 +21,39 @@ export function styleCommon(props: CommonProps): React.CSSProperties {
         ...styleSpace(props),
     }
 }
+
+type Unit =
+    | "%"
+    | "cm"
+    | "mm"
+    | "Q"
+    | "in"
+    | "pc"
+    | "pt"
+    | "px"
+    | "em"
+    | "ex"
+    | "ch"
+    | "rem"
+    | "lh"
+    | "rlh"
+    | "vw"
+    | "vh"
+    | "vmin"
+    | "vmax"
+    | "vb"
+    | "vi"
+    | "svw"
+    | "svh"
+    | "lvw"
+    | "lvh"
+    | "dvw"
+    | "dvh"
+
+export type NumberWithUnit =
+    | "0"
+    | "auto"
+    | "max-content"
+    | "min-content"
+    | `fit-content(${number}${Unit})`
+    | `${number}${Unit}`

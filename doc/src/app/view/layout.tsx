@@ -1,5 +1,5 @@
 /**
- * 2023-09-12T14:15:16.247Z
+ * 2023-10-16T13:46:37.439Z
  *
  * This file has been automatically generated with:
  * npm run generate
@@ -16,6 +16,10 @@ export default function ViewsLayout({ children }: { children: React.ReactNode })
             <Link hash="/view/Button">Button</Link>
             <Link hash="/view/CodeHighlighter">CodeHighlighter</Link>
             <Link hash="/view/Dialog">Dialog</Link>
+            <Link hash="/view/FloatingButton">FloatingButton</Link>
+            <Link hash="/view/InputColor">InputColor</Link>
+            <Link hash="/view/InputImage">InputImage</Link>
+            <Link hash="/view/InputMultiText">InputMultiText</Link>
             <Link hash="/view/InputText">InputText</Link>
             <Link hash="/view/Label">Label</Link>
             <Link hash="/view/Options">Options</Link>
@@ -24,6 +28,8 @@ export default function ViewsLayout({ children }: { children: React.ReactNode })
             <Link hash="/view/Scroll">Scroll</Link>
             <Link hash="/view/Slider">Slider</Link>
             <Link hash="/view/Spinner">Spinner</Link>
+            <Link hash="/view/Strip">Strip</Link>
+            <Link hash="/view/Switch">Switch</Link>
             <Link hash="/view/Tabs">Tabs</Link>
             <Link hash="/view/Touchable">Touchable</Link>
         </ViewPanel>
