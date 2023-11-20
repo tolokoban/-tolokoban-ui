@@ -1,7 +1,7 @@
 /**
  * WARNING! this file has been generated automatically.
  * Please do not edit it because it will probably be overwritten.
- * 2023-10-16T13:46:37.571Z
+ * 2023-10-19T07:52:06.932Z
  */
 import React from "react"
 import Layout1 from "./view/layout"

@@ -1,4 +1,4 @@
-// This file has been generated on Mon, 16 Oct 2023 09:08:15 GMT
+// This file has been generated on Mon, 20 Nov 2023 08:32:05 GMT
 export * from "./Button"
 export * from "./CodeHighlighter"
 export * from "./Dialog"
@@ -38,6 +38,7 @@ export {default as IconCurve} from "./icons/IconCurve"
 export {default as IconCut} from "./icons/IconCut"
 export {default as IconData} from "./icons/IconData"
 export {default as IconDelete} from "./icons/IconDelete"
+export {default as IconDraw} from "./icons/IconDraw"
 export {default as IconEdit} from "./icons/IconEdit"
 export {default as IconEditPlaylist} from "./icons/IconEditPlaylist"
 export {default as IconExport} from "./icons/IconExport"
