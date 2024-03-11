@@ -1,4 +1,4 @@
-import React from "react"
+import * as React from "react"
 
 import { ColorStyleProps, styleColor } from "../../theme/styles/color"
 import IconLoading from "../icons/IconLoading"

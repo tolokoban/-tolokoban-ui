@@ -28,9 +28,3 @@ declare module "*.webp" {
     const value: any
     export = value
 }
-
-declare module "*.css" {
-    // Loaded as URL.
-    const content: string
-    export default content
-}

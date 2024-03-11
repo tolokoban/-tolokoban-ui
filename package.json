@@ -1,5 +1,40 @@
 {
-  "devDependencies": {
-    "typescript": "^5.1.6"
-  }
+    "name": "@tolokoban/ui",
+    "version": "0.13.0",
+    "description": "React components with theme",
+    "homepage": "https://tolokoban.github.io/ui",
+    "main": "./lib/dist/index.js",
+    "module": "./lib/dist/index.js",
+    "types": "./lib/dist/index.d.ts",
+    "type": "module",
+    "private": false,
+    "files": [
+        "./lib/dist"
+    ],
+    "scripts": {
+        "ci": "cd lib && npm install && npm run build",
+        "doc": "cd lib && npm run doc && cd ../doc && npm run deploy",
+        "test": "cd lib && npm test",
+        "copy": "node scripts/copy-pkg-info.js . ./lib ./doc",
+        "predeploy": "npm run copy",
+        "deploy": "npm run ci && npm publish --access=public",
+        "preminor": "npm run copy",
+        "minor": "npm version minor -no-git-tag-version --force",
+        "prepatch": "npm run copy",
+        "patch": "npm version patch -no-git-tag-version --force"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/tolokoban/tgd2.git"
+    },
+    "keywords": [
+        "WebGL2",
+        "game",
+        "framework"
+    ],
+    "author": "Tolokoban",
+    "license": "GPL-3.0",
+    "bugs": {
+        "url": "https://github.com/tolokoban/tgd2/issues"
+    }
 }

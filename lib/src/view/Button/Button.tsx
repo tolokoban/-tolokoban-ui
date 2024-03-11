@@ -1,4 +1,4 @@
-import React from "react"
+import * as React from "react"
 import { Theme } from "../../theme"
 import Styles from "./Button.module.css"
 import { Children, OpaqueColorName } from "../../types"

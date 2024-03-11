@@ -1,4 +1,4 @@
-import React from "react"
+import * as React from "react"
 
 import { Theme } from "../../theme"
 import { SpaceStyleProps, styleSpace } from "../../theme/styles/space"

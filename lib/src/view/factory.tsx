@@ -1,4 +1,4 @@
-import React from "react"
+import * as React from "react"
 
 export function makeCustomView<Props extends Record<string, unknown>>(
     View: React.FC<Props>,
