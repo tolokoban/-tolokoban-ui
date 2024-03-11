@@ -1,5 +1,5 @@
 import { PropertySignature } from "ts-morph"
-import { expandType } from "./types"
+import { expandType } from "./types.js"
 
 export function printProps(properties: PropertySignature[]) {
     for (const prop of properties) {

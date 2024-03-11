@@ -9,7 +9,7 @@ import {
     TupleTypeNode,
     ArrayTypeNode,
 } from "ts-morph"
-import { TypeDef } from "./guards"
+import { TypeDef } from "./guards.js"
 
 const AVAILABLE_EXTRA_TYPES = ["React.ReactNode", "JSX.Element"]
 

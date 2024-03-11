@@ -1,4 +1,3 @@
-import { TypeDef } from "./guards"
 import {
     Node,
     PropertySignature,
@@ -6,8 +5,10 @@ import {
     SyntaxKind,
     TypeNode,
 } from "ts-morph"
-import { expandType } from "./types"
-import DefaultDoc from "./default-doc"
+
+import { TypeDef } from "./guards.js"
+import { expandType } from "./types.js"
+import DefaultDoc from "./default-doc.js"
 
 export interface PropDef {
     name: string

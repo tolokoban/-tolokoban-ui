@@ -1,12 +1,12 @@
 /** @see https://ts-ast-viewer.com */
 import Path from "node:path"
 import { Project } from "ts-morph"
-import { absPath } from "./utils/fs"
-import { color, logError } from "./utils/log"
-import { parseProperties } from "./utils/properties"
-import { isCapitalized } from "./utils/string"
-import { writeView } from "./doc/view"
-import { writeViewsRoutes } from "./doc/views-routes"
+import { absPath } from "./utils/fs.js"
+import { color, logError } from "./utils/log.js"
+import { parseProperties } from "./utils/properties.js"
+import { isCapitalized } from "./utils/string.js"
+import { writeView } from "./doc/view.js"
+import { writeViewsRoutes } from "./doc/views-routes.js"
 
 const tsConfigFilePath = absPath("./lib/tsconfig.json")
 const prj = new Project({

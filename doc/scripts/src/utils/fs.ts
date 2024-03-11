@@ -1,7 +1,13 @@
 import FS from "node:fs/promises"
+import { fileURLToPath } from "url"
+
 import { existsSync } from "node:fs"
 import Path from "node:path"
-import { logWarning } from "./log"
+
+import { logWarning } from "./log.js"
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = Path.dirname(__filename)
 
 /**
  * @param path Relative to the root of the project.

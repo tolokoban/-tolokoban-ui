@@ -7,10 +7,10 @@ import {
     saveText,
     listDirs,
     loadText,
-} from "../utils/fs"
-import { getHeader } from "./header"
-import { logWarning } from "../utils/log"
-import { CodeSection, codeToString } from "../utils/code"
+} from "../utils/fs.js"
+import { getHeader } from "./header.js"
+import { logWarning } from "../utils/log.js"
+import { CodeSection, codeToString } from "../utils/code.js"
 
 export async function writeView(viewShortName: string) {
     const root = absPath(`doc/src/app/view/${viewShortName}/`)

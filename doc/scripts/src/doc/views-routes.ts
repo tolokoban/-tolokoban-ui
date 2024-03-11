@@ -1,6 +1,6 @@
-import { codeLinesToString } from "../utils/code"
-import { absPath, mkdir, saveText } from "../utils/fs"
-import { getHeader } from "./header"
+import { codeLinesToString } from "../utils/code.js"
+import { absPath, mkdir, saveText } from "../utils/fs.js"
+import { getHeader } from "./header.js"
 
 export async function writeViewsRoutes(viewShortNames: string[]) {
     const content = codeLinesToString([

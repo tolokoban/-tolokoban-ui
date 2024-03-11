@@ -1,7 +1,8 @@
-import App from "./app"
 import React from "react"
 import { createRoot } from "react-dom/client"
 import { Theme, ViewButton, ViewInputFile } from "@tolokoban/ui"
+
+// import App from "./app"
 
 import "./index.css"
 
@@ -13,14 +14,20 @@ function start() {
     root.render(
         <React.StrictMode>
             <div>
-                <ViewButton>Test button</ViewButton>
-                <ViewInputFile onLoad={console.log}>Import file</ViewInputFile>
+                <Button value={666} />
+                {/* <ViewButton>Test button</ViewButton>
+                <ViewInputFile onLoad={console.log}>Import file</ViewInputFile> */}
             </div>
             {/* <App /> */}
         </React.StrictMode>
     )
     // Remove splash screen.
     removeSplashScreen()
+}
+
+function Button({ value }: { value: number }) {
+    const [state, setState] = React.useState(value)
+    return <button onClick={() => setState(state + 1)}>Value = {state}</button>
 }
 
 function removeSplashScreen() {

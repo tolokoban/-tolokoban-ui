@@ -3,10 +3,9 @@
     "version": "0.13.0",
     "description": "React components with theme",
     "homepage": "https://tolokoban.github.io/ui",
-    "main": "./lib/dist/index.js",
     "module": "./lib/dist/index.js",
     "types": "./lib/dist/index.d.ts",
-    "type": "module",
+    "typings": "./lib/dist/index.d.ts",
     "private": false,
     "files": [
         "./lib/dist"

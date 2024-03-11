@@ -1,13 +1,18 @@
-const Package = require("./package.json")
-const Path = require("path")
-const FS = require("fs")
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-const CopyPlugin = require("copy-webpack-plugin")
-const { CleanWebpackPlugin } = require("clean-webpack-plugin")
-// const { WebpackManifestPlugin } = require("webpack-manifest-plugin")
-const Webpack = require("webpack")
+import Path from "path"
+import FS from "fs"
+import { fileURLToPath } from "url"
 
-module.exports = (env) => {
+import HtmlWebpackPlugin from "html-webpack-plugin"
+import CopyPlugin from "copy-webpack-plugin"
+import { CleanWebpackPlugin } from "clean-webpack-plugin"
+import Webpack from "webpack"
+
+import Package from "./package.json" assert { type: "json" }
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = Path.dirname(__filename)
+
+const config = (env, argv) => {
     if (typeof Package.port !== "number") {
         // Define a random port number for dev server.
         Package.port = 1204 + Math.floor(Math.random() * (0xffff - 1024))
@@ -30,6 +35,7 @@ module.exports = (env) => {
         //     type: "memory",
         // },
         output: {
+            clean: true,
             filename: "scr/[name].[contenthash].js",
             path: Path.resolve(__dirname, "build"),
             devtoolModuleFilenameTemplate: "[absolute-resource-path]",
@@ -225,3 +231,5 @@ module.exports = (env) => {
         },
     }
 }
+
+export default config
