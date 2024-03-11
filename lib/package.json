@@ -2,9 +2,9 @@
     "name": "@tolokoban/ui",
     "version": "0.13.0",
     "private": false,
-    "module": "dist/index.js",
-    "types": "dist/index.d.ts",
+    "main": "dist/index.js",
     "type": "module",
+    "types": "dist/index.d.ts",
     "files": [
         "dist"
     ],

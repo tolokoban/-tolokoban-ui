@@ -30,10 +30,9 @@ const config = (env, argv) => {
         console.log("+-----------------+")
     }
     return {
-        cache: false,
-        // cache: {
-        //     type: "memory",
-        // },
+        cache: {
+            type: "memory",
+        },
         output: {
             clean: true,
             filename: "scr/[name].[contenthash].js",
@@ -49,19 +48,28 @@ const config = (env, argv) => {
             enforceExtension: false,
             alias: {
                 "@": Path.resolve(__dirname, "src/"),
+                "react/jsx-runtime": Path.resolve(
+                    __dirname,
+                    "/node_modules/react/jsx-runtime.js"
+                ),
+                react: Path.resolve(__dirname, "/node_modules/react/index.js"),
             },
         },
         devtool: isProdMode ? false : "inline-source-map",
         devServer: {
-            compress: true,
-            historyApiFallback: true,
+            compress: env.production,
             static: {
                 directory: Path.resolve(__dirname, "./public"),
             },
             client: {
                 logging: "none",
-                overlay: { errors: true, warnings: false },
+                overlay: env.production
+                    ? false
+                    : { errors: true, runtimeErrors: true, warnings: true },
                 progress: true,
+            },
+            devMiddleware: {
+                writeToDisk: true,
             },
             hot: true,
             // Open WebBrowser.
