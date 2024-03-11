@@ -1,5 +1,5 @@
 import * as React from "react"
-import { ViewWithValue } from "../types"
+import { ViewWithValue } from "../types.js"
 
 export function useChangeableValue<T>(
     props: ViewWithValue<T>

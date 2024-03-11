@@ -1,5 +1,5 @@
-import { Circumference } from "../../types"
-import { cssForGaps } from "./styles"
+import { Circumference } from "../../types.js"
+import { cssForGaps } from "./styles.js"
 
 export interface SpaceStyleProps {
     /** You can use `"XXS"`, `"XS"`, `"S"`, `"M"`, `"L"`, `"XL"`, `"XXL"` or any CSS  unit. */

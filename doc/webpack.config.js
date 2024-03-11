@@ -1,18 +1,18 @@
-import Path from "path"
-import FS from "fs"
-import { fileURLToPath } from "url"
+const Path = require("path")
+const FS = require("fs")
+// const { fileURLToPath } = require("url")
 
-import HtmlWebpackPlugin from "html-webpack-plugin"
-import CopyPlugin from "copy-webpack-plugin"
-import { CleanWebpackPlugin } from "clean-webpack-plugin"
-import Webpack from "webpack"
+const HtmlWebpackPlugin = require("html-webpack-plugin")
+const CopyPlugin = require("copy-webpack-plugin")
+const { CleanWebpackPlugin } = require("clean-webpack-plugin")
+const Webpack = require("webpack")
 
-import Package from "./package.json" assert { type: "json" }
+const Package = require("./package.json")
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = Path.dirname(__filename)
+// const __filename = fileURLToPath(import.meta.url)
+// const __dirname = Path.dirname(__filename)
 
-const config = (env, argv) => {
+const config = (env) => {
     if (typeof Package.port !== "number") {
         // Define a random port number for dev server.
         Package.port = 1204 + Math.floor(Math.random() * (0xffff - 1024))
@@ -23,7 +23,7 @@ const config = (env, argv) => {
         console.log("A random port has been set for dev server:", Package.port)
     }
 
-    const isProdMode = env.WEBPACK_BUILD === true
+    const isProdMode = env.production === true
     if (isProdMode) {
         console.log("+-----------------+")
         console.log("| Production Mode |")
@@ -240,4 +240,4 @@ const config = (env, argv) => {
     }
 }
 
-export default config
+module.exports = config

@@ -1,9 +1,9 @@
-import Color from "../color"
-import { ThemeColor, ThemeSettings } from "../types"
-import ClassNames from "./class-names"
+import Color from "../color.js"
+import { ThemeColor, ThemeSettings } from "../types.js"
+import ClassNames from "./class-names.js"
 import "./theme.css"
 
-export * from "./styles/common"
+export * from "./styles/common.js"
 
 const DEFAULT_COLOR_TEXT_LIGHT = "#fffe"
 const DEFAULT_COLOR_TEXT_DARK = "#000e"

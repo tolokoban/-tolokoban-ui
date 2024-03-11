@@ -54,9 +54,9 @@ export interface OverflowStyleProps {
 }
 
 export function styleOverflow({
-    overflow: overflow,
-    overflowX: overflowX,
-    overflowY: overflowY,
+    overflow,
+    overflowX,
+    overflowY,
 }: OverflowStyleProps): React.CSSProperties {
     const style: React.CSSProperties = {}
     if (overflow) {

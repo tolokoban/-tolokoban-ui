@@ -1,4 +1,4 @@
-import { ColorName } from "../../types"
+import { ColorName } from "../../types.js"
 
 export interface ColorStyleProps {
     /**

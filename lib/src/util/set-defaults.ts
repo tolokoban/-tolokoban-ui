@@ -1,5 +1,5 @@
 export function setDefaults<
-    TypeProps extends Record<string, any>,
+    TypeProps extends Record<string, never>,
     TypeDefaults extends TypeProps
 >(
     props: TypeProps,

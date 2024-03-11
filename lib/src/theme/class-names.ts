@@ -1,7 +1,7 @@
 export type ColorLevel = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 
 export default class ClassNames {
-    private signature = `${Date.now().toString(36)}-Theme-`
+    private readonly signature = `${Date.now().toString(36)}-Theme-`
 
     constructor() {
         this.init()

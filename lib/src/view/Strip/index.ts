@@ -1,1 +1,1 @@
-export * from "./Strip"
+export * from "./Strip.js"

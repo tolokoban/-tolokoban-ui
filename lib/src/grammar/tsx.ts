@@ -1,4 +1,4 @@
-import { TypeGrammar } from "../view/CodeHighlighter/types"
+import { TypeGrammar } from "../view/CodeHighlighter/types.js"
 
 const TsxGrammar: TypeGrammar = {
     lexer: {

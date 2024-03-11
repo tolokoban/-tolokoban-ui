@@ -1,4 +1,4 @@
-import { cssForGaps } from "./styles"
+import { cssForGaps } from "./styles.js"
 
 type AlignMode =
     | "normal"

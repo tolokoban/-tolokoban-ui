@@ -1,7 +1,4 @@
-import lchPlugin from "colord/plugins/lch"
-import { colord, Colord, extend } from "colord"
-
-extend([lchPlugin])
+import { colord, Colord } from "colord"
 
 export default class Color {
     private readonly color: Colord

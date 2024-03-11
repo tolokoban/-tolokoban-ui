@@ -1,7 +1,9 @@
-import { Icon } from "../generic/generic-icon"
-import { makeIconView } from "./icon-factory"
+import { Icon } from "../generic/generic-icon.js"
+import { makeIconView } from "./icon-factory.js"
 
-const ICONS = require("./icons.json") as { [key: string]: string }
+import IconsJSON from "./icons.json"
+
+const ICONS = IconsJSON as { [key: string]: string }
 
 interface IconDefinition {
     value: string
@@ -14,7 +16,7 @@ export function getIconsDefinitions(): IconDefinition[] {
         const value = ICONS[key]
         const keywords = key
             .split(/[^0-9a-zA-Z]+/)
-            .map(name => name.toLocaleLowerCase())
+            .map((name) => name.toLocaleLowerCase())
         defs.push({ value, keywords })
     }
     return defs

@@ -1,20 +1,16 @@
 import FS from "node:fs/promises"
-import { fileURLToPath } from "url"
 
 import { existsSync } from "node:fs"
 import Path from "node:path"
 
 import { logWarning } from "./log.js"
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = Path.dirname(__filename)
-
 /**
  * @param path Relative to the root of the project.
  * Where we can find bith "lib/" and "doc/" forlders.
  */
 export function absPath(...path: string[]) {
-    return Path.resolve(__dirname, "../../../..", ...path)
+    return Path.resolve("..", ...path)
 }
 
 /**

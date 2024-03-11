@@ -1,4 +1,4 @@
-import { NumberWithUnit } from "./common"
+import { NumberWithUnit } from "./common.js"
 
 export interface DimensionStyleProps {
     /** CSS width. */

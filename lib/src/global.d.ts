@@ -28,3 +28,8 @@ declare module "*.webp" {
     const value: any
     export = value
 }
+
+declare module "*.json" {
+    const value: { [key: string]: string }
+    export = value
+}

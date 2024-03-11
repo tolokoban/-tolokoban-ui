@@ -1,4 +1,4 @@
-import { Children } from "../types"
+import { Children } from "../types.js"
 
 export type ModalParams = Partial<Modal> & { content: Children }
 

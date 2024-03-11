@@ -1,9 +1,12 @@
-export { default as Color } from "./color"
-export * from "./hooks"
-export * from "./info"
-export * from "./modal"
-export * from "./theme"
-export * from "./types"
-export * from "./view"
+export { default as Color } from "./color.js"
+export * from "./hooks/index.js"
+export * from "./info.js"
+export * from "./modal/index.js"
+export * from "./theme/index.js"
+export * from "./types.js"
+export * from "./view/index.js"
 
-export type { GenericIconProps, Icon } from "./view/icons/generic/generic-icon"
+export type {
+    GenericIconProps,
+    Icon,
+} from "./view/icons/generic/generic-icon.js"

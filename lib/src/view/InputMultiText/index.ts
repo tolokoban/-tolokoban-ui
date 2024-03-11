@@ -1,1 +1,1 @@
-export * from "./InputMultiText"
+export * from "./InputMultiText.js"

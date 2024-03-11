@@ -1,4 +1,4 @@
-import { Circumference, OpaqueColorName } from "../../types"
+import { Circumference, OpaqueColorName } from "../../types.js"
 
 export function cssForColor(name: OpaqueColorName, alpha = 1): string {
     if (alpha <= 0) return "transparent"

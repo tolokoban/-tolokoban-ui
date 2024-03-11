@@ -1,1 +1,1 @@
-export * from "./icon-factory"
+export * from "./icon-factory.js"

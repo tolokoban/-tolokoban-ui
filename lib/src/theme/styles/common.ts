@@ -1,7 +1,7 @@
-import { ChildStyleProps, styleChild } from "./child"
-import { DimensionStyleProps, styleDimension } from "./dimension"
-import { PositionStyleProps, stylePosition } from "./position"
-import { SpaceStyleProps, styleSpace } from "./space"
+import { ChildStyleProps, styleChild } from "./child.js"
+import { DimensionStyleProps, styleDimension } from "./dimension.js"
+import { PositionStyleProps, stylePosition } from "./position.js"
+import { SpaceStyleProps, styleSpace } from "./space.js"
 
 export type CommonProps = {
     /**
