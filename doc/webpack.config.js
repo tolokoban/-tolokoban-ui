@@ -1,43 +1,38 @@
-const FS = require("fs")
+const Package = require("./package.json")
 const Path = require("path")
-const package = require("./package.json")
-const WorkboxPlugin = require("workbox-webpack-plugin")
+const FS = require("fs")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const CopyPlugin = require("copy-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const devMode = process.env.NODE_ENV !== "production"
+// const { WebpackManifestPlugin } = require("webpack-manifest-plugin")
+const Webpack = require("webpack")
 
-if (typeof package.port !== "number") {
-    // Define a random port number for dev server.
-    package.port = 1204 + Math.floor(Math.random() * (0xffff - 1024))
-    FS.writeFileSync(
-        Path.resolve(__dirname, "package.json"),
-        JSON.stringify(package, null, "    ")
-    )
-    console.log("A random port has been set for dev server:", package.port)
-}
+module.exports = (env) => {
+    if (typeof Package.port !== "number") {
+        // Define a random port number for dev server.
+        Package.port = 1204 + Math.floor(Math.random() * (0xffff - 1024))
+        FS.writeFileSync(
+            Path.resolve(__dirname, "package.json"),
+            JSON.stringify(Package, null, "    ")
+        )
+        console.log("A random port has been set for dev server:", Package.port)
+    }
 
-module.exports = (env, argv) => {
-    const isProdMode = argv.mode === "production"
-    const isTestMode = !isProdMode
+    const isProdMode = env.WEBPACK_BUILD === true
     if (isProdMode) {
-        console.log("+=================+")
-        console.log("| PRODUCTION Mode |")
-        console.log("+=================+")
-    } else {
-        console.log("+------------------+")
-        console.log("| Development Mode |")
-        console.log("+------------------+")
+        console.log("+-----------------+")
+        console.log("| Production Mode |")
+        console.log("+-----------------+")
     }
     return {
-        cache: {
-            type: "memory",
-        },
+        cache: false,
+        // cache: {
+        //     type: "memory",
+        // },
         output: {
-            filename: "./scr/[name].[contenthash].js",
+            filename: "scr/[name].[contenthash].js",
             path: Path.resolve(__dirname, "build"),
-            assetModuleFilename: "asset/[name].[hash][ext][query]",
+            devtoolModuleFilenameTemplate: "[absolute-resource-path]",
         },
         entry: {
             app: "./src/index.tsx",
@@ -47,27 +42,42 @@ module.exports = (env, argv) => {
             extensions: [".tsx", ".ts", ".js", ".jsx", ".wasm"],
             enforceExtension: false,
             alias: {
-                "@": Path.resolve(__dirname, "src"),
-                // react: require.resolve("react"),
+                "@": Path.resolve(__dirname, "src/"),
             },
         },
-        devtool: "inline-source-map",
+        devtool: isProdMode ? false : "inline-source-map",
         devServer: {
             compress: true,
+            historyApiFallback: true,
             static: {
                 directory: Path.resolve(__dirname, "./public"),
             },
             client: {
-                logging: "verbose",
+                logging: "none",
                 overlay: { errors: true, warnings: false },
                 progress: true,
             },
             hot: true,
             // Open WebBrowser.
             open: true,
-            port: process.env.PORT || package.port,
+            host: "0.0.0.0",
+            port: env.PORT || Package.port,
+            server: "http",
+        },
+        stats: {
+            colors: true,
+            errorDetails: false,
         },
         plugins: [
+            new Webpack.ProgressPlugin(),
+            // // List of the needed files for later caching.
+            // new WebpackManifestPlugin({
+            //     filter: (file) => {
+            //         if (file.name.endsWith(".map")) return false
+            //         if (file.name.endsWith(".ts")) return false
+            //         return true
+            //     },
+            // }),
             new CleanWebpackPlugin({
                 // We don't want to remove the "index.html" file
                 // after the incremental build triggered by watch.
@@ -78,46 +88,50 @@ module.exports = (env, argv) => {
                     {
                         from: Path.resolve(__dirname, "public"),
                         filter: async (path) => {
-                            return !path.endsWith("index.html")
+                            // Allow non-root index.html to be copied verbatim.
+                            return !path.endsWith("/public/index.html")
                         },
                     },
                 ],
             }),
             new HtmlWebpackPlugin({
-                meta: {
-                    viewport:
-                        "width=device-width, initial-scale=1, shrink-to-fit=no",
-                    "theme-color": "#56abff",
-                },
                 template: "public/index.html",
                 filename: "index.html",
-                title: package.name,
-                version: package.version,
+                version: Package.version,
+                title: Package.name,
                 minify: {
-                    collapseInlineTagWhitespace: true,
-                    collapseWhitespace: true,
-                    decodeEntities: true,
-                    minifyCSS: true,
-                    removeComments: true,
+                    collapseInlineTagWhitespace: isProdMode,
+                    collapseWhitespace: isProdMode,
+                    decodeEntities: isProdMode,
+                    minifyCSS: isProdMode,
+                    removeComments: isProdMode,
                 },
             }),
-            new WorkboxPlugin.GenerateSW({
-                // These options encourage the ServiceWorkers to get in there fast
-                // and not allow any straggling "old" SWs to hang around.
-                clientsClaim: true,
-                skipWaiting: true,
-            }),
         ],
+        performance: {
+            hints: "warning",
+            maxAssetSize: 300000,
+            maxEntrypointSize: 200000,
+            assetFilter: (filename) => {
+                // PNG are just fallbacks for WEBP images.
+                if (filename.endsWith(".png")) return false
+                if (filename.endsWith(".map")) return false
+                return true
+            },
+        },
         optimization: {
-            // Create a single runtime bundle for all chunks.
-            runtimeChunk: "single",
             splitChunks: {
-                // All the node_modules libs on a single file.
+                chunks: "all",
                 cacheGroups: {
-                    vendor: {
+                    defaultVendors: {
                         test: /[\\/]node_modules[\\/]/,
-                        name: "libs",
-                        chunks: "all",
+                        priority: -10,
+                        reuseExistingChunk: true,
+                    },
+                    default: {
+                        minChunks: 2,
+                        priority: -20,
+                        reuseExistingChunk: true,
                     },
                 },
             },
@@ -139,12 +153,44 @@ module.exports = (env, argv) => {
                     exclude: /node_modules/,
                 },
                 {
+                    test: /\.(png|jpe?g|gif|webp|svg)$/i,
+                    // More information here https://webpack.js.org/guides/asset-modules/
+                    type: "asset",
+                    generator: {
+                        filename: "img/[name].[hash][ext][query]",
+                    },
+                },
+                {
+                    test: /\.(bin|glb)$/i,
+                    // More information here https://webpack.js.org/guides/asset-modules/
+                    type: "asset",
+                    generator: {
+                        filename: "bin/[name].[hash][ext][query]",
+                    },
+                },
+                {
+                    test: /\.(eot|ttf|woff|woff2)$/i,
+                    // More information here https://webpack.js.org/guides/asset-modules/
+                    type: "asset/resource",
+                    generator: {
+                        filename: "fnt/[name].[hash][ext][query]",
+                    },
+                },
+                {
+                    test: /\.(vert|frag|obj)$/i,
+                    // More information here https://webpack.js.org/guides/asset-modules/
+                    type: "asset/source",
+                },
+                {
+                    test: /\.(py|txt|sh|md)$/i,
+                    // More information here https://webpack.js.org/guides/asset-modules/
+                    type: "asset/source",
+                },
+                {
                     test: /\.css$/,
                     use: [
                         {
-                            loader: devMode
-                                ? "style-loader"
-                                : MiniCssExtractPlugin,
+                            loader: "style-loader",
                             options: {
                                 injectType: "styleTag",
                             },
@@ -154,9 +200,9 @@ module.exports = (env, argv) => {
                             options: {
                                 modules: {
                                     auto: true,
-                                    localIdentName: isTestMode
-                                        ? "[path][name]_[local]_[hash:base64:6]"
-                                        : "[hash:base64]",
+                                    localIdentName: isProdMode
+                                        ? "[hash:base64]"
+                                        : "[path][name]_[local]_[hash:base64:6]",
                                 },
                             },
                         },
@@ -169,33 +215,11 @@ module.exports = (env, argv) => {
                         { loader: "babel-loader", options: {} },
                         {
                             loader: "@mdx-js/loader",
-                            /** @type {import('@mdx-js/loader').Options} */
                             options: {
                                 /* jsxImportSource: …, otherOptions… */
                             },
                         },
                     ],
-                },
-                {
-                    test: /\.(png|jpe?g|gif|webp|svg)$/i,
-                    // More information here https://webpack.js.org/guides/asset-modules/
-                    type: "asset",
-                    generator: {
-                        filename: "./img/[name].[hash][ext][query]",
-                    },
-                },
-                {
-                    test: /\.(eot|ttf|woff|woff2)$/i,
-                    // More information here https://webpack.js.org/guides/asset-modules/
-                    type: "asset/resource",
-                    generator: {
-                        filename: "./fnt/[name].[hash][ext][query]",
-                    },
-                },
-                {
-                    test: /\.ya?ml$/,
-                    type: "json",
-                    use: "yaml-loader",
                 },
             ],
         },

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 
 import { Theme } from "../../theme"
 import { ChildStyleProps, styleChild } from "../../theme/styles/child"
@@ -32,7 +32,7 @@ export function ViewInputImage(props: InputImageProps) {
     const refCanvas = React.useRef<HTMLCanvasElement | null>(null)
     const refInput = React.useRef<HTMLInputElement | null>(null)
     const [busy, setBusy] = React.useState(false)
-    const importImage = useInitializer(setBusy, value, refCanvas, onChange)
+    const paintOnCanvas = useCanvasPainter(value, refCanvas)
     const style: React.CSSProperties = {
         ...styleChild(props),
     }
@@ -48,12 +48,11 @@ export function ViewInputImage(props: InputImageProps) {
             const reader = new FileReader()
             reader.addEventListener("load", () => {
                 const url = reader.result
-                console.log("🚀 [InputImage] url = ", url) // @FIXME: Remove this line written on 2023-09-28 at 15:53
                 if (typeof url !== "string") {
                     console.error("URL should be a string and not a:", url)
                     return
                 }
-                importImage(url)
+                paintOnCanvas(url)
                     .then((dataUrl) => {
                         if (dataUrl) onChange(dataUrl)
                     })
@@ -112,11 +111,9 @@ export function ViewInputImage(props: InputImageProps) {
     )
 }
 
-function useInitializer(
-    setBusy: React.Dispatch<React.SetStateAction<boolean>>,
+function useCanvasPainter(
     value: string,
-    refCanvas: React.MutableRefObject<HTMLCanvasElement | null>,
-    onChange: (this: void, value: string) => void
+    refCanvas: React.MutableRefObject<HTMLCanvasElement | null>
 ) {
     const importImage = React.useCallback(
         async (url: string): Promise<string | null> => {
@@ -139,32 +136,16 @@ function useInitializer(
                 const x = 0.5 * (w - dw)
                 const y = 0.5 * (h - dh)
                 ctx.drawImage(img, x, y, dw, dh)
-                const dataUrl = canvas.toDataURL("image/jpeg", 0.7)
-                console.log(
-                    "Image size: ",
-                    Math.ceil(dataUrl.length / 1024),
-                    "Kb"
-                )
+                const dataUrl = canvas.toDataURL("image/webp", 0.7)
                 return dataUrl === value ? null : dataUrl
             }
             return null
         },
         [refCanvas, value]
     )
-    React.useEffect(() => {
-        const action = async () => {
-            setBusy(true)
-            try {
-                const url = await importImage(value)
-                if (!url) return
-
-                onChange(url)
-            } finally {
-                setBusy(false)
-            }
-        }
-        void action()
-    }, [importImage, onChange, setBusy, value])
+    useEffect(() => {
+        void importImage(value)
+    }, [importImage, value])
     return importImage
 }
 

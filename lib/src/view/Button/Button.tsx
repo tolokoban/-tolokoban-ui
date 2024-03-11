@@ -56,7 +56,6 @@ export function ViewButton(partialProps: ViewButtonProps) {
         children: "Button",
         enabled: true,
         borderRadius: ".125em",
-        color: "secondary-5",
         margin: ["S", "M"],
         padding: [0, "M"],
         onClick: DEFAULT_CLICK_HANDLER,
@@ -65,12 +64,13 @@ export function ViewButton(partialProps: ViewButtonProps) {
         variant: "elevated",
         thickness: 0.125,
     })
-    const { className, children, color, enabled, variant, onClick } = props
+    const { className, children, enabled, variant, onClick } = props
+    const { color } = partialProps
     const thickness = cssForGaps(props.thickness)
     const style: React.CSSProperties = {
-        "--custom-color-main-alpha": cssForColor(color, 0.5),
-        "--custom-color-main": cssForColor(color),
-        "--custom-color-text": cssForColorOn(color),
+        "--custom-color-main-alpha": getMainAlphaColor(color, variant),
+        "--custom-color-main": getMainColor(color, variant),
+        "--custom-color-text": getTextColor(color, variant),
         "--custom-thickness": thickness,
         ...styleCommon(props),
     }
@@ -89,7 +89,7 @@ export function ViewButton(partialProps: ViewButtonProps) {
             onClick={onClick}
         >
             {Icon && <Icon />}
-            <div className={Styles.text}>{children}</div>
+            <div className={Styles.label}>{children}</div>
         </button>
     )
 }
@@ -106,4 +106,44 @@ export function makeCustomButton(
 
 const DEFAULT_CLICK_HANDLER = () => {
     console.log("Click!")
+}
+
+function getMainColor(
+    color: OpaqueColorName | undefined,
+    variant: string
+): string {
+    switch (variant) {
+        case "text":
+            return "transparent"
+        // "elevated" | "filled" | "outlined"
+        default:
+            return cssForColor(color ?? "primary-5")
+    }
+}
+
+function getMainAlphaColor(
+    color: OpaqueColorName | undefined,
+    variant: string
+): string {
+    switch (variant) {
+        case "text":
+            return "transparent"
+        // "elevated" | "filled" | "outlined"
+        default:
+            return cssForColor(color ?? "primary-5", 0.5)
+    }
+}
+
+function getTextColor(
+    color: OpaqueColorName | undefined,
+    variant: string
+): string {
+    switch (variant) {
+        case "text":
+        case "outlined":
+            return color ? cssForColor(color) : "currentColor"
+        // "elevated" | "filled"
+        default:
+            return cssForColorOn(color ?? "primary-5")
+    }
 }

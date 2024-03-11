@@ -1,5 +1,5 @@
 /**
- * 2023-10-19T07:52:06.819Z
+ * 2024-03-09T13:06:17.006Z
  *
  * This file has been automatically generated with:
  * npm run generate
@@ -18,6 +18,7 @@ export default function ViewsLayout({ children }: { children: React.ReactNode })
             <Link hash="/view/Dialog">Dialog</Link>
             <Link hash="/view/FloatingButton">FloatingButton</Link>
             <Link hash="/view/InputColor">InputColor</Link>
+            <Link hash="/view/InputFile">InputFile</Link>
             <Link hash="/view/InputImage">InputImage</Link>
             <Link hash="/view/InputMultiText">InputMultiText</Link>
             <Link hash="/view/InputText">InputText</Link>
