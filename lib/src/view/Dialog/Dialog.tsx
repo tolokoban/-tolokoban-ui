@@ -1,9 +1,12 @@
+import React from "react"
+
 import { Theme } from "../../theme"
-import Classes from "./Dialog.module.css"
-import { ViewButton, ViewButtonProps } from "../Button"
-import { Children, ColorName } from "../../types"
 import { styleColor } from "../../theme/styles/color"
+import { Children, ColorName } from "../../types"
+import { ViewButton, ViewButtonProps } from "../Button"
 import { ViewStrip } from "../Strip"
+
+import Classes from "./Dialog.module.css"
 
 const $ = Theme.classNames
 

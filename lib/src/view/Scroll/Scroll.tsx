@@ -1,3 +1,5 @@
+import React from "react"
+
 import { Theme } from "../../theme"
 import { Children, OpaqueColorName } from "../../types"
 import { ColorStyleProps, styleColor } from "../../theme/styles/color"

@@ -1,3 +1,5 @@
+import React from "react"
+
 import GenericIcon, { GenericIconProps, Icon } from "../generic/generic-icon"
 
 /**

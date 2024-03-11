@@ -6,6 +6,7 @@ export default function MainPage() {
         <div>
             <h1>@tolokoban/ui</h1>
             <Link hash="/view">List the views.</Link>
+            <Link hash="/test">Test the dispatch issue.</Link>
         </div>
     )
 }
