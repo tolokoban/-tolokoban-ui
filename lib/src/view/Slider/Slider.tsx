@@ -1,7 +1,7 @@
 import React from "react"
 
-import { Theme } from "../../theme"
-import { Children, ViewWithValue } from "../../types"
+import { Theme } from "../../theme/index.js"
+import { Children, ViewWithValue } from "../../types.js"
 import { useChangeableValue } from "../../hooks/changeable-value"
 
 import Styles from "./Slider.module.css"

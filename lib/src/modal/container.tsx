@@ -1,6 +1,6 @@
 import React from "react"
 
-import { ModalOptions } from "./types"
+import { ModalOptions } from "./types.js"
 
 import Styles from "./container.module.css"
 

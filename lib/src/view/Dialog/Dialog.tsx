@@ -1,10 +1,10 @@
 import React from "react"
 
-import { Theme } from "../../theme"
-import { styleColor } from "../../theme/styles/color"
-import { Children, ColorName } from "../../types"
-import { ViewButton, ViewButtonProps } from "../Button"
-import { ViewStrip } from "../Strip"
+import { Theme } from "../../theme/index.js"
+import { styleColor } from "../../theme/styles/color.js"
+import { Children, ColorName } from "../../types.js"
+import { ViewButton, ViewButtonProps } from "../Button/index.js"
+import { ViewStrip } from "../Strip/index.js"
 
 import Classes from "./Dialog.module.css"
 

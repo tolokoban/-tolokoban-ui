@@ -1,7 +1,4 @@
-export function setDefaults<
-    TypeProps extends Record<string, never>,
-    TypeDefaults extends TypeProps
->(
+export function setDefaults<TypeProps, TypeDefaults extends TypeProps>(
     props: TypeProps,
     defaults: { [key in keyof TypeDefaults]: NonNullable<TypeDefaults[key]> }
 ): Required<TypeDefaults> & TypeProps {

@@ -1,7 +1,7 @@
 import React from "react"
 
-import { Theme } from "../../theme"
-import { Children } from "../../types"
+import { Theme } from "../../theme/index.js"
+import { Children } from "../../types.js"
 
 import Styles from "./Tab.module.css"
 

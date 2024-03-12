@@ -1,12 +1,14 @@
 import React, { useEffect } from "react"
 
-import { Theme } from "../../theme"
-import { ChildStyleProps, styleChild } from "../../theme/styles/child"
-import { ViewWithValue } from "../../types"
-import { ViewPanel } from "../Panel"
-import { ViewTouchable } from "../Touchable"
-import IconLoading from "../icons/IconLoading"
-import { GenericIconProps } from "../icons/generic"
+import { Theme } from "../../theme/index.js"
+import { ChildStyleProps, styleChild } from "../../theme/styles/child.js"
+import { ViewWithValue } from "../../types.js"
+import { ViewPanel } from "../Panel/index.js"
+import { ViewTouchable } from "../Touchable/index.js"
+import IconLoading from "../icons/IconLoading.js"
+import { GenericIconProps } from "../icons/generic/index.js"
+
+import BackURL from "./back.jpg"
 
 import Styles from "./InputImage.module.css"
 
@@ -87,6 +89,7 @@ export function ViewInputImage(props: InputImageProps) {
                     maxWidth: `${width}px`,
                     height: 0,
                     paddingBottom: `${(100 * height) / width}%`,
+                    backgroundImage: `url(${BackURL})`,
                 }}
             >
                 <canvas width={width} height={height} ref={refCanvas}></canvas>

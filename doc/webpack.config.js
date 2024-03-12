@@ -65,7 +65,7 @@ const config = (env) => {
                 logging: "none",
                 overlay: env.production
                     ? false
-                    : { errors: true, runtimeErrors: true, warnings: true },
+                    : { errors: true, runtimeErrors: true, warnings: false },
                 progress: true,
             },
             devMiddleware: {

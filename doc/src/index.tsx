@@ -1,8 +1,8 @@
 import React from "react"
 import { createRoot } from "react-dom/client"
-import { version, Theme, ViewButton, ViewInputFile } from "@tolokoban/ui"
+import { version, Theme } from "@tolokoban/ui"
 
-// import App from "./app"
+import App from "./app"
 
 import "./index.css"
 
@@ -15,11 +15,7 @@ function start() {
     const root = createRoot(container)
     root.render(
         <React.StrictMode>
-            <div>
-                <ViewButton>Test button</ViewButton>
-                <ViewInputFile onLoad={console.log}>Import file</ViewInputFile>
-            </div>
-            {/* <App /> */}
+            <App />
         </React.StrictMode>
     )
     // Remove splash screen.

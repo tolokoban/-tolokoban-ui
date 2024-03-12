@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { Theme } from "../../theme"
+import { Theme } from "../../theme/index.js"
 import { ViewTab, ViewTabProps } from "../Tab"
 
 import Styles from "./Tabs.module.css"

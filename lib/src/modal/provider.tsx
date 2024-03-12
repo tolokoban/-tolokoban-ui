@@ -1,9 +1,9 @@
 import React, { useContext } from "react"
 
-import { Children } from "../types"
-import ModalContainer from "./container"
-import ModalManager from "./manager"
-import { Modal, ModalManagerInterface } from "./types"
+import { Children } from "../types.js"
+import ModalContainer from "./container.js"
+import ModalManager from "./manager.js"
+import { Modal, ModalManagerInterface } from "./types.js"
 
 import Styles from "./provider.module.css"
 

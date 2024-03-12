@@ -1,18 +1,24 @@
 import * as React from "react"
 
-import { Theme } from "../../theme"
-import { Children, Circumference } from "../../types"
-import { ColorStyleProps, styleColor } from "../../theme/styles/color"
-import { SpaceStyleProps, styleSpace } from "../../theme/styles/space"
-import { OverflowStyleProps, styleOverflow } from "../../theme/styles/overflow"
-import { DisplayStyleProps, styleDisplay } from "../../theme/styles/display"
+import { Theme } from "../../theme/index.js"
+import { ChildStyleProps, styleChild } from "../../theme/styles/child.js"
+import { ColorStyleProps, styleColor } from "../../theme/styles/color.js"
 import {
     DimensionStyleProps,
     styleDimension,
-} from "../../theme/styles/dimension"
-import { cssForGaps } from "../../theme/styles/styles"
-import { PositionStyleProps, stylePosition } from "../../theme/styles/position"
-import { ChildStyleProps, styleChild } from "../../theme/styles/child"
+} from "../../theme/styles/dimension.js"
+import { DisplayStyleProps, styleDisplay } from "../../theme/styles/display.js"
+import {
+    OverflowStyleProps,
+    styleOverflow,
+} from "../../theme/styles/overflow.js"
+import {
+    PositionStyleProps,
+    stylePosition,
+} from "../../theme/styles/position.js"
+import { SpaceStyleProps, styleSpace } from "../../theme/styles/space.js"
+import { cssForGaps } from "../../theme/styles/styles.js"
+import { Children, Circumference } from "../../types.js"
 
 import Styles from "./Panel.module.css"
 

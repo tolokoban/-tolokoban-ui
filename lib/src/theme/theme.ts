@@ -7,14 +7,10 @@ export * from "./styles/common.js"
 
 const DEFAULT_COLOR_TEXT_LIGHT = "#fffe"
 const DEFAULT_COLOR_TEXT_DARK = "#000e"
-const DEFAULT_COLOR_PRIMARY: ThemeColor = { hue: 215 }
-const DEFAULT_COLOR_SECONDARY: ThemeColor = { hue: 60 }
-const DEFAULT_COLOR_TERTIARY: ThemeColor = { hue: 100 }
-const DEFAULT_COLOR_NEUTRAL: ThemeColor = {
-    hue: 61,
-    chroma: 0,
-    lightness: [50, 100],
-}
+const DEFAULT_COLOR_PRIMARY: ThemeColor = "hsl(215 80% 50%)"
+const DEFAULT_COLOR_SECONDARY: ThemeColor = "hsl(60 80% 50%)"
+const DEFAULT_COLOR_TERTIARY: ThemeColor = "hsl(100 80% 50%)"
+const DEFAULT_COLOR_NEUTRAL: ThemeColor = ["hsl(0 0% 50%)", "hsl(0 0% 100%)"]
 const DEFAULT_COLOR_INPUT = "#fff"
 const DEFAULT_COLOR_ERROR = "#d00"
 const DEFAULT_COLOR_VALID = "#0f0"
@@ -122,33 +118,15 @@ export default class Theme {
 }
 
 function makeColors(colorDef: ThemeColor): string[] {
-    const colors: string[] = convertThemeColorIntoArray(colorDef)
-    const output = Color.makeGradient(9, ...colors).map(
-        (color) => color.cssValue
+    const colors: (string | Color)[] = Array.isArray(colorDef)
+        ? colorDef
+        : [colorDef]
+    const output = Color.makeGradient(9, ...colors).map((color) =>
+        color.toString()
     )
     return output
 }
 
-function convertThemeColorIntoArray(colorDef: ThemeColor): string[] {
-    if (Array.isArray(colorDef)) return colorDef
-
-    const [hue1, hue2] = ensurePair(colorDef.hue)
-    const [chroma1, chroma2] = ensurePair(colorDef.chroma ?? [200, 50])
-    const [lightness1, lightness2] = ensurePair(colorDef.lightness ?? [5, 100])
-    return [
-        Color.fromLCH(lightness1, chroma1, hue1).cssValue,
-        Color.fromLCH(lightness2, chroma2, hue2).cssValue,
-    ]
-}
-
-function ensurePair(value: number | [number, number]): [number, number] {
-    if (Array.isArray(value)) return value
-
-    return [value, value]
-}
-
 function padHex(value: number, size = 2): string {
-    let hex = `${value.toString(16)}`
-    while (hex.length < size) hex = `0${hex}`
-    return hex
+    return `${value.toString(16)}`.padStart(size, "0")
 }

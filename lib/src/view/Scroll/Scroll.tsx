@@ -1,16 +1,19 @@
 import React from "react"
 
-import { Theme } from "../../theme"
-import { Children, OpaqueColorName } from "../../types"
+import { Theme } from "../../theme/index.js"
+import { Children, OpaqueColorName } from "../../types.js"
 import { ColorStyleProps, styleColor } from "../../theme/styles/color"
-import { SpaceStyleProps, styleSpace } from "../../theme/styles/space"
+import { SpaceStyleProps, styleSpace } from "../../theme/styles/space.js"
 import {
     DimensionStyleProps,
     styleDimension,
-} from "../../theme/styles/dimension"
+} from "../../theme/styles/dimension.js"
 import { DisplayStyleProps, styleDisplay } from "../../theme/styles/display"
-import { PositionStyleProps, stylePosition } from "../../theme/styles/position"
-import { ChildStyleProps, styleChild } from "../../theme/styles/child"
+import {
+    PositionStyleProps,
+    stylePosition,
+} from "../../theme/styles/position.js"
+import { ChildStyleProps, styleChild } from "../../theme/styles/child.js"
 
 import Styles from "./Scroll.module.css"
 

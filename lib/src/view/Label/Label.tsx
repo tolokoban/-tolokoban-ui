@@ -1,8 +1,8 @@
 import * as React from "react"
 
-import { Theme } from "../../theme"
-import { Children, ColorName } from "../../types"
-import { CommonProps } from "../../theme/styles/common"
+import { Theme } from "../../theme/index.js"
+import { Children, ColorName } from "../../types.js"
+import { CommonProps } from "../../theme/styles/common.js"
 
 import Styles from "./Label.module.css"
 

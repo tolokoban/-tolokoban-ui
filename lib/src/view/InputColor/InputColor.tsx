@@ -1,15 +1,18 @@
 import * as React from "react"
 
-import { Theme } from "../../theme"
+import { Theme } from "../../theme/index.js"
+import { ChildStyleProps, styleChild } from "../../theme/styles/child.js"
 import {
     DimensionStyleProps,
     styleDimension,
-} from "../../theme/styles/dimension"
-import { PositionStyleProps, stylePosition } from "../../theme/styles/position"
-import { ChildStyleProps, styleChild } from "../../theme/styles/child"
+} from "../../theme/styles/dimension.js"
+import {
+    PositionStyleProps,
+    stylePosition,
+} from "../../theme/styles/position.js"
+import { ViewWithValue } from "../../types.js"
 
 import Styles from "./InputColor.module.css"
-import { ViewWithValue } from "../../types"
 
 const SIZES = {
     XS: "75%",

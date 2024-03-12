@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { ColorStyleProps, styleColor } from "../../theme/styles/color"
 import IconLoading from "../icons/IconLoading"
-import { Children } from "../../types"
+import { Children } from "../../types.js"
 
 import Styles from "./Spinner.module.css"
 

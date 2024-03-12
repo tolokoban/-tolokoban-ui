@@ -1,9 +1,9 @@
 import * as React from "react"
 
-import { Theme } from "../../theme"
-import { ChildStyleProps, styleChild } from "../../theme/styles/child"
-import { ColorName } from "../../types"
-import { GenericIconProps } from "../icons/generic"
+import { Theme } from "../../theme/index.js"
+import { ChildStyleProps, styleChild } from "../../theme/styles/child.js"
+import { ColorName } from "../../types.js"
+import { GenericIconProps } from "../icons/generic/index.js"
 
 import Styles from "./FloatingButton.module.css"
 

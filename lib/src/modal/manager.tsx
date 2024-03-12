@@ -1,14 +1,14 @@
 import JSON5 from "json5"
 import React from "react"
 
-import { Children } from "../types"
-import { ViewDialog, ViewPanel, ViewSpinner } from "../view"
+import { Children } from "../types.js"
+import { ViewDialog, ViewPanel, ViewSpinner } from "../view/index.js"
 import {
     ConfirmParams,
     Modal,
     ModalManagerInterface,
     ModalParams,
-} from "./types"
+} from "./types.js"
 
 import Styles from "./manager.module.css"
 

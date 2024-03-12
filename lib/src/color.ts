@@ -1,51 +1,24 @@
-import { colord, Colord } from "colord"
+const canvas = document.createElement("canvas")
+canvas.width = 1
+canvas.height = 1
 
 export default class Color {
-    private readonly color: Colord
+    private static _ctx: CanvasRenderingContext2D | null = null
 
-    static isLight(color: string | Color): boolean {
-        if (typeof color === "string") {
-            return new Color(color).isLight()
+    private static get ctx(): CanvasRenderingContext2D {
+        if (!Color._ctx) {
+            const canvas = document.createElement("canvas")
+            canvas.width = 1
+            canvas.height = 1
+            const ctx = canvas.getContext("2d")
+            if (!ctx)
+                throw Error(
+                    "[Color] Unable to create CanvasRenderingContext2D!"
+                )
+
+            Color._ctx = ctx
         }
-
-        return color.isLight()
-    }
-
-    /**
-     * @param red 0.0 to 1.1
-     * @param green 0.0 to 1.1
-     * @param blue 0.0 to 1.1
-     * @param alpha 0.0 to 1.1
-     * @returns
-     */
-    static fromRGB(red: number, green: number, blue: number, alpha = 1): Color {
-        return new Color(
-            colord({
-                r: clamp(red) * 255,
-                g: clamp(green) * 255,
-                b: clamp(blue) * 255,
-                a: alpha,
-            }).toHex()
-        )
-    }
-
-    /**
-     *
-     * @param lightness 0..100
-     * @param chroma No upper bound, but 132 is already a maximum on most screens in 2022.
-     * @param hue 0..360
-     * @param alpha 0.0 to 1.0
-     * @returns
-     */
-    static fromLCH(
-        lightness: number,
-        chroma: number,
-        hue: number,
-        alpha = 1
-    ): Color {
-        return new Color(
-            colord({ l: lightness, c: chroma, h: hue, a: alpha }).toHex()
-        )
+        return Color._ctx
     }
 
     static makeGradient(size: number, ...from: Array<string | Color>): Color[] {
@@ -58,77 +31,108 @@ export default class Color {
     }
 
     /**
+     * Get a value from a colorramp made of `from` colors.
      *
      * @param from Colors
      * @param value From 0.0 to 1.0
      */
     static mix(value: number, ...from: Array<string | Color>): Color {
-        const inputs = getColors(from)
+        const inputs = from.map((source) => new Color(source))
         const steps = inputs.length - 1
         if (steps < 0) return new Color("#000")
         if (steps === 0) return inputs[0]
 
         const start = Math.min(Math.floor(value * steps), steps - 1)
-        const A = inputs[start + 1]
-        const B = inputs[start]
+        const colorA = inputs[start + 1]
+        const colorB = inputs[start]
         const a = steps * (value - start / steps)
         const b = 1 - a
-        const [lightnessA, chromaA, hueA] = A.lch
-        const [lightnessB, chromaB, hueB] = B.lch
-        const lightness = a * lightnessA + b * lightnessB
-        const chroma = a * chromaA + b * chromaB
-        let shiftA = 0
-        let shiftB = 0
-        if (Math.abs(hueA - hueB) > 180) {
-            if (hueA < hueB) shiftA = 360
-            else shiftB = 360
+        return new Color(
+            `color-mix(in lch, ${colorA.toString()}, ${colorB.toString()} ${
+                100 * b
+            }%)`
+        )
+    }
+
+    static isLight(colorSource: string | Color): boolean {
+        const color = new Color(colorSource)
+        return color.isLight()
+    }
+
+    static isDark(colorSource: string | Color): boolean {
+        const color = new Color(colorSource)
+        return color.isDark()
+    }
+
+    public R = 0
+    public G = 0
+    public B = 0
+    public A = 0
+
+    constructor(colorSource: string | Color) {
+        this.from(colorSource)
+    }
+
+    from(colorSource: string | Color): this {
+        if (typeof colorSource === "string") {
+            const ctx = Color.ctx
+            ctx.clearRect(0, 0, 1, 1)
+            ctx.fillStyle = colorSource
+            const img = ctx.getImageData(0, 0, 1, 1)
+            const [r, g, b, a] = img.data
+            const factor = 1 / 255
+            this.R = r * factor
+            this.G = g * factor
+            this.B = b * factor
+            this.A = a * factor
+        } else {
+            this.R = colorSource.R
+            this.G = colorSource.G
+            this.B = colorSource.B
+            this.A = colorSource.A
         }
-        const hue = a * (hueA + shiftA) + b * (hueB + shiftB)
-        const alpha = a * A.alpha + b * B.alpha
-        return Color.fromLCH(lightness, chroma, hue, alpha)
+        return this
     }
 
-    constructor(public readonly cssValue: string) {
-        this.color = colord(cssValue)
+    toString() {
+        const c = (value: number) =>
+            Math.floor(255 * value)
+                .toString(16)
+                .padStart(2, "0")
+        return `#${c(this.R)}${c(this.G)}${c(this.B)}${c(this.A)}`
     }
 
-    isLight(): boolean {
-        return this.color.isLight()
+    get luminance() {
+        return (
+            0.2126 * this.sRgbToLinear(this.R) +
+            0.7152 * this.sRgbToLinear(this.G) +
+            0.0722 * this.sRgbToLinear(this.B)
+        )
     }
 
-    get lch(): [lightness: number, chroma: number, hue: number] {
-        const lch = this.color.toLch()
-        return [lch.l, lch.c, lch.h]
-    }
-
-    get lcha(): [
-        lightness: number,
-        chroma: number,
-        hue: number,
-        alpha: number
-    ] {
-        const lch = this.color.toLch()
-        return [lch.l, lch.c, lch.h, lch.a]
-    }
-
-    get hue() {
-        return this.color.toLch().h
+    get perceivedLightness() {
+        const Y = this.luminance
+        return (
+            (Y <= 216 / 24389
+                ? Y * (24389 / 27)
+                : Math.pow(Y, 1 / 3) * 116 - 16) * 1e-2
+        )
     }
 
     /**
-     * @returns alpha value between 0.0 and 1.0
+     * Remove gamma from sRGB component.
      */
-    get alpha() {
-        return this.color.alpha()
+    sRgbToLinear(value: number) {
+        return value < 0.04045
+            ? value / 12.92
+            : Math.pow((value + 0.055) / 1.055, 2.4)
     }
-}
 
-function clamp(value: number): number {
-    if (value < 0) return 0
-    if (value > 1) return 1
-    return value
-}
+    isLight(): boolean {
+        return !this.isDark()
+    }
 
-function getColors(values: Array<Color | string>): Color[] {
-    return values.map((v) => (typeof v === "string" ? new Color(v) : v))
+    isDark(): boolean {
+        return this.perceivedLightness < 0.5
+    }
 }

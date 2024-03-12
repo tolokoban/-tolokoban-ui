@@ -1,6 +1,6 @@
 import React from "react"
 
-import { ViewButton, ViewButtonProps } from "../Button"
+import { ViewButton, ViewButtonProps } from "../Button/index.js"
 
 export interface ViewInputFileProps extends ViewButtonProps {
     onLoad(): void

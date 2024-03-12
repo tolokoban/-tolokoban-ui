@@ -1,3 +1,5 @@
+import Color from "./color.js"
+
 export type ThemeSize = "none" | "XS" | "S" | "M" | "L" | "XL"
 
 export interface ViewWithValue<T> {
@@ -5,13 +7,7 @@ export interface ViewWithValue<T> {
     onChange(this: void, value: T): void
 }
 
-export type ThemeColor =
-    | string[]
-    | {
-          hue: number | [number, number]
-          chroma?: number | [number, number]
-          lightness?: number | [number, number]
-      }
+export type ThemeColor = Color | string | (Color | string)[]
 
 interface ThemeSettingsColors {
     textLight: string

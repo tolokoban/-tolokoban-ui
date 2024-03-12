@@ -1,9 +1,9 @@
 import React from "react"
 
-import { useChangeableValue } from "../../hooks/changeable-value"
-import { Children, ViewWithValue } from "../../types"
-import { ViewLabel } from "../Label"
-import { ViewTouchable } from "../Touchable"
+import { useChangeableValue } from "../../hooks/changeable-value.js"
+import { Children, ViewWithValue } from "../../types.js"
+import { ViewLabel } from "../Label/index.js"
+import { ViewTouchable } from "../Touchable/index.js"
 
 import Styles from "./Options.module.css"
 

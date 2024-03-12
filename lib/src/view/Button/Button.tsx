@@ -1,15 +1,16 @@
 import * as React from "react"
-import { Theme } from "../../theme"
-import Styles from "./Button.module.css"
-import { Children, OpaqueColorName } from "../../types"
+import Theme from "../../theme/theme.js"
+import { Children, OpaqueColorName } from "../../types.js"
 import {
     cssForColor,
     cssForColorOn,
     cssForGaps,
-} from "../../theme/styles/styles"
-import { CommonProps, styleCommon } from "../../theme/styles/common"
-import { setDefaults } from "../../util/set-defaults"
-import { GenericIconProps } from "../icons/generic"
+} from "../../theme/styles/styles.js"
+import { CommonProps, styleCommon } from "../../theme/styles/common.js"
+import { setDefaults } from "../../util/set-defaults.js"
+import { GenericIconProps } from "../icons/generic/index.js"
+
+import Styles from "./Button.module.css"
 
 const $ = Theme.classNames
 

@@ -1,15 +1,18 @@
 import * as React from "react"
 
-import { Theme } from "../../theme"
+import { Theme } from "../../theme/index.js"
 import {
     DimensionStyleProps,
     styleDimension,
-} from "../../theme/styles/dimension"
-import { PositionStyleProps, stylePosition } from "../../theme/styles/position"
-import { ChildStyleProps, styleChild } from "../../theme/styles/child"
+} from "../../theme/styles/dimension.js"
+import {
+    PositionStyleProps,
+    stylePosition,
+} from "../../theme/styles/position.js"
+import { ChildStyleProps, styleChild } from "../../theme/styles/child.js"
 
 import Styles from "./InputMultiText.module.css"
-import { Children, ViewWithValue } from "../../types"
+import { Children, ViewWithValue } from "../../types.js"
 
 export interface InputMultiTextProps
     extends ViewWithValue<{ [lang: string]: string }>,

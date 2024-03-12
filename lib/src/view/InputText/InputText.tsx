@@ -1,11 +1,11 @@
 import * as React from "react"
 
-import { Theme } from "../../theme"
-import { SpaceStyleProps, styleSpace } from "../../theme/styles/space"
-import { ViewLabel } from "../Label"
-import { ViewWithValue } from "../../types"
-import { DimensionStyleProps } from "../../theme/styles/dimension"
-import { CommonProps } from "../../theme/styles/common"
+import { Theme } from "../../theme/index.js"
+import { SpaceStyleProps, styleSpace } from "../../theme/styles/space.js"
+import { ViewLabel } from "../Label/index.js"
+import { ViewWithValue } from "../../types.js"
+import { DimensionStyleProps } from "../../theme/styles/dimension.js"
+import { CommonProps } from "../../theme/styles/common.js"
 
 import Styles from "./InputText.module.css"
 
