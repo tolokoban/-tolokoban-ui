@@ -78,6 +78,7 @@ export default class Color {
             const ctx = Color.ctx
             ctx.clearRect(0, 0, 1, 1)
             ctx.fillStyle = colorSource
+            ctx.fillRect(0, 0, 1, 1)
             const img = ctx.getImageData(0, 0, 1, 1)
             const [r, g, b, a] = img.data
             const factor = 1 / 255

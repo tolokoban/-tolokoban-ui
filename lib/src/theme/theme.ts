@@ -72,7 +72,9 @@ export default class Theme {
         let color = value
         if (alpha <= 0) color = "transparent"
         else if (alpha < 1) {
-            color = `${value}${padHex(Math.round(255 * alpha))}`
+            const obj = new Color(value)
+            obj.A = alpha
+            color = obj.toString()
         }
         this.vars.push([name, color])
     }
@@ -121,12 +123,26 @@ function makeColors(colorDef: ThemeColor): string[] {
     const colors: (string | Color)[] = Array.isArray(colorDef)
         ? colorDef
         : [colorDef]
+    if (colors.length === 0) colors.push("#fff")
+    if (colors.length === 1) expandColorRange(colors)
     const output = Color.makeGradient(9, ...colors).map((color) =>
         color.toString()
     )
     return output
 }
 
-function padHex(value: number, size = 2): string {
-    return `${value.toString(16)}`.padStart(size, "0")
+function expandColorRange(colors: (string | Color)[]) {
+    const [color] = colors
+    const dark = new Color(color)
+    const light = new Color(color)
+    const levelD = 0.3
+    const levelL = 0.2
+    dark.R *= levelD
+    dark.G *= levelD
+    dark.B *= levelD
+    light.R = 1 - levelL * (1 - light.R)
+    light.G = 1 - levelL * (1 - light.G)
+    light.B = 1 - levelL * (1 - light.B)
+    colors.unshift(dark)
+    colors.push(light)
 }

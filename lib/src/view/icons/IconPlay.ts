@@ -7,7 +7,7 @@
  * You can find more icons here:
  *    https://pictogrammers.com/library/mdi/
  */
-import { makeIconView } from "./factory/index.js"
+import { makeIconView } from "./factory"
 
 const IconPlay = makeIconView(
     "M8,5.14V19.14L19,12.14L8,5.14Z",

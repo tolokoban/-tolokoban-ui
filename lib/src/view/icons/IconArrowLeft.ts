@@ -7,7 +7,7 @@
  * You can find more icons here:
  *    https://pictogrammers.com/library/mdi/
  */
-import { makeIconView } from "./factory/index.js"
+import { makeIconView } from "./factory"
 
 const IconArrowLeft = makeIconView(
     "M20,9V15H12V19.84L4.16,12L12,4.16V9H20Z",

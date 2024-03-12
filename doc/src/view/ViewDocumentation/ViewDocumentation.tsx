@@ -20,7 +20,7 @@ export default function ViewDocumentation({
             <ViewPanel margin={0} padding="M" color="primary-2">
                 {title}
             </ViewPanel>
-            <ViewPanel margin={0} padding="M">
+            <ViewPanel margin={0} padding="M" overflow="auto">
                 {children}
             </ViewPanel>
         </div>

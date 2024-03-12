@@ -7,7 +7,7 @@
  * You can find more icons here:
  *    https://pictogrammers.com/library/mdi/
  */
-import { makeIconView } from "./factory/index.js"
+import { makeIconView } from "./factory"
 
 const IconOk = makeIconView(
     "M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z",
