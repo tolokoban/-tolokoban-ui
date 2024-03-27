@@ -5,9 +5,10 @@
     --custom-color-hover-text: 0;
     --custom-shadow: var(--theme-shadow-3);
     all: inherit;
+    position: initial;
     overflow: hidden;
     cursor: pointer;
-    display: inline-flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     padding: 0;
@@ -26,7 +27,8 @@
 }
 
 button.FloatingButton:active {
-    transform: scale(0.8);
+    transform: translateY(0.25em);
+    box-shadow: var(--theme-shadow-1);
 }
 
 button.FloatingButton[disabled] {

@@ -17,7 +17,7 @@ export interface ViewDialogProps {
     /**
      * If defined, the `title` will appear in the dialog header.
      */
-    title?: Children
+    title?: React.ReactNode
     /**
      * Customize the __Cancel__ button.
      * The buton will appear only if you set at least the `onClick` attribute.
@@ -49,14 +49,14 @@ export function ViewDialog({
     buttonValidate,
     title,
     headColor = "primary-3",
-    bodyColor = "neutral-6",
-    footColor = "neutral-4",
+    bodyColor = "neutral-2",
+    footColor = "neutral-6",
     children,
 }: ViewDialogProps) {
     const cancelProps = checkClickHandler("Cancel", buttonCancel, {
         variant: "text",
     })
-    const validateProps = checkClickHandler("Validate", buttonValidate)
+    const validateProps = checkClickHandler("OK", buttonValidate)
     return (
         <ViewStrip
             className={$.join(className, Classes.Dialog)}

@@ -50,6 +50,7 @@ export interface ModalOptions {
 
 export interface Modal extends ModalOptions {
     status: "new" | "open" | "closing" | "closed"
+    name: string
 }
 
 export interface ModalManagerInterface {

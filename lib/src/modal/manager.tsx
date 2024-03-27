@@ -1,23 +1,48 @@
 import JSON5 from "json5"
 import React from "react"
 
-import { Children } from "../types.js"
-import { ViewDialog, ViewPanel, ViewSpinner } from "../view/index.js"
+import { Children } from "../types"
+import { ViewDialog, ViewPanel, ViewSpinner } from "../view/index"
 import {
     ConfirmParams,
     Modal,
     ModalManagerInterface,
     ModalParams,
-} from "./types.js"
+} from "./types"
 
 import Styles from "./manager.module.css"
+import { GenericEvent } from "../util/event"
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
 const EMPTY_FUNCTION = () => {}
 
 export default class ModalManager implements ModalManagerInterface {
-    public modals: Modal[] = []
-    public setModals: (modals: Modal[]) => void = EMPTY_FUNCTION
+    private readonly eventModalsChange = new GenericEvent()
+    private modals: Modal[] = []
+    private counter = 1
+
+    useModals(): Modal[] {
+        const [modals, setModals] = React.useState([...this.modals])
+        React.useEffect(() => {
+            const update = () => setModals([...this.modals])
+            this.eventModalsChange.addListener(update)
+            return () => this.eventModalsChange.removeListener(update)
+        }, [])
+        return modals
+    }
+
+    hide(modal: Modal) {
+        console.log("[Modal] hide:", modal)
+        if (!modal) {
+            const last = this.modals.pop()
+            if (!last) return
+
+            last.status = "closing"
+        } else {
+            modal.status = "closing"
+            this.modals = this.modals.filter((m) => m !== modal)
+        }
+        this.fire()
+    }
 
     show(params: ModalParams) {
         const modal: Modal = {
@@ -25,15 +50,17 @@ export default class ModalManager implements ModalManagerInterface {
             padding: "1em",
             transitionDuration: 300,
             autoClosable: true,
-            background: "var(--theme-color-neutral-2-4)",
+            background: "var(--theme-color-neutral-1-5)",
             onClose: EMPTY_FUNCTION,
             status: "new",
+            name: `Modal#${this.counter++}`,
             ...params,
         }
-        this.setModals([...this.modals, modal])
+        console.log("[Modal] show:", modal)
+        this.modals.push(modal)
+        this.fire()
         return () => {
-            modal.status = "closing"
-            this.setModals(this.modals.filter((m) => m !== modal))
+            this.hide(modal)
         }
     }
 
@@ -70,11 +97,7 @@ export default class ModalManager implements ModalManagerInterface {
         return new Promise((resolve) => {
             const hide = this.show({
                 ...params,
-                onClose() {
-                    if (params?.onClose) params.onClose()
-                    hide()
-                    resolve()
-                },
+                onClose: resolve,
                 content: (
                     <ViewDialog
                         buttonValidate={{
@@ -98,7 +121,6 @@ export default class ModalManager implements ModalManagerInterface {
             const hide = this.show({
                 ...params,
                 onClose() {
-                    if (params.onClose) params.onClose()
                     resolve(false)
                 },
                 content: (
@@ -143,26 +165,31 @@ export default class ModalManager implements ModalManagerInterface {
         return new Promise((resolve) => {
             const hide = this.show({
                 ...params,
-                onClose() {
-                    if (params?.onClose) params.onClose()
-                    hide()
-                    resolve()
-                },
+                onClose: resolve,
                 content: (
                     <ViewDialog
                         buttonValidate={{
                             variant: "text",
+                            color: "primary-5",
                             onClick() {
                                 hide()
                                 resolve()
                             },
                         }}
                     >
-                        {content}
+                        <ViewPanel padding="L">{content}</ViewPanel>
                     </ViewDialog>
                 ),
             })
         })
+    }
+
+    private fire() {
+        console.log(
+            "Modals:",
+            this.modals.map((m) => m.name)
+        )
+        this.eventModalsChange.dispatch()
     }
 }
 

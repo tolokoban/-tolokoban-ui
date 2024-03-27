@@ -1,1 +1,1 @@
-export { useModal, ModalProvider } from "./provider.js"
+export { useModal, ModalProvider } from "./provider"

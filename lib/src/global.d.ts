@@ -1,7 +1,17 @@
+declare module "markdown-to-jsx"
+declare module "*.module.css"
+
+// @see https://v4.webpack.js.org/guides/typescript/
+
 declare module "*.svg" {
     // Loaded as URL.
     const content: string
     export default content
+}
+
+declare module "*.yaml" {
+    const value: any
+    export = value
 }
 
 declare module "*.png" {
@@ -27,6 +37,12 @@ declare module "*.gif" {
 declare module "*.webp" {
     const value: any
     export = value
+}
+
+declare module "*.css" {
+    // Loaded as URL.
+    const content: string
+    export default content
 }
 
 declare module "*.json" {

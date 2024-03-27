@@ -7,14 +7,19 @@ import { GenericIconProps } from "../icons/generic/index.js"
 
 import Styles from "./FloatingButton.module.css"
 
-const SIZES = {
-    XS: "75%",
-    S: "100%",
-    M: "150%",
-    L: "200%",
-    XL: "300%",
+const SIZES: Record<string, number> = {
+    XXS: 0.5,
+    XS: 1,
+    S: 1.5,
+    M: 2,
+    L: 3,
+    XL: 4,
+    XXL: 8,
 }
 
+function sizeToFontSize(value: string): number {
+    return SIZES[value] ?? SIZES.M
+}
 export interface FloatingButtonProps
     extends ChildStyleProps,
         Partial<Omit<GenericIconProps, "value" | "color" | "backColor">> {
@@ -33,9 +38,11 @@ export function ViewFloatingButton(props: FloatingButtonProps) {
         size = "M",
         enabled = true,
     } = props
+    const fontSize = sizeToFontSize(size)
     const style: React.CSSProperties = {
         ...styleChild(props),
-        fontSize: SIZES[size],
+        width: `${fontSize}em`,
+        height: `${fontSize}em`,
     }
     if (color) {
         style["--custom-color-back"] = `var(--theme-color-${color})`
@@ -48,9 +55,11 @@ export function ViewFloatingButton(props: FloatingButtonProps) {
         ] = `var(--theme-color-on-${colorHover})`
     }
     const Icon = props.icon
-    const iconProps = { ...props }
+    const iconProps = { ...props, size: `${fontSize * 0.75}em` }
     delete iconProps.color
     delete iconProps.textColor
+    // Prevent click to be emited twice.
+    delete iconProps.onClick
     return (
         <button
             className={Theme.classNames.join(

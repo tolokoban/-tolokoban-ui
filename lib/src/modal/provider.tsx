@@ -7,28 +7,18 @@ import { Modal, ModalManagerInterface } from "./types.js"
 
 import Styles from "./provider.module.css"
 
-const ModalContext = React.createContext<ModalManager | null>(
-    new ModalManager()
-)
+const manager = new ModalManager()
+const ModalContext = React.createContext<ModalManager | null>(manager)
 
 export interface ModalProviderProps {
     children: Children
 }
 
 export function ModalProvider({ children }: ModalProviderProps) {
-    const [manager, setManager] = React.useState<ModalManager | null>(null)
-    const [modals, setModals] = React.useState<Modal[]>([])
+    const modals = manager.useModals()
     const handleRemove = (modal: Modal) => {
-        modal.onClose()
-        setModals(modals.filter((m) => m !== modal))
+        manager.hide(modal)
     }
-    if (manager) {
-        manager.modals = modals
-        manager.setModals = setModals
-    }
-    React.useEffect(() => {
-        setManager(new ModalManager())
-    }, [])
     return (
         <ModalContext.Provider value={manager}>
             {children}
