@@ -2,11 +2,12 @@ import React from "react"
 
 import { Theme } from "../../theme/index.js"
 import { styleColor } from "../../theme/styles/color.js"
-import { Children, ColorName } from "../../types.js"
+import { Children, Circumference, ColorName } from "../../types.js"
 import { ViewButton, ViewButtonProps } from "../Button/index.js"
 import { ViewStrip } from "../Strip/index.js"
 
 import Classes from "./Dialog.module.css"
+import { styleSpace } from "../../theme/styles/space"
 
 const $ = Theme.classNames
 
@@ -18,6 +19,7 @@ export interface ViewDialogProps {
      * If defined, the `title` will appear in the dialog header.
      */
     title?: React.ReactNode
+    padding?: Circumference
     /**
      * Customize the __Cancel__ button.
      * The buton will appear only if you set at least the `onClick` attribute.
@@ -48,6 +50,7 @@ export function ViewDialog({
     buttonCancel,
     buttonValidate,
     title,
+    padding = "M",
     headColor = "primary-3",
     bodyColor = "neutral-2",
     footColor = "neutral-6",
@@ -71,7 +74,16 @@ export function ViewDialog({
                     {title}
                 </header>
             )}
-            <main style={styleColor({ color: bodyColor })}>{children}</main>
+            <main
+                style={{
+                    ...styleColor({ color: bodyColor }),
+                    ...styleSpace({
+                        padding,
+                    }),
+                }}
+            >
+                {children}
+            </main>
             {(cancelProps || validateProps) && (
                 <footer style={styleColor({ color: footColor })}>
                     {cancelProps && <ViewButton {...cancelProps} />}

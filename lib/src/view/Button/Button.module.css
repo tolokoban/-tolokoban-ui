@@ -70,10 +70,13 @@
     background: transparent;
 }
 
-.Button:disabled {
+.Button:disabled,
+.disabled {
     cursor: default;
     box-shadow: none;
     filter: grayscale(100%);
+    opacity: 0.6;
+    pointer-events: none;
 }
 
 .Button:not(:disabled):active {

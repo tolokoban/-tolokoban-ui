@@ -13,8 +13,8 @@ div.error pre {
 
 .wait {
     padding: 1rem;
-    background-color: var(--theme-color-frame-opacity-90);
-    color: var(--theme-color-on-frame);
+    background-color: var(--theme-color-neutral-5-9);
+    color: var(--theme-color-on-neutral-5);
     display: inline-flex;
     flex-direction: row;
     justify-content: space-between;

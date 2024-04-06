@@ -13,6 +13,7 @@ import {
 import Styles from "./manager.module.css"
 import { GenericEvent } from "../util/event"
 
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 const EMPTY_FUNCTION = () => {}
 
 export default class ModalManager implements ModalManagerInterface {
@@ -124,14 +125,14 @@ export default class ModalManager implements ModalManagerInterface {
                     resolve(false)
                 },
                 content: (
-                    <ViewPanel shadow={9}>
+                    <ViewPanel shadow={9} color="neutral-3">
                         <ViewDialog
                             buttonCancel={{
                                 onClick() {
                                     hide()
                                     resolve(false)
                                 },
-                                children: params.labelCancel,
+                                children: params.labelCancel ?? "Cancel",
                             }}
                             buttonValidate={{
                                 onClick() {

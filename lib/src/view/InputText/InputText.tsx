@@ -52,9 +52,13 @@ export type ViewInputTextProps = ViewWithValue<string> &
          */
         validator?: RegExp | ((value: string) => boolean)
         /**
+         * Form name.
+         */
+        name?: string
+        /**
          * Event dispatched when the user pressed Enter.
          */
-        onEnterKeyPressed?(value: string): void
+        onEnterKeyPressed?(this: void, value: string): void
     }
 
 export function ViewInputText(props: ViewInputTextProps) {
@@ -63,6 +67,7 @@ export function ViewInputText(props: ViewInputTextProps) {
         placeholder,
         value = "",
         label,
+        name,
         autofocus = false,
         onChange,
         onEnterKeyPressed,
@@ -116,6 +121,7 @@ export function ViewInputText(props: ViewInputTextProps) {
             placeholder={placeholder}
             type={type}
             value={text}
+            name={name}
             onChange={handleChange}
             onKeyDown={handleKeydown}
         />

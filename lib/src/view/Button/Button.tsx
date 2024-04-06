@@ -28,8 +28,13 @@ export type ViewButtonProps = {
     variant?: "elevated" | "filled" | "outlined" | "text"
     /** Content of the button. Most often a text, but can be anything. */
     children?: Children
-    /** Click handler. */
-    onClick?(this: void): void
+    /**
+     * Click handler.
+     *
+     * If you set a string, the button will be turned into
+     * a link to an URL. But the style will remain the same.
+     */
+    onClick?: string | ((this: void) => void)
     /**
      * Default to `true`.
      *
@@ -57,7 +62,7 @@ export function ViewButton(partialProps: ViewButtonProps) {
         children: "Button",
         enabled: true,
         borderRadius: ".125em",
-        margin: ["S", "M"],
+        margin: ["XS", "0"],
         padding: [0, "M"],
         onClick: DEFAULT_CLICK_HANDLER,
         width: "auto",
@@ -76,6 +81,24 @@ export function ViewButton(partialProps: ViewButtonProps) {
         ...styleCommon(props),
     }
     const Icon = props.icon
+    if (typeof onClick === "string") {
+        return (
+            <a
+                style={style}
+                className={$.join(
+                    className,
+                    Styles.Button,
+                    Styles[variant],
+                    Boolean(Icon) && Styles.icon,
+                    !enabled && Styles.disabled
+                )}
+                href={onClick}
+            >
+                {Icon && <Icon />}
+                <div className={Styles.label}>{children}</div>
+            </a>
+        )
+    }
     return (
         <button
             style={style}

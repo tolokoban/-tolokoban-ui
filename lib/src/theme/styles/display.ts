@@ -79,8 +79,19 @@ interface DisplayGridStyleProps {
     columnGap?: string
     rowGap?: string
     gridTemplateColumns?: string
-    gridAutoColumns?: string
     gridTemplateRows?: string
+    gridAutoFlow?:
+        | "row"
+        | "column"
+        | "dense"
+        | "row dense"
+        | "column dense"
+        | "inherit"
+        | "initial"
+        | "revert"
+        | "revert-layer"
+        | "unset"
+    gridAutoColumns?: string
     gridAutoRows?: string
     justifyContent?: JustifyMode
     /** Default to `center` */
@@ -127,6 +138,7 @@ function styleDisplayGrid({
     columnGap,
     gridTemplateRows,
     gridTemplateColumns,
+    gridAutoFlow,
     gridAutoRows,
     gridAutoColumns,
     justifyContent,
@@ -141,6 +153,7 @@ function styleDisplayGrid({
     style.gridTemplateColumns = gridTemplateColumns
     style.gridAutoRows = gridAutoRows
     style.gridAutoColumns = gridAutoColumns
+    style.gridAutoFlow = gridAutoFlow
     style.justifyContent = justifyContent
     style.alignItems = alignItems
     style.placeItems = placeItems

@@ -2,12 +2,20 @@
     font: inherit;
     background: transparent;
     width: 100%;
-    border: none;
+    border: 1px solid color-mix(
+        in srgb,
+        currentColor,
+        transparent 90%
+    );
+    background-color: color-mix(
+        in srgb,
+        var(--theme-color-input),
+        transparent 90%
+    );
     padding: 0 0.5em;
     line-height: 2em;
     height: 2em;
     color: inherit;
-    background-color: none;
     border-bottom: 2px solid currentColor;
     transition: all 0.2s;
 }
