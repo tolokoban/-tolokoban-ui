@@ -1,0 +1,31 @@
+.fullwidth {
+    inline-size: 100%;
+    box-sizing: border-box;
+}
+
+.fullheight {
+    block-size: 100%;
+    box-sizing: border-box;
+}
+
+.fullsize {
+    composes: fullwidth fullheight;
+}
+
+@media (orientation: landscape) {
+    .fullwide {
+        composes: fullwidth;
+    }
+    .fullnarrow {
+        composes: fullheight;
+    }
+}
+
+@media (orientation: portrait) {
+    .fullwide {
+        composes: fullheight;
+    }
+    .fullnarrow {
+        composes: fullwidth;
+    }
+}

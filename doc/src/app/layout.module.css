@@ -1,0 +1,35 @@
+.layout aside {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 0.25em;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+}
+
+.layout aside button {
+    all: inherit;
+    background: var(--theme-color-primary-4);
+    color: var(--theme-color-on-primary-4);
+    cursor: pointer;
+    line-height: 2em;
+    padding: 0;
+    padding-inline: 1em;
+    font-size: 120%;
+    text-decoration: underline;
+}
+
+.layout aside button.active {
+    background: var(--theme-color-neutral-5);
+    color: var(--theme-color-on-neutral-5);
+    font-weight: bolder;
+    text-decoration: none;
+}
+
+.layout aside > div:last-child {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-inline-end: 1em;
+}
