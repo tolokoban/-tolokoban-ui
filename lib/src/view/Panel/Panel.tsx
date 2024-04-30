@@ -5,6 +5,7 @@ import { ChildStyleProps, styleChild } from "../../theme/styles/child.js"
 import { ColorStyleProps, styleColor } from "../../theme/styles/color.js"
 import {
     DimensionStyleProps,
+    classnameDimension,
     styleDimension,
 } from "../../theme/styles/dimension.js"
 import { DisplayStyleProps, styleDisplay } from "../../theme/styles/display.js"
@@ -62,7 +63,14 @@ export function ViewPanel(props: ViewPanelProps) {
     if (aspectRatio > 0) style["--custom-aspect-ratio"] = aspectRatio
     if (borderRadius) style.borderRadius = cssForGaps(borderRadius)
     return (
-        <div className={$.join(className, Styles.Panel)} style={style}>
+        <div
+            className={$.join(
+                className,
+                Styles.Panel,
+                classnameDimension(props)
+            )}
+            style={style}
+        >
             {children}
         </div>
     )

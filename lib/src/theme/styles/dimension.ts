@@ -1,4 +1,5 @@
 import { NumberWithUnit } from "./common.js"
+import Style from "../css/dimension.module.css"
 
 export interface DimensionStyleProps {
     /** CSS width. */
@@ -19,6 +20,10 @@ export interface DimensionStyleProps {
     fullwidth?: boolean
     /** If true, set height=100%. Default to false. */
     fullheight?: boolean
+    /** If true, set 100% to width or height depending if we are in landscape or portrait mode. */
+    fullwide?: boolean
+    /** If true, set 100% to width or height depending if we are in portrait or landscape mode. */
+    fullnarrow?: boolean
 }
 
 export function styleDimension({
@@ -28,9 +33,6 @@ export function styleDimension({
     maxHeight,
     minWidth,
     minHeight,
-    fullsize = false,
-    fullwidth = false,
-    fullheight = false,
 }: DimensionStyleProps) {
     const style: React.CSSProperties = {
         width,
@@ -40,7 +42,22 @@ export function styleDimension({
         minWidth,
         minHeight,
     }
-    if (fullsize || fullwidth) style.width = "100%"
-    if (fullsize || fullheight) style.height = "100%"
     return style
+}
+
+export function classnameDimension({
+    fullsize = false,
+    fullwidth = false,
+    fullheight = false,
+    fullwide = false,
+    fullnarrow = false,
+}: DimensionStyleProps): string {
+    if (fullsize) return Style.fullsize
+
+    const classes: string[] = []
+    if (fullwidth) classes.push(Style.fullwidth)
+    if (fullheight) classes.push(Style.fullheight)
+    if (fullwide) classes.push(Style.fullwide)
+    if (fullnarrow) classes.push(Style.fullnarrow)
+    return classes.join(" ")
 }

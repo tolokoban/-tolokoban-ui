@@ -4,6 +4,7 @@ import { Theme } from "../../theme/index.js"
 import {
     DimensionStyleProps,
     styleDimension,
+    classnameDimension,
 } from "../../theme/styles/dimension.js"
 import {
     PositionStyleProps,
@@ -13,11 +14,13 @@ import { ChildStyleProps, styleChild } from "../../theme/styles/child.js"
 
 import Styles from "./Strip.module.css"
 import { Children } from "../../types.js"
+import { ColorStyleProps, styleColor } from "../../theme/styles/color"
 
 export interface StripProps
     extends ChildStyleProps,
         PositionStyleProps,
-        DimensionStyleProps {
+        DimensionStyleProps,
+        ColorStyleProps {
     className?: string
     /** Default to "column". */
     orientation?: "column" | "row"
@@ -42,6 +45,7 @@ export function ViewStrip(props: StripProps) {
         ...styleDimension(props),
         ...stylePosition(props),
         ...styleChild(props),
+        ...styleColor(props),
     }
     const templateDef = template
         .split("")
@@ -61,7 +65,8 @@ export function ViewStrip(props: StripProps) {
             className={Theme.classNames.join(
                 props.className,
                 Styles.Strip,
-                Styles[orientation]
+                Styles[orientation],
+                classnameDimension(props)
             )}
             style={style}
         >
