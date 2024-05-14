@@ -1,4 +1,4 @@
-type Action = (...args: unknown[]) => void
+export type Action = (...args: unknown[]) => void
 
 /**
  * The function to call as much as you want. It will perform the debouce for you.

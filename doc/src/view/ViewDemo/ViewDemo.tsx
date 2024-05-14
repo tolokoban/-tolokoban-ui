@@ -1,5 +1,5 @@
 import React from "react"
-import { Theme } from "@tolokoban/ui"
+import { Theme, ViewPanel } from "@tolokoban/ui"
 import Code from "../Code"
 import Style from "./ViewDemo.module.css"
 
@@ -18,9 +18,10 @@ export default function ViewDemo({
     children,
 }: ViewDemoProps) {
     return (
-        <>
+        <ViewPanel color="neutral-4" padding="M" margin="M">
             <div className={$.join(className, Style.ViewDemo)}>{children}</div>
+            <hr />
             <Code>{example}</Code>
-        </>
+        </ViewPanel>
     )
 }

@@ -22,7 +22,7 @@ export function styleCommon(props: CommonProps): React.CSSProperties {
     }
 }
 
-type Unit =
+export type Unit =
     | "%"
     | "cm"
     | "mm"

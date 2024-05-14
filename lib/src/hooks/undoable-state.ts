@@ -14,7 +14,7 @@ export function useUndoableState<Type>(
     ]
 }
 
-interface Undoable {
+export interface Undoable {
     undo(): void
     redo(): void
     canUndo(): boolean

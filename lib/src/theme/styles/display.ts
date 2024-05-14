@@ -1,6 +1,6 @@
 import { cssForGaps } from "./styles.js"
 
-type AlignMode =
+export type AlignMode =
     | "normal"
     | "flex-start"
     | "flex-end"
@@ -16,7 +16,7 @@ type AlignMode =
     | "safe"
     | "unsafe"
 
-type JustifyMode =
+export type JustifyMode =
     | "normal"
     | "start"
     | "end"
@@ -56,7 +56,7 @@ export type DisplayStyleProps =
     | DisplayFlexStyleProps
     | DisplayGridStyleProps
 
-interface DisplayFlexStyleProps {
+export interface DisplayFlexStyleProps {
     /** CSS `display` property. */
     display: "flex" | "inline-flex"
     /* Default to `space-between` */
@@ -72,7 +72,7 @@ interface DisplayFlexStyleProps {
     /** Default to `nowrap` */
     flexWrap?: "wrap" | "nowrap" | "wrap-reverse"
 }
-interface DisplayGridStyleProps {
+export interface DisplayGridStyleProps {
     /** CSS `display` property. */
     display: "grid" | "inline-grid"
     gap?: string | [column: string, row: string]

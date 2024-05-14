@@ -1,4 +1,4 @@
-import { version, Theme, ViewStrip } from "@tolokoban/ui"
+import { version, Theme, ViewStrip, ViewPanel } from "@tolokoban/ui"
 
 import { isRouteEqualTo, makeGoto } from "./routes"
 
@@ -10,11 +10,18 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <ViewStrip
             className={Style.layout}
             fullsize
-            color="neutral-1"
+            color="primary-1"
             orientation="row"
             template="*1"
         >
             <aside>
+                <button
+                    className={classFor("/")}
+                    type="button"
+                    onClick={makeGoto("/")}
+                >
+                    Welcome
+                </button>
                 <button
                     className={classFor("/view")}
                     type="button"
@@ -31,7 +38,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </button>
                 <div>@tolokoban/ui v{version}</div>
             </aside>
-            <main>{children}</main>
+            <main>
+                <ViewPanel color="neutral-1" padding="S">
+                    {children}
+                </ViewPanel>
+            </main>
         </ViewStrip>
     )
 }

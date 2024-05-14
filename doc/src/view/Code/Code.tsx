@@ -1,5 +1,8 @@
 import React from "react"
 import { Theme, ViewButton, IconArrowRight, IconArrowDown } from "@tolokoban/ui"
+
+import { Highlight } from "../Highlight"
+
 import Style from "./Code.module.css"
 
 const $ = Theme.classNames
@@ -17,7 +20,7 @@ export default function Code({ className, children }: CodeProps) {
                 {expanded ? <IconArrowDown /> : <IconArrowRight />}
                 <div>Example's code:</div>
             </ViewButton>
-            {expanded && <pre>{children}</pre>}
+            {expanded && <Highlight>{children}</Highlight>}
         </div>
     )
 }

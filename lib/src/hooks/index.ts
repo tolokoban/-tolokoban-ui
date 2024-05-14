@@ -1,5 +1,5 @@
-export { useDebouncedEffect } from "./debounced-effect.js"
-export { useHotKey } from "./hotkey.js"
-export { useUndoableState } from "./undoable-state.js"
+export { useDebouncedEffect } from "./debounced-effect"
+export { useHotKey } from "./hotkey"
+export * from "./undoable-state"
 
-export type { HotKey } from "./hotkey.js"
+export type * from "./hotkey"

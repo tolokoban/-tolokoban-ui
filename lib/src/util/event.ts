@@ -1,11 +1,11 @@
 export class GenericEvent<T = void> {
-    private readonly listeners = new Set<Listener<T>>()
+    private readonly listeners = new Set<GenericEventListener<T>>()
 
-    addListener(listener: Listener<T>) {
+    addListener(listener: GenericEventListener<T>) {
         this.listeners.add(listener)
     }
 
-    removeListener(listener: Listener<T>) {
+    removeListener(listener: GenericEventListener<T>) {
         this.listeners.delete(listener)
     }
 
@@ -14,4 +14,4 @@ export class GenericEvent<T = void> {
     }
 }
 
-type Listener<T> = (value: T) => void
+export type GenericEventListener<T> = (value: T) => void

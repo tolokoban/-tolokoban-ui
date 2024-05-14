@@ -1,4 +1,4 @@
-export type ColorLevel = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+import { ColorLevel } from "../types"
 
 export default class ClassNames {
     private readonly signature = `${Date.now().toString(36)}-Theme-`
@@ -7,13 +7,13 @@ export default class ClassNames {
         this.init()
     }
 
-    readonly colorPrimary = (level: ColorLevel = 5) =>
+    readonly colorPrimary = (level: ColorLevel = "5") =>
         this.cls(`color-primary-${level}`)
-    readonly colorSecondary = (level: ColorLevel = 5) =>
+    readonly colorSecondary = (level: ColorLevel = "5") =>
         this.cls(`color-secondary-${level}`)
-    readonly colorTertiary = (level: ColorLevel = 5) =>
+    readonly colorTertiary = (level: ColorLevel = "5") =>
         this.cls(`color-tertiary-${level}`)
-    readonly colorNeutral = (level: ColorLevel = 5) =>
+    readonly colorNeutral = (level: ColorLevel = "5") =>
         this.cls(`color-neutral-${level}`)
 
     join(...items: unknown[]) {

@@ -1,1 +1,1 @@
-export * from "./generic-icon.js"
+export * from "./generic-icon"

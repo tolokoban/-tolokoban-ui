@@ -1,7 +1,14 @@
 import * as React from "react"
 
-type HotkeyPrefix = "C-" | "S-" | "M-" | "C-S-" | "C-M-" | "C-S-M-" | "S-M"
-type HotKeySuffix =
+export type HotkeyPrefix =
+    | "C-"
+    | "S-"
+    | "M-"
+    | "C-S-"
+    | "C-M-"
+    | "C-S-M-"
+    | "S-M"
+export type HotKeySuffix =
     | "a"
     | "b"
     | "c"

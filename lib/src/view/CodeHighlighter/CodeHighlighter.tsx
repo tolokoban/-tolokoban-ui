@@ -1,8 +1,8 @@
 import * as React from "react"
 
-import { Theme } from "../../theme/index.js"
-import { ColoredCode, TypeGrammar } from "./types.js"
-import { Children } from "../../types.js"
+import { Theme } from "../../theme"
+import { ColoredCode, TypeGrammar } from "./types"
+import { Children } from "../../types"
 
 import Styles from "./CodeHighlighter.module.css"
 

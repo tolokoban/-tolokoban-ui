@@ -1,1 +1,2 @@
-export * from "./CodeHighlighter.js"
+export * from "./CodeHighlighter"
+export * from "./types"

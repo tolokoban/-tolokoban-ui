@@ -1,1 +1,2 @@
-export { useModal, ModalProvider } from "./provider"
+export * from "./provider"
+export * from "./types"

@@ -15,6 +15,7 @@ export type ViewInputTextProps = ViewWithValue<string> &
     SpaceStyleProps &
     DimensionStyleProps &
     CommonProps & {
+        id?: string
         /** Text to display when the input is empty. */
         placeholder?: string
         /** If defined,  label will be added to the input. */
@@ -64,6 +65,7 @@ export type ViewInputTextProps = ViewWithValue<string> &
 export function ViewInputText(props: ViewInputTextProps) {
     const {
         className,
+        id,
         placeholder,
         value = "",
         label,
@@ -116,6 +118,7 @@ export function ViewInputText(props: ViewInputTextProps) {
                 Styles.InputText,
                 invalid && Styles.invalid
             )}
+            id={id}
             style={style}
             autoFocus={autofocus}
             placeholder={placeholder}

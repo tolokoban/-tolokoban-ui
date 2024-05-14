@@ -9,8 +9,8 @@ import "./index.css"
 console.log("@tolokoban/ui", version)
 
 function start() {
-    console.log("VERSION", React.version)
-    new Theme({}).apply()
+    console.log("React version:", React.version)
+    Theme.apply()
     const container = document.getElementById("root") as HTMLElement
     const root = createRoot(container)
     root.render(

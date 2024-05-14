@@ -1,4 +1,4 @@
-interface Lexer {
+export interface Lexer {
     /**
      * If `name` starts with a "!", the token will be ignored.
      * That means that this token is valid, but we don't need it
@@ -18,7 +18,7 @@ export interface TypeGrammar {
     scanner: ScannerRule[]
 }
 
-type ScannerRule =
+export type ScannerRule =
     | {
           /** The class to use if this rules matches. */
           className?: string

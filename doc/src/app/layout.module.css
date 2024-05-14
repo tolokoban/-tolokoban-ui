@@ -9,8 +9,8 @@
 
 .layout aside button {
     all: inherit;
-    background: var(--theme-color-primary-4);
-    color: var(--theme-color-on-primary-4);
+    background: var(--theme-color-primary-3);
+    color: var(--theme-color-on-primary-3);
     cursor: pointer;
     line-height: 2em;
     padding: 0;
@@ -20,8 +20,8 @@
 }
 
 .layout aside button.active {
-    background: var(--theme-color-neutral-5);
-    color: var(--theme-color-on-neutral-5);
+    background: var(--theme-color-secondary-5);
+    color: var(--theme-color-on-secondary-5);
     font-weight: bolder;
     text-decoration: none;
 }
@@ -32,4 +32,20 @@
     justify-content: flex-end;
     align-items: center;
     padding-inline-end: 1em;
+}
+
+.layout main {
+    position: relative;
+    background: var(--theme-color-secondary-5);
+    color: var(--theme-color-on-secondary-5);
+}
+
+.layout main > div {
+    position: absolute;
+    left: 0.5em;
+    top: 0.5em;
+    right: 0.5em;
+    bottom: 0.5em;
+    width: calc(100% - 1em);
+    height: calc(100% - 1em);
 }

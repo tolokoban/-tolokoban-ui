@@ -12,10 +12,10 @@
     "scripts": {
         "postci": "npm run doc",
         "ci": "cd lib && npm install && npm run build",
-        "doc": "cd lib && npm run doc && cd ../doc && npm run deploy",
+        "doc": "cd lib && npm run doc",
         "test": "cd lib && npm test",
         "copy": "node scripts/copy-pkg-info.mjs . ./lib ./doc",
-        "predeploy": "npm run copy",
+        "predeploy": "npm run copy && npm run doc",
         "deploy": "npm run ci && npm publish --access=public",
         "postminor": "npm run copy",
         "minor": "npm version minor -no-git-tag-version --force",

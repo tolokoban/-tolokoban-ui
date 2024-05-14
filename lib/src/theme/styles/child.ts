@@ -1,4 +1,4 @@
-type FlexBasisType =
+export type FlexBasisType =
     | `${number}${string}`
     | "auto"
     | "max-content"

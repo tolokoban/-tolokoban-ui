@@ -8,15 +8,23 @@ export * from "./styles/common.js"
 const DEFAULT_COLOR_TEXT_LIGHT = "#fffe"
 const DEFAULT_COLOR_TEXT_DARK = "#000e"
 const DEFAULT_COLOR_PRIMARY: ThemeColor = "hsl(215 80% 50%)"
-const DEFAULT_COLOR_SECONDARY: ThemeColor = "hsl(60 80% 50%)"
-const DEFAULT_COLOR_TERTIARY: ThemeColor = "hsl(100 80% 50%)"
-const DEFAULT_COLOR_NEUTRAL: ThemeColor = ["hsl(0 0% 50%)", "hsl(0 0% 100%)"]
+const DEFAULT_COLOR_SECONDARY: ThemeColor = "hsl(30 90% 50%)"
+const DEFAULT_COLOR_TERTIARY: ThemeColor = "hsl(60 80% 50%)"
+const DEFAULT_COLOR_NEUTRAL: ThemeColor = ["hsl(0 0% 40%)", "hsl(0 0% 90%)"]
 const DEFAULT_COLOR_INPUT = "#fff"
 const DEFAULT_COLOR_ERROR = "#d00"
 const DEFAULT_COLOR_VALID = "#0f0"
 
-export default class Theme {
+export class Theme {
     public static readonly classNames = new ClassNames()
+    public static apply(
+        options: ThemeSettings = {},
+        element?: HTMLElement | SVGElement
+    ) {
+        const theme = new Theme(options)
+        theme.apply(element)
+        return theme
+    }
 
     private readonly vars: Array<[name: string, value: string]> = []
 

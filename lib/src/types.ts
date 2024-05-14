@@ -9,7 +9,7 @@ export interface ViewWithValue<T> {
 
 export type ThemeColor = Color | string | (Color | string)[]
 
-interface ThemeSettingsColors {
+export interface ThemeSettingsColors {
     textLight: string
     textDark: string
     primary: ThemeColor
@@ -32,9 +32,9 @@ export interface ThemeSettings {
     }
 }
 
-type ColorLevel = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
-type ColorAlpha = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
-type ColorBase = "neutral" | "primary" | "secondary" | "tertiary"
+export type ColorLevel = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+export type ColorAlpha = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+export type ColorBase = "neutral" | "primary" | "secondary" | "tertiary"
 
 export type ColorName =
     | OpaqueColorName

@@ -30,6 +30,14 @@ export function ViewLabel({
     children,
 }: ViewLabelProps): JSX.Element {
     const id = `labelled/${React.useId()}`
+    const handleMount = (div: HTMLDivElement | null) => {
+        if (!div) return
+
+        const child = div.querySelector("input,textarea")
+        if (!child) return
+
+        child.setAttribute("id", id)
+    }
     if (!value) return <>{children}</>
 
     const style: React.CSSProperties = {}
@@ -45,7 +53,7 @@ export function ViewLabel({
                 {value}
             </label>
             {children && (
-                <div id={id} className={Styles.LabelContent}>
+                <div ref={handleMount} className={Styles.LabelContent}>
                     {children}
                 </div>
             )}

@@ -1,0 +1,39 @@
+.Highlight {
+    background: var(--theme-color-primary-1);
+    color: var(--theme-color-on-primary-1);
+    padding: 0.5em;
+}
+
+.Highlight :global(.comment) {
+    background: var(--theme-color-primary-2);
+    color: var(--theme-color-on-primary-2);
+}
+
+.Highlight :global(.hljs-keyword) {
+    font-weight: bolder;
+}
+
+.Highlight :global(.hljs-tag) {
+    font-weight: bold;
+    color: var(--theme-color-secondary-5);
+}
+
+.Highlight :global(.hljs-string) {
+    color: var(--theme-color-primary-7);
+}
+
+.Highlight :global(.hljs-function) {
+    color: var(--theme-color-tertiary-5);
+}
+
+.Highlight :global(.hljs-comment) {
+    color: var(--theme-color-neutral-9);
+    font-style: italic;
+    font-family: sans-serif;
+    opacity: 0.8;
+}
+
+.Highlight :global(.hljs-attr) {
+    font-weight: normal;
+    color: var(--theme-color-on-neutral-1);
+}

@@ -1,5 +1,5 @@
 import * as React from "react"
-import Theme from "../../theme/theme.js"
+import { Theme } from "../../theme"
 import { Children, OpaqueColorName } from "../../types.js"
 import {
     cssForColor,
