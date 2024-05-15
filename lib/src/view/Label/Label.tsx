@@ -10,7 +10,7 @@ const $ = Theme.classNames
 
 export type ViewLabelProps = CommonProps & {
     /** Text to display as label. */
-    value?: string
+    value?: React.ReactNode
     /** Tooltip */
     title?: string
     /** Color of the label. Default to `currentColor`. */
@@ -33,7 +33,9 @@ export function ViewLabel({
     const handleMount = (div: HTMLDivElement | null) => {
         if (!div) return
 
-        const child = div.querySelector("input,textarea")
+        const child = div.querySelector(
+            "input,textarea,button,meter,output,progress,select"
+        )
         if (!child) return
 
         child.setAttribute("id", id)

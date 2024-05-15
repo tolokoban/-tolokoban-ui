@@ -1,12 +1,12 @@
-// This file has been generated on Tue, 14 May 2024 12:04:16 GMT
+// This file has been generated on Wed, 15 May 2024 11:55:14 GMT
 export * from "./Button"
-export * from "./CodeHighlighter"
 export * from "./Dialog"
 export * from "./FloatingButton"
 export * from "./InputColor"
 export * from "./InputFile"
 export * from "./InputImage"
 export * from "./InputMultiText"
+export * from "./InputNumber"
 export * from "./InputText"
 export * from "./Label"
 export * from "./Options"

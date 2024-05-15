@@ -23,13 +23,13 @@ const Page1 = React.lazy(() => import("./api/page"))
 const Page2 = React.lazy(() => import("./test/page"))
 const Page3 = React.lazy(() => import("./view/page"))
 const Page4 = React.lazy(() => import("./view/Button/page"))
-const Page7 = React.lazy(() => import("./view/CodeHighlighter/page"))
-const Page10 = React.lazy(() => import("./view/Dialog/page"))
-const Page13 = React.lazy(() => import("./view/FloatingButton/page"))
-const Page16 = React.lazy(() => import("./view/InputColor/page"))
-const Page19 = React.lazy(() => import("./view/InputFile/page"))
-const Page22 = React.lazy(() => import("./view/InputImage/page"))
-const Page25 = React.lazy(() => import("./view/InputMultiText/page"))
+const Page7 = React.lazy(() => import("./view/Dialog/page"))
+const Page10 = React.lazy(() => import("./view/FloatingButton/page"))
+const Page13 = React.lazy(() => import("./view/InputColor/page"))
+const Page16 = React.lazy(() => import("./view/InputFile/page"))
+const Page19 = React.lazy(() => import("./view/InputImage/page"))
+const Page22 = React.lazy(() => import("./view/InputMultiText/page"))
+const Page25 = React.lazy(() => import("./view/InputNumber/page"))
 const Page28 = React.lazy(() => import("./view/InputText/page"))
 const Page31 = React.lazy(() => import("./view/Label/page"))
 const Page34 = React.lazy(() => import("./view/Options/page"))
@@ -83,39 +83,39 @@ export default function App({ lang }: { lang?: string }) {
                         <Route path="/view/Button/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/CodeHighlighter" Page={pg7} fallback={fb} context={context}>
-                    <Route path="/view/CodeHighlighter/demo" fallback={fb} context={context}>
-                        <Route path="/view/CodeHighlighter/demo/Default" fallback={fb} context={context}/>
-                    </Route>
-                </Route>
-                <Route path="/view/Dialog" Page={pg10} fallback={fb} context={context}>
+                <Route path="/view/Dialog" Page={pg7} fallback={fb} context={context}>
                     <Route path="/view/Dialog/demo" fallback={fb} context={context}>
                         <Route path="/view/Dialog/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/FloatingButton" Page={pg13} fallback={fb} context={context}>
+                <Route path="/view/FloatingButton" Page={pg10} fallback={fb} context={context}>
                     <Route path="/view/FloatingButton/demo" fallback={fb} context={context}>
                         <Route path="/view/FloatingButton/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/InputColor" Page={pg16} fallback={fb} context={context}>
+                <Route path="/view/InputColor" Page={pg13} fallback={fb} context={context}>
                     <Route path="/view/InputColor/demo" fallback={fb} context={context}>
                         <Route path="/view/InputColor/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/InputFile" Page={pg19} fallback={fb} context={context}>
+                <Route path="/view/InputFile" Page={pg16} fallback={fb} context={context}>
                     <Route path="/view/InputFile/demo" fallback={fb} context={context}>
                         <Route path="/view/InputFile/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/InputImage" Page={pg22} fallback={fb} context={context}>
+                <Route path="/view/InputImage" Page={pg19} fallback={fb} context={context}>
                     <Route path="/view/InputImage/demo" fallback={fb} context={context}>
                         <Route path="/view/InputImage/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/InputMultiText" Page={pg25} fallback={fb} context={context}>
+                <Route path="/view/InputMultiText" Page={pg22} fallback={fb} context={context}>
                     <Route path="/view/InputMultiText/demo" fallback={fb} context={context}>
                         <Route path="/view/InputMultiText/demo/Default" fallback={fb} context={context}/>
+                    </Route>
+                </Route>
+                <Route path="/view/InputNumber" Page={pg25} fallback={fb} context={context}>
+                    <Route path="/view/InputNumber/demo" fallback={fb} context={context}>
+                        <Route path="/view/InputNumber/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
                 <Route path="/view/InputText" Page={pg28} fallback={fb} context={context}>

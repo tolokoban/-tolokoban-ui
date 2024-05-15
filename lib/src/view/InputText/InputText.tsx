@@ -19,7 +19,7 @@ export type ViewInputTextProps = ViewWithValue<string> &
         /** Text to display when the input is empty. */
         placeholder?: string
         /** If defined,  label will be added to the input. */
-        label?: string
+        label?: React.ReactNode
         /**
          * Input type. Default to `"text"`.
          */
@@ -79,6 +79,7 @@ export function ViewInputText(props: ViewInputTextProps) {
     } = props
     const [invalid, setInvalid] = React.useState(false)
     const [text, setText] = React.useState(value)
+    React.useEffect(() => setText(value), [value])
     const handleKeydown = (evt: React.KeyboardEvent<HTMLInputElement>) => {
         if (invalid) return
 
@@ -90,23 +91,17 @@ export function ViewInputText(props: ViewInputTextProps) {
     }
     const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
         const value = evt.target.value
-        setInvalid(false)
-        if (validator) {
-            if (validator instanceof RegExp) {
-                validator.lastIndex = -1
-                if (!validator.test(value)) {
-                    setInvalid(true)
-                    return
-                }
-            } else if (typeof validator === "function") {
-                setInvalid(!validator(value))
-            }
-        }
         setText(value)
+        console.log("New value:", value)
+        if (validate(value, validator)) {
+            setInvalid(false)
+            console.log("Valid!")
+            onChange(value)
+        } else {
+            setInvalid(true)
+            console.log("Invalid!")
+        }
     }
-    React.useEffect(() => {
-        onChange?.(text)
-    }, [onChange, text])
     const style: React.CSSProperties = {
         ...styleSpace(props),
     }
@@ -130,4 +125,18 @@ export function ViewInputText(props: ViewInputTextProps) {
         />
     )
     return label ? <ViewLabel value={label}>{input}</ViewLabel> : input
+}
+
+function validate(
+    value: string,
+    validator: RegExp | ((value: string) => boolean) | undefined
+): boolean {
+    if (!validator) return true
+
+    if (validator instanceof RegExp) {
+        validator.lastIndex = -1
+        return validator.test(value)
+    } else {
+        return validator(value)
+    }
 }

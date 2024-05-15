@@ -1,14 +1,15 @@
 import * as React from "react"
 import { Theme } from "../../theme"
-import { Children, OpaqueColorName } from "../../types.js"
+import { CommonProps, styleCommon } from "../../theme/styles/common"
 import {
     cssForColor,
     cssForColorOn,
     cssForGaps,
 } from "../../theme/styles/styles.js"
-import { CommonProps, styleCommon } from "../../theme/styles/common.js"
-import { setDefaults } from "../../util/set-defaults.js"
-import { GenericIconProps } from "../icons/generic/index.js"
+import { Children, OpaqueColorName } from "../../types"
+import { setDefaults } from "../../util/set-defaults"
+import IconGear from "../icons/IconGear"
+import { GenericIconProps } from "../icons/generic"
 
 import Styles from "./Button.module.css"
 
@@ -52,6 +53,14 @@ export type ViewButtonProps = {
      */
     icon?: React.FC<GenericIconProps>
     /**
+     * Icon to display to the right.
+     */
+    iconRight?: React.FC<GenericIconProps>
+    /**
+     * If `true`, an icon will rotate and the button will be disabled.
+     */
+    waiting?: boolean
+    /**
      * Thickness of the button's border.
      */
     thickness?: string | number
@@ -70,7 +79,7 @@ export function ViewButton(partialProps: ViewButtonProps) {
         variant: "elevated",
         thickness: 0.125,
     })
-    const { className, children, enabled, variant, onClick } = props
+    const { className, children, enabled, variant, onClick, waiting } = props
     const { color } = partialProps
     const thickness = cssForGaps(props.thickness)
     const style: React.CSSProperties = {
@@ -81,6 +90,16 @@ export function ViewButton(partialProps: ViewButtonProps) {
         ...styleCommon(props),
     }
     const Icon = props.icon
+    const IconRight = props.iconRight
+    const body = (
+        <>
+            {" "}
+            {waiting && <IconGear animate={true} />}
+            {!waiting && Icon && <Icon />}
+            <div className={Styles.label}>{children}</div>
+            {IconRight && <IconRight />}
+        </>
+    )
     if (typeof onClick === "string") {
         return (
             <a
@@ -90,12 +109,11 @@ export function ViewButton(partialProps: ViewButtonProps) {
                     Styles.Button,
                     Styles[variant],
                     Boolean(Icon) && Styles.icon,
-                    !enabled && Styles.disabled
+                    !enabled && !waiting && Styles.disabled
                 )}
                 href={onClick}
             >
-                {Icon && <Icon />}
-                <div className={Styles.label}>{children}</div>
+                {body}
             </a>
         )
     }
@@ -108,12 +126,11 @@ export function ViewButton(partialProps: ViewButtonProps) {
                 Styles[variant],
                 Boolean(Icon) && Styles.icon
             )}
-            disabled={!enabled}
+            disabled={!enabled || waiting}
             type="button"
             onClick={onClick}
         >
-            {Icon && <Icon />}
-            <div className={Styles.label}>{children}</div>
+            {body}
         </button>
     )
 }
@@ -129,7 +146,7 @@ export function makeCustomButton(
 }
 
 const DEFAULT_CLICK_HANDLER = () => {
-    console.log("Click!")
+    console.log("Unhandled click event!")
 }
 
 function getMainColor(
