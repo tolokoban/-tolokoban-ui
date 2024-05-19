@@ -2,7 +2,7 @@ import JSON5 from "json5"
 import React from "react"
 
 import { Children } from "../types"
-import { ViewDialog, ViewPanel, ViewSpinner } from "../view/index"
+import { IconGear, ViewDialog, ViewPanel, ViewSpinner } from "../view/index"
 import {
     ConfirmParams,
     Modal,
@@ -89,6 +89,38 @@ export default class ModalManager implements ModalManagerInterface {
                     window.setTimeout(() => reject(ex))
                 })
         })
+    }
+
+    async progress<T>(
+        promise: (
+            setProgress: (content: React.ReactNode) => void
+        ) => Promise<T>,
+        params?: Partial<Omit<ModalParams, "content">>
+    ): Promise<T> {
+        const event = new GenericEvent<React.ReactNode>()
+        const View = () => {
+            const [body, setBody] = React.useState<React.ReactNode>(
+                <IconGear animate />
+            )
+            React.useEffect(() => {
+                event.addListener(setBody)
+                return () => event.removeListener(setBody)
+            }, [])
+            return body
+        }
+        const hide = this.show({
+            ...params,
+            content: (
+                <div className={Styles.wait}>
+                    <View />
+                </div>
+            ),
+        })
+        try {
+            return await promise((body) => event.dispatch(body))
+        } finally {
+            hide()
+        }
     }
 
     async error(

@@ -16,7 +16,7 @@ export interface ViewSwitchProps
         PositionStyleProps {
     className?: string
     enabled?: boolean
-    children: Children
+    children?: Children
 }
 
 export function ViewSwitch(props: ViewSwitchProps) {

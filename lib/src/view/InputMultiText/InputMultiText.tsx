@@ -13,6 +13,7 @@ import { ChildStyleProps, styleChild } from "../../theme/styles/child.js"
 
 import Styles from "./InputMultiText.module.css"
 import { Children, ViewWithValue } from "../../types.js"
+import { ViewLabel } from "../Label"
 
 export interface InputMultiTextProps
     extends ViewWithValue<{ [lang: string]: string }>,
@@ -20,6 +21,7 @@ export interface InputMultiTextProps
         PositionStyleProps,
         DimensionStyleProps {
     className?: string
+    label?: React.ReactNode
     /** What element of the `value` to edit. */
     lang: string
     onLangChange(this: void, lang: string): void
@@ -35,6 +37,7 @@ export interface InputMultiTextProps
 export function ViewInputMultiText(props: InputMultiTextProps) {
     const {
         value,
+        label,
         onChange,
         onLangChange,
         renderLang = (item: string, selected: boolean) =>
@@ -54,22 +57,24 @@ export function ViewInputMultiText(props: InputMultiTextProps) {
         })
     }
     return (
-        <div
-            className={Theme.classNames.join(
-                props.className,
-                Styles.InputMultiText
-            )}
-            style={style}
-        >
-            <input value={itemVal} onChange={handleChange} />
-            <div>
-                {keys.map((key) => (
-                    <button key={key} onClick={() => onLangChange(key)}>
-                        {renderLang(key, key === itemKey)}
-                    </button>
-                ))}
+        <ViewLabel value={label}>
+            <div
+                className={Theme.classNames.join(
+                    props.className,
+                    Styles.InputMultiText
+                )}
+                style={style}
+            >
+                <input value={itemVal} onChange={handleChange} />
+                <div>
+                    {keys.map((key) => (
+                        <button key={key} onClick={() => onLangChange(key)}>
+                            {renderLang(key, key === itemKey)}
+                        </button>
+                    ))}
+                </div>
             </div>
-        </div>
+        </ViewLabel>
     )
 }
 

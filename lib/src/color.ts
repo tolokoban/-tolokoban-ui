@@ -2,6 +2,7 @@ const canvas = document.createElement("canvas")
 canvas.width = 1
 canvas.height = 1
 
+const INV_6 = 1 / 6
 export default class Color {
     private static _ctx: CanvasRenderingContext2D | null = null
 
@@ -64,9 +65,37 @@ export default class Color {
         return color.isDark()
     }
 
+    /**
+     * @param backgroundColor Reference color.
+     * @param foregroundColors Candidates colors.
+     * @returns Find among `foregroundColors` the one that has the most contrast with `backgroundColor`.
+     */
+    static bestContrast(
+        backgroundColor: string | Color,
+        ...foregroundColors: (string | Color)[]
+    ): Color {
+        const bgColor = new Color(backgroundColor)
+        const bgLightness = bgColor.perceivedLightness
+        const fgColors = foregroundColors.map((color) => new Color(color))
+        const fgLightnesses = fgColors.map((color) => color.perceivedLightness)
+        let bestIndex = 0
+        let bestContrast = Math.abs(bgLightness - fgLightnesses[0])
+        for (let index = 1; index < fgColors.length; index++) {
+            const contrast = Math.abs(bgLightness - fgLightnesses[index])
+            if (contrast < bestContrast) {
+                bestIndex = index
+                bestContrast = contrast
+            }
+        }
+        return fgColors[bestIndex]
+    }
+
     public R = 0
     public G = 0
     public B = 0
+    public H = 0
+    public S = 0
+    public L = 0
     public A = 0
 
     constructor(colorSource: string | Color) {
@@ -135,5 +164,84 @@ export default class Color {
 
     isDark(): boolean {
         return this.perceivedLightness < 0.5
+    }
+
+    rgb2hsl() {
+        const R = this.R
+        const G = this.G
+        const B = this.B
+
+        const min = Math.min(R, G, B)
+        const max = Math.max(R, G, B)
+        const delta = max - min
+
+        this.L = 0.5 * (max + min)
+
+        if (delta < 1e-6) {
+            this.H = 0
+            this.S = 0
+        } else {
+            this.S = delta / (1 - Math.abs(this.L + this.L - 1))
+            if (max === R) {
+                this.H =
+                    G >= B
+                        ? INV_6 * ((G - B) / delta)
+                        : INV_6 * ((B - G) / delta)
+            } else if (max === G) {
+                this.H = INV_6 * (2 + (B - R) / delta)
+            } else {
+                this.H = INV_6 * (4 + (R - G) / delta)
+            }
+        }
+    }
+
+    /**
+     * @see https://en.wikipedia.org/wiki/HSL_and_HSV#Converting_to_RGB
+     */
+    hsl2rgb() {
+        const H = 6 * this.H
+        const S = this.S
+        const L = this.L
+        const chroma = (1 - Math.abs(L + L - 1)) * S
+        const x = chroma * (1 - Math.abs((H % 2) - 1))
+
+        let R = 0
+        let G = 0
+        let B = 0
+
+        if (H < 3) {
+            if (H < 1) {
+                R = chroma
+                G = x
+                B = 0
+            } else if (H < 2) {
+                R = x
+                G = chroma
+                B = 0
+            } else {
+                // H == 2.
+                R = 0
+                G = chroma
+                B = x
+            }
+        } else if (H < 4) {
+            R = 0
+            G = x
+            B = chroma
+        } else if (H < 5) {
+            R = x
+            G = 0
+            B = chroma
+        } else {
+            R = chroma
+            G = 0
+            B = x
+        }
+
+        const shift = L - chroma * 0.5
+        this.R = R + shift
+        this.G = G + shift
+        this.B = B + shift
+        return this
     }
 }

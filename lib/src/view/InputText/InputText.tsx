@@ -20,6 +20,7 @@ export type ViewInputTextProps = ViewWithValue<string> &
         placeholder?: string
         /** If defined,  label will be added to the input. */
         label?: React.ReactNode
+        enabled?: boolean
         /**
          * Input type. Default to `"text"`.
          */
@@ -68,6 +69,7 @@ export function ViewInputText(props: ViewInputTextProps) {
         id,
         placeholder,
         value = "",
+        enabled = true,
         label,
         name,
         autofocus = false,
@@ -115,6 +117,7 @@ export function ViewInputText(props: ViewInputTextProps) {
             )}
             id={id}
             style={style}
+            disabled={!enabled}
             autoFocus={autofocus}
             placeholder={placeholder}
             type={type}

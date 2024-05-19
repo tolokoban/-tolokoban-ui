@@ -1,0 +1,40 @@
+.main {
+    vertical-align: middle;
+}
+
+.main.read-only {
+    pointer-events: none;
+}
+
+.main > label {
+    position: relative;
+    display: inline-block;
+    transition: transform 0.2s;
+    transform: scale(1);
+    cursor: pointer;
+    vertical-align: inherit;
+}
+
+.main > label:hover,
+.main > label:focus {
+    transform: scale(1.2);
+}
+
+.main .hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+.main .absolute {
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+}

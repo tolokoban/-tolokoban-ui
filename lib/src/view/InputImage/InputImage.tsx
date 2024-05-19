@@ -11,11 +11,13 @@ import { GenericIconProps } from "../icons/generic/index.js"
 import BackURL from "./back.jpg"
 
 import Styles from "./InputImage.module.css"
+import { ViewLabel } from "../Label"
 
 export interface InputImageProps
     extends ViewWithValue<string>,
         ChildStyleProps {
     className?: string
+    label?: React.ReactNode
     /** Image width */
     width: number
     /** Image height */
@@ -78,39 +80,45 @@ export function ViewInputImage(props: InputImageProps) {
         input.click()
     }
     return (
-        <ViewTouchable onClick={triggerFileInput}>
-            <div
-                className={Theme.classNames.join(
-                    props.className,
-                    Styles.InputImage
-                )}
-                style={{
-                    ...style,
-                    maxWidth: `${width}px`,
-                    height: 0,
-                    paddingBottom: `${(100 * height) / width}%`,
-                    backgroundImage: `url(${BackURL})`,
-                }}
-            >
-                <canvas width={width} height={height} ref={refCanvas}></canvas>
-                <ViewPanel
-                    className={busy ? Styles.busy : Styles.notBusy}
-                    display="grid"
-                    placeItems="center"
-                    color="neutral-1-5"
+        <ViewLabel value={props.label}>
+            <ViewTouchable onClick={triggerFileInput}>
+                <div
+                    className={Theme.classNames.join(
+                        props.className,
+                        Styles.InputImage
+                    )}
+                    style={{
+                        ...style,
+                        maxWidth: `${width}px`,
+                        height: 0,
+                        paddingBottom: `${(100 * height) / width}%`,
+                        backgroundImage: `url(${BackURL})`,
+                    }}
                 >
-                    <BusyIcon size="XL" animate />
-                </ViewPanel>
-                <input
-                    ref={refInput}
-                    type="file"
-                    style={{ display: "none" }}
-                    accept="image/*"
-                    multiple={false}
-                    onChange={handleImport}
-                />
-            </div>
-        </ViewTouchable>
+                    <canvas
+                        width={width}
+                        height={height}
+                        ref={refCanvas}
+                    ></canvas>
+                    <ViewPanel
+                        className={busy ? Styles.busy : Styles.notBusy}
+                        display="grid"
+                        placeItems="center"
+                        color="neutral-1-5"
+                    >
+                        <BusyIcon size="XL" animate />
+                    </ViewPanel>
+                    <input
+                        ref={refInput}
+                        type="file"
+                        style={{ display: "none" }}
+                        accept="image/*"
+                        multiple={false}
+                        onChange={handleImport}
+                    />
+                </div>
+            </ViewTouchable>
+        </ViewLabel>
     )
 }
 

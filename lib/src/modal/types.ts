@@ -65,6 +65,13 @@ export interface ModalManagerInterface {
         params?: Partial<Omit<ModalParams, "content">>
     ): Promise<T>
 
+    progress<T>(
+        promise: (
+            setProgress: (content: React.ReactNode) => void
+        ) => Promise<T>,
+        params?: Partial<Omit<ModalParams, "content">>
+    ): Promise<T>
+
     error(content: unknown, params?: Partial<ModalParams>): Promise<void>
 
     confirm(params: ConfirmParams): Promise<boolean>

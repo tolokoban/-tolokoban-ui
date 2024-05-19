@@ -13,6 +13,7 @@ import {
 import { ViewWithValue } from "../../types.js"
 
 import Styles from "./InputColor.module.css"
+import { ViewLabel } from "../Label"
 
 const SIZES = {
     XS: "75%",
@@ -29,6 +30,8 @@ export interface InputColorProps
         DimensionStyleProps {
     className?: string
     size?: keyof typeof SIZES
+    /** If defined,  label will be added to the input. */
+    label?: React.ReactNode
 }
 
 export function ViewInputColor(props: InputColorProps) {
@@ -51,21 +54,23 @@ export function ViewInputColor(props: InputColorProps) {
         input.click()
     }
     return (
-        <button
-            className={Theme.classNames.join(
-                props.className,
-                Styles.InputColor
-            )}
-            style={style}
-            onClick={handleClick}
-        >
-            <input
-                ref={ref}
-                type="color"
-                value={sanitizeColor(value)}
-                onChange={handleChange}
-            />
-        </button>
+        <ViewLabel value={props.label}>
+            <button
+                className={Theme.classNames.join(
+                    props.className,
+                    Styles.InputColor
+                )}
+                style={style}
+                onClick={handleClick}
+            >
+                <input
+                    ref={ref}
+                    type="color"
+                    value={sanitizeColor(value)}
+                    onChange={handleChange}
+                />
+            </button>
+        </ViewLabel>
     )
 }
 
