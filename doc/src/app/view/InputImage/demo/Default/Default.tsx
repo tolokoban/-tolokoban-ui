@@ -10,7 +10,9 @@ export default function Demo() {
             width={320}
             height={240}
             value={url}
-            onChange={setUrl}
+            onChange={(v) => {
+                if (v) setUrl(v)
+            }}
         />
     )
 }

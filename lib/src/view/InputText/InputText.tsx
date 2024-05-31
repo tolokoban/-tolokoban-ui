@@ -94,14 +94,11 @@ export function ViewInputText(props: ViewInputTextProps) {
     const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
         const value = evt.target.value
         setText(value)
-        console.log("New value:", value)
         if (validate(value, validator)) {
             setInvalid(false)
-            console.log("Valid!")
-            onChange(value)
+            onChange?.(value)
         } else {
             setInvalid(true)
-            console.log("Invalid!")
         }
     }
     const style: React.CSSProperties = {

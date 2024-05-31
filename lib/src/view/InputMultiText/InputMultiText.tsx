@@ -51,7 +51,7 @@ export function ViewInputMultiText(props: InputMultiTextProps) {
     }
     const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
         const text = evt.target.value
-        onChange({
+        onChange?.({
             ...value,
             [itemKey]: text,
         })
@@ -68,7 +68,18 @@ export function ViewInputMultiText(props: InputMultiTextProps) {
                 <input value={itemVal} onChange={handleChange} />
                 <div>
                     {keys.map((key) => (
-                        <button key={key} onClick={() => onLangChange(key)}>
+                        <button
+                            key={key}
+                            onClick={() => onLangChange(key)}
+                            style={{
+                                background: `var(--theme-color-${
+                                    key === itemKey ? "primary-6" : "primary-3"
+                                })`,
+                                color: `var(--theme-color-on-${
+                                    key === itemKey ? "primary-6" : "primary-3"
+                                })`,
+                            }}
+                        >
                             {renderLang(key, key === itemKey)}
                         </button>
                     ))}
@@ -80,12 +91,14 @@ export function ViewInputMultiText(props: InputMultiTextProps) {
 
 function useLang({
     value,
-    onChange,
+    onChange = () => {
+        /* Empty function */
+    },
     lang,
     onLangChange,
 }: {
     value: { [lang: string]: string }
-    onChange: (this: void, value: { [lang: string]: string }) => void
+    onChange?: (this: void, value: { [lang: string]: string }) => void
     lang: string
     onLangChange(this: void, lang: string): void
 }): [keys: string[], itemKey: string, itemVal: string] {

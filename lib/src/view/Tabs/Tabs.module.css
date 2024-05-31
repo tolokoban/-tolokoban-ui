@@ -75,6 +75,10 @@
 .Tabs > main {
     flex: 1 1 auto;
     padding: 0.5em;
-    background: var(--custom-color-back);
+    background: linear-gradient(
+        to bottom,
+        var(--custom-color-back),
+        transparent
+    );
     color: var(--custom-color-text);
 }

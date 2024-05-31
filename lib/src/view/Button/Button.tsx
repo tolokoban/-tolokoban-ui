@@ -27,6 +27,12 @@ export type ViewButtonProps = {
      * Default to `"filled"`.
      */
     variant?: "elevated" | "filled" | "outlined" | "text"
+    /**
+     * This property is here for backward compatibility.
+     * It is an alias for `children`. But if both props are
+     * defined, `children` takes precedence.
+     */
+    label?: Children
     /** Content of the button. Most often a text, but can be anything. */
     children?: Children
     /**
@@ -68,7 +74,6 @@ export type ViewButtonProps = {
 
 export function ViewButton(partialProps: ViewButtonProps) {
     const props = setDefaults(partialProps, {
-        children: "Button",
         enabled: true,
         borderRadius: ".125em",
         margin: ["XS", "0"],
@@ -79,7 +84,8 @@ export function ViewButton(partialProps: ViewButtonProps) {
         variant: "elevated",
         thickness: 0.125,
     })
-    const { className, children, enabled, variant, onClick, waiting } = props
+    const { className, children, label, enabled, variant, onClick, waiting } =
+        props
     const { color } = partialProps
     const thickness = cssForGaps(props.thickness)
     const style: React.CSSProperties = {
@@ -96,7 +102,7 @@ export function ViewButton(partialProps: ViewButtonProps) {
             {" "}
             {waiting && <IconGear animate={true} />}
             {!waiting && Icon && <Icon />}
-            <div className={Styles.label}>{children}</div>
+            <div className={Styles.label}>{children ?? label ?? "Button"}</div>
             {IconRight && <IconRight />}
         </>
     )
@@ -158,7 +164,7 @@ function getMainColor(
             return "transparent"
         // "elevated" | "filled" | "outlined"
         default:
-            return cssForColor(color ?? "primary-5")
+            return cssForColor(color ?? "secondary-5")
     }
 }
 

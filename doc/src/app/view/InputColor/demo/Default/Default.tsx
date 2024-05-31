@@ -1,7 +1,22 @@
 import React from "react"
-import { ViewInputColor } from "@tolokoban/ui"
+import { ViewInputColor, ViewPanel } from "@tolokoban/ui"
 
 export default function Demo() {
     const [color, setColor] = React.useState("#F90")
-    return <ViewInputColor value={color} onChange={setColor} />
+    return (
+        <div>
+            <ViewPanel
+                display="inline-flex"
+                flexDirection="column"
+                alignItems="stretch"
+                width="auto"
+            >
+                <ViewInputColor
+                    value={color}
+                    onChange={setColor}
+                    label="My favourite color"
+                />
+            </ViewPanel>
+        </div>
+    )
 }

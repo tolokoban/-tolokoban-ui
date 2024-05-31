@@ -1,0 +1,9 @@
+.main {
+    margin: 0;
+    padding: 0;
+}
+
+.main.droppable {
+    outline: 0.125em dotted var(--theme-color-secondary-5);
+    outline-offset: 0.125em;
+}

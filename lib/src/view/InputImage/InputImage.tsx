@@ -14,7 +14,7 @@ import Styles from "./InputImage.module.css"
 import { ViewLabel } from "../Label"
 
 export interface InputImageProps
-    extends ViewWithValue<string>,
+    extends ViewWithValue<string | undefined>,
         ChildStyleProps {
     className?: string
     label?: React.ReactNode
@@ -58,7 +58,7 @@ export function ViewInputImage(props: InputImageProps) {
                 }
                 paintOnCanvas(url)
                     .then((dataUrl) => {
-                        if (dataUrl) onChange(dataUrl)
+                        if (dataUrl) onChange?.(dataUrl)
                     })
                     .catch(console.error)
             })
@@ -123,7 +123,7 @@ export function ViewInputImage(props: InputImageProps) {
 }
 
 function useCanvasPainter(
-    value: string,
+    value: string | undefined,
     refCanvas: React.MutableRefObject<HTMLCanvasElement | null>
 ) {
     const importImage = React.useCallback(
@@ -155,7 +155,7 @@ function useCanvasPainter(
         [refCanvas, value]
     )
     useEffect(() => {
-        void importImage(value)
+        if (value) void importImage(value)
     }, [importImage, value])
     return importImage
 }

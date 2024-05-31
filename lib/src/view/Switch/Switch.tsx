@@ -34,7 +34,7 @@ export function ViewSwitch(props: ViewSwitchProps) {
             type="button"
             disabled={props.enabled === false ? true : undefined}
             style={style}
-            onClick={() => props.onChange(!props.value)}
+            onClick={() => props.onChange?.(!props.value)}
         >
             <div className={Styles.pin}>
                 <div className={Styles.bar}> </div>

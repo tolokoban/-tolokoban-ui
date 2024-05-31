@@ -59,7 +59,7 @@ export function ViewTabs(props: ViewTabsProps) {
             )}
         >
             <header>
-                {wrap(tabs, tab).map((item) => {
+                {tabs.map((item) => {
                     const { key } = item
                     return key === tabKey ? (
                         <div key={key}>{item.props.label}</div>
@@ -82,6 +82,12 @@ export function ViewTabs(props: ViewTabsProps) {
     )
 }
 
+/**
+ * Use this function to always have the selected tab in first position.
+ * @param tabs
+ * @param tab
+ * @returns
+ */
 function wrap(
     tabs: Array<React.ReactElement<ViewTabProps> & { key: string }>,
     tab: (React.ReactElement<ViewTabProps> & { key: string }) | undefined

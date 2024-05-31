@@ -28,7 +28,7 @@ export default function GenericIcon(props: GenericIconProps) {
     const type = props.type ?? "filled"
     const size = sizeToFontSize(props.size ?? "M")
     const style: React.CSSProperties = {
-        ...styleColor(props),
+        ...styleColor({ textColor: props.color }),
         width: size,
         height: size,
     }

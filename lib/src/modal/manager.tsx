@@ -2,7 +2,10 @@ import JSON5 from "json5"
 import React from "react"
 
 import { Children } from "../types"
-import { IconGear, ViewDialog, ViewPanel, ViewSpinner } from "../view/index"
+import IconGear from "../view/icons/IconGear"
+import { ViewDialog } from "../view/Dialog"
+import { ViewPanel } from "../view/Panel"
+import { ViewSpinner } from "../view/Spinner"
 import {
     ConfirmParams,
     Modal,
@@ -10,8 +13,9 @@ import {
     ModalParams,
 } from "./types"
 
-import Styles from "./manager.module.css"
 import { GenericEvent } from "../util/event"
+
+import Styles from "./manager.module.css"
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const EMPTY_FUNCTION = () => {}

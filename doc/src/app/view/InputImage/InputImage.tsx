@@ -1,5 +1,5 @@
 /**
- * 2024-05-15T11:55:44.755Z
+ * 2024-05-24T20:24:03.437Z
  *
  * This file has been automatically generated with:
  * npm run generate
@@ -16,7 +16,7 @@ export default function InputImageDocumentation() {
         <ViewDemo
             description={"# Default usage\n"}
             // eslint-disable-next-line no-template-curly-in-string
-            example={"import React from \"react\"\nimport { ViewInputImage } from \"@tolokoban/ui\"\n\nimport ImageUrl from \"./girl.jpg\"\n\nexport default function Demo() {\n    const [url, setUrl] = React.useState(ImageUrl)\n    return (\n        <ViewInputImage\n            width={320}\n            height={240}\n            value={url}\n            onChange={setUrl}\n        />\n    )\n}\n"}
+            example={"import React from \"react\"\nimport { ViewInputImage } from \"@tolokoban/ui\"\n\nimport ImageUrl from \"./girl.jpg\"\n\nexport default function Demo() {\n    const [url, setUrl] = React.useState(ImageUrl)\n    return (\n        <ViewInputImage\n            width={320}\n            height={240}\n            value={url}\n            onChange={(v) => {\n                if (v) setUrl(v)\n            }}\n        />\n    )\n}\n"}
         >
             <DemoDefault />
         </ViewDemo>

@@ -45,7 +45,7 @@ export function ViewInputColor(props: InputColorProps) {
         backgroundColor: value,
     }
     const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-        onChange(evt.target.value)
+        onChange?.(evt.target.value)
     }
     const handleClick = () => {
         const input = ref.current

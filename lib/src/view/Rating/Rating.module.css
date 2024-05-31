@@ -2,7 +2,7 @@
     vertical-align: middle;
 }
 
-.main.read-only {
+.main.readOnly {
     pointer-events: none;
 }
 

@@ -1,7 +1,3 @@
-import * as React from "react"
-import { Icon } from "../icons/generic"
-import { useChangeableValue } from "../../hooks/changeable-value"
-import { OpaqueColorName, ViewWithValue } from "@/types"
 import {
     CommonProps,
     DimensionStyleProps,
@@ -11,9 +7,13 @@ import {
     stylePosition,
     styleSpace,
 } from "@/theme"
+import { OpaqueColorName, ViewWithValue } from "@/types"
+import * as React from "react"
+import { useChangeableValue } from "../../hooks/changeable-value"
+import IconStar from "../icons/IconStar"
+import { Icon } from "../icons/generic"
 
 import Styles from "./Rating.module.css"
-import IconStar from "../icons/IconStar"
 
 export type ViewRatingProps = ViewWithValue<number> &
     SpaceStyleProps &
@@ -29,17 +29,13 @@ export type ViewRatingProps = ViewWithValue<number> &
 
 const DEFAULT_STAR_COLOR = "#faaf00"
 
-export default function ViewRating(props: ViewRatingProps) {
+export function ViewRating(props: ViewRatingProps) {
     const id = React.useId()
     const {
         max = 5,
-        color = "on-neutral-5",
+        color,
         name = `ViewRating-${Math.random()}`,
         icon = IconStar,
-        readOnly = false,
-        onChange = () => {
-            /* Empty function */
-        },
     } = props
     const [value, setValue] = useChangeableValue(props)
     return (
@@ -58,16 +54,17 @@ export default function ViewRating(props: ViewRatingProps) {
                 return (
                     <>
                         <label htmlFor={starId} key={starId}>
-                            <span>
+                            <span style={{ color: DEFAULT_STAR_COLOR }}>
                                 {icon({
                                     color,
                                     type: "outlined",
                                 })}
                             </span>
                             <span
-                                className="absolute"
+                                className={Styles.absolute}
                                 style={{
                                     width: computeStarWidth(star, value),
+                                    color: DEFAULT_STAR_COLOR,
                                 }}
                             >
                                 {icon({
@@ -75,12 +72,12 @@ export default function ViewRating(props: ViewRatingProps) {
                                     type: props.readOnly ? "bold" : "dual",
                                 })}
                             </span>
-                            <span className="hidden">
+                            <span className={Styles.hidden}>
                                 {star} Star{star > 1 ? "s" : ""}
                             </span>
                         </label>
                         <input
-                            className="hidden"
+                            className={Styles.hidden}
                             type="radio"
                             name={name}
                             value={`${star}`}
@@ -103,7 +100,7 @@ function getClassNames(props: ViewRatingProps): string {
     if (typeof props.className === "string") {
         classNames.push(props.className)
     }
-    if (props.readOnly) classNames.push("read-only")
+    if (props.readOnly) classNames.push(Styles.readOnly)
 
     return classNames.join(" ")
 }
