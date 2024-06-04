@@ -1,5 +1,5 @@
 /**
- * 2024-06-04T09:55:49.261Z
+ * 2024-06-04T13:53:34.770Z
  *
  * This file has been automatically generated with:
  * npm run generate
@@ -16,7 +16,7 @@ export default function RatingDocumentation() {
         <ViewDemo
             description={"# Default usage\n"}
             // eslint-disable-next-line no-template-curly-in-string
-            example={"import React from \"react\"\nimport { ViewRating } from \"@tolokoban/ui\"\n\nexport default function Demo() {\n    return <ViewRating value={3.8} />\n}\n"}
+            example={"import React from \"react\"\nimport { ViewPanel, ViewRating } from \"@tolokoban/ui\"\n\nexport default function Demo() {\n    const [value, setValue] = React.useState(3.4)\n    return (\n        <ViewPanel display=\"flex\" justifyContent=\"space-around\">\n            <ViewRating\n                value={value}\n                onChange={setValue}\n                label={`${value} / 5`}\n            />\n            <ViewRating value={value} readOnly label=\"Read only\" />\n        </ViewPanel>\n    )\n}\n"}
         >
             <DemoDefault />
         </ViewDemo>

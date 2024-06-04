@@ -35,7 +35,7 @@ export function ViewOptions<T>(props: ViewOptionsProps<T>) {
     const { label, children } = props
     const [value, setValue] = useChangeableValue(props)
     return (
-        <ViewLabel value={label}>
+        <ViewLabel value={label} fullwidth={props.fullwidth}>
             <div
                 className={$.join(
                     Styles.Options,

@@ -17,37 +17,38 @@ import { matchRoute, useRouteContext, ROUTES } from "./routes"
 import { RouteMatch, RoutePath } from "./types"
 
 import Layout0 from "./layout"
-import Layout3 from "./view/layout"
+import Layout4 from "./view/layout"
 const Page0 = React.lazy(() => import("./page"))
 const Page1 = React.lazy(() => import("./api/page"))
-const Page2 = React.lazy(() => import("./test/page"))
-const Page3 = React.lazy(() => import("./view/page"))
-const Page4 = React.lazy(() => import("./view/Button/page"))
-const Page7 = React.lazy(() => import("./view/Chip/page"))
-const Page10 = React.lazy(() => import("./view/Combo/page"))
-const Page13 = React.lazy(() => import("./view/Dialog/page"))
-const Page16 = React.lazy(() => import("./view/DragAndDrop/page"))
-const Page19 = React.lazy(() => import("./view/FloatingButton/page"))
-const Page22 = React.lazy(() => import("./view/InputColor/page"))
-const Page25 = React.lazy(() => import("./view/InputFile/page"))
-const Page28 = React.lazy(() => import("./view/InputImage/page"))
-const Page31 = React.lazy(() => import("./view/InputMultiText/page"))
-const Page34 = React.lazy(() => import("./view/InputNumber/page"))
-const Page37 = React.lazy(() => import("./view/InputText/page"))
-const Page40 = React.lazy(() => import("./view/Label/page"))
-const Page43 = React.lazy(() => import("./view/Options/page"))
-const Page46 = React.lazy(() => import("./view/OptionsMultiple/page"))
-const Page49 = React.lazy(() => import("./view/Panel/page"))
-const Page52 = React.lazy(() => import("./view/Progress/page"))
-const Page55 = React.lazy(() => import("./view/Rating/page"))
-const Page58 = React.lazy(() => import("./view/Read/page"))
-const Page61 = React.lazy(() => import("./view/Scroll/page"))
-const Page64 = React.lazy(() => import("./view/Slider/page"))
-const Page67 = React.lazy(() => import("./view/Spinner/page"))
-const Page70 = React.lazy(() => import("./view/Strip/page"))
-const Page73 = React.lazy(() => import("./view/Switch/page"))
-const Page76 = React.lazy(() => import("./view/Tabs/page"))
-const Page79 = React.lazy(() => import("./view/Touchable/page"))
+const Page2 = React.lazy(() => import("./icons/page"))
+const Page3 = React.lazy(() => import("./test/page"))
+const Page4 = React.lazy(() => import("./view/page"))
+const Page5 = React.lazy(() => import("./view/Button/page"))
+const Page8 = React.lazy(() => import("./view/Chip/page"))
+const Page11 = React.lazy(() => import("./view/Combo/page"))
+const Page14 = React.lazy(() => import("./view/Dialog/page"))
+const Page17 = React.lazy(() => import("./view/DragAndDrop/page"))
+const Page20 = React.lazy(() => import("./view/FloatingButton/page"))
+const Page23 = React.lazy(() => import("./view/InputColor/page"))
+const Page26 = React.lazy(() => import("./view/InputFile/page"))
+const Page29 = React.lazy(() => import("./view/InputImage/page"))
+const Page32 = React.lazy(() => import("./view/InputMultiText/page"))
+const Page35 = React.lazy(() => import("./view/InputNumber/page"))
+const Page38 = React.lazy(() => import("./view/InputText/page"))
+const Page41 = React.lazy(() => import("./view/Label/page"))
+const Page44 = React.lazy(() => import("./view/Options/page"))
+const Page47 = React.lazy(() => import("./view/OptionsMultiple/page"))
+const Page50 = React.lazy(() => import("./view/Panel/page"))
+const Page53 = React.lazy(() => import("./view/Progress/page"))
+const Page56 = React.lazy(() => import("./view/Rating/page"))
+const Page59 = React.lazy(() => import("./view/Read/page"))
+const Page62 = React.lazy(() => import("./view/Scroll/page"))
+const Page65 = React.lazy(() => import("./view/Slider/page"))
+const Page68 = React.lazy(() => import("./view/Spinner/page"))
+const Page71 = React.lazy(() => import("./view/Strip/page"))
+const Page74 = React.lazy(() => import("./view/Switch/page"))
+const Page77 = React.lazy(() => import("./view/Tabs/page"))
+const Page80 = React.lazy(() => import("./view/Touchable/page"))
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function App({ lang }: { lang?: string }) {
@@ -57,165 +58,167 @@ export default function App({ lang }: { lang?: string }) {
     const pg0 = Page0
     const pg1 = Page1
     const pg2 = Page2
-    const ly3 = Layout3
     const pg3 = Page3
+    const ly4 = Layout4
     const pg4 = Page4
-    const pg7 = Page7
-    const pg10 = Page10
-    const pg13 = Page13
-    const pg16 = Page16
-    const pg19 = Page19
-    const pg22 = Page22
-    const pg25 = Page25
-    const pg28 = Page28
-    const pg31 = Page31
-    const pg34 = Page34
-    const pg37 = Page37
-    const pg40 = Page40
-    const pg43 = Page43
-    const pg46 = Page46
-    const pg49 = Page49
-    const pg52 = Page52
-    const pg55 = Page55
-    const pg58 = Page58
-    const pg61 = Page61
-    const pg64 = Page64
-    const pg67 = Page67
-    const pg70 = Page70
-    const pg73 = Page73
-    const pg76 = Page76
-    const pg79 = Page79
+    const pg5 = Page5
+    const pg8 = Page8
+    const pg11 = Page11
+    const pg14 = Page14
+    const pg17 = Page17
+    const pg20 = Page20
+    const pg23 = Page23
+    const pg26 = Page26
+    const pg29 = Page29
+    const pg32 = Page32
+    const pg35 = Page35
+    const pg38 = Page38
+    const pg41 = Page41
+    const pg44 = Page44
+    const pg47 = Page47
+    const pg50 = Page50
+    const pg53 = Page53
+    const pg56 = Page56
+    const pg59 = Page59
+    const pg62 = Page62
+    const pg65 = Page65
+    const pg68 = Page68
+    const pg71 = Page71
+    const pg74 = Page74
+    const pg77 = Page77
+    const pg80 = Page80
     return (
         <Route path="/" Page={pg0} Layout={ly0} fallback={fb} context={context}>
             <Route path="/api" Page={pg1} fallback={fb} context={context}/>
-            <Route path="/test" Page={pg2} fallback={fb} context={context}/>
-            <Route path="/view" Page={pg3} Layout={ly3} fallback={fb} context={context}>
-                <Route path="/view/Button" Page={pg4} fallback={fb} context={context}>
+            <Route path="/icons" Page={pg2} fallback={fb} context={context}/>
+            <Route path="/test" Page={pg3} fallback={fb} context={context}/>
+            <Route path="/view" Page={pg4} Layout={ly4} fallback={fb} context={context}>
+                <Route path="/view/Button" Page={pg5} fallback={fb} context={context}>
                     <Route path="/view/Button/demo" fallback={fb} context={context}>
                         <Route path="/view/Button/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Chip" Page={pg7} fallback={fb} context={context}>
+                <Route path="/view/Chip" Page={pg8} fallback={fb} context={context}>
                     <Route path="/view/Chip/demo" fallback={fb} context={context}>
                         <Route path="/view/Chip/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Combo" Page={pg10} fallback={fb} context={context}>
+                <Route path="/view/Combo" Page={pg11} fallback={fb} context={context}>
                     <Route path="/view/Combo/demo" fallback={fb} context={context}>
                         <Route path="/view/Combo/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Dialog" Page={pg13} fallback={fb} context={context}>
+                <Route path="/view/Dialog" Page={pg14} fallback={fb} context={context}>
                     <Route path="/view/Dialog/demo" fallback={fb} context={context}>
                         <Route path="/view/Dialog/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/DragAndDrop" Page={pg16} fallback={fb} context={context}>
+                <Route path="/view/DragAndDrop" Page={pg17} fallback={fb} context={context}>
                     <Route path="/view/DragAndDrop/demo" fallback={fb} context={context}>
                         <Route path="/view/DragAndDrop/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/FloatingButton" Page={pg19} fallback={fb} context={context}>
+                <Route path="/view/FloatingButton" Page={pg20} fallback={fb} context={context}>
                     <Route path="/view/FloatingButton/demo" fallback={fb} context={context}>
                         <Route path="/view/FloatingButton/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/InputColor" Page={pg22} fallback={fb} context={context}>
+                <Route path="/view/InputColor" Page={pg23} fallback={fb} context={context}>
                     <Route path="/view/InputColor/demo" fallback={fb} context={context}>
                         <Route path="/view/InputColor/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/InputFile" Page={pg25} fallback={fb} context={context}>
+                <Route path="/view/InputFile" Page={pg26} fallback={fb} context={context}>
                     <Route path="/view/InputFile/demo" fallback={fb} context={context}>
                         <Route path="/view/InputFile/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/InputImage" Page={pg28} fallback={fb} context={context}>
+                <Route path="/view/InputImage" Page={pg29} fallback={fb} context={context}>
                     <Route path="/view/InputImage/demo" fallback={fb} context={context}>
                         <Route path="/view/InputImage/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/InputMultiText" Page={pg31} fallback={fb} context={context}>
+                <Route path="/view/InputMultiText" Page={pg32} fallback={fb} context={context}>
                     <Route path="/view/InputMultiText/demo" fallback={fb} context={context}>
                         <Route path="/view/InputMultiText/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/InputNumber" Page={pg34} fallback={fb} context={context}>
+                <Route path="/view/InputNumber" Page={pg35} fallback={fb} context={context}>
                     <Route path="/view/InputNumber/demo" fallback={fb} context={context}>
                         <Route path="/view/InputNumber/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/InputText" Page={pg37} fallback={fb} context={context}>
+                <Route path="/view/InputText" Page={pg38} fallback={fb} context={context}>
                     <Route path="/view/InputText/demo" fallback={fb} context={context}>
                         <Route path="/view/InputText/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Label" Page={pg40} fallback={fb} context={context}>
+                <Route path="/view/Label" Page={pg41} fallback={fb} context={context}>
                     <Route path="/view/Label/demo" fallback={fb} context={context}>
                         <Route path="/view/Label/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Options" Page={pg43} fallback={fb} context={context}>
+                <Route path="/view/Options" Page={pg44} fallback={fb} context={context}>
                     <Route path="/view/Options/demo" fallback={fb} context={context}>
                         <Route path="/view/Options/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/OptionsMultiple" Page={pg46} fallback={fb} context={context}>
+                <Route path="/view/OptionsMultiple" Page={pg47} fallback={fb} context={context}>
                     <Route path="/view/OptionsMultiple/demo" fallback={fb} context={context}>
                         <Route path="/view/OptionsMultiple/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Panel" Page={pg49} fallback={fb} context={context}>
+                <Route path="/view/Panel" Page={pg50} fallback={fb} context={context}>
                     <Route path="/view/Panel/demo" fallback={fb} context={context}>
                         <Route path="/view/Panel/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Progress" Page={pg52} fallback={fb} context={context}>
+                <Route path="/view/Progress" Page={pg53} fallback={fb} context={context}>
                     <Route path="/view/Progress/demo" fallback={fb} context={context}>
                         <Route path="/view/Progress/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Rating" Page={pg55} fallback={fb} context={context}>
+                <Route path="/view/Rating" Page={pg56} fallback={fb} context={context}>
                     <Route path="/view/Rating/demo" fallback={fb} context={context}>
                         <Route path="/view/Rating/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Read" Page={pg58} fallback={fb} context={context}>
+                <Route path="/view/Read" Page={pg59} fallback={fb} context={context}>
                     <Route path="/view/Read/demo" fallback={fb} context={context}>
                         <Route path="/view/Read/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Scroll" Page={pg61} fallback={fb} context={context}>
+                <Route path="/view/Scroll" Page={pg62} fallback={fb} context={context}>
                     <Route path="/view/Scroll/demo" fallback={fb} context={context}>
                         <Route path="/view/Scroll/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Slider" Page={pg64} fallback={fb} context={context}>
+                <Route path="/view/Slider" Page={pg65} fallback={fb} context={context}>
                     <Route path="/view/Slider/demo" fallback={fb} context={context}>
                         <Route path="/view/Slider/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Spinner" Page={pg67} fallback={fb} context={context}>
+                <Route path="/view/Spinner" Page={pg68} fallback={fb} context={context}>
                     <Route path="/view/Spinner/demo" fallback={fb} context={context}>
                         <Route path="/view/Spinner/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Strip" Page={pg70} fallback={fb} context={context}>
+                <Route path="/view/Strip" Page={pg71} fallback={fb} context={context}>
                     <Route path="/view/Strip/demo" fallback={fb} context={context}>
                         <Route path="/view/Strip/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Switch" Page={pg73} fallback={fb} context={context}>
+                <Route path="/view/Switch" Page={pg74} fallback={fb} context={context}>
                     <Route path="/view/Switch/demo" fallback={fb} context={context}>
                         <Route path="/view/Switch/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Tabs" Page={pg76} fallback={fb} context={context}>
+                <Route path="/view/Tabs" Page={pg77} fallback={fb} context={context}>
                     <Route path="/view/Tabs/demo" fallback={fb} context={context}>
                         <Route path="/view/Tabs/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Touchable" Page={pg79} fallback={fb} context={context}>
+                <Route path="/view/Touchable" Page={pg80} fallback={fb} context={context}>
                     <Route path="/view/Touchable/demo" fallback={fb} context={context}>
                         <Route path="/view/Touchable/demo/Default" fallback={fb} context={context}/>
                     </Route>

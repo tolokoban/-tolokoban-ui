@@ -37,6 +37,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                         Components
                     </button>
                     <button
+                        className={classFor("/icons")}
+                        type="button"
+                        onClick={makeGoto("/icons")}
+                    >
+                        Icons
+                    </button>
+                    <button
                         className={classFor("/api")}
                         type="button"
                         onClick={makeGoto("/api")}

@@ -1,5 +1,5 @@
 /**
- * 2024-06-04T09:55:49.249Z
+ * 2024-06-04T13:53:34.759Z
  *
  * This file has been automatically generated with:
  * npm run generate
@@ -16,7 +16,7 @@ export default function InputFileDocumentation() {
         <ViewDemo
             description={"# Default usage\n"}
             // eslint-disable-next-line no-template-curly-in-string
-            example={"import React from \"react\"\nimport { ViewInputFile } from \"@tolokoban/ui\"\n\nexport default function Demo() {\n    const handleLoad = () => {\n        console.log(\"onLoad()\")\n    }\n    return <ViewInputFile onLoad={handleLoad}>Import file</ViewInputFile>\n}\n"}
+            example={"import React from \"react\"\nimport { IconImport, ViewInputFile, useModal } from \"@tolokoban/ui\"\n\nexport default function Demo() {\n    const modal = useModal()\n    const handleLoad = (files: File[]) => {\n        void modal.info(\n            <div>\n                <h1>Selected files:</h1>\n                <ul>\n                    {files.map((file) => (\n                        <li key={file.name}>\n                            <b>{file.name}</b> ({file.size} bytes) - {file.type}\n                        </li>\n                    ))}\n                </ul>\n            </div>\n        )\n    }\n    return (\n        <ViewInputFile onLoad={handleLoad} icon={IconImport} multiple>\n            Select one or several files\n        </ViewInputFile>\n    )\n}\n"}
         >
             <DemoDefault />
         </ViewDemo>

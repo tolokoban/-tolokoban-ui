@@ -24,6 +24,8 @@ export interface DimensionStyleProps {
     fullwide?: boolean
     /** If true, set 100% to width or height depending if we are in portrait or landscape mode. */
     fullnarrow?: boolean
+    /** width / height */
+    aspectRatio?: number
 }
 
 export function styleDimension({
@@ -33,6 +35,7 @@ export function styleDimension({
     maxHeight,
     minWidth,
     minHeight,
+    aspectRatio = 0,
 }: DimensionStyleProps) {
     const style: React.CSSProperties = {
         width,
@@ -42,6 +45,7 @@ export function styleDimension({
         minWidth,
         minHeight,
     }
+    if (aspectRatio > 0) style.aspectRatio = aspectRatio
     return style
 }
 

@@ -34,6 +34,10 @@ export type ViewPanelProps = {
     fontSize?: string
     /** If defined, the panel will keep `width / height = aspectRatio`. */
     aspectRatio?: number
+    /** Added to attribute "title". */
+    tooltip?: string
+    /** Used for focus. */
+    tabIndex?: number
 } & ColorStyleProps &
     SpaceStyleProps &
     DimensionStyleProps &
@@ -43,13 +47,8 @@ export type ViewPanelProps = {
     ChildStyleProps
 
 export function ViewPanel(props: ViewPanelProps) {
-    const {
-        className,
-        children,
-        borderRadius,
-        fontSize,
-        aspectRatio = 0,
-    } = props
+    const { className, children, borderRadius, fontSize, tooltip, tabIndex } =
+        props
     const style: React.CSSProperties = {
         fontSize,
         ...styleColor(props),
@@ -60,7 +59,6 @@ export function ViewPanel(props: ViewPanelProps) {
         ...stylePosition(props),
         ...styleChild(props),
     }
-    if (aspectRatio > 0) style["--custom-aspect-ratio"] = aspectRatio
     if (borderRadius) style.borderRadius = cssForGaps(borderRadius)
     return (
         <div
@@ -70,6 +68,8 @@ export function ViewPanel(props: ViewPanelProps) {
                 classnameDimension(props)
             )}
             style={style}
+            title={tooltip}
+            tabIndex={tabIndex}
         >
             {children}
         </div>

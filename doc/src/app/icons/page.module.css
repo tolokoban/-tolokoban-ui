@@ -1,0 +1,20 @@
+.icon {
+    position: relative;
+    overflow: visible;
+    --size: 5em;
+    width: var(--size);
+    height: var(--size);
+}
+
+.icon > div {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: auto;
+    display: none;
+    z-index: 9;
+}
+
+.icon:hover > div {
+    display: block;
+}

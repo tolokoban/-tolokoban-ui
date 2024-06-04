@@ -1,7 +1,7 @@
 /** @see https://ts-ast-viewer.com */
 import Path from "node:path"
 import { Project } from "ts-morph"
-import { absPath } from "./utils/fs.js"
+import { absPath, saveText } from "./utils/fs.js"
 import { color, logError } from "./utils/log.js"
 import { parseProperties } from "./utils/properties.js"
 import { isCapitalized } from "./utils/string.js"
@@ -15,7 +15,7 @@ const prj = new Project({
 
 const viewsToSkip = ["Tab"]
 
-async function start() {
+async function processViews() {
     const viewDirectory = prj.getDirectoryOrThrow(absPath("lib/src/view"))
     const viewDirectories = viewDirectory.getDirectories()
     const viewShortNames: string[] = []
@@ -54,6 +54,39 @@ async function start() {
         }
     }
     await writeViewsRoutes(viewShortNames)
+}
+
+async function processIcons() {
+    const iconsDirectory = prj.getDirectoryOrThrow(
+        absPath("lib/src/view/icons")
+    )
+    const files = iconsDirectory.getSourceFiles()
+    const names = []
+    for (const file of files) {
+        const name = file.getBaseNameWithoutExtension()
+        if (name.startsWith("Icon")) {
+            names.push(name.substring("Icon".length))
+        }
+    }
+    names.sort()
+    console.log(
+        `${color("Icons", "LightGreen")} ${color(`(${names.length})`, "BgPurple")}: ${names.join(", ")}.`
+    )
+    const code = [
+        `import * as React from "react"`,
+        `import { GenericIconProps } from "@tolokoban/ui"`,
+        `import { ${names.map((name) => `Icon${name}`).join(", ")} } from "@tolokoban/ui"`,
+        "",
+        "export const IconsMap: Record<string, React.FC<GenericIconProps>> = {",
+        ...names.map((name) => `    ${name}: Icon${name},`),
+        "}",
+    ].join("\n")
+    await saveText(absPath("doc/src/icons.ts"), code)
+}
+
+async function start() {
+    await processViews()
+    await processIcons()
 }
 
 start()
