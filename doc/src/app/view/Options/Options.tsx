@@ -1,5 +1,5 @@
 /**
- * 2024-05-24T20:24:03.442Z
+ * 2024-06-04T07:19:37.652Z
  *
  * This file has been automatically generated with:
  * npm run generate
@@ -16,7 +16,7 @@ export default function OptionsDocumentation() {
         <ViewDemo
             description={"# Default usage\n"}
             // eslint-disable-next-line no-template-curly-in-string
-            example={"import React from \"react\"\nimport { ViewOptions } from \"@tolokoban/ui\"\n\nexport default function Demo() {\n    const [value, setValue] = React.useState(\"M\")\n    return (\n        <ViewOptions label=\"Select a size\" value={value} onChange={setValue}>\n            <div key=\"S\">Extra Small</div>\n            <div key=\"S\">Small</div>\n            <div key=\"M\">Medium</div>\n            <div key=\"L\">Large</div>\n            <div key=\"XL\">Extra Large</div>\n        </ViewOptions>\n    )\n}\n"}
+            example={"import React from \"react\"\nimport { ViewOptions, ViewPanel } from \"@tolokoban/ui\"\n\nexport default function Demo() {\n    const [value, setValue] = React.useState(\"M\")\n    const [format, setFormat] = React.useState(\"A4\")\n    return (\n        <ViewPanel\n            display=\"flex\"\n            flexDirection=\"column\"\n            gap=\"M\"\n            maxWidth=\"600px\"\n        >\n            <ViewOptions\n                label=\"Select a size\"\n                value={value}\n                onChange={setValue}\n                color=\"secondary-4\"\n                colorSelection=\"primary-6\"\n            >\n                <div key=\"XS\">Extra Small</div>\n                <div key=\"S\">Small</div>\n                <div key=\"M\">Medium</div>\n                <div key=\"L\">Large</div>\n                <div key=\"XL\">Extra Large</div>\n            </ViewOptions>\n            <ViewOptions\n                label=\"Select page format\"\n                value={format}\n                onChange={setFormat}\n            >\n                <div key=\"A5\">\n                    A5 - <small>148×210</small>\n                </div>\n                <div key=\"A4\">\n                    A4 - <small>210×297</small>\n                </div>\n                <div key=\"A3\">\n                    A3 - <small>297×240</small>\n                </div>\n            </ViewOptions>\n        </ViewPanel>\n    )\n}\n"}
         >
             <DemoDefault />
         </ViewDemo>

@@ -1,5 +1,6 @@
-// This file has been generated on Fri, 24 May 2024 11:25:07 GMT
+// This file has been generated on Tue, 04 Jun 2024 07:19:19 GMT
 export * from "./Button"
+export * from "./Chip"
 export * from "./Combo"
 export * from "./Dialog"
 export * from "./DragAndDrop"
@@ -12,6 +13,7 @@ export * from "./InputNumber"
 export * from "./InputText"
 export * from "./Label"
 export * from "./Options"
+export * from "./OptionsMultiple"
 export * from "./Panel"
 export * from "./Progress"
 export * from "./Rating"

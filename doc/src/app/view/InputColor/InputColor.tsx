@@ -1,5 +1,5 @@
 /**
- * 2024-05-24T20:24:03.435Z
+ * 2024-06-04T07:19:37.643Z
  *
  * This file has been automatically generated with:
  * npm run generate
@@ -16,7 +16,7 @@ export default function InputColorDocumentation() {
         <ViewDemo
             description={"# Default usage\n"}
             // eslint-disable-next-line no-template-curly-in-string
-            example={"import React from \"react\"\nimport { ViewInputColor } from \"@tolokoban/ui\"\n\nexport default function Demo() {\n    const [color, setColor] = React.useState(\"#F90\")\n    return <ViewInputColor value={color} onChange={setColor} />\n}\n"}
+            example={"import React from \"react\"\nimport { ViewInputColor, ViewPanel } from \"@tolokoban/ui\"\n\nexport default function Demo() {\n    const [color, setColor] = React.useState(\"#F90\")\n    return (\n        <div>\n            <ViewPanel\n                display=\"inline-flex\"\n                flexDirection=\"column\"\n                alignItems=\"stretch\"\n                width=\"auto\"\n            >\n                <ViewInputColor\n                    value={color}\n                    onChange={setColor}\n                    label=\"My favourite color\"\n                />\n            </ViewPanel>\n        </div>\n    )\n}\n"}
         >
             <DemoDefault />
         </ViewDemo>

@@ -13,6 +13,7 @@ export interface ViewTouchableProps<T> {
     /**
      * HTML tooltip, used in the `title` attribute.
      */
+    style?: React.CSSProperties
     tooltip?: string
     /** Anything you want to be dispatched with the `onClick` event. */
     tag?: T
@@ -27,6 +28,7 @@ export function ViewTouchable<T>({
     className,
     children,
     tag,
+    style,
     tooltip,
     onClick,
 }: ViewTouchableProps<T>) {
@@ -37,6 +39,7 @@ export function ViewTouchable<T>({
             className={$.join(className, Styles.Touchable)}
             title={tooltip}
             onClick={() => onClick(tag)}
+            style={style}
         >
             {children}
         </div>

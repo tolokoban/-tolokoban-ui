@@ -1,31 +1,17 @@
 .Options {
-    display: inline-block;
     box-shadow: var(--theme-shadow-2);
-    overflow: hidden;
-    border-radius: 0.5rem;
-}
-
-.OptionsWide {
-    composes: Options;
-    display: block;
-}
-
-.OptionsWide :global(div.options) {
-    display: flex;
-    background-color: var(--theme-color-primary-5);
-    color: var(--theme-color-on-primary-5);
-}
-
-.Options :global(div.options) {
     display: inline-flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-items: stretch;
+    gap: 1px;
     border-radius: 0.5rem;
     overflow: hidden;
+    background-color: var(--theme-color-primary-1);
+    color: var(--theme-color-on-primary-1);
 }
 
-.Options :global(div.options) > :global(.button) {
+.button {
     margin: 0;
     padding: 0.125rem 0.5rem;
     flex: 1 1 auto;
@@ -34,13 +20,13 @@
     place-items: center;
 }
 
-.Options :global(div.options) > :global(.button.selected) {
-    font-weight: 900;
+.button.selected {
     background-color: var(--theme-color-primary-6);
     color: var(--theme-color-on-primary-6);
 }
 
-.Options :global(div.options) > :global(.button.not-selected) {
-    background-color: var(--theme-color-primary-2);
-    color: var(--theme-color-on-primary-2);
+.button.unselected {
+    opacity: 0.667;
+    background-color: var(--theme-color-primary-4);
+    color: var(--theme-color-on-primary-4);
 }

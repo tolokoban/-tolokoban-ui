@@ -1,4 +1,4 @@
-export type Action = (...args: unknown[]) => void
+export type Action<T extends unknown[]> = (...args: T) => void
 
 /**
  * The function to call as much as you want. It will perform the debouce for you.
@@ -8,10 +8,13 @@ export type Action = (...args: unknown[]) => void
  * less than `delay` ms between them.
  * * delay - Number of milliseconds.
  */
-export function asyncCreateDebouncer(action: Action, delay: number): Action {
+export function asyncCreateDebouncer<T extends unknown[]>(
+    action: Action<T>,
+    delay: number
+): Action<T> {
     let timer = 0
 
-    return function (this: { delay: number }, ...args: unknown[]) {
+    return function (this: { delay: number }, ...args: T) {
         if (timer) window.clearTimeout(timer)
         timer = window.setTimeout(() => {
             timer = 0

@@ -13,10 +13,13 @@ export type ViewInputNumberProps = CommonProps & {
     label?: React.ReactNode
     /** If `true`, the focus will be set here once displayed. */
     autofocus?: boolean
+    enabled?: boolean
     /**
      * Form name.
      */
     name?: string
+    min?: number
+    max?: number
     /**
      * Event dispatched when the user pressed Enter.
      */
@@ -24,6 +27,8 @@ export type ViewInputNumberProps = CommonProps & {
 }
 
 export function ViewInputNumber(props: ViewInputNumberProps): JSX.Element {
+    const min = props.min ?? Number.NEGATIVE_INFINITY
+    const max = props.max ?? Number.POSITIVE_INFINITY
     const textProps: ViewInputTextProps = {
         ...props,
         value: `${props.value}`,
@@ -34,7 +39,10 @@ export function ViewInputNumber(props: ViewInputNumberProps): JSX.Element {
             }
         },
         type: "number",
-        validator: (text: string) => Number.isFinite(Number(text)),
+        validator: (text: string) => {
+            const num = Number(text)
+            return Number.isFinite(num) && num >= min && num <= max
+        },
     }
     return <ViewInputText {...textProps}></ViewInputText>
 }

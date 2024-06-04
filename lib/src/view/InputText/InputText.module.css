@@ -2,15 +2,11 @@
     font: inherit;
     background: transparent;
     width: 100%;
-    border: 1px solid color-mix(
-        in srgb,
-        currentColor,
-        transparent 90%
-    );
+    border: 1px solid color-mix(in srgb, currentColor, transparent 90%);
     background-color: color-mix(
         in srgb,
         var(--theme-color-input),
-        transparent 90%
+        transparent 40%
     );
     padding: 0 0.5em;
     line-height: 2em;
@@ -30,4 +26,14 @@
 .InputText.invalid {
     background-color: var(--theme-color-error);
     color: var(--theme-color-on-error);
+}
+
+input.InputText[type="number"]::-webkit-inner-spin-button,
+input.InputText[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input.InputText[type="number"] {
+    -moz-appearance: textfield;
 }

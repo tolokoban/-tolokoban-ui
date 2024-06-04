@@ -5,6 +5,7 @@ import { Children, ColorName } from "../../types.js"
 import { CommonProps } from "../../theme/styles/common.js"
 
 import Styles from "./Label.module.css"
+import { ViewPanel } from "../Panel"
 
 const $ = Theme.classNames
 
@@ -15,6 +16,11 @@ export type ViewLabelProps = CommonProps & {
     title?: string
     /** Color of the label. Default to `currentColor`. */
     color?: ColorName
+    /**
+     * If set, the label and its children are enclosed in a FlexBox
+     * whose direction is "row" or "column".
+     */
+    box?: "row" | "column" | "none"
     /**
      * Content this label describes.
      * When the label is clicked, the content will get focus.
@@ -27,6 +33,7 @@ export function ViewLabel({
     className,
     value,
     title,
+    box = "column",
     children,
 }: ViewLabelProps): JSX.Element {
     const id = `labelled/${React.useId()}`
@@ -44,7 +51,8 @@ export function ViewLabel({
 
     const style: React.CSSProperties = {}
     if (color) style.color = `var(--theme-color-${color})`
-    return (
+
+    const main = (
         <>
             <label
                 htmlFor={id}
@@ -61,4 +69,30 @@ export function ViewLabel({
             )}
         </>
     )
+    switch (box) {
+        case "row":
+            return (
+                <ViewPanel
+                    display="flex"
+                    flexDirection="row"
+                    alignItems="center"
+                    gap="1em"
+                >
+                    {main}
+                </ViewPanel>
+            )
+        case "column":
+            return (
+                <ViewPanel
+                    display="flex"
+                    flexDirection="column"
+                    alignItems="stretch"
+                    gap="0"
+                >
+                    {main}
+                </ViewPanel>
+            )
+        default:
+            return main
+    }
 }

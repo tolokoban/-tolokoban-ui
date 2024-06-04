@@ -1,19 +1,22 @@
 import * as React from "react"
 
-import { Theme } from "../../theme/index.js"
-import { ChildStyleProps, styleChild } from "../../theme/styles/child.js"
 import {
-    PositionStyleProps,
-    stylePosition,
-} from "../../theme/styles/position.js"
-import { Children, ViewWithValue } from "../../types.js"
+    CommonProps,
+    Theme,
+    classnameDimension,
+    styleCommon,
+} from "../../theme/index"
+import { ChildStyleProps, styleChild } from "../../theme/styles/child"
+import { PositionStyleProps, stylePosition } from "../../theme/styles/position"
+import { Children, ViewWithValue } from "../../types"
 
 import Styles from "./Switch.module.css"
 
 export interface ViewSwitchProps
     extends ViewWithValue<boolean>,
         ChildStyleProps,
-        PositionStyleProps {
+        PositionStyleProps,
+        CommonProps {
     className?: string
     enabled?: boolean
     children?: Children
@@ -23,13 +26,15 @@ export function ViewSwitch(props: ViewSwitchProps) {
     const style: React.CSSProperties = {
         ...stylePosition(props),
         ...styleChild(props),
+        ...styleCommon(props),
     }
     return (
         <button
             className={Theme.classNames.join(
                 props.className,
                 Styles.ViewSwitch,
-                props.value && Styles.ok
+                props.value && Styles.ok,
+                classnameDimension(props)
             )}
             type="button"
             disabled={props.enabled === false ? true : undefined}

@@ -1,5 +1,9 @@
 # @tolokoban/ui
 
+## Documentation
+
+[Reference and examples](https://tolokoban.github.io/-tolokoban-ui).
+
 ## Usage
 
 To be able to compile, you must add this line at the top
