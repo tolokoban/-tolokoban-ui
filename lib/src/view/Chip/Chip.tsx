@@ -1,6 +1,5 @@
 import * as React from "react"
 
-import { OpaqueColorName } from "@/types"
 import { ColorStyleProps, Theme, styleColor } from "@/theme"
 
 import Styles from "./Chip.module.css"
@@ -8,6 +7,16 @@ import Styles from "./Chip.module.css"
 /**
  * @see https://material.io/components/chips#input-chips
  */
+
+const SIZES: Record<string, number> = {
+    XXS: 25,
+    XS: 50,
+    S: 70,
+    M: 80,
+    L: 100,
+    XL: 200,
+    XXL: 400,
+}
 
 export interface ViewChipProps<T = unknown> extends ColorStyleProps {
     className?: string
@@ -17,16 +26,25 @@ export interface ViewChipProps<T = unknown> extends ColorStyleProps {
     removable?: boolean
     /** Default to true. */
     enabled?: boolean
+    size?: keyof typeof SIZES
     label: string
     thumbnail?: React.ReactNode
     tag?: T
-    color?: OpaqueColorName
     onClick?(this: void, tag?: T): void
     onRemove?(this: void, tag?: T): void
 }
 
 export function ViewChip<T = unknown>(props: ViewChipProps<T>) {
-    const { thumbnail, label, removable, tag, onClick, onRemove } = props
+    const {
+        thumbnail,
+        label,
+        removable,
+        tag,
+        outline,
+        size = "M",
+        onClick,
+        onRemove,
+    } = props
     const handleClick = () => {
         if (onClick) onClick(tag)
     }
@@ -38,8 +56,15 @@ export function ViewChip<T = unknown>(props: ViewChipProps<T>) {
     }
     return (
         <button
-            className={Theme.classNames.join(props.className, Styles.main)}
-            style={styleColor(props)}
+            className={Theme.classNames.join(
+                props.className,
+                Styles.main,
+                outline && Styles.outline
+            )}
+            style={{
+                ...styleColor(props),
+                fontSize: `${SIZES[size]}%`,
+            }}
             onClick={handleClick}
         >
             {thumbnail && <div className={Styles.thumbnail}>{thumbnail}</div>}

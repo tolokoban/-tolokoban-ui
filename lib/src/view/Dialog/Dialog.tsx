@@ -42,6 +42,7 @@ export interface ViewDialogProps {
      * Color of the footer. Default to `neutral-5`.
      */
     footColor?: ColorName
+    shadow?: number
     children: Children
 }
 
@@ -51,6 +52,7 @@ export function ViewDialog({
     buttonValidate,
     title,
     padding = "M",
+    shadow = 7,
     headColor = "primary-3",
     bodyColor = "neutral-2",
     footColor = "neutral-6",
@@ -65,6 +67,7 @@ export function ViewDialog({
             className={$.join(className, Classes.Dialog)}
             orientation="column"
             template="-1"
+            shadow={shadow}
         >
             {title && (
                 <header

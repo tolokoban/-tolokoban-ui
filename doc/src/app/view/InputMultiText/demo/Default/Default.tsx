@@ -11,6 +11,7 @@ export default function Demo() {
     return (
         <div>
             <ViewInputMultiText
+                label="Welcome text"
                 lang={lang}
                 onLangChange={setLang}
                 value={value}

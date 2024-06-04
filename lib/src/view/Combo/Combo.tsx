@@ -10,6 +10,7 @@ import ComboItemView from "./combo-item/combo-item-view"
 import { Items, useItems } from "./hooks"
 
 import Styles from "./Combo.module.css"
+import { ViewPanel } from "../Panel"
 
 export type ViewComboProps = CommonProps &
     ViewWithValue<string> &
@@ -45,7 +46,7 @@ function getClassNames(props: ViewComboProps): string {
 function useClickHandler(
     value: string,
     setValue: (value: string) => void,
-    props: ViewDialogProps & { children: JSX.Element[] },
+    props: ViewComboProps,
     items: Items
 ) {
     const modal = useModal()
@@ -53,7 +54,7 @@ function useClickHandler(
         const hide = modal.show({
             content: (
                 <ViewDialog
-                    title={props.title}
+                    title={props.title ?? props.label}
                     bodyColor={props.bodyColor}
                     headColor={props.headColor}
                     footColor={props.footColor}
@@ -62,12 +63,19 @@ function useClickHandler(
                         onClick: () => hide(),
                     }}
                 >
-                    <div className="ui-view-ViewCombo-list">
+                    <ViewPanel
+                        overflow="auto"
+                        display="flex"
+                        flexDirection="column"
+                        gap="1px"
+                        padding={0}
+                    >
                         {Object.keys(items).map((key) => (
                             <ComboItemView
                                 key={key}
                                 value={key}
                                 showButton={false}
+                                selected={key === value}
                                 onClick={() => {
                                     hide()
                                     setValue(key)
@@ -76,7 +84,7 @@ function useClickHandler(
                                 {items[key]}
                             </ComboItemView>
                         ))}
-                    </div>
+                    </ViewPanel>
                 </ViewDialog>
             ),
         })

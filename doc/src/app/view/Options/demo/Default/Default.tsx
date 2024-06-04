@@ -5,12 +5,7 @@ export default function Demo() {
     const [value, setValue] = React.useState("M")
     const [format, setFormat] = React.useState("A4")
     return (
-        <ViewPanel
-            display="flex"
-            flexDirection="column"
-            gap="M"
-            maxWidth="600px"
-        >
+        <ViewPanel gap="M">
             <ViewOptions
                 label="Select a size"
                 value={value}

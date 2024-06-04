@@ -1,5 +1,5 @@
 /**
- * 2024-06-04T07:19:37.623Z
+ * 2024-06-04T09:55:49.243Z
  *
  * This file has been automatically generated with:
  * npm run generate
@@ -16,7 +16,7 @@ export default function ComboDocumentation() {
         <ViewDemo
             description={"# Default usage\n"}
             // eslint-disable-next-line no-template-curly-in-string
-            example={"import React from \"react\"\nimport { ViewCombo } from \"@tolokoban/ui\"\n\nexport default function Demo() {\n    const [animal, setAnimal] = React.useState(\"fox\")\n    return (\n        <ViewCombo value={animal} onChange={setAnimal}>\n            <div key=\"monkey\">🐵 - Monkey</div>\n            <div key=\"dog\">🐶 - Dog</div>\n            <div key=\"fox\">🦊 - Fox</div>\n            <div key=\"lion\">🦁 - Lion</div>\n        </ViewCombo>\n    )\n}\n"}
+            example={"import React from \"react\"\nimport { ViewCombo } from \"@tolokoban/ui\"\n\nexport default function Demo() {\n    const [animal, setAnimal] = React.useState(\"fox\")\n    return (\n        <ViewCombo\n            label=\"Select your favourite animal\"\n            value={animal}\n            onChange={setAnimal}\n        >\n            <div key=\"monkey\">🐵 - Monkey</div>\n            <div key=\"dog\">🐶 - Dog</div>\n            <div key=\"fox\">🦊 - Fox</div>\n            <div key=\"lion\">🦁 - Lion</div>\n            <div key=\"elephant\">𓃰 - Elephant</div>\n            <div key=\"frog\">🐸 - Frog</div>\n            <div key=\"crab\">🦀 - Crab</div>\n            <div key=\"peacook\">🦚 - Peacook</div>\n            <div key=\"tiger\">🐯 - Tiger</div>\n            <div key=\"squid\">🦑 - Squid</div>\n            <div key=\"shark\">🦈 - Shark</div>\n            <div key=\"koala\">🐨 - Koala</div>\n            <div key=\"beaver\">🦫 - Beaver</div>\n        </ViewCombo>\n    )\n}\n"}
         >
             <DemoDefault />
         </ViewDemo>

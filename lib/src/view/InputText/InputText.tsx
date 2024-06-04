@@ -4,7 +4,10 @@ import { Theme } from "../../theme/index.js"
 import { SpaceStyleProps, styleSpace } from "../../theme/styles/space.js"
 import { ViewLabel } from "../Label/index.js"
 import { ViewWithValue } from "../../types.js"
-import { DimensionStyleProps } from "../../theme/styles/dimension.js"
+import {
+    DimensionStyleProps,
+    classnameDimension,
+} from "../../theme/styles/dimension.js"
 import { CommonProps } from "../../theme/styles/common.js"
 
 import Styles from "./InputText.module.css"
@@ -110,7 +113,8 @@ export function ViewInputText(props: ViewInputTextProps) {
             className={$.join(
                 className,
                 Styles.InputText,
-                invalid && Styles.invalid
+                invalid && Styles.invalid,
+                classnameDimension(props)
             )}
             id={id}
             style={style}

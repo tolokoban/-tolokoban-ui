@@ -34,6 +34,7 @@ export function ViewLabel({
     value,
     title,
     box = "column",
+    fullwidth,
     children,
 }: ViewLabelProps): JSX.Element {
     const id = `labelled/${React.useId()}`
@@ -73,7 +74,7 @@ export function ViewLabel({
         case "row":
             return (
                 <ViewPanel
-                    display="flex"
+                    display={fullwidth ? "flex" : "inline-flex"}
                     flexDirection="row"
                     alignItems="center"
                     gap="1em"
@@ -84,7 +85,7 @@ export function ViewLabel({
         case "column":
             return (
                 <ViewPanel
-                    display="flex"
+                    display={fullwidth ? "flex" : "inline-flex"}
                     flexDirection="column"
                     alignItems="stretch"
                     gap="0"

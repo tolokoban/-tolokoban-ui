@@ -12,10 +12,18 @@ button.ui-view-combo-ComboItemView {
     height: 2.25rem;
     padding: 0;
     cursor: pointer;
-    box-shadow: var(--theme-shadow-button);
     transition: all 0.2s;
     filter: brightness(100%);
     margin: 0;
+    text-align: left;
+    background-color: var(--theme-color-neutral-9);
+    color: var(--theme-color-on-neutral-9);
+}
+
+button.ui-view-combo-ComboItemView.selected {
+    z-index: 2;
+    background-color: var(--theme-color-primary-7);
+    color: var(--theme-color-on-primary-7);
 }
 
 button.ui-view-combo-ComboItemView:focus {

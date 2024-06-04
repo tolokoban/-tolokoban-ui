@@ -29,7 +29,7 @@
     all: inherit;
     text-transform: uppercase;
     flex: 1 1 auto;
-    min-width: 3em;
+    width: 2em;
     cursor: pointer;
     display: grid;
     place-items: center;

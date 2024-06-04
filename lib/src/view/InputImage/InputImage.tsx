@@ -90,8 +90,8 @@ export function ViewInputImage(props: InputImageProps) {
                     style={{
                         ...style,
                         maxWidth: `${width}px`,
-                        height: 0,
-                        paddingBottom: `${(100 * height) / width}%`,
+                        height: "auto",
+                        aspectRatio: `${width} / ${height}`,
                         backgroundImage: `url(${BackURL})`,
                     }}
                 >

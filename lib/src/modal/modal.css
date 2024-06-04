@@ -1,7 +1,7 @@
 div.ui-Modal {
     --transition-duration: 0.3s;
     --padding: 1rem;
-    --background-color: var(--theme-color-neutral-2-opacity-50);
+    --background-color: var(--theme-color-neutral-1-opacity-50);
 
     z-index: 9999999;
     position: fixed;
@@ -19,7 +19,6 @@ div.ui-Modal {
     transition: background-color var(--transition-duration);
     background-color: transparent;
     box-sizing: border-box;
-    backdrop-filter: blur(3px);
 }
 
 div.ui-Modal.align-left {

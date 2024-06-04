@@ -11,7 +11,7 @@ export async function writeViewsRoutes(viewShortNames: string[]) {
         "",
         "export default function ViewsLayout({ children }: { children: React.ReactNode }) {",
         [
-            `return <ViewPanel display="flex" alignItems="stretch" height="100%">`,
+            `return <ViewPanel display="grid" gridTemplateColumns="auto 1fr" fullsize>`,
             [
                 `<ViewPanel display="flex" flexDirection="column" alignItems="stretch" padding="M" overflow="auto" color="primary-2">`,
                 viewShortNames.map(

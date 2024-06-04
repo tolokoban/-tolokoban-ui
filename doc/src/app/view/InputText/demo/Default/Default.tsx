@@ -6,7 +6,11 @@ export default function Demo() {
     return (
         <p>
             The name <ViewInputText value={name} onChange={setName} /> is
-            spelled <code>{name.split("").reverse().join("")}</code> in reverse.
+            spelled{" "}
+            <b>
+                <code>{name.split("").reverse().join("")}</code>
+            </b>{" "}
+            in reverse.
         </p>
     )
 }

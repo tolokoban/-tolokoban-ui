@@ -14,6 +14,7 @@ import IconStar from "../icons/IconStar"
 import { Icon } from "../icons/generic"
 
 import Styles from "./Rating.module.css"
+import { ViewLabel } from "../Label"
 
 export type ViewRatingProps = ViewWithValue<number> &
     SpaceStyleProps &
@@ -25,6 +26,7 @@ export type ViewRatingProps = ViewWithValue<number> &
         icon?: Icon
         color?: OpaqueColorName
         name?: string
+        label?: React.ReactNode
     }
 
 const DEFAULT_STAR_COLOR = "#faaf00"
@@ -39,59 +41,61 @@ export function ViewRating(props: ViewRatingProps) {
     } = props
     const [value, setValue] = useChangeableValue(props)
     return (
-        <span
-            className={getClassNames(props)}
-            tabIndex={0}
-            style={{
-                ...styleCommon(props),
-                ...styleDimension(props),
-                ...stylePosition(props),
-                ...styleSpace(props),
-            }}
-        >
-            {range(max).map((star) => {
-                const starId = `${id}-${star}`
-                return (
-                    <>
-                        <label htmlFor={starId} key={starId}>
-                            <span style={{ color: DEFAULT_STAR_COLOR }}>
-                                {icon({
-                                    color,
-                                    type: "outlined",
-                                })}
-                            </span>
-                            <span
-                                className={Styles.absolute}
-                                style={{
-                                    width: computeStarWidth(star, value),
-                                    color: DEFAULT_STAR_COLOR,
+        <ViewLabel value={props.label}>
+            <span
+                className={getClassNames(props)}
+                tabIndex={0}
+                style={{
+                    ...styleCommon(props),
+                    ...styleDimension(props),
+                    ...stylePosition(props),
+                    ...styleSpace(props),
+                }}
+            >
+                {range(max).map((star) => {
+                    const starId = `${id}-${star}`
+                    return (
+                        <>
+                            <label htmlFor={starId} key={starId}>
+                                <span style={{ color: DEFAULT_STAR_COLOR }}>
+                                    {icon({
+                                        color,
+                                        type: "outlined",
+                                    })}
+                                </span>
+                                <span
+                                    className={Styles.absolute}
+                                    style={{
+                                        width: computeStarWidth(star, value),
+                                        color: DEFAULT_STAR_COLOR,
+                                    }}
+                                >
+                                    {icon({
+                                        color,
+                                        type: props.readOnly ? "bold" : "dual",
+                                    })}
+                                </span>
+                                <span className={Styles.hidden}>
+                                    {star} Star{star > 1 ? "s" : ""}
+                                </span>
+                            </label>
+                            <input
+                                className={Styles.hidden}
+                                type="radio"
+                                name={name}
+                                value={`${star}`}
+                                checked={star > value - 1 && star <= value}
+                                onChange={(evt) => {
+                                    if (evt.target.checked) setValue(star)
                                 }}
-                            >
-                                {icon({
-                                    color,
-                                    type: props.readOnly ? "bold" : "dual",
-                                })}
-                            </span>
-                            <span className={Styles.hidden}>
-                                {star} Star{star > 1 ? "s" : ""}
-                            </span>
-                        </label>
-                        <input
-                            className={Styles.hidden}
-                            type="radio"
-                            name={name}
-                            value={`${star}`}
-                            checked={star > value - 1 && star <= value}
-                            onChange={(evt) => {
-                                if (evt.target.checked) setValue(star)
-                            }}
-                            id={starId}
-                            key={`input/${starId}`}
-                        ></input>
-                    </>
-                )
-            })}
-        </span>
+                                id={starId}
+                                key={`input/${starId}`}
+                            ></input>
+                        </>
+                    )
+                })}
+            </span>
+        </ViewLabel>
     )
 }
 

@@ -7,6 +7,7 @@ export interface ComboItemViewProps {
     id?: string
     value?: string
     showButton?: boolean
+    selected?: boolean
     onClick?(value?: string): void
 }
 
@@ -43,6 +44,9 @@ function getClassNames(props: ComboItemViewProps): string {
     ]
     if (typeof props.className === "string") {
         classNames.push(props.className)
+    }
+    if (props.selected) {
+        classNames.push("selected")
     }
     return classNames.join(" ")
 }
