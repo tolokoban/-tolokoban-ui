@@ -1,16 +1,22 @@
 import React from "react"
 import {
     ViewButton,
+    ViewGenericIcon,
     ViewInputText,
     ViewOptions,
     ViewPanel,
+    ViewTouchable,
 } from "@tolokoban/ui"
 
+import { Highlight } from "@/view/Highlight"
 import { IconsMap } from "@/icons"
 
 import Styles from "./page.module.css"
 
 export default function PageIcons() {
+    const [value, setValue] = React.useState(
+        "M4,15V9H12V4.16L19.84,12L12,19.84V15H4Z"
+    )
     const [type, setType] = React.useState<
         "filled" | "bold" | "dual" | "outlined"
     >("filled")
@@ -23,8 +29,16 @@ export default function PageIcons() {
             name.toLowerCase().includes(text)
         )
     }, [filter])
+    const handleIconClick = (id: string): void => {
+        const div = document.getElementById(id)
+        if (!div) return
+
+        const path = div.querySelector("svg path")
+        setValue(path?.getAttribute("d") ?? "")
+    }
+
     return (
-        <ViewPanel>
+        <ViewPanel fullsize overflow="auto">
             <h1>List of available SVG icons</h1>
             <ViewInputText
                 value={filter}
@@ -53,21 +67,29 @@ export default function PageIcons() {
                     const Icon = IconsMap[name]
                     if (!Icon) return null
 
+                    const id = `Icon/${name}`
                     return (
-                        <ViewPanel
+                        <ViewTouchable
                             key={name}
-                            className={Styles.icon}
-                            tooltip={`import { Icon${name} } from "@tolokoban/ui"`}
-                            color="primary-9"
-                            display="grid"
-                            placeItems="center"
-                            padding="M"
+                            onClick={() => handleIconClick(id)}
                         >
-                            <Icon size="XL" type={type} />
-                            <ViewPanel padding="S" color="primary-3">
-                                <small>{name}</small>
+                            <ViewPanel
+                                id={id}
+                                key={name}
+                                shadow={2}
+                                className={Styles.icon}
+                                tooltip={`import { Icon${name} } from "@tolokoban/ui"`}
+                                color="primary-9"
+                                display="grid"
+                                placeItems="center"
+                                padding="M"
+                            >
+                                <Icon size="XL" type={type} />
+                                <ViewPanel padding="S" color="primary-3">
+                                    <small>{name}</small>
+                                </ViewPanel>
                             </ViewPanel>
-                        </ViewPanel>
+                        </ViewTouchable>
                     )
                 })}
             </ViewPanel>
@@ -83,6 +105,32 @@ export default function PageIcons() {
                     </ViewButton>
                     .
                 </p>
+            </ViewPanel>
+            <hr />
+            <ViewPanel
+                display="grid"
+                gap="S"
+                gridTemplateColumns="1fr 2fr 2fr"
+                gridTemplateRows="auto auto"
+            >
+                <ViewPanel gridRow="1/-1">
+                    <p>Yout can create your own icons like this:</p>
+                    <Highlight>
+                        {[`<ViewGenericIcon value="..." />`].join("\n")}
+                    </Highlight>
+                    <p>
+                        the bottom-left corner is at <code>(0,0)</code> and the
+                        top-right corner is at <code>(24,24)</code>.
+                    </p>
+                </ViewPanel>
+                <ViewInputText
+                    gridColumn="2/-1"
+                    value={value}
+                    onChange={setValue}
+                    label='Content of attribute "value":'
+                />
+                <ViewGenericIcon value={value} size="XL" />
+                <ViewGenericIcon value={value} size="XL" type="outlined" />
             </ViewPanel>
         </ViewPanel>
     )

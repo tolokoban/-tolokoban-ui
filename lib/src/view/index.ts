@@ -1,4 +1,4 @@
-// This file has been generated on Tue, 04 Jun 2024 13:50:44 GMT
+// This file has been generated on Thu, 06 Jun 2024 12:59:24 GMT
 export * from "./Button"
 export * from "./Chip"
 export * from "./Combo"
@@ -129,6 +129,7 @@ export {default as IconReload} from "./icons/IconReload"
 export {default as IconReset} from "./icons/IconReset"
 export {default as IconRuler} from "./icons/IconRuler"
 export {default as IconSearch} from "./icons/IconSearch"
+export {default as IconSend} from "./icons/IconSend"
 export {default as IconShare} from "./icons/IconShare"
 export {default as IconShow} from "./icons/IconShow"
 export {default as IconSnapshot} from "./icons/IconSnapshot"

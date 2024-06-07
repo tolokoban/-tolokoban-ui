@@ -27,6 +27,7 @@ const $ = Theme.classNames
 
 export type ViewPanelProps = {
     className?: string
+    id?: string
     children?: Children
     /** CSS `borderRadius` property. */
     borderRadius?: Circumference
@@ -47,8 +48,15 @@ export type ViewPanelProps = {
     ChildStyleProps
 
 export function ViewPanel(props: ViewPanelProps) {
-    const { className, children, borderRadius, fontSize, tooltip, tabIndex } =
-        props
+    const {
+        id,
+        className,
+        children,
+        borderRadius,
+        fontSize,
+        tooltip,
+        tabIndex,
+    } = props
     const style: React.CSSProperties = {
         fontSize,
         ...styleColor(props),
@@ -62,6 +70,7 @@ export function ViewPanel(props: ViewPanelProps) {
     if (borderRadius) style.borderRadius = cssForGaps(borderRadius)
     return (
         <div
+            id={id}
             className={$.join(
                 className,
                 Styles.Panel,

@@ -78,11 +78,13 @@ function getClassName(props: GenericIconProps): string {
 }
 
 const SIZES: Record<string, string> = {
+    XXS: ".5em",
     XS: ".75em",
     S: "1em",
     M: "1.5em",
     L: "2em",
     XL: "3em",
+    XXL: "5em",
 }
 
 function sizeToFontSize(value: string): string {

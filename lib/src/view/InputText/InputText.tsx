@@ -7,6 +7,7 @@ import { ViewWithValue } from "../../types.js"
 import {
     DimensionStyleProps,
     classnameDimension,
+    styleDimension,
 } from "../../theme/styles/dimension.js"
 import { CommonProps } from "../../theme/styles/common.js"
 
@@ -106,6 +107,7 @@ export function ViewInputText(props: ViewInputTextProps) {
     }
     const style: React.CSSProperties = {
         ...styleSpace(props),
+        ...styleDimension(props),
     }
     if (maxWidth) style.maxWidth = maxWidth
     const input = (
@@ -128,7 +130,13 @@ export function ViewInputText(props: ViewInputTextProps) {
             onKeyDown={handleKeydown}
         />
     )
-    return label ? <ViewLabel value={label}>{input}</ViewLabel> : input
+    return label ? (
+        <ViewLabel value={label} fullwidth={props.fullwidth}>
+            {input}
+        </ViewLabel>
+    ) : (
+        input
+    )
 }
 
 function validate(

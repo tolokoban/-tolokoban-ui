@@ -57,7 +57,7 @@ export function ViewInputMultiText(props: InputMultiTextProps) {
         })
     }
     return (
-        <ViewLabel value={label}>
+        <ViewLabel value={label} fullwidth={props.fullwidth}>
             <div
                 className={Theme.classNames.join(
                     props.className,

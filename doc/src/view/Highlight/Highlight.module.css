@@ -2,6 +2,7 @@
     background: var(--theme-color-primary-1);
     color: var(--theme-color-on-primary-1);
     padding: 0.5em;
+    max-width: 800px;
 }
 
 .Highlight :global(.comment) {

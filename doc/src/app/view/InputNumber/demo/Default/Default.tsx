@@ -14,11 +14,17 @@ export default function Demo() {
             width="320px"
             placeItems="center start"
         >
-            <ViewInputNumber value={a} onChange={setA} label="Liters of oil:" />
+            <ViewInputNumber
+                value={a}
+                onChange={setA}
+                label="Liters of oil:"
+                width="3em"
+            />
             <ViewInputNumber
                 value={b}
                 onChange={setB}
                 label="Price per liter:"
+                width="4em"
             />
             <hr
                 style={{
