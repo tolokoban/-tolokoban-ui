@@ -1,5 +1,5 @@
 /**
- * 2024-06-04T17:46:09.667Z
+ * 2024-06-12T13:48:24.659Z
  *
  * This file has been automatically generated with:
  * npm run generate
@@ -16,7 +16,7 @@ export default function SliderDocumentation() {
         <ViewDemo
             description={"# Default usage\n"}
             // eslint-disable-next-line no-template-curly-in-string
-            example={"import React from \"react\"\nimport { ViewSlider } from \"@tolokoban/ui\"\n\nexport default function Demo() {\n    const [value, setValue] = React.useState(0.5)\n    return <ViewSlider value={value} onChange={setValue} />\n}\n"}
+            example={"import React from \"react\"\nimport { ViewSlider } from \"@tolokoban/ui\"\n\nexport default function Demo() {\n    const [value, setValue] = React.useState(63)\n    return <ViewSlider value={value} onChange={setValue} min={0} max={100} />\n}\n"}
         >
             <DemoDefault />
         </ViewDemo>
