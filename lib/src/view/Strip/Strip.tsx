@@ -1,20 +1,17 @@
 import * as React from "react"
 
-import { Theme } from "../../theme/index.js"
+import { Theme } from "../../theme/index"
+import { ChildStyleProps, styleChild } from "../../theme/styles/child"
+import { ColorStyleProps, styleColor } from "../../theme/styles/color"
 import {
     DimensionStyleProps,
-    styleDimension,
     classnameDimension,
-} from "../../theme/styles/dimension.js"
-import {
-    PositionStyleProps,
-    stylePosition,
-} from "../../theme/styles/position.js"
-import { ChildStyleProps, styleChild } from "../../theme/styles/child.js"
+    styleDimension,
+} from "../../theme/styles/dimension"
+import { PositionStyleProps, stylePosition } from "../../theme/styles/position"
+import { Children } from "../../types"
 
 import Styles from "./Strip.module.css"
-import { Children } from "../../types.js"
-import { ColorStyleProps, styleColor } from "../../theme/styles/color"
 
 export interface StripProps
     extends ChildStyleProps,
