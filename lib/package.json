@@ -1,6 +1,6 @@
 {
     "name": "@tolokoban/ui",
-    "version": "0.17.7",
+    "version": "0.17.8",
     "private": false,
     "main": "dist/index.js",
     "type": "module",
@@ -53,7 +53,7 @@
         "style-loader": "^3.3.4",
         "ts-loader": "^9.5.1",
         "ts-patch": "^3.1.2",
-        "tslib": "^2.6.2",
+        "tslib": "^2.6.3",
         "typedoc": "^0.25.13",
         "typescript": "^5.4.5",
         "typescript-plugin-css-modules": "^5.1.0",
