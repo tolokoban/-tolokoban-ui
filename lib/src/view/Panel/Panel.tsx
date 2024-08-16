@@ -1,11 +1,10 @@
 import * as React from "react"
 
-import { Theme } from "../../theme/index.js"
+import { classnameCommon, Theme } from "../../theme/index.js"
 import { ChildStyleProps, styleChild } from "../../theme/styles/child.js"
 import { ColorStyleProps, styleColor } from "../../theme/styles/color.js"
 import {
     DimensionStyleProps,
-    classnameDimension,
     styleDimension,
 } from "../../theme/styles/dimension.js"
 import { DisplayStyleProps, styleDisplay } from "../../theme/styles/display.js"
@@ -71,11 +70,7 @@ export function ViewPanel(props: ViewPanelProps) {
     return (
         <div
             id={id}
-            className={$.join(
-                className,
-                Styles.Panel,
-                classnameDimension(props)
-            )}
+            className={$.join(className, Styles.Panel, classnameCommon(props))}
             style={style}
             title={tooltip}
             tabIndex={tabIndex}

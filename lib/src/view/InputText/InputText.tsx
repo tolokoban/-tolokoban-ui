@@ -9,7 +9,7 @@ import {
     classnameDimension,
     styleDimension,
 } from "../../theme/styles/dimension.js"
-import { CommonProps } from "../../theme/styles/common.js"
+import { classnameCommon, CommonProps } from "../../theme/styles/common.js"
 
 import Styles from "./InputText.module.css"
 
@@ -116,7 +116,7 @@ export function ViewInputText(props: ViewInputTextProps) {
                 className,
                 Styles.InputText,
                 invalid && Styles.invalid,
-                classnameDimension(props)
+                classnameCommon(props)
             )}
             id={id}
             style={style}

@@ -1,5 +1,9 @@
 import { ChildStyleProps, styleChild } from "./child.js"
-import { DimensionStyleProps, styleDimension } from "./dimension.js"
+import {
+    classnameDimension,
+    DimensionStyleProps,
+    styleDimension,
+} from "./dimension.js"
 import { PositionStyleProps, stylePosition } from "./position.js"
 import { SpaceStyleProps, styleSpace } from "./space.js"
 
@@ -20,6 +24,11 @@ export function styleCommon(props: CommonProps): React.CSSProperties {
         ...stylePosition(props),
         ...styleSpace(props),
     }
+}
+
+export function classnameCommon(props: CommonProps): string {
+    const classes = [classnameDimension(props)]
+    return classes.join(" ")
 }
 
 export type Unit =

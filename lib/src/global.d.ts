@@ -45,11 +45,6 @@ declare module "*.css" {
     export default content
 }
 
-declare module "*.module.css" {
-    const classes: { [key: string]: string }
-    export default classes
-}
-
 declare module "*.json" {
     const value: { [key: string]: string }
     export = value

@@ -56,7 +56,7 @@ export function classnameDimension({
     fullwide = false,
     fullnarrow = false,
 }: DimensionStyleProps): string {
-    if (fullsize) return Style.fullsize
+    if (fullsize) return Style.fullsize as string
 
     const classes: string[] = []
     if (fullwidth) classes.push(Style.fullwidth)

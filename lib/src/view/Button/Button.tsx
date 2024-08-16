@@ -1,6 +1,10 @@
 import * as React from "react"
 import { Theme } from "../../theme"
-import { CommonProps, styleCommon } from "../../theme/styles/common"
+import {
+    classnameCommon,
+    CommonProps,
+    styleCommon,
+} from "../../theme/styles/common"
 import {
     cssForColor,
     cssForColorOn,
@@ -115,7 +119,8 @@ export function ViewButton(partialProps: ViewButtonProps) {
                     Styles.Button,
                     Styles[variant],
                     Boolean(Icon) && Styles.icon,
-                    !enabled && !waiting && Styles.disabled
+                    !enabled && !waiting && Styles.disabled,
+                    classnameCommon(props)
                 )}
                 href={onClick}
             >
@@ -130,7 +135,8 @@ export function ViewButton(partialProps: ViewButtonProps) {
                 className,
                 Styles.Button,
                 Styles[variant],
-                Boolean(Icon) && Styles.icon
+                Boolean(Icon) && Styles.icon,
+                classnameCommon(props)
             )}
             disabled={!enabled || waiting}
             type="button"

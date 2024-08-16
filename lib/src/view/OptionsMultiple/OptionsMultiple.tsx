@@ -7,7 +7,7 @@ import { ViewTouchable } from "../Touchable/index.js"
 import {
     CommonProps,
     Theme,
-    classnameDimension,
+    classnameCommon,
     styleColor,
     styleCommon,
 } from "@/theme"
@@ -50,7 +50,7 @@ export function ViewOptionsMultiple<T extends string>(
                 className={$.join(
                     Styles.OptionsMultiple,
                     props.className,
-                    classnameDimension(props)
+                    classnameCommon(props)
                 )}
                 style={{ ...styleCommon(props), ...styleColor(props) }}
             >

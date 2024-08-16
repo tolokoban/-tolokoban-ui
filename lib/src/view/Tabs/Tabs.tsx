@@ -1,13 +1,12 @@
 import * as React from "react"
 
-import { Theme } from "../../theme/index.js"
+import { classnameCommon, Theme } from "../../theme/index.js"
 import { ViewTab, ViewTabProps } from "../Tab"
 
 import Styles from "./Tabs.module.css"
 import {
     DimensionStyleProps,
     styleDimension,
-    classnameDimension,
 } from "../../theme/styles/dimension"
 import { ColorStyleProps, styleColor } from "../../theme/styles/color"
 
@@ -55,7 +54,7 @@ export function ViewTabs(props: ViewTabsProps) {
                 className,
                 Styles.Tabs,
                 orientation === "vertical" && Styles.vertical,
-                classnameDimension(props)
+                classnameCommon(props)
             )}
         >
             <header>

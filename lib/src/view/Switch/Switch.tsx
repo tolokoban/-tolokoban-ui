@@ -3,7 +3,7 @@ import * as React from "react"
 import {
     CommonProps,
     Theme,
-    classnameDimension,
+    classnameCommon,
     styleCommon,
 } from "../../theme/index"
 import { ChildStyleProps, styleChild } from "../../theme/styles/child"
@@ -34,7 +34,7 @@ export function ViewSwitch(props: ViewSwitchProps) {
                 props.className,
                 Styles.ViewSwitch,
                 props.value && Styles.ok,
-                classnameDimension(props)
+                classnameCommon(props)
             )}
             type="button"
             disabled={props.enabled === false ? true : undefined}

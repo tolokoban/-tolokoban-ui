@@ -1,7 +1,11 @@
 import * as React from "react"
 
 import { Theme } from "@/theme"
-import { CommonProps, styleCommon } from "@/theme/styles/common"
+import {
+    classnameCommon,
+    CommonProps,
+    styleCommon,
+} from "@/theme/styles/common"
 
 import Styles from "./Stack.module.css"
 import { ensureArray } from "@/util/ensure"
@@ -40,7 +44,14 @@ export function ViewStack(props: ViewStackProps): JSX.Element {
         })
     }, [children, value])
     return (
-        <div className={$.join(props.className, Styles.stack)} style={style}>
+        <div
+            className={$.join(
+                props.className,
+                Styles.stack,
+                classnameCommon(props)
+            )}
+            style={style}
+        >
             {items}
         </div>
     )

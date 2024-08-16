@@ -16,7 +16,7 @@ export function View{{namePascal}}(props: View{{namePascal}}Props): JSX.Element 
     }
     return (
         <div
-            className={$.join(props.className, Styles.{{nameCamel}})}
+            className={$.join(props.className, Styles.{{nameCamel}}, classnameCommon(props))}
             style={style}
         >
         </div>

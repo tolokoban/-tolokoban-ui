@@ -1,11 +1,10 @@
 import * as React from "react"
 
-import { Theme } from "../../theme/index"
+import { classnameCommon, Theme } from "../../theme/index"
 import { ChildStyleProps, styleChild } from "../../theme/styles/child"
 import { ColorStyleProps, styleColor } from "../../theme/styles/color"
 import {
     DimensionStyleProps,
-    classnameDimension,
     styleDimension,
 } from "../../theme/styles/dimension"
 import { PositionStyleProps, stylePosition } from "../../theme/styles/position"
@@ -63,7 +62,7 @@ export function ViewStrip(props: StripProps) {
                 props.className,
                 Styles.Strip,
                 Styles[orientation],
-                classnameDimension(props)
+                classnameCommon(props)
             )}
             style={style}
         >

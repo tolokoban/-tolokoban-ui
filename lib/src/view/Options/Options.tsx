@@ -7,7 +7,7 @@ import { ViewTouchable } from "../Touchable/index.js"
 import {
     CommonProps,
     Theme,
-    classnameDimension,
+    classnameCommon,
     styleColor,
     styleCommon,
 } from "@/theme"
@@ -41,7 +41,7 @@ export function ViewOptions<T>(props: ViewOptionsProps<T>) {
                     Styles.Options,
                     props.className,
                     // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-                    classnameDimension(props)
+                    classnameCommon(props)
                 )}
                 style={{ ...styleCommon(props), ...styleColor(props) }}
             >
