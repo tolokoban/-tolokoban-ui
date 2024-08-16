@@ -4,6 +4,7 @@ import { Theme } from "@/theme"
 import { CommonProps, styleCommon } from "@/theme/styles/common"
 
 import Styles from "./Stack.module.css"
+import { ensureArray } from "@/util/ensure"
 
 const $ = Theme.classNames
 
@@ -13,7 +14,7 @@ export type ViewStackProps = CommonProps & {
      * Children without key will always be visible.
      */
     value?: string | string[]
-    children?: React.JSX.Element[]
+    children?: React.JSX.Element[] | React.JSX.Element
 }
 
 export function ViewStack(props: ViewStackProps): JSX.Element {
@@ -29,7 +30,7 @@ export function ViewStack(props: ViewStackProps): JSX.Element {
                 return Array.isArray(value) ? value : [value]
             })()
         )
-        return (children ?? []).filter((child) => {
+        return ensureArray(children).filter((child) => {
             if (!child.key) {
                 // Children without a key are always displayed.
                 return true
