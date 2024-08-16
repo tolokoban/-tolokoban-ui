@@ -1,9 +1,5 @@
 const Path = require("path")
 const FS = require("fs")
-// const { fileURLToPath } = require("url")
-// const __filename = fileURLToPath(import.meta.url)
-// const __dirname = Path.dirname(__filename)
-
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const CopyPlugin = require("copy-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")

@@ -1,5 +1,5 @@
 /**
- * 2024-06-12T13:48:24.663Z
+ * 2024-08-16T09:12:19.504Z
  *
  * This file has been automatically generated with:
  * npm run generate
@@ -35,6 +35,7 @@ export default function ViewsLayout({ children }: { children: React.ReactNode })
             <Link hash="/view/Scroll">Scroll</Link>
             <Link hash="/view/Slider">Slider</Link>
             <Link hash="/view/Spinner">Spinner</Link>
+            <Link hash="/view/Stack">Stack</Link>
             <Link hash="/view/Strip">Strip</Link>
             <Link hash="/view/Switch">Switch</Link>
             <Link hash="/view/Tabs">Tabs</Link>

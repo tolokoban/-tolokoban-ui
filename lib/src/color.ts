@@ -82,7 +82,7 @@ export default class Color {
         let bestContrast = Math.abs(bgLightness - fgLightnesses[0])
         for (let index = 1; index < fgColors.length; index++) {
             const contrast = Math.abs(bgLightness - fgLightnesses[index])
-            if (contrast < bestContrast) {
+            if (contrast > bestContrast) {
                 bestIndex = index
                 bestContrast = contrast
             }

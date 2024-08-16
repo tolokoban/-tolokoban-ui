@@ -41,6 +41,7 @@ export const ROUTES: Record<RoutePath, string[]> = {
     "/view/Scroll": ["/view/Scroll"],
     "/view/Slider": ["/view/Slider"],
     "/view/Spinner": ["/view/Spinner"],
+    "/view/Stack": ["/view/Stack"],
     "/view/Strip": ["/view/Strip"],
     "/view/Switch": ["/view/Switch"],
     "/view/Tabs": ["/view/Tabs"],

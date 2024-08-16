@@ -45,10 +45,11 @@ const Page59 = React.lazy(() => import("./view/Read/page"))
 const Page62 = React.lazy(() => import("./view/Scroll/page"))
 const Page65 = React.lazy(() => import("./view/Slider/page"))
 const Page68 = React.lazy(() => import("./view/Spinner/page"))
-const Page71 = React.lazy(() => import("./view/Strip/page"))
-const Page74 = React.lazy(() => import("./view/Switch/page"))
-const Page77 = React.lazy(() => import("./view/Tabs/page"))
-const Page80 = React.lazy(() => import("./view/Touchable/page"))
+const Page71 = React.lazy(() => import("./view/Stack/page"))
+const Page74 = React.lazy(() => import("./view/Strip/page"))
+const Page77 = React.lazy(() => import("./view/Switch/page"))
+const Page80 = React.lazy(() => import("./view/Tabs/page"))
+const Page83 = React.lazy(() => import("./view/Touchable/page"))
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function App({ lang }: { lang?: string }) {
@@ -87,6 +88,7 @@ export default function App({ lang }: { lang?: string }) {
     const pg74 = Page74
     const pg77 = Page77
     const pg80 = Page80
+    const pg83 = Page83
     return (
         <Route path="/" Page={pg0} Layout={ly0} fallback={fb} context={context}>
             <Route path="/api" Page={pg1} fallback={fb} context={context}/>
@@ -203,22 +205,27 @@ export default function App({ lang }: { lang?: string }) {
                         <Route path="/view/Spinner/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Strip" Page={pg71} fallback={fb} context={context}>
+                <Route path="/view/Stack" Page={pg71} fallback={fb} context={context}>
+                    <Route path="/view/Stack/demo" fallback={fb} context={context}>
+                        <Route path="/view/Stack/demo/Default" fallback={fb} context={context}/>
+                    </Route>
+                </Route>
+                <Route path="/view/Strip" Page={pg74} fallback={fb} context={context}>
                     <Route path="/view/Strip/demo" fallback={fb} context={context}>
                         <Route path="/view/Strip/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Switch" Page={pg74} fallback={fb} context={context}>
+                <Route path="/view/Switch" Page={pg77} fallback={fb} context={context}>
                     <Route path="/view/Switch/demo" fallback={fb} context={context}>
                         <Route path="/view/Switch/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Tabs" Page={pg77} fallback={fb} context={context}>
+                <Route path="/view/Tabs" Page={pg80} fallback={fb} context={context}>
                     <Route path="/view/Tabs/demo" fallback={fb} context={context}>
                         <Route path="/view/Tabs/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Touchable" Page={pg80} fallback={fb} context={context}>
+                <Route path="/view/Touchable" Page={pg83} fallback={fb} context={context}>
                     <Route path="/view/Touchable/demo" fallback={fb} context={context}>
                         <Route path="/view/Touchable/demo/Default" fallback={fb} context={context}/>
                     </Route>
