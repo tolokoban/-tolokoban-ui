@@ -50,23 +50,23 @@
     outline-color: var(--custom-color-main);
 }
 
-.elevated,
-.filled {
+.Button.elevated,
+.Button.filled {
     background: var(--custom-color-main);
     color: var(--custom-color-text);
 }
 
-.elevated {
+.Button.elevated {
     box-shadow: 0 0.125em 0.25em #0007;
 }
 
-.outlined {
+.Button.outlined {
     border: var(--custom-thickness) solid var(--custom-color-main);
     color: var(--custom-color-main);
     background: transparent;
 }
 
-.text {
+.Button.text {
     color: var(--custom-color-text);
     background: transparent;
 }

@@ -47,6 +47,11 @@ export type ViewButtonProps = {
      */
     onClick?: string | ((this: void) => void)
     /**
+     * If the button is a link (onClick is a string),
+     * then `target` is used to open in a new tab.
+     */
+    target?: string
+    /**
      * Default to `true`.
      *
      * If set to `false`, the button cannot get the focus and cannot be clicked.
@@ -88,8 +93,16 @@ export function ViewButton(partialProps: ViewButtonProps) {
         variant: "elevated",
         thickness: 0.125,
     })
-    const { className, children, label, enabled, variant, onClick, waiting } =
-        props
+    const {
+        className,
+        children,
+        label,
+        enabled,
+        variant,
+        onClick,
+        waiting,
+        target,
+    } = props
     const { color } = partialProps
     const thickness = cssForGaps(props.thickness)
     const style: React.CSSProperties = {
@@ -122,6 +135,7 @@ export function ViewButton(partialProps: ViewButtonProps) {
                     !enabled && !waiting && Styles.disabled,
                     classnameCommon(props)
                 )}
+                target={target}
                 href={onClick}
             >
                 {body}

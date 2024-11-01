@@ -9,8 +9,13 @@ interface LinkProps {
 }
 
 export default function Link(props: LinkProps) {
+    const isCurrent = props.hash === window.location.hash.substring(1)
     return (
-        <ViewButton className={Style.Link} onClick={`#${props.hash}`}>
+        <ViewButton
+            className={Style.Link}
+            onClick={`#${props.hash}`}
+            variant={isCurrent ? "outlined" : "elevated"}
+        >
             {props.children}
         </ViewButton>
     )

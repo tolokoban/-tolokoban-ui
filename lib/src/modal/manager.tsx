@@ -15,7 +15,7 @@ import {
 
 import { GenericEvent } from "../util/event"
 
-import Styles from "./manager.module.css"
+import styles from "./manager.module.css"
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const EMPTY_FUNCTION = () => {}
@@ -78,7 +78,7 @@ export default class ModalManager implements ModalManagerInterface {
             const hide = this.show({
                 ...params,
                 content: (
-                    <div className={Styles.wait}>
+                    <div className={styles.wait}>
                         <ViewSpinner>{content}</ViewSpinner>
                     </div>
                 ),
@@ -102,21 +102,11 @@ export default class ModalManager implements ModalManagerInterface {
         params?: Partial<Omit<ModalParams, "content">>
     ): Promise<T> {
         const event = new GenericEvent<React.ReactNode>()
-        const View = () => {
-            const [body, setBody] = React.useState<React.ReactNode>(
-                <IconGear animate />
-            )
-            React.useEffect(() => {
-                event.addListener(setBody)
-                return () => event.removeListener(setBody)
-            }, [])
-            return body
-        }
         const hide = this.show({
             ...params,
             content: (
-                <div className={Styles.wait}>
-                    <View />
+                <div className={styles.wait}>
+                    <ProgressBody event={event} />
                 </div>
             ),
         })
@@ -144,7 +134,7 @@ export default class ModalManager implements ModalManagerInterface {
                             },
                         }}
                     >
-                        <div className={Styles.error}>
+                        <div className={styles.error}>
                             {renderHumanFriendlyErrorContent(content)}
                         </div>
                     </ViewDialog>
@@ -243,4 +233,18 @@ export function renderHumanFriendlyErrorContent(content: unknown): Children {
     if (typeof content === "object" && React.isValidElement(content))
         return content
     return <pre>{JSON5.stringify(content, null, "  ")}</pre>
+}
+
+function ProgressBody({ event }: { event: GenericEvent<React.ReactNode> }) {
+    const [body, setBody] = React.useState<React.ReactNode>(
+        <>
+            <IconGear animate />
+            <div>Please wait...</div>
+        </>
+    )
+    React.useEffect(() => {
+        event.addListener(setBody)
+        return () => event.removeListener(setBody)
+    }, [event])
+    return body
 }

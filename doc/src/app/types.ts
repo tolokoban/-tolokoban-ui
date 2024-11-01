@@ -11,10 +11,12 @@ export type RoutePath =
     | "/"
     | "/api"
     | "/icons"
+    | "/reference"
     | "/test"
     | "/view"
     | "/view/Button"
     | "/view/Chip"
+    | "/view/CodeHighlighter"
     | "/view/Combo"
     | "/view/Dialog"
     | "/view/DragAndDrop"
@@ -42,7 +44,7 @@ export type RoutePath =
     | "/view/Touchable"
 
 export function isRoutePath(path: string): path is RoutePath {
-    return ["/","/api","/icons","/test","/view","/view/Button","/view/Chip","/view/Combo","/view/Dialog","/view/DragAndDrop","/view/FloatingButton","/view/InputColor","/view/InputFile","/view/InputImage","/view/InputMultiText","/view/InputNumber","/view/InputText","/view/Label","/view/Options","/view/OptionsMultiple","/view/Panel","/view/Progress","/view/Rating","/view/Read","/view/Scroll","/view/Slider","/view/Spinner","/view/Stack","/view/Strip","/view/Switch","/view/Tabs","/view/Touchable"].includes(path)
+    return ["/","/api","/icons","/reference","/test","/view","/view/Button","/view/Chip","/view/CodeHighlighter","/view/Combo","/view/Dialog","/view/DragAndDrop","/view/FloatingButton","/view/InputColor","/view/InputFile","/view/InputImage","/view/InputMultiText","/view/InputNumber","/view/InputText","/view/Label","/view/Options","/view/OptionsMultiple","/view/Panel","/view/Progress","/view/Rating","/view/Read","/view/Scroll","/view/Slider","/view/Spinner","/view/Stack","/view/Strip","/view/Switch","/view/Tabs","/view/Touchable"].includes(path)
 }
 
 export interface RouteMatch {

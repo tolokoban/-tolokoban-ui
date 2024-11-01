@@ -36,7 +36,9 @@ export interface InputColorProps
 
 export function ViewInputColor(props: InputColorProps) {
     const ref = React.useRef<null | HTMLInputElement>(null)
+    const refEditorOpen = React.useRef(false)
     const { value, onChange, size = "M" } = props
+    console.log("<ViewInputColor />", value)
     const style: React.CSSProperties = {
         ...styleDimension(props),
         ...stylePosition(props),
@@ -44,13 +46,24 @@ export function ViewInputColor(props: InputColorProps) {
         fontSize: SIZES[size],
         backgroundColor: value,
     }
-    const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-        onChange?.(evt.target.value)
-    }
+    const handleChange = React.useCallback(
+        (evt: React.ChangeEvent<HTMLInputElement>) => {
+            evt.stopPropagation()
+            evt.preventDefault()
+            if (!refEditorOpen.current) return
+
+            const newColor = evt.target.value
+            console.log("🚀 [InputColor] newColor = ", newColor) // @FIXME: Remove this line written on 2024-11-01 at 10:20
+            onChange?.(newColor)
+            refEditorOpen.current = false
+        },
+        [onChange]
+    )
     const handleClick = () => {
         const input = ref.current
         if (!input) return
 
+        refEditorOpen.current = true
         input.click()
     }
     return (

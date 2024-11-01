@@ -60,7 +60,7 @@ export default function PageIcons() {
             <ViewPanel
                 display="flex"
                 gap="XS"
-                justifyContent="space-around"
+                justifyContent="flex-start"
                 flexWrap="wrap"
             >
                 {names.map((name) => {

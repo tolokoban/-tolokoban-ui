@@ -1,6 +1,7 @@
-// This file has been generated on Fri, 16 Aug 2024 09:41:38 GMT
+// This file has been generated on Fri, 01 Nov 2024 13:09:23 GMT
 export * from "./Button"
 export * from "./Chip"
+export * from "./CodeHighlighter"
 export * from "./Combo"
 export * from "./Dialog"
 export * from "./DragAndDrop"
@@ -87,6 +88,7 @@ export {default as IconGear} from "./icons/IconGear"
 export {default as IconGooglePlayStore} from "./icons/IconGooglePlayStore"
 export {default as IconGpsOff} from "./icons/IconGpsOff"
 export {default as IconGpsOn} from "./icons/IconGpsOn"
+export {default as IconHeart} from "./icons/IconHeart"
 export {default as IconHelp} from "./icons/IconHelp"
 export {default as IconHide} from "./icons/IconHide"
 export {default as IconImage} from "./icons/IconImage"

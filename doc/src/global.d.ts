@@ -29,9 +29,14 @@ declare module "*.webp" {
     export = value
 }
 
+// declare module "*.module.css" {
+//     const content: { [key: string]: string }
+//     export default content
+// }
+
 declare module "*.module.css" {
-    const content: { [key: string]: string }
-    export default content
+    const classes: readonly { [key: string]: string }
+    export = classes
 }
 
 declare module "*.css" {

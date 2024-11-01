@@ -17,10 +17,12 @@ export const ROUTES: Record<RoutePath, string[]> = {
     "/": ["/"],
     "/api": ["/api"],
     "/icons": ["/icons"],
+    "/reference": ["/reference"],
     "/test": ["/test"],
     "/view": ["/view"],
     "/view/Button": ["/view/Button"],
     "/view/Chip": ["/view/Chip"],
+    "/view/CodeHighlighter": ["/view/CodeHighlighter"],
     "/view/Combo": ["/view/Combo"],
     "/view/Dialog": ["/view/Dialog"],
     "/view/DragAndDrop": ["/view/DragAndDrop"],
@@ -144,7 +146,7 @@ class RouteContext {
     constructor(
         private readonly security: [
             RoutePath,
-            (path: RoutePath) => Promise<RoutePath | undefined>
+            (path: RoutePath, hash: string) => Promise<RoutePath | undefined>
         ][]
     ) {
         const hash = this.extractHash(window.location.href)
@@ -173,7 +175,7 @@ class RouteContext {
             for (const [route, access] of this.security) {
                 if (!value.route.startsWith(route)) continue
 
-                const authorizedRoute = await access(value.route)
+                const authorizedRoute = await access(value.route, hash)
                 if (authorizedRoute && authorizedRoute !== value.route) {
                     value = findRouteForPath(authorizedRoute)
                     if (!value) break
@@ -282,7 +284,7 @@ export function useRouteParam<T>(
 }
 
 // Initialize RouteContext with potential access files
-const SECURITY: [RoutePath, (path: RoutePath) => Promise<RoutePath | undefined>][] = [
+const SECURITY: [RoutePath, (path: RoutePath, hash: string) => Promise<RoutePath | undefined>][] = [
 
 ]
 let currentRouteContext: null | RouteContext = null
