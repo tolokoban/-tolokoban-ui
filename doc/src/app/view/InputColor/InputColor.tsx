@@ -1,5 +1,5 @@
 /**
- * 2024-11-01T07:45:25.299Z
+ * 2024-11-01T14:29:21.260Z
  *
  * This file has been automatically generated with:
  * npm run generate
@@ -16,7 +16,7 @@ export default function InputColorDocumentation() {
         <ViewDemo
             description={"# Default usage\n"}
             // eslint-disable-next-line no-template-curly-in-string
-            example={"import React from \"react\"\nimport { ViewInputColor, ViewPanel } from \"@tolokoban/ui\"\n\nexport default function Demo() {\n    const [color, setColor] = React.useState(\"#F90\")\n    return (\n        <div>\n            <ViewPanel\n                display=\"inline-flex\"\n                flexDirection=\"column\"\n                alignItems=\"stretch\"\n                width=\"auto\"\n            >\n                <ViewInputColor\n                    value={color}\n                    onChange={setColor}\n                    label=\"My favourite color\"\n                />\n            </ViewPanel>\n        </div>\n    )\n}\n"}
+            example={"import React from \"react\"\nimport { ViewInputColor, ViewPanel } from \"@tolokoban/ui\"\n\nexport default function Demo() {\n    const [color, setColor] = React.useState(\"#F90\")\n    const [color2, setColor2] = React.useState(\"rgb(240, 160, 0)\")\n    return (\n        <div>\n            <ViewPanel\n                display=\"inline-flex\"\n                flexDirection=\"column\"\n                alignItems=\"stretch\"\n                width=\"auto\"\n            >\n                <ViewInputColor\n                    value={color}\n                    onChange={setColor}\n                    label=\"My best color\"\n                />\n                <ViewInputColor\n                    value={color2}\n                    onChange={setColor2}\n                    label=\"My worst color\"\n                />\n            </ViewPanel>\n        </div>\n    )\n}\n"}
         >
             <DemoDefault />
         </ViewDemo>
