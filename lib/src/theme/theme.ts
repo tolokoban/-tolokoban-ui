@@ -108,6 +108,12 @@ export class Theme {
                     Color.isLight(color) ? "dark" : "light"
                 })`
             )
+            for (let opacity = 1; opacity < 10; opacity++) {
+                this.add(
+                    `color-on-${name}-${index}-${opacity}`,
+                    `var(--theme-color-on-${name}-${index})`
+                )
+            }
             index++
         }
         this.add(`color-${name}`, `var(--theme-color-${name}-5)`)
