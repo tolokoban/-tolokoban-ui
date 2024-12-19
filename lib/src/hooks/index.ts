@@ -1,4 +1,5 @@
 export * from "./debounced-effect"
+export * from "./event"
 export * from "./hotkey"
 export * from "./local-storage-state"
 export * from "./resize-observer"
