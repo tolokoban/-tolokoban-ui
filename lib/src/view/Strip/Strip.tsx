@@ -27,7 +27,7 @@ export interface StripProps
      * must expand its size to this fraction.
      *
      * for instance, "-1-2--" means:
-     * `auto minmax(0, 1fr) auto minmax(0, 2fr) auto auto`.
+     * `auto minmax(0, 1fr) auto minmax(0, 2fr) auto auto`.`
      *
      * Default to "-1".
      */
