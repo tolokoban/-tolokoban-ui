@@ -30,16 +30,21 @@ export type ViewTabsProps = ColorStyleProps &
         children:
             | React.ReactElement<ViewTabProps>
             | React.ReactElement<ViewTabProps>[]
+            | boolean
+            | null
+            | undefined
     }
 
 export function ViewTabs(props: ViewTabsProps) {
     const {
         className,
-        children,
+        children: rawChildren,
         orientation = "horizontal",
         value,
         onChange,
     } = props
+    const children: React.ReactElement<ViewTabProps>[] =
+        filterChildren(rawChildren)
     const tabs: Array<React.ReactElement<ViewTabProps> & { key: string }> =
         addMissingKeys(children)
     const [tabKey, setTabKey] = React.useState(value ?? tabs[0]?.key ?? "Tab#0")
@@ -113,3 +118,19 @@ function addMissingKeys(
         </ViewTab>
     )) as Array<React.ReactElement<ViewTabProps> & { key: string }>
 }
+
+function filterChildren(
+    children:
+        | React.ReactElement<ViewTabProps>
+        | React.ReactElement<ViewTabProps>[]
+        | boolean
+        | null
+        | undefined
+): React.ReactElement<ViewTabProps>[] {
+    if (!children || children === true) return []
+
+    if (Array.isArray(children)) return children
+
+    return [children]
+}
+
