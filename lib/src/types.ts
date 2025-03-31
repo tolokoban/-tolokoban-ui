@@ -47,10 +47,13 @@ export type OpaqueColorName =
     | "error"
     | "on-error"
 
-export type Circumference =
+export type Gap =
     | string
     | number
     | [vertical: string | number, horizontal: string | number]
+
+export type Circumference =
+    | Gap
     | [
           top: string | number,
           right: string | number,

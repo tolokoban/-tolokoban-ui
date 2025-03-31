@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { classnameCommon, Theme } from "../../theme/index"
+import { classnameCommon, cssForGaps, Theme } from "../../theme/index"
 import { ChildStyleProps, styleChild } from "../../theme/styles/child"
 import { ColorStyleProps, styleColor } from "../../theme/styles/color"
 import {
@@ -8,7 +8,7 @@ import {
     styleDimension,
 } from "../../theme/styles/dimension"
 import { PositionStyleProps, stylePosition } from "../../theme/styles/position"
-import { Children } from "../../types"
+import { Children, Gap } from "../../types"
 
 import Styles from "./Strip.module.css"
 
@@ -32,16 +32,20 @@ export interface StripProps
      * Default to "-1".
      */
     template?: string
+    gap?: Gap
     children: Children
 }
 
 export function ViewStrip(props: StripProps) {
-    const { orientation = "column", template = "-1" } = props
+    const { orientation = "column", template = "-1", gap } = props
     const style: React.CSSProperties = {
         ...styleDimension(props),
         ...stylePosition(props),
         ...styleChild(props),
         ...styleColor(props),
+    }
+    if (gap) {
+        style.gap = cssForGaps(gap)
     }
     const templateDef = template
         .split("")
