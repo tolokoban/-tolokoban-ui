@@ -30,9 +30,6 @@ export type ViewTabsProps = ColorStyleProps &
         children:
             | React.ReactElement<ViewTabProps>
             | React.ReactElement<ViewTabProps>[]
-            | boolean
-            | null
-            | undefined
     }
 
 export function ViewTabs(props: ViewTabsProps) {
@@ -123,14 +120,10 @@ function filterChildren(
     children:
         | React.ReactElement<ViewTabProps>
         | React.ReactElement<ViewTabProps>[]
-        | boolean
-        | null
-        | undefined
 ): React.ReactElement<ViewTabProps>[] {
-    if (!children || children === true) return []
+    if (Array.isArray(children))
+        return children.filter((child) => Boolean(child.props.children))
 
-    if (Array.isArray(children)) return children
-
-    return [children]
+    return children.props.children ? [children] : []
 }
 

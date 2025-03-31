@@ -1,7 +1,6 @@
 import React from "react"
 
 import { Theme } from "../../theme/index.js"
-import { Children } from "../../types.js"
 
 import Styles from "./Tab.module.css"
 
@@ -10,8 +9,8 @@ const $ = Theme.classNames
 export interface ViewTabProps {
     className?: string
     /** Label of the tab. Displayed in the header. */
-    label: Children
-    children: Children
+    label: React.ReactNode
+    children?: React.ReactNode
 }
 
 export function ViewTab({ className, children }: ViewTabProps) {
