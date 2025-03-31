@@ -26,6 +26,7 @@ const $ = Theme.classNames
 
 export type ViewPanelProps = {
     className?: string
+    style?: React.CSSProperties
     id?: string
     children?: Children
     /** CSS `borderRadius` property. */
@@ -65,6 +66,7 @@ export function ViewPanel(props: ViewPanelProps) {
         ...styleDisplay(props),
         ...stylePosition(props),
         ...styleChild(props),
+        ...props.style,
     }
     if (borderRadius) style.borderRadius = cssForGaps(borderRadius)
     return (
