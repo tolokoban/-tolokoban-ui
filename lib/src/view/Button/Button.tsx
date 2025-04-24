@@ -154,7 +154,13 @@ export function ViewButton(partialProps: ViewButtonProps) {
             )}
             disabled={!enabled || waiting}
             type="button"
-            onClick={onClick}
+            onClick={(evt) => {
+                if (!onClick) return
+
+                evt.preventDefault()
+                evt.stopPropagation()
+                onClick()
+            }}
         >
             {body}
         </button>

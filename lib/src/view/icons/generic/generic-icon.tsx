@@ -38,7 +38,13 @@ export default function GenericIcon(props: GenericIconProps) {
             style={style}
             viewBox="0 0 24 24"
             preserveAspectRatio="xMidYMid meet"
-            onClick={() => props.onClick?.()}
+            onClick={(evt) => {
+                if (!props.onClick) return
+
+                evt.preventDefault()
+                evt.stopPropagation()
+                props.onClick()
+            }}
             tabIndex={props.onClick ? 1 : undefined}
             strokeWidth={1.5}
         >

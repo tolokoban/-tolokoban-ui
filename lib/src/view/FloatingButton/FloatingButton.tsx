@@ -68,7 +68,13 @@ export function ViewFloatingButton(props: FloatingButtonProps) {
             )}
             disabled={!enabled}
             type="button"
-            onClick={props.onClick}
+            onClick={(evt) => {
+                if (!props.onClick) return
+
+                evt.preventDefault()
+                evt.stopPropagation()
+                props.onClick()
+            }}
             style={style}
         >
             <>
