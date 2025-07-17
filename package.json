@@ -1,6 +1,6 @@
 {
     "name": "@tolokoban/ui",
-    "version": "0.22.0",
+    "version": "0.22.1",
     "description": "React components with theme",
     "homepage": "https://tolokoban.github.io/ui",
     "main": "./lib/dist/index.js",
