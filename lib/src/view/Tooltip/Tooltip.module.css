@@ -5,10 +5,12 @@
 
 .tooltip > div.content {
     position: absolute;
-    bottom: calc(-1em - 100%);
-    left: -1em;
+    bottom: 0;
+    left: 50%;
+    width: max-content;
     background: inherit;
     background-color: inherit;
+    transform: translate(-50%, calc(1em + 100%));
     z-index: 999999;
     pointer-events: none;
     transition: opacity 0.2s;
@@ -26,7 +28,7 @@
     position: absolute;
     width: 0;
     height: 0;
-    left: 1em;
+    left: 50%;
     top: -2em;
     transform: scale(0.5, 1);
 }
