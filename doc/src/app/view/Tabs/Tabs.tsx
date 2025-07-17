@@ -1,5 +1,5 @@
 /**
- * 2025-03-31T13:37:38.537Z
+ * 2025-07-17T13:24:39.356Z
  *
  * This file has been automatically generated with:
  * npm run generate
@@ -16,7 +16,7 @@ export default function TabsDocumentation() {
         <ViewDemo
             description={"# Default usage\n"}
             // eslint-disable-next-line no-template-curly-in-string
-            example={"import React from \"react\"\nimport { ViewTabs, ViewTab } from \"@tolokoban/ui\"\n\nexport default function Demo() {\n    return (\n        <ViewTabs>\n            <ViewTab label=\"Lorem\">\n                Voluptas dicta totam rerum dolorem id. Magnam autem ut repellat\n                aut facere beatae numquam. Aut minus at ratione non suscipit. At\n                hic sed quod.\n            </ViewTab>\n            <ViewTab label=\"Ipsum\">\n                Non deleniti labore et ad doloremque eius consectetur. Sit qui\n                eum sed inventore incidunt nihil qui nobis. Molestiae provident\n                sint sed amet nostrum.\n            </ViewTab>\n        </ViewTabs>\n    )\n}\n"}
+            example={"import React from \"react\"\nimport { ViewTabs, ViewTab } from \"@tolokoban/ui\"\n\nexport default function Demo() {\n    const tab = (\n        <ViewTab label=\"Lorem\">\n            Voluptas dicta totam rerum dolorem id. Magnam autem ut repellat aut\n            facere beatae numquam. Aut minus at ratione non suscipit. At hic sed\n            quod.\n        </ViewTab>\n    )\n\n    return (\n        <ViewTabs>\n            <ViewTab label=\"Lorem\">\n                Voluptas dicta totam rerum dolorem id. Magnam autem ut repellat\n                aut facere beatae numquam. Aut minus at ratione non suscipit. At\n                hic sed quod.\n            </ViewTab>\n            <ViewTab label=\"Ipsum\">\n                Non deleniti labore et ad doloremque eius consectetur. Sit qui\n                eum sed inventore incidunt nihil qui nobis. Molestiae provident\n                sint sed amet nostrum.\n            </ViewTab>\n            <ViewTab label=\"Invisible Tab\">\n                {false && (\n                    <div>\n                        Voluptas dicta totam rerum dolorem id. Magnam autem ut\n                        repellat aut facere beatae numquam. Aut minus at ratione\n                        non suscipit. At hic sed quod.\n                    </div>\n                )}\n            </ViewTab>\n        </ViewTabs>\n    )\n}\n"}
         >
             <DemoDefault />
         </ViewDemo>

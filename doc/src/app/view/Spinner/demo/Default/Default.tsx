@@ -1,12 +1,18 @@
 import React from "react"
-import { IconGear, ViewPanel, ViewSpinner } from "@tolokoban/ui"
+import {
+    IconBrandBlender,
+    IconCamera,
+    IconGear,
+    ViewPanel,
+    ViewSpinner,
+} from "@tolokoban/ui"
 
 export default function Demo() {
     return (
         <div>
             <ViewSpinner>Waiting for Godot...</ViewSpinner>
             <ViewPanel display="flex" justifyContent="space-around">
-                <ViewSpinner orientation="vertical">
+                <ViewSpinner orientation="vertical" shadow={9}>
                     Vertical orientation
                 </ViewSpinner>
                 <ViewSpinner orientation="vertical" color="primary-5">
@@ -20,7 +26,13 @@ export default function Demo() {
                     Vertical orientation
                 </ViewSpinner>
             </ViewPanel>
-            <ViewSpinner icon={IconGear}>Another icon...</ViewSpinner>
+            <ViewPanel display="flex" justifyContent="space-around" padding="M">
+                <ViewSpinner icon={IconGear}>Another icon...</ViewSpinner>
+                <ViewSpinner color="neutral-1" icon={IconBrandBlender}>
+                    Another icon...
+                </ViewSpinner>
+                <ViewSpinner icon={IconCamera}>Another icon...</ViewSpinner>
+            </ViewPanel>
         </div>
     )
 }

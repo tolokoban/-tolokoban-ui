@@ -1,0 +1,32 @@
+.tooltip {
+    position: relative;
+    overflow: visible;
+}
+
+.tooltip > div.content {
+    position: absolute;
+    bottom: calc(-1em - 100%);
+    left: -1em;
+    background: inherit;
+    background-color: inherit;
+    z-index: 999999;
+    pointer-events: none;
+    transition: opacity 0.2s;
+    opacity: 0;
+}
+
+.tooltip:hover > div.content {
+    opacity: 1;
+}
+
+.tooltip > div.content::after {
+    content: "";
+    border: 1em solid transparent;
+    border-bottom: 1em solid var(--custom-back);
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 1em;
+    top: -2em;
+    transform: scale(0.5, 1);
+}

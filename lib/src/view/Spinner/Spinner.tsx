@@ -5,6 +5,7 @@ import IconLoading from "../icons/IconLoading"
 import { Children } from "../../types.js"
 
 import Styles from "./Spinner.module.css"
+import { SpaceStyleProps, styleSpace } from "@/theme"
 
 export type ViewSpinnerProps = {
     className?: string
@@ -18,7 +19,7 @@ export type ViewSpinnerProps = {
      */
     orientation?: "horizontal" | "vertical"
     children?: Children
-} & ColorStyleProps
+} & ColorStyleProps & SpaceStyleProps
 
 export function ViewSpinner({
     className,
@@ -28,6 +29,14 @@ export function ViewSpinner({
     ...props
 }: ViewSpinnerProps) {
     const SpinningIcon = icon
+    const style: React.CSSProperties={
+        ...styleColor(props),        
+        ...styleSpace({
+            padding: "M",
+            borderRadius: "S",
+            ...props})
+    }
+
     return (
         <div
             className={`${
@@ -35,7 +44,7 @@ export function ViewSpinner({
                     ? Styles.SpinnerHorizontal
                     : Styles.SpinnerVertical
             } ${className ?? ""}`}
-            style={styleColor(props)}
+            style={style}
         >
             <SpinningIcon animate={true} />
             {children && <div>{children}</div>}

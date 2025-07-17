@@ -51,7 +51,8 @@ const Page75 = React.lazy(() => import("./view/Stack/page"))
 const Page78 = React.lazy(() => import("./view/Strip/page"))
 const Page81 = React.lazy(() => import("./view/Switch/page"))
 const Page84 = React.lazy(() => import("./view/Tabs/page"))
-const Page87 = React.lazy(() => import("./view/Touchable/page"))
+const Page87 = React.lazy(() => import("./view/Tooltip/page"))
+const Page90 = React.lazy(() => import("./view/Touchable/page"))
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function App({ lang }: { lang?: string }) {
@@ -93,6 +94,7 @@ export default function App({ lang }: { lang?: string }) {
     const pg81 = Page81
     const pg84 = Page84
     const pg87 = Page87
+    const pg90 = Page90
     return (
         <Route path="/" Page={pg0} Layout={ly0} fallback={fb} context={context}>
             <Route path="/api" Page={pg1} fallback={fb} context={context}/>
@@ -235,7 +237,12 @@ export default function App({ lang }: { lang?: string }) {
                         <Route path="/view/Tabs/demo/Default" fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Touchable" Page={pg87} fallback={fb} context={context}>
+                <Route path="/view/Tooltip" Page={pg87} fallback={fb} context={context}>
+                    <Route path="/view/Tooltip/demo" fallback={fb} context={context}>
+                        <Route path="/view/Tooltip/demo/Default" fallback={fb} context={context}/>
+                    </Route>
+                </Route>
+                <Route path="/view/Touchable" Page={pg90} fallback={fb} context={context}>
                     <Route path="/view/Touchable/demo" fallback={fb} context={context}>
                         <Route path="/view/Touchable/demo/Default" fallback={fb} context={context}/>
                     </Route>

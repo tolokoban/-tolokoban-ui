@@ -1,5 +1,5 @@
 /**
- * 2025-03-31T13:37:38.538Z
+ * 2025-07-17T13:24:39.358Z
  *
  * This file has been automatically generated with:
  * npm run generate
@@ -40,6 +40,7 @@ export default function ViewsLayout({ children }: { children: React.ReactNode })
             <Link hash="/view/Strip">Strip</Link>
             <Link hash="/view/Switch">Switch</Link>
             <Link hash="/view/Tabs">Tabs</Link>
+            <Link hash="/view/Tooltip">Tooltip</Link>
             <Link hash="/view/Touchable">Touchable</Link>
         </ViewPanel>
         <ViewPanel color="neutral-5" flex="1 1 auto">{children}</ViewPanel>
