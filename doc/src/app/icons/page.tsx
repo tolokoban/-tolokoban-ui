@@ -5,6 +5,7 @@ import {
     ViewInputText,
     ViewOptions,
     ViewPanel,
+    ViewTooltip,
     ViewTouchable,
 } from "@tolokoban/ui"
 

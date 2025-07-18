@@ -30,5 +30,28 @@
     height: 0;
     left: 50%;
     top: -2em;
+    margin-left: -1em;
     transform: scale(0.5, 1);
+}
+
+.tooltip > div.content.top-left {
+    left: max(calc(100% - 1em), 50%);
+    right: auto;
+    transform: translate(calc(-1em), calc(1em + 100%));
+}
+
+.tooltip > div.content.top-left::after {
+    left: 1em;
+    right: auto;
+}
+
+.tooltip > div.content.top-right {
+    left: auto;
+    right: 0;
+    transform: translate(calc(1em - 100%), calc(1em + 100%));
+}
+
+.tooltip > div.content.top-right::after {
+    left: auto;
+    right: 0;
 }

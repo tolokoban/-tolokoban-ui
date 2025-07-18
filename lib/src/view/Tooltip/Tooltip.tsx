@@ -25,6 +25,7 @@ export interface tooltipProps
     className?: string
     content?: React.ReactNode
     children?: React.ReactNode
+    attach?: "top" | "top-left" | "top-right"
 }
 
 export function ViewTooltip(props: tooltipProps) {
@@ -36,7 +37,8 @@ export function ViewTooltip(props: tooltipProps) {
     const styleContent: React.CSSProperties = {
         ...styleDimension(props),
         ...styleColor({
-            backColor: "primary-8",
+            shadow: 3,
+            color: "primary-8",
             ...props,
         }),
         ...styleSpace({
@@ -46,7 +48,7 @@ export function ViewTooltip(props: tooltipProps) {
         }),
     }
     styleContent["--custom-back"] = styleContent.backgroundColor
-    const { content, children } = props
+    const { content, children, attach = "top" } = props
 
     return (
         <div
@@ -56,7 +58,11 @@ export function ViewTooltip(props: tooltipProps) {
         >
             {children}
             {content && (
-                <div className={Styles.content} style={styleContent} id={id}>
+                <div
+                    className={[Styles.content, Styles[attach]].join(" ")}
+                    style={styleContent}
+                    id={id}
+                >
                     {content}
                 </div>
             )}

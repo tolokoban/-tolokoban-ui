@@ -27,6 +27,45 @@ root.render(
     </React.StrictMode>
 )
 `}</Highlight>
+            <h2>Customization</h2>
+            <p>
+                You can use `customizeView()` to create new Views with
+                predefined properties.
+            </p>
+            <Highlight>{`import React from "react"
+import {
+    customizeView,
+    IconArrowDown,
+    IconArrowLeft,
+    IconArrowRight,
+    ViewInputColor,
+    ViewInputText,
+    ViewPanel,
+    ViewTooltip,
+} from "@tolokoban/ui"
+
+const Flex = customizeView(ViewPanel, {
+    display: "flex",
+    justifyContent: "space-around",
+    alignItems: "center",
+})
+
+export default function Demo() {
+    return (
+        <Flex>
+            <ViewTooltip content="attach = top-right" attach="top-right">
+                <IconArrowLeft size="L" />
+            </ViewTooltip>
+            <ViewTooltip content="attach = top" attach="top" shadow={5}>
+                <IconArrowDown size="L" />
+            </ViewTooltip>
+            <ViewTooltip content="attach = top-left" attach="top-left">
+                <IconArrowRight size="L" />
+            </ViewTooltip>
+        </Flex>
+    )
+}
+`}</Highlight>
         </div>
     )
 }
