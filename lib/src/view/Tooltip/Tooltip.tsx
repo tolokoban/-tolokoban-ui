@@ -25,7 +25,7 @@ export interface tooltipProps
     className?: string
     content?: React.ReactNode
     children?: React.ReactNode
-    attach?: "top" | "top-left" | "top-right"
+    attach?: "top" | "top-left" | "top-right" | "bottom"
 }
 
 export function ViewTooltip(props: tooltipProps) {

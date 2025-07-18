@@ -5,8 +5,10 @@
 
 .tooltip > div.content {
     position: absolute;
+    top: auto;
     bottom: 0;
     left: 50%;
+    right: auto;
     width: max-content;
     background: inherit;
     background-color: inherit;
@@ -29,7 +31,9 @@
     width: 0;
     height: 0;
     left: 50%;
+    right: auto;
     top: -2em;
+    bottom: auto;
     margin-left: -1em;
     transform: scale(0.5, 1);
 }
@@ -47,11 +51,24 @@
 
 .tooltip > div.content.top-right {
     left: auto;
-    right: 0;
-    transform: translate(calc(1em - 100%), calc(1em + 100%));
+    right: max(calc(100% - 1em), 50%);
+    transform: translate(1em, calc(1em + 100%));
 }
 
 .tooltip > div.content.top-right::after {
     left: auto;
     right: 0;
+}
+
+.tooltip > div.content.bottom {
+    top: 0;
+    bottom: auto;
+    transform: translate(-50%, calc(-1em - 100%));
+}
+
+.tooltip > div.content.bottom::after {
+    border: 1em solid transparent;
+    border-top: 1em solid var(--custom-back);
+    top: auto;
+    bottom: -2em;
 }

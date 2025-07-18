@@ -4,6 +4,7 @@ import {
     IconArrowDown,
     IconArrowLeft,
     IconArrowRight,
+    IconArrowUp,
     ViewInputColor,
     ViewInputText,
     ViewPanel,
@@ -26,7 +27,7 @@ export default function Demo() {
                 <ViewTooltip content="attach = top-right" attach="top-right">
                     <IconArrowLeft size="L" />
                 </ViewTooltip>
-                <ViewTooltip content="attach = top" attach="top" shadow={5}>
+                <ViewTooltip content="attach = bottom" attach="bottom">
                     <IconArrowDown size="L" />
                 </ViewTooltip>
                 <ViewTooltip content="attach = top-left" attach="top-left">
@@ -35,13 +36,19 @@ export default function Demo() {
             </Flex>
             <ViewTooltip content="top-right" attach="top-right">
                 <ViewTooltip content="top-left" attach="top-left">
-                    <ViewSpinner
-                        orientation="vertical"
-                        color="tertiary-5"
-                        shadow={1}
+                    <ViewTooltip
+                        content={<IconArrowUp />}
+                        attach="top"
+                        padding="XS"
                     >
-                        All around!
-                    </ViewSpinner>
+                        <ViewSpinner
+                            orientation="vertical"
+                            color="tertiary-5"
+                            shadow={1}
+                        >
+                            All around!
+                        </ViewSpinner>
+                    </ViewTooltip>
                 </ViewTooltip>
             </ViewTooltip>
             <ViewTooltip
