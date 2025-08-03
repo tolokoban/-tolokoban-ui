@@ -19,7 +19,8 @@
     opacity: 0;
 }
 
-.tooltip:hover > div.content {
+.tooltip:hover > div.content,
+.tooltip:active > div.content {
     opacity: 1;
 }
 
