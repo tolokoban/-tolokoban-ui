@@ -74,22 +74,21 @@ export default function PageIcons() {
                             key={name}
                             onClick={() => handleIconClick(id)}
                         >
-                            <ViewPanel
-                                id={id}
-                                key={name}
-                                shadow={2}
-                                className={Styles.icon}
-                                tooltip={`import { Icon${name} } from "@tolokoban/ui"`}
-                                color="primary-9"
-                                display="grid"
-                                placeItems="center"
-                                padding="M"
-                            >
-                                <Icon size="XL" type={type} />
-                                <ViewPanel padding="S" color="primary-3">
-                                    <small>{name}</small>
+                            <ViewTooltip content={<small>{name}</small>}>
+                                <ViewPanel
+                                    id={id}
+                                    key={name}
+                                    shadow={2}
+                                    className={Styles.icon}
+                                    tooltip={`import { Icon${name} } from "@tolokoban/ui"`}
+                                    color="primary-9"
+                                    display="grid"
+                                    placeItems="center"
+                                    padding="M"
+                                >
+                                    <Icon size="XL" type={type} />
                                 </ViewPanel>
-                            </ViewPanel>
+                            </ViewTooltip>
                         </ViewTouchable>
                     )
                 })}
