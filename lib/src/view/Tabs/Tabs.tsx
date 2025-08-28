@@ -9,6 +9,7 @@ import {
     styleDimension,
 } from "../../theme/styles/dimension"
 import { ColorStyleProps, styleColor } from "../../theme/styles/color"
+import { ColorName } from "@/types"
 
 const $ = Theme.classNames
 
@@ -27,6 +28,21 @@ export type ViewTabsProps = ColorStyleProps &
          * @param value Key of the newly activated tab.
          */
         onChange?(this: void, value?: string): void
+        /**
+         * Color of the selection.
+         * Defaults to `primary-5`.
+         */
+        colorAccent?: ColorName
+        /**
+         * CSS size of the outline.
+         * Defaults to `0`.
+         */
+        outline?: string
+        /**
+         * CSS size of the line on the selected tab.
+         * Defaults to `outline` or `4px`.
+         */
+        highlight?: string
         children:
             | React.ReactElement<ViewTabProps>
             | React.ReactElement<ViewTabProps>[]
@@ -39,6 +55,10 @@ export function ViewTabs(props: ViewTabsProps) {
         orientation = "horizontal",
         value,
         onChange,
+        color = "neutral-3",
+        colorAccent = "primary-5",
+        outline = "0",
+        highlight,
     } = props
     const children: React.ReactElement<ViewTabProps>[] =
         filterChildren(rawChildren)
@@ -46,11 +66,17 @@ export function ViewTabs(props: ViewTabsProps) {
         addMissingKeys(children)
     const [tabKey, setTabKey] = React.useState(value ?? tabs[0]?.key ?? "Tab#0")
     const tab = tabs.find((item) => item.key === tabKey)
+
     return (
         <div
             style={{
-                ...styleColor(props),
                 ...styleDimension(props),
+                "--custom-color-back": `var(--theme-color-${color})`,
+                "--custom-color-text": `var(--theme-color-on-${color})`,
+                "--custom-color-highlight-back": `var(--theme-color-${colorAccent})`,
+                "--custom-color-highlight-text": `var(--theme-color-on-${colorAccent})`,
+                "--custom-outline": outline,
+                "--custom-highlight": highlight ?? outline ?? "4px",
             }}
             className={$.join(
                 className,
@@ -126,4 +152,3 @@ function filterChildren(
 
     return children.props.children ? [children] : []
 }
-

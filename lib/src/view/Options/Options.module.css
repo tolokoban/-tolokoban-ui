@@ -18,15 +18,16 @@
     box-shadow: 0 0 1px currentColor;
     display: grid;
     place-items: center;
-}
 
-.button.selected {
-    background-color: var(--theme-color-primary-6);
-    color: var(--theme-color-on-primary-6);
-}
+    &.selected {
+        background-color: var(--theme-color-primary-6);
+        color: var(--theme-color-on-primary-6);
+        font-weight: bold;
+    }
 
-.button.unselected {
-    opacity: 0.667;
-    background-color: var(--theme-color-primary-4);
-    color: var(--theme-color-on-primary-4);
+    &.unselected {
+        opacity: 0.5;
+        background-color: var(--theme-color-primary-4);
+        color: var(--theme-color-on-primary-4);
+    }
 }
