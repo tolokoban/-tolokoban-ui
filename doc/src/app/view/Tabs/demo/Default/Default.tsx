@@ -8,6 +8,8 @@ import {
     ColorName,
     ViewInputText,
     IconBrandLinux,
+    ViewSwitch,
+    ViewLabel,
 } from "@tolokoban/ui"
 import { ViewColorInput } from "@/view/ColorInput"
 
@@ -19,6 +21,7 @@ export default function Demo() {
     const [colorAccent, setColorAccent] = React.useState<ColorName>("primary-5")
     const [outline, setOutline] = React.useState("")
     const [highlight, setHighlight] = React.useState("")
+    const [opposite, setOpposite] = React.useState(false)
 
     return (
         <ViewPanel
@@ -34,6 +37,7 @@ export default function Demo() {
                 colorAccent={colorAccent}
                 outline={outline}
                 highlight={highlight}
+                opposite={opposite}
             >
                 <ViewTab
                     label={
@@ -73,7 +77,12 @@ export default function Demo() {
                     provident sint sed amet nostrum.
                 </ViewTab>
             </ViewTabs>
-            <ViewPanel>
+            <ViewPanel
+                display="flex"
+                justifyContent="space-around"
+                flexWrap="wrap"
+                gap="M"
+            >
                 <ViewOptions
                     value={orientation}
                     onChange={setOrientation}
@@ -82,6 +91,9 @@ export default function Demo() {
                     <div key="horizontal">horizontal</div>
                     <div key="vertical">vertical</div>
                 </ViewOptions>
+                <ViewLabel value="opposite">
+                    <ViewSwitch value={opposite} onChange={setOpposite} />
+                </ViewLabel>
                 <ViewColorInput
                     value={color}
                     onChange={setColor}

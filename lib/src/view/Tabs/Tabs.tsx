@@ -24,6 +24,12 @@ export type ViewTabsProps = ColorStyleProps &
          */
         orientation?: "horizontal" | "vertical"
         /**
+         * If true, the tabs are displayed on the right or on the bottom,
+         * depending on the `orientation`.
+         * Defaults to `false`.
+         */
+        opposite?: boolean
+        /**
          * Callback to call when a new tab is active.
          * @param value Key of the newly activated tab.
          */
@@ -59,6 +65,7 @@ export function ViewTabs(props: ViewTabsProps) {
         colorAccent = "primary-5",
         outline = "0",
         highlight,
+        opposite,
     } = props
     const children: React.ReactElement<ViewTabProps>[] =
         filterChildren(rawChildren)
@@ -66,6 +73,7 @@ export function ViewTabs(props: ViewTabsProps) {
         addMissingKeys(children)
     const [tabKey, setTabKey] = React.useState(value ?? tabs[0]?.key ?? "Tab#0")
     const tab = tabs.find((item) => item.key === tabKey)
+    console.log("🚀 [Tabs] opposite =", opposite) // @FIXME: Remove this line written on 2025-08-28 at 11:31
 
     return (
         <div
@@ -85,7 +93,7 @@ export function ViewTabs(props: ViewTabsProps) {
                 classnameCommon(props)
             )}
         >
-            <header>
+            <header className={opposite && Styles.opposite}>
                 {tabs.map((item) => {
                     const { key } = item
                     return key === tabKey ? (
