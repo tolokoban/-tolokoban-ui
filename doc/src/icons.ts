@@ -1,6 +1,6 @@
 import * as React from "react"
 import { GenericIconProps } from "@tolokoban/ui"
-import { IconAdd, IconArrowDown, IconArrowLeft, IconArrowRight, IconArrowUp, IconBack, IconBook, IconBrandApple, IconBrandBlender, IconBrandDocker, IconBrandFacebook, IconBrandFirefox, IconBrandGithub, IconBrandGoogleChrome, IconBrandGoogleEarth, IconBrandInstagram, IconBrandLinux, IconBrandSafari, IconBrandUbuntu, IconBrandVscode, IconBrandWikipedia, IconBrandYoutube, IconBread, IconBug, IconBullet, IconCamera, IconCancel, IconCenter, IconChecked, IconChevronDoubleDown, IconChevronDoubleLeft, IconChevronDoubleRight, IconChevronDoubleUp, IconChevronDown, IconChevronLeft, IconChevronRight, IconChevronUp, IconClose, IconCode, IconCoffee, IconCurve, IconCut, IconData, IconDelete, IconDraw, IconEdit, IconEditPlaylist, IconExport, IconExternalLink, IconFilter, IconFirst, IconFix, IconFly, IconFocus, IconFormatBold, IconFormatBullets, IconFormatItalic, IconFullscreen, IconGear, IconGooglePlayStore, IconGpsOff, IconGpsOn, IconHeart, IconHelp, IconHide, IconImage, IconImport, IconInvert, IconLanguageCpp, IconLanguageCsharp, IconLanguageJavascript, IconLanguageMarkdown, IconLanguagePython, IconLanguageRust, IconLanguageTypescript, IconLast, IconLightOff, IconLightOn, IconLink, IconLoading, IconLockClose, IconLockOpen, IconLogout, IconMail, IconMap, IconMarker, IconMenu, IconMesh, IconMinusO, IconMore, IconMove, IconMusic, IconOk, IconOrientation, IconPack, IconPassword, IconPause, IconPlay, IconPlug, IconPlusO, IconPoster, IconProfil, IconQrcode, IconQuestion, IconQuote, IconRandom, IconRedo, IconRefresh, IconReload, IconReset, IconRuler, IconSearch, IconSend, IconShare, IconShow, IconSnapshot, IconSpaceInvader, IconSportBike, IconSportBikeFast, IconSportHiking, IconSportRun, IconSportRunFast, IconStar, IconTexture, IconToolBox, IconTpPassword, IconTranslate, IconTree, IconTwitter, IconUnchecked, IconUndo, IconUser, IconWait, IconWarning, IconZoomIn, IconZoomOut } from "@tolokoban/ui"
+import { IconAdd, IconArrowDown, IconArrowLeft, IconArrowRight, IconArrowUp, IconBack, IconBook, IconBrandApple, IconBrandBlender, IconBrandDocker, IconBrandFacebook, IconBrandFirefox, IconBrandGithub, IconBrandGoogleChrome, IconBrandGoogleEarth, IconBrandInstagram, IconBrandLinux, IconBrandSafari, IconBrandUbuntu, IconBrandVscode, IconBrandWikipedia, IconBrandYoutube, IconBread, IconBug, IconBullet, IconCamera, IconCancel, IconCenter, IconChecked, IconChevronDoubleDown, IconChevronDoubleLeft, IconChevronDoubleRight, IconChevronDoubleUp, IconChevronDown, IconChevronLeft, IconChevronRight, IconChevronUp, IconClose, IconCode, IconCoffee, IconCurve, IconCut, IconData, IconDelete, IconDraw, IconEdit, IconEditPlaylist, IconExport, IconExternalLink, IconFilter, IconFirst, IconFix, IconFly, IconFocus, IconFormatBold, IconFormatBullets, IconFormatItalic, IconFullscreen, IconGear, IconGhost, IconGooglePlayStore, IconGpsOff, IconGpsOn, IconHeart, IconHelp, IconHide, IconImage, IconImport, IconInvert, IconLanguageCpp, IconLanguageCsharp, IconLanguageJavascript, IconLanguageMarkdown, IconLanguagePython, IconLanguageRust, IconLanguageTypescript, IconLast, IconLightOff, IconLightOn, IconLink, IconLoading, IconLockClose, IconLockOpen, IconLogout, IconMail, IconMap, IconMarker, IconMenu, IconMesh, IconMinusO, IconMore, IconMove, IconMusic, IconOk, IconOrientation, IconPack, IconPassword, IconPause, IconPin, IconPinOff, IconPlay, IconPlug, IconPlusO, IconPoster, IconProfil, IconQrcode, IconQuestion, IconQuote, IconRandom, IconRedo, IconRefresh, IconReload, IconReset, IconRuler, IconSearch, IconSend, IconShare, IconShow, IconSnapshot, IconSpaceInvader, IconSportBike, IconSportBikeFast, IconSportHiking, IconSportRun, IconSportRunFast, IconStar, IconTexture, IconToolBox, IconTpPassword, IconTranslate, IconTree, IconTwitter, IconUnchecked, IconUndo, IconUser, IconWait, IconWarning, IconZoomIn, IconZoomOut } from "@tolokoban/ui"
 
 export const IconsMap: Record<string, React.FC<GenericIconProps>> = {
     Add: IconAdd,
@@ -62,6 +62,7 @@ export const IconsMap: Record<string, React.FC<GenericIconProps>> = {
     FormatItalic: IconFormatItalic,
     Fullscreen: IconFullscreen,
     Gear: IconGear,
+    Ghost: IconGhost,
     GooglePlayStore: IconGooglePlayStore,
     GpsOff: IconGpsOff,
     GpsOn: IconGpsOn,
@@ -100,6 +101,8 @@ export const IconsMap: Record<string, React.FC<GenericIconProps>> = {
     Pack: IconPack,
     Password: IconPassword,
     Pause: IconPause,
+    Pin: IconPin,
+    PinOff: IconPinOff,
     Play: IconPlay,
     Plug: IconPlug,
     PlusO: IconPlusO,
