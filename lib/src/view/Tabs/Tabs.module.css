@@ -23,6 +23,7 @@
 
             & > button,
             & > div {
+                color: inherit;
                 writing-mode: vertical-rl;
                 text-orientation: mixed;
                 max-height: none;
