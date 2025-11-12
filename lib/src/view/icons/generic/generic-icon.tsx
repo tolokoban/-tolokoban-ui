@@ -17,7 +17,7 @@ export type GenericIconProps = {
 
 export type IconProps = Omit<GenericIconProps, "value">
 
-export type Icon = ((props: IconProps) => JSX.Element) & {
+export type Icon = ((props: IconProps) => React.ReactElement<IconProps>) & {
     id: string
 }
 

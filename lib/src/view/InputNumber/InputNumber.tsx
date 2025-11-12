@@ -26,7 +26,9 @@ export type ViewInputNumberProps = CommonProps & {
     onEnterKeyPressed?(this: void, value: string): void
 }
 
-export function ViewInputNumber(props: ViewInputNumberProps): JSX.Element {
+export function ViewInputNumber(
+    props: ViewInputNumberProps
+): React.ReactElement<ViewInputNumberProps> {
     const min = props.min ?? Number.NEGATIVE_INFINITY
     const max = props.max ?? Number.POSITIVE_INFINITY
     const textProps: ViewInputTextProps = {

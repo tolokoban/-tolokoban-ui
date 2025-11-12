@@ -36,7 +36,7 @@ export function ViewLabel({
     box = "column",
     fullwidth,
     children,
-}: ViewLabelProps): JSX.Element {
+}: ViewLabelProps) {
     const id = `labelled/${React.useId()}`
     const handleMount = (div: HTMLDivElement | null) => {
         if (!div) return

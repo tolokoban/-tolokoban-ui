@@ -11,7 +11,7 @@ export type ViewProgressProps = CommonProps & {
     label?: React.ReactNode
 }
 
-export function ViewProgress(props: ViewProgressProps): JSX.Element {
+export function ViewProgress(props: ViewProgressProps) {
     const { className, value, label } = props
 
     return (

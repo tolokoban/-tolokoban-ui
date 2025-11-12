@@ -10,7 +10,7 @@ import {
     cssForColorOn,
     cssForGaps,
 } from "../../theme/styles/styles.js"
-import { Children, OpaqueColorName } from "../../types"
+import { OpaqueColorName } from "../../types"
 import { setDefaults } from "../../util/set-defaults"
 import IconGear from "../icons/IconGear"
 import { GenericIconProps } from "../icons/generic"
@@ -36,9 +36,9 @@ export type ViewButtonProps = {
      * It is an alias for `children`. But if both props are
      * defined, `children` takes precedence.
      */
-    label?: Children
+    label?: React.ReactNode
     /** Content of the button. Most often a text, but can be anything. */
-    children?: Children
+    children?: React.ReactNode
     /**
      * Click handler.
      *
@@ -167,9 +167,11 @@ export function ViewButton(partialProps: ViewButtonProps) {
     )
 }
 
-export function makeCustomButton(
-    defaultProps: Partial<ViewButtonProps>
-): (props: ViewButtonProps) => JSX.Element {
+export function makeCustomButton<T extends Partial<ViewButtonProps>>(
+    defaultProps: T
+): (
+    props: Omit<ViewButtonProps, keyof T>
+) => React.ReactElement<Omit<ViewButtonProps, keyof T>> {
     return (props: ViewButtonProps) =>
         ViewButton({
             ...defaultProps,

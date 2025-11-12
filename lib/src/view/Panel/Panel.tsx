@@ -82,9 +82,11 @@ export function ViewPanel(props: ViewPanelProps) {
     )
 }
 
-export function makeCustomPanel(
-    defaultProps: Partial<ViewPanelProps>
-): (props: ViewPanelProps) => JSX.Element {
+export function makeCustomPanel<T extends Partial<ViewPanelProps>>(
+    defaultProps: T
+): (
+    props: Omit<ViewPanelProps, keyof T>
+) => React.ReactElement<Omit<ViewPanelProps, keyof T>> {
     return (props: ViewPanelProps) =>
         ViewPanel({
             ...defaultProps,

@@ -1,4 +1,7 @@
+import React from "react"
 import Color from "./color.js"
+
+export type Children = React.ReactNode
 
 export type ThemeSize = "none" | "XS" | "S" | "M" | "L" | "XL"
 
@@ -58,14 +61,5 @@ export type Circumference =
           top: string | number,
           right: string | number,
           bottom: string | number,
-          left: string | number
+          left: string | number,
       ]
-
-export type Children =
-    | React.ReactElement
-    | string
-    | number
-    | boolean
-    | null
-    | undefined
-    | Iterable<Children>

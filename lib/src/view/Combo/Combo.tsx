@@ -17,7 +17,7 @@ export type ViewComboProps = CommonProps &
     ViewDialogProps & {
         className?: string
         label?: React.ReactNode
-        children: JSX.Element[]
+        children: React.ReactElement[]
     }
 
 export function ViewCombo(props: ViewComboProps) {

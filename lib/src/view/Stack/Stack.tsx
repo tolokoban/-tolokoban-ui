@@ -18,10 +18,10 @@ export type ViewStackProps = CommonProps & {
      * Children without key will always be visible.
      */
     value?: string | string[]
-    children?: React.JSX.Element[] | React.JSX.Element
+    children?: React.ReactElement | React.ReactElement[]
 }
 
-export function ViewStack(props: ViewStackProps): JSX.Element {
+export function ViewStack(props: ViewStackProps) {
     const { value, children } = props
     const style: React.CSSProperties = {
         ...styleCommon(props),
