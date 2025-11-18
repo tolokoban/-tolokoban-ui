@@ -52,8 +52,8 @@
 
 .Button.elevated,
 .Button.filled {
-    background: var(--custom-color-main);
-    color: var(--custom-color-text);
+    background: var(--custom-color-main) !important;
+    color: var(--custom-color-text) !important;
 }
 
 .Button.elevated {
@@ -62,13 +62,13 @@
 
 .Button.outlined {
     border: var(--custom-thickness) solid var(--custom-color-main);
-    color: var(--custom-color-main);
-    background: transparent;
+    color: var(--custom-color-main) !important;
+    background: transparent !important;
 }
 
 .Button.text {
-    color: var(--custom-color-text);
-    background: transparent;
+    color: var(--custom-color-text) !important;
+    background: transparent !important;
 }
 
 .Button:disabled,

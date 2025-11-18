@@ -63,3 +63,5 @@ export type Circumference =
           bottom: string | number,
           left: string | number,
       ]
+
+export type Children = React.ReactNode
