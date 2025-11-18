@@ -1,10 +1,10 @@
 import React from "react"
 import {
-    customizeView,
     IconArrowDown,
     IconArrowLeft,
     IconArrowRight,
     IconArrowUp,
+    makeCustomPanel,
     ViewInputColor,
     ViewInputText,
     ViewPanel,
@@ -12,7 +12,7 @@ import {
     ViewTooltip,
 } from "@tolokoban/ui"
 
-const Flex = customizeView(ViewPanel, {
+const Flex = makeCustomPanel({
     display: "flex",
     justifyContent: "space-around",
     alignItems: "center",

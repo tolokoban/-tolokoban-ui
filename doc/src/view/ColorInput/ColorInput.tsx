@@ -20,7 +20,7 @@ export type ViewColorInputProps = CommonProps & {
     onChange(value: ColorName): void
 }
 
-export function ViewColorInput(props: ViewColorInputProps): JSX.Element {
+export function ViewColorInput(props: ViewColorInputProps) {
     const style: React.CSSProperties = {
         ...styleCommon(props),
     }
