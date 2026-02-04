@@ -1,40 +1,43 @@
-import * as React from "react"
+import * as React from "react";
 
-import { Theme } from "../../theme/index.js"
+import { Theme } from "../../theme/index.js";
 import {
     DimensionStyleProps,
     styleDimension,
-} from "../../theme/styles/dimension.js"
+} from "../../theme/styles/dimension.js";
 import {
     PositionStyleProps,
     stylePosition,
-} from "../../theme/styles/position.js"
-import { ChildStyleProps, styleChild } from "../../theme/styles/child.js"
+} from "../../theme/styles/position.js";
+import { ChildStyleProps, styleChild } from "../../theme/styles/child.js";
 
-import Styles from "./InputMultiText.module.css"
-import { Children, ViewWithValue } from "../../types.js"
-import { ViewLabel } from "../Label"
+import Styles from "./InputMultiText.module.css";
+import { Children, ViewWithValue } from "../../types.js";
+import { ViewLabel } from "../Label";
 
 export interface InputMultiTextProps
-    extends ViewWithValue<{ [lang: string]: string }>,
+    extends
+        ViewWithValue<{ [lang: string]: string }>,
         ChildStyleProps,
         PositionStyleProps,
         DimensionStyleProps {
-    className?: string
-    label?: React.ReactNode
+    className?: string;
+    label?: React.ReactNode;
     /** What element of the `value` to edit. */
-    lang: string
-    onLangChange(this: void, lang: string): void
+    lang: string;
+    onLangChange(this: void, lang: string): void;
     /**
      * Set this function to change how the keys will be
      * rendered.
      * By default, the keys are rendered as the string
      * they are, verbatim.
      */
-    renderLang?(this: void, lang: string, selected: boolean): Children
+    renderLang?(this: void, lang: string, selected: boolean): Children;
 }
 
-export function ViewInputMultiText(props: InputMultiTextProps) {
+export const ViewInputMultiText = React.memo(MemoInputMultiText);
+
+function MemoInputMultiText(props: InputMultiTextProps) {
     const {
         value,
         label,
@@ -42,26 +45,27 @@ export function ViewInputMultiText(props: InputMultiTextProps) {
         onLangChange,
         renderLang = (item: string, selected: boolean) =>
             selected ? <b>{item}</b> : <span>{item}</span>,
-    } = props
-    const [keys, itemKey, itemVal] = useLang(props)
+    } = props;
+    const [keys, itemKey, itemVal] = useLang(props);
     const style: React.CSSProperties = {
         ...styleDimension(props),
         ...stylePosition(props),
         ...styleChild(props),
-    }
+    };
     const handleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
-        const text = evt.target.value
+        const text = evt.target.value;
         onChange?.({
             ...value,
             [itemKey]: text,
-        })
-    }
+        });
+    };
+
     return (
         <ViewLabel value={label} fullwidth={props.fullwidth}>
             <div
                 className={Theme.classNames.join(
                     props.className,
-                    Styles.InputMultiText
+                    Styles.InputMultiText,
                 )}
                 style={style}
             >
@@ -86,7 +90,7 @@ export function ViewInputMultiText(props: InputMultiTextProps) {
                 </div>
             </div>
         </ViewLabel>
-    )
+    );
 }
 
 function useLang({
@@ -97,25 +101,26 @@ function useLang({
     lang,
     onLangChange,
 }: {
-    value: { [lang: string]: string }
-    onChange?: (this: void, value: { [lang: string]: string }) => void
-    lang: string
-    onLangChange(this: void, lang: string): void
+    value: { [lang: string]: string };
+    onChange?: (this: void, value: { [lang: string]: string }) => void;
+    lang: string;
+    onLangChange(this: void, lang: string): void;
 }): [keys: string[], itemKey: string, itemVal: string] {
-    const keys = Object.keys(value)
+    const keys = Object.keys(value);
     React.useEffect(() => {
-        if (keys.length === 0)
+        if (keys.length === 0) {
             onChange({
                 [navigator.language]: "",
-            })
-    }, [value, onChange, keys.length])
-    const key = findBestKey(keys, lang)
+            });
+        }
+    }, [value, onChange, keys.length]);
+    const key = findBestKey(keys, lang);
     React.useEffect(() => {
         if (key && key !== lang) {
-            onLangChange(key)
+            onLangChange(key);
         }
-    }, [key, onLangChange, lang])
-    return [keys, key ?? "", value[key ?? ""] ?? ""]
+    }, [key, onLangChange, lang]);
+    return [keys, key ?? "", value[key ?? ""] ?? ""];
 }
 
 /**
@@ -127,13 +132,13 @@ function useLang({
  * element in `keys`.
  */
 function findBestKey(keys: string[], lang: string): string | undefined {
-    if (keys.length === 0) return undefined
-    if (keys.includes(lang)) return lang
+    if (keys.length === 0) return undefined;
+    if (keys.includes(lang)) return lang;
     for (const key of keys) {
-        if (key.startsWith(lang)) return key
+        if (key.startsWith(lang)) return key;
     }
     for (const key of keys) {
-        if (key.toLowerCase().startsWith(lang.toLowerCase())) return key
+        if (key.toLowerCase().startsWith(lang.toLowerCase())) return key;
     }
-    return keys[0]
+    return keys[0];
 }
