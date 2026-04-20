@@ -1,15 +1,11 @@
 const Path = require("path")
 const FS = require("fs")
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-const CopyPlugin = require("copy-webpack-plugin")
-const { CleanWebpackPlugin } = require("clean-webpack-plugin")
-const Webpack = require("webpack")
+const { rspack } = require("@rspack/core")
 
 const Package = require("./package.json")
 
 const config = (env) => {
     if (typeof Package.port !== "number") {
-        // Define a random port number for dev server.
         Package.port = 1204 + Math.floor(Math.random() * (0xffff - 1024))
         FS.writeFileSync(
             Path.resolve(__dirname, "package.json"),
@@ -25,14 +21,11 @@ const config = (env) => {
         console.log("+-----------------+")
     }
     return {
-        cache: {
-            type: "memory",
-        },
+        cache: false,
         output: {
             clean: true,
             filename: "scr/[name].[contenthash].js",
             path: Path.resolve(__dirname, "build"),
-            devtoolModuleFilenameTemplate: "[absolute-resource-path]",
         },
         entry: {
             app: "./src/index.tsx",
@@ -40,12 +33,15 @@ const config = (env) => {
         target: "web",
         resolve: {
             extensions: [".tsx", ".ts", ".js", ".jsx", ".wasm"],
-            enforceExtension: false,
             alias: {
                 "@": Path.resolve(__dirname, "src/"),
                 "react/jsx-runtime": Path.resolve(
                     __dirname,
                     "/node_modules/react/jsx-runtime.js"
+                ),
+                "react/jsx-dev-runtime": Path.resolve(
+                    __dirname,
+                    "/node_modules/react/jsx-dev-runtime.js"
                 ),
                 react: Path.resolve(__dirname, "/node_modules/react/index.js"),
             },
@@ -67,7 +63,6 @@ const config = (env) => {
                 writeToDisk: true,
             },
             hot: true,
-            // Open WebBrowser.
             open: true,
             host: "0.0.0.0",
             port: env.PORT || Package.port,
@@ -78,43 +73,25 @@ const config = (env) => {
             errorDetails: false,
         },
         plugins: [
-            new Webpack.ProgressPlugin(),
-            // // List of the needed files for later caching.
-            // new WebpackManifestPlugin({
-            //     filter: (file) => {
-            //         if (file.name.endsWith(".map")) return false
-            //         if (file.name.endsWith(".ts")) return false
-            //         return true
-            //     },
-            // }),
-            new CleanWebpackPlugin({
-                // We don't want to remove the "index.html" file
-                // after the incremental build triggered by watch.
-                cleanStaleWebpackAssets: false,
-            }),
-            new CopyPlugin({
+            new rspack.ProgressPlugin(),
+            new rspack.CopyRspackPlugin({
                 patterns: [
                     {
                         from: Path.resolve(__dirname, "public"),
-                        filter: async (path) => {
-                            // Allow non-root index.html to be copied verbatim.
-                            return !path.endsWith("/public/index.html")
+                        globOptions: {
+                            ignore: ["**/index.html"],
                         },
                     },
                 ],
             }),
-            new HtmlWebpackPlugin({
+            new rspack.HtmlRspackPlugin({
                 template: "public/index.html",
                 filename: "index.html",
-                version: Package.version,
-                title: Package.name,
-                minify: {
-                    collapseInlineTagWhitespace: isProdMode,
-                    collapseWhitespace: isProdMode,
-                    decodeEntities: isProdMode,
-                    minifyCSS: isProdMode,
-                    removeComments: isProdMode,
+                templateParameters: {
+                    title: Package.name,
+                    version: Package.version,
                 },
+                minify: isProdMode,
             }),
         ],
         performance: {
@@ -122,7 +99,6 @@ const config = (env) => {
             maxAssetSize: 300000,
             maxEntrypointSize: 200000,
             assetFilter: (filename) => {
-                // PNG are just fallbacks for WEBP images.
                 if (filename.endsWith(".png")) return false
                 if (filename.endsWith(".map")) return false
                 return true
@@ -144,26 +120,32 @@ const config = (env) => {
                     },
                 },
             },
-            // Prevent "libs.[contenthash].js" from changing its hash if not needed.
             moduleIds: "deterministic",
         },
         module: {
             rules: [
                 {
                     test: /\.tsx?$/,
-                    use: [
-                        {
-                            loader: "ts-loader",
-                            options: {
-                                transpileOnly: false,
+                    use: {
+                        loader: "builtin:swc-loader",
+                        options: {
+                            jsc: {
+                                parser: {
+                                    syntax: "typescript",
+                                    tsx: true,
+                                },
+                                transform: {
+                                    react: {
+                                        runtime: "automatic",
+                                    },
+                                },
                             },
                         },
-                    ],
+                    },
                     exclude: /node_modules/,
                 },
                 {
                     test: /\.(png|jpe?g|gif|webp|svg)$/i,
-                    // More information here https://webpack.js.org/guides/asset-modules/
                     type: "asset",
                     generator: {
                         filename: "img/[name].[hash][ext][query]",
@@ -171,7 +153,6 @@ const config = (env) => {
                 },
                 {
                     test: /\.(bin|glb)$/i,
-                    // More information here https://webpack.js.org/guides/asset-modules/
                     type: "asset",
                     generator: {
                         filename: "bin/[name].[hash][ext][query]",
@@ -179,7 +160,6 @@ const config = (env) => {
                 },
                 {
                     test: /\.(eot|ttf|woff|woff2)$/i,
-                    // More information here https://webpack.js.org/guides/asset-modules/
                     type: "asset/resource",
                     generator: {
                         filename: "fnt/[name].[hash][ext][query]",
@@ -187,12 +167,10 @@ const config = (env) => {
                 },
                 {
                     test: /\.(vert|frag|obj)$/i,
-                    // More information here https://webpack.js.org/guides/asset-modules/
                     type: "asset/source",
                 },
                 {
                     test: /\.(py|txt|sh|md)$/i,
-                    // More information here https://webpack.js.org/guides/asset-modules/
                     type: "asset/source",
                 },
                 {
@@ -213,20 +191,6 @@ const config = (env) => {
                                         ? "[hash:base64]"
                                         : "[path][name]_[local]_[hash:base64:6]",
                                 },
-                            },
-                        },
-                    ],
-                },
-                {
-                    test: /\.mdx?$/,
-                    use: [
-                        // `babel-loader` is optional:
-                        { loader: "babel-loader", options: {} },
-                        {
-                            loader: "@mdx-js/loader",
-                            /** @type {import('@mdx-js/loader').Options} */
-                            options: {
-                                /* jsxImportSource: …, otherOptions… */
                             },
                         },
                     ],
