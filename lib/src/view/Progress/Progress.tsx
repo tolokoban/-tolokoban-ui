@@ -1,27 +1,32 @@
-import * as React from "react"
+import * as React from "react";
 
-import { Theme } from "../../theme"
-import { CommonProps, styleCommon } from "../../theme/styles/common"
-import { ViewLabel } from "../Label"
+import { Theme } from "../../theme";
+import {
+	type CommonProps,
+	classnameCommon,
+	styleCommon,
+} from "../../theme/styles/common";
+import { ViewLabel, type ViewLabelProps } from "../Label";
 
-const $ = Theme.classNames
+const $ = Theme.classNames;
 
 export type ViewProgressProps = CommonProps & {
-    value: number
-    label?: React.ReactNode
-}
+	value: number;
+	label?: React.ReactNode;
+	box?: ViewLabelProps["box"];
+};
 
 export function ViewProgress(props: ViewProgressProps) {
-    const { className, value, label } = props
+	const { className, value, label } = props;
 
-    return (
-        <ViewLabel value={label}>
-            <progress
-                className={$.join(className)}
-                style={styleCommon(props)}
-                max={100}
-                value={value}
-            />
-        </ViewLabel>
-    )
+	return (
+		<ViewLabel {...props} value={label}>
+			<progress
+				className={$.join(className, classnameCommon(props))}
+				style={styleCommon(props)}
+				max={100}
+				value={value}
+			/>
+		</ViewLabel>
+	);
 }

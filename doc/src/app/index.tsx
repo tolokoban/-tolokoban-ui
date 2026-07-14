@@ -19,6 +19,7 @@ export * from "./types"
 
 import Layout0 from "./layout"
 import Layout5 from "./view/layout"
+import NotFound0 from "./404"
 const Page0 = React.lazy(() => import("./page"))
 const Page1 = React.lazy(() => import("./api/page"))
 const Page2 = React.lazy(() => import("./icons/page"))
@@ -97,155 +98,155 @@ export default function App({ lang }: { lang?: string }) {
     const pg87 = Page87
     const pg90 = Page90
     return (
-        <Route path="/" Page={pg0} Layout={ly0} fallback={fb} context={context}>
-            <Route path="/api" Page={pg1} fallback={fb} context={context}/>
-            <Route path="/icons" Page={pg2} fallback={fb} context={context}/>
-            <Route path="/reference" Page={pg3} fallback={fb} context={context}/>
-            <Route path="/test" Page={pg4} fallback={fb} context={context}/>
-            <Route path="/view" Page={pg5} Layout={ly5} fallback={fb} context={context}>
-                <Route path="/view/Button" Page={pg6} fallback={fb} context={context}>
-                    <Route path="/view/Button/demo" fallback={fb} context={context}>
-                        <Route path="/view/Button/demo/Default" fallback={fb} context={context}/>
+        <Route path="/" Page={pg0} Layout={ly0} NotFound={NotFound0} fallback={fb} context={context}>
+            <Route path="/api" Page={pg1} NotFound={NotFound0} fallback={fb} context={context}/>
+            <Route path="/icons" Page={pg2} NotFound={NotFound0} fallback={fb} context={context}/>
+            <Route path="/reference" Page={pg3} NotFound={NotFound0} fallback={fb} context={context}/>
+            <Route path="/test" Page={pg4} NotFound={NotFound0} fallback={fb} context={context}/>
+            <Route path="/view" Page={pg5} Layout={ly5} NotFound={NotFound0} fallback={fb} context={context}>
+                <Route path="/view/Button" Page={pg6} NotFound={NotFound0} fallback={fb} context={context}>
+                    <Route path="/view/Button/demo" NotFound={NotFound0} fallback={fb} context={context}>
+                        <Route path="/view/Button/demo/Default" NotFound={NotFound0} fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Chip" Page={pg9} fallback={fb} context={context}>
-                    <Route path="/view/Chip/demo" fallback={fb} context={context}>
-                        <Route path="/view/Chip/demo/Default" fallback={fb} context={context}/>
+                <Route path="/view/Chip" Page={pg9} NotFound={NotFound0} fallback={fb} context={context}>
+                    <Route path="/view/Chip/demo" NotFound={NotFound0} fallback={fb} context={context}>
+                        <Route path="/view/Chip/demo/Default" NotFound={NotFound0} fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/CodeHighlighter" Page={pg12} fallback={fb} context={context}>
-                    <Route path="/view/CodeHighlighter/demo" fallback={fb} context={context}>
-                        <Route path="/view/CodeHighlighter/demo/Default" fallback={fb} context={context}/>
+                <Route path="/view/CodeHighlighter" Page={pg12} NotFound={NotFound0} fallback={fb} context={context}>
+                    <Route path="/view/CodeHighlighter/demo" NotFound={NotFound0} fallback={fb} context={context}>
+                        <Route path="/view/CodeHighlighter/demo/Default" NotFound={NotFound0} fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Combo" Page={pg15} fallback={fb} context={context}>
-                    <Route path="/view/Combo/demo" fallback={fb} context={context}>
-                        <Route path="/view/Combo/demo/Default" fallback={fb} context={context}/>
+                <Route path="/view/Combo" Page={pg15} NotFound={NotFound0} fallback={fb} context={context}>
+                    <Route path="/view/Combo/demo" NotFound={NotFound0} fallback={fb} context={context}>
+                        <Route path="/view/Combo/demo/Default" NotFound={NotFound0} fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Dialog" Page={pg18} fallback={fb} context={context}>
-                    <Route path="/view/Dialog/demo" fallback={fb} context={context}>
-                        <Route path="/view/Dialog/demo/Default" fallback={fb} context={context}/>
+                <Route path="/view/Dialog" Page={pg18} NotFound={NotFound0} fallback={fb} context={context}>
+                    <Route path="/view/Dialog/demo" NotFound={NotFound0} fallback={fb} context={context}>
+                        <Route path="/view/Dialog/demo/Default" NotFound={NotFound0} fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/DragAndDrop" Page={pg21} fallback={fb} context={context}>
-                    <Route path="/view/DragAndDrop/demo" fallback={fb} context={context}>
-                        <Route path="/view/DragAndDrop/demo/Default" fallback={fb} context={context}/>
+                <Route path="/view/DragAndDrop" Page={pg21} NotFound={NotFound0} fallback={fb} context={context}>
+                    <Route path="/view/DragAndDrop/demo" NotFound={NotFound0} fallback={fb} context={context}>
+                        <Route path="/view/DragAndDrop/demo/Default" NotFound={NotFound0} fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/FloatingButton" Page={pg24} fallback={fb} context={context}>
-                    <Route path="/view/FloatingButton/demo" fallback={fb} context={context}>
-                        <Route path="/view/FloatingButton/demo/Default" fallback={fb} context={context}/>
+                <Route path="/view/FloatingButton" Page={pg24} NotFound={NotFound0} fallback={fb} context={context}>
+                    <Route path="/view/FloatingButton/demo" NotFound={NotFound0} fallback={fb} context={context}>
+                        <Route path="/view/FloatingButton/demo/Default" NotFound={NotFound0} fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/InputColor" Page={pg27} fallback={fb} context={context}>
-                    <Route path="/view/InputColor/demo" fallback={fb} context={context}>
-                        <Route path="/view/InputColor/demo/Default" fallback={fb} context={context}/>
+                <Route path="/view/InputColor" Page={pg27} NotFound={NotFound0} fallback={fb} context={context}>
+                    <Route path="/view/InputColor/demo" NotFound={NotFound0} fallback={fb} context={context}>
+                        <Route path="/view/InputColor/demo/Default" NotFound={NotFound0} fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/InputFile" Page={pg30} fallback={fb} context={context}>
-                    <Route path="/view/InputFile/demo" fallback={fb} context={context}>
-                        <Route path="/view/InputFile/demo/Default" fallback={fb} context={context}/>
+                <Route path="/view/InputFile" Page={pg30} NotFound={NotFound0} fallback={fb} context={context}>
+                    <Route path="/view/InputFile/demo" NotFound={NotFound0} fallback={fb} context={context}>
+                        <Route path="/view/InputFile/demo/Default" NotFound={NotFound0} fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/InputImage" Page={pg33} fallback={fb} context={context}>
-                    <Route path="/view/InputImage/demo" fallback={fb} context={context}>
-                        <Route path="/view/InputImage/demo/Default" fallback={fb} context={context}/>
+                <Route path="/view/InputImage" Page={pg33} NotFound={NotFound0} fallback={fb} context={context}>
+                    <Route path="/view/InputImage/demo" NotFound={NotFound0} fallback={fb} context={context}>
+                        <Route path="/view/InputImage/demo/Default" NotFound={NotFound0} fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/InputMultiText" Page={pg36} fallback={fb} context={context}>
-                    <Route path="/view/InputMultiText/demo" fallback={fb} context={context}>
-                        <Route path="/view/InputMultiText/demo/Default" fallback={fb} context={context}/>
+                <Route path="/view/InputMultiText" Page={pg36} NotFound={NotFound0} fallback={fb} context={context}>
+                    <Route path="/view/InputMultiText/demo" NotFound={NotFound0} fallback={fb} context={context}>
+                        <Route path="/view/InputMultiText/demo/Default" NotFound={NotFound0} fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/InputNumber" Page={pg39} fallback={fb} context={context}>
-                    <Route path="/view/InputNumber/demo" fallback={fb} context={context}>
-                        <Route path="/view/InputNumber/demo/Default" fallback={fb} context={context}/>
+                <Route path="/view/InputNumber" Page={pg39} NotFound={NotFound0} fallback={fb} context={context}>
+                    <Route path="/view/InputNumber/demo" NotFound={NotFound0} fallback={fb} context={context}>
+                        <Route path="/view/InputNumber/demo/Default" NotFound={NotFound0} fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/InputText" Page={pg42} fallback={fb} context={context}>
-                    <Route path="/view/InputText/demo" fallback={fb} context={context}>
-                        <Route path="/view/InputText/demo/Default" fallback={fb} context={context}/>
+                <Route path="/view/InputText" Page={pg42} NotFound={NotFound0} fallback={fb} context={context}>
+                    <Route path="/view/InputText/demo" NotFound={NotFound0} fallback={fb} context={context}>
+                        <Route path="/view/InputText/demo/Default" NotFound={NotFound0} fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Label" Page={pg45} fallback={fb} context={context}>
-                    <Route path="/view/Label/demo" fallback={fb} context={context}>
-                        <Route path="/view/Label/demo/Default" fallback={fb} context={context}/>
+                <Route path="/view/Label" Page={pg45} NotFound={NotFound0} fallback={fb} context={context}>
+                    <Route path="/view/Label/demo" NotFound={NotFound0} fallback={fb} context={context}>
+                        <Route path="/view/Label/demo/Default" NotFound={NotFound0} fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Options" Page={pg48} fallback={fb} context={context}>
-                    <Route path="/view/Options/demo" fallback={fb} context={context}>
-                        <Route path="/view/Options/demo/Default" fallback={fb} context={context}/>
+                <Route path="/view/Options" Page={pg48} NotFound={NotFound0} fallback={fb} context={context}>
+                    <Route path="/view/Options/demo" NotFound={NotFound0} fallback={fb} context={context}>
+                        <Route path="/view/Options/demo/Default" NotFound={NotFound0} fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/OptionsMultiple" Page={pg51} fallback={fb} context={context}>
-                    <Route path="/view/OptionsMultiple/demo" fallback={fb} context={context}>
-                        <Route path="/view/OptionsMultiple/demo/Default" fallback={fb} context={context}/>
+                <Route path="/view/OptionsMultiple" Page={pg51} NotFound={NotFound0} fallback={fb} context={context}>
+                    <Route path="/view/OptionsMultiple/demo" NotFound={NotFound0} fallback={fb} context={context}>
+                        <Route path="/view/OptionsMultiple/demo/Default" NotFound={NotFound0} fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Panel" Page={pg54} fallback={fb} context={context}>
-                    <Route path="/view/Panel/demo" fallback={fb} context={context}>
-                        <Route path="/view/Panel/demo/Default" fallback={fb} context={context}/>
+                <Route path="/view/Panel" Page={pg54} NotFound={NotFound0} fallback={fb} context={context}>
+                    <Route path="/view/Panel/demo" NotFound={NotFound0} fallback={fb} context={context}>
+                        <Route path="/view/Panel/demo/Default" NotFound={NotFound0} fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Progress" Page={pg57} fallback={fb} context={context}>
-                    <Route path="/view/Progress/demo" fallback={fb} context={context}>
-                        <Route path="/view/Progress/demo/Default" fallback={fb} context={context}/>
+                <Route path="/view/Progress" Page={pg57} NotFound={NotFound0} fallback={fb} context={context}>
+                    <Route path="/view/Progress/demo" NotFound={NotFound0} fallback={fb} context={context}>
+                        <Route path="/view/Progress/demo/Default" NotFound={NotFound0} fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Rating" Page={pg60} fallback={fb} context={context}>
-                    <Route path="/view/Rating/demo" fallback={fb} context={context}>
-                        <Route path="/view/Rating/demo/Default" fallback={fb} context={context}/>
+                <Route path="/view/Rating" Page={pg60} NotFound={NotFound0} fallback={fb} context={context}>
+                    <Route path="/view/Rating/demo" NotFound={NotFound0} fallback={fb} context={context}>
+                        <Route path="/view/Rating/demo/Default" NotFound={NotFound0} fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Read" Page={pg63} fallback={fb} context={context}>
-                    <Route path="/view/Read/demo" fallback={fb} context={context}>
-                        <Route path="/view/Read/demo/Default" fallback={fb} context={context}/>
+                <Route path="/view/Read" Page={pg63} NotFound={NotFound0} fallback={fb} context={context}>
+                    <Route path="/view/Read/demo" NotFound={NotFound0} fallback={fb} context={context}>
+                        <Route path="/view/Read/demo/Default" NotFound={NotFound0} fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Scroll" Page={pg66} fallback={fb} context={context}>
-                    <Route path="/view/Scroll/demo" fallback={fb} context={context}>
-                        <Route path="/view/Scroll/demo/Default" fallback={fb} context={context}/>
+                <Route path="/view/Scroll" Page={pg66} NotFound={NotFound0} fallback={fb} context={context}>
+                    <Route path="/view/Scroll/demo" NotFound={NotFound0} fallback={fb} context={context}>
+                        <Route path="/view/Scroll/demo/Default" NotFound={NotFound0} fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Slider" Page={pg69} fallback={fb} context={context}>
-                    <Route path="/view/Slider/demo" fallback={fb} context={context}>
-                        <Route path="/view/Slider/demo/Default" fallback={fb} context={context}/>
+                <Route path="/view/Slider" Page={pg69} NotFound={NotFound0} fallback={fb} context={context}>
+                    <Route path="/view/Slider/demo" NotFound={NotFound0} fallback={fb} context={context}>
+                        <Route path="/view/Slider/demo/Default" NotFound={NotFound0} fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Spinner" Page={pg72} fallback={fb} context={context}>
-                    <Route path="/view/Spinner/demo" fallback={fb} context={context}>
-                        <Route path="/view/Spinner/demo/Default" fallback={fb} context={context}/>
+                <Route path="/view/Spinner" Page={pg72} NotFound={NotFound0} fallback={fb} context={context}>
+                    <Route path="/view/Spinner/demo" NotFound={NotFound0} fallback={fb} context={context}>
+                        <Route path="/view/Spinner/demo/Default" NotFound={NotFound0} fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Stack" Page={pg75} fallback={fb} context={context}>
-                    <Route path="/view/Stack/demo" fallback={fb} context={context}>
-                        <Route path="/view/Stack/demo/Default" fallback={fb} context={context}/>
+                <Route path="/view/Stack" Page={pg75} NotFound={NotFound0} fallback={fb} context={context}>
+                    <Route path="/view/Stack/demo" NotFound={NotFound0} fallback={fb} context={context}>
+                        <Route path="/view/Stack/demo/Default" NotFound={NotFound0} fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Strip" Page={pg78} fallback={fb} context={context}>
-                    <Route path="/view/Strip/demo" fallback={fb} context={context}>
-                        <Route path="/view/Strip/demo/Default" fallback={fb} context={context}/>
+                <Route path="/view/Strip" Page={pg78} NotFound={NotFound0} fallback={fb} context={context}>
+                    <Route path="/view/Strip/demo" NotFound={NotFound0} fallback={fb} context={context}>
+                        <Route path="/view/Strip/demo/Default" NotFound={NotFound0} fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Switch" Page={pg81} fallback={fb} context={context}>
-                    <Route path="/view/Switch/demo" fallback={fb} context={context}>
-                        <Route path="/view/Switch/demo/Default" fallback={fb} context={context}/>
+                <Route path="/view/Switch" Page={pg81} NotFound={NotFound0} fallback={fb} context={context}>
+                    <Route path="/view/Switch/demo" NotFound={NotFound0} fallback={fb} context={context}>
+                        <Route path="/view/Switch/demo/Default" NotFound={NotFound0} fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Tabs" Page={pg84} fallback={fb} context={context}>
-                    <Route path="/view/Tabs/demo" fallback={fb} context={context}>
-                        <Route path="/view/Tabs/demo/Default" fallback={fb} context={context}/>
+                <Route path="/view/Tabs" Page={pg84} NotFound={NotFound0} fallback={fb} context={context}>
+                    <Route path="/view/Tabs/demo" NotFound={NotFound0} fallback={fb} context={context}>
+                        <Route path="/view/Tabs/demo/Default" NotFound={NotFound0} fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Tooltip" Page={pg87} fallback={fb} context={context}>
-                    <Route path="/view/Tooltip/demo" fallback={fb} context={context}>
-                        <Route path="/view/Tooltip/demo/Default" fallback={fb} context={context}/>
+                <Route path="/view/Tooltip" Page={pg87} NotFound={NotFound0} fallback={fb} context={context}>
+                    <Route path="/view/Tooltip/demo" NotFound={NotFound0} fallback={fb} context={context}>
+                        <Route path="/view/Tooltip/demo/Default" NotFound={NotFound0} fallback={fb} context={context}/>
                     </Route>
                 </Route>
-                <Route path="/view/Touchable" Page={pg90} fallback={fb} context={context}>
-                    <Route path="/view/Touchable/demo" fallback={fb} context={context}>
-                        <Route path="/view/Touchable/demo/Default" fallback={fb} context={context}/>
+                <Route path="/view/Touchable" Page={pg90} NotFound={NotFound0} fallback={fb} context={context}>
+                    <Route path="/view/Touchable/demo" NotFound={NotFound0} fallback={fb} context={context}>
+                        <Route path="/view/Touchable/demo/Default" NotFound={NotFound0} fallback={fb} context={context}/>
                     </Route>
                 </Route>
             </Route>
@@ -283,6 +284,7 @@ interface RouteProps {
     Page?: PageComponent
     Layout?: ContainerComponent
     Template?: ContainerComponent
+    NotFound?: React.FC
     context: RouteMatch | null
 }
 
@@ -293,6 +295,7 @@ function Route({
     Page,
     Layout,
     Template,
+    NotFound,
     context,
 }: RouteProps) {
     const match = context && matchRoute(context.path, ROUTES[path as RoutePath])
@@ -300,7 +303,12 @@ function Route({
     if (!match) return null
 
     if (match.distance === 0) {
-        if (!Page) return null
+        if (!Page) {
+            if (NotFound) return Layout ? (
+                <Layout params={match.params}><NotFound /></Layout>
+            ) : <NotFound />
+            return null
+        }
 
         const element = Template ? (
             <Template params={match.params}>
@@ -320,9 +328,27 @@ function Route({
         }
         return <React.Suspense fallback={fallback}>{element}</React.Suspense>
     }
+
+    if (NotFound && !hasMatchingChild(context.path, children)) {
+        return Layout ? (
+            <Layout params={match.params}><NotFound /></Layout>
+        ) : (
+            <NotFound />
+        )
+    }
+
     return Layout ? (
         <Layout params={match.params}>{children}</Layout>
     ) : (
         <>{children}</>
     )
+}
+
+function hasMatchingChild(path: string, children: React.ReactNode): boolean {
+    return React.Children.toArray(children).some(child => {
+        if (!React.isValidElement(child)) return false
+        const childPath = (child.props as { path?: string }).path
+        if (!childPath) return false
+        return matchRoute(path, ROUTES[childPath as RoutePath]) !== null
+    })
 }

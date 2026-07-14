@@ -1,3 +1,4 @@
+const { execSync } = require("node:child_process")
 const Path = require("path")
 const FS = require("fs")
 const { rspack } = require("@rspack/core")
@@ -21,6 +22,17 @@ const config = (env) => {
         console.log("+-----------------+")
     }
     return {
+        lazyCompilation: false,
+        watchOptions: {
+            ignored: [
+                "**/src/app/routes.ts",
+                "**/src/app/types.ts",
+                "**/src/app/view/layout.tsx",
+                "**/src/app/view/*/page.tsx",
+                "**/src/app/view/*/*.tsx",
+                "**/src/icons.ts",
+            ],
+        },
         cache: false,
         output: {
             clean: true,
@@ -74,6 +86,16 @@ const config = (env) => {
         },
         plugins: [
             new rspack.ProgressPlugin(),
+            // {
+            //     apply(compiler) {
+            //         const run = () => {
+            //             console.log("Running `npm run generate`...")
+            //             execSync("npm run generate", { stdio: "inherit" })
+            //         }
+            //         compiler.hooks.beforeRun.tap("RoutesPlugin", run)
+            //         compiler.hooks.watchRun.tap("RoutesPlugin", run)
+            //     },
+            // },
             new rspack.CopyRspackPlugin({
                 patterns: [
                     {
@@ -124,6 +146,10 @@ const config = (env) => {
         },
         module: {
             rules: [
+                {
+                    test: /\.js$/,
+                    resolve: { fullySpecified: false },
+                },
                 {
                     test: /\.tsx?$/,
                     use: {

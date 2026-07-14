@@ -5,6 +5,7 @@ import {
     ViewInputText,
     ViewOptions,
     ViewPanel,
+    ViewSwitch,
     ViewTooltip,
     ViewTouchable,
 } from "@tolokoban/ui"
@@ -15,6 +16,7 @@ import { IconsMap } from "@/icons"
 import Styles from "./page.module.css"
 
 export default function PageIcons() {
+    const [animate, setAnimate] = React.useState(false)
     const [value, setValue] = React.useState(
         "M4,15V9H12V4.16L19.84,12L12,19.84V15H4Z"
     )
@@ -46,7 +48,7 @@ export default function PageIcons() {
                 onChange={setFilter}
                 label="Search by name:"
             />
-            <ViewPanel margin={["M", 0]}>
+            <ViewPanel margin={["M", 0]} display="flex" gap="L" alignItems="center">
                 <ViewOptions
                     value={type}
                     onChange={setType}
@@ -57,6 +59,8 @@ export default function PageIcons() {
                     <div key="dual">dual</div>
                     <div key="outlined">outlined</div>
                 </ViewOptions>
+                <ViewSwitch value={animate} onChange={setAnimate}>animate</ViewSwitch>
+                <ViewGenericIcon value={value} size="XL" type={type} animate={animate}/>
             </ViewPanel>
             <ViewPanel
                 display="flex"
