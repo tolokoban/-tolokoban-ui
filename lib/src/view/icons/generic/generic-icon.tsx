@@ -2,6 +2,7 @@ import * as React from "react"
 
 import { ColorStyleProps, styleColor } from "../../../theme/styles/color"
 
+import "./generic-icon.css"
 import Styles from "./generic-icon.module.css"
 
 export type GenericIconProps = {
