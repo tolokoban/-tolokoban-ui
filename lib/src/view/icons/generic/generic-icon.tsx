@@ -10,7 +10,12 @@ export type GenericIconProps = {
     type?: "filled" | "outlined" | "bold" | "dual"
     size?: string
     /** Starts the animation if `true` */
-    animate?: boolean
+    animate?: boolean | "rotate" | "pulse"
+    /**
+     * Animation duration in seconds.
+     * Default: 0.6
+     */
+    animateDuration?: number
     /** Description of the drawing. Ex.: `M8,20L12,10L16,20Z` */
     value?: string
     onClick?(): void
@@ -32,6 +37,8 @@ export default function GenericIcon(props: GenericIconProps) {
         ...styleColor({ textColor: props.color }),
         width: size,
         height: size,
+        "--custom-animation": `GenericIcon-anim-${resolveAnimate(props.animate)}`,
+        "--custom-animation-duration": `${props.animateDuration ?? .6}s`,
     }
     return (
         <svg
@@ -97,3 +104,10 @@ const SIZES: Record<string, string> = {
 function sizeToFontSize(value: string): string {
     return SIZES[value] ?? value
 }
+
+function resolveAnimate(animate: string | boolean | undefined): string {
+    if (!animate) return "NONE"
+    if (animate===true) return "rotate"
+    return animate
+}
+

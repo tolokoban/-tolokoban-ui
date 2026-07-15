@@ -7,3 +7,21 @@
         transform: rotate(360deg);
     }
 }
+
+@keyframes GenericIcon-anim-pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    25% {
+        transform: scale(1.5);
+    }
+
+    50% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
