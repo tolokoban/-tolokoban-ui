@@ -11,6 +11,7 @@ import {
     stylePosition,
 } from "../../theme/styles/position.js"
 import { ViewWithValue } from "../../types.js"
+import { mergeRefs } from "../../util/refs.js"
 
 import Styles from "./InputColor.module.css"
 import { ViewLabel } from "../Label"
@@ -30,12 +31,14 @@ export interface InputColorProps
         DimensionStyleProps {
     className?: string
     size?: keyof typeof SIZES
+    /** Forwarded to the underlying `<input>` element. */
+    ref?: React.Ref<HTMLInputElement>
     /** If defined,  label will be added to the input. */
     label?: React.ReactNode
 }
 
 export function ViewInputColor(props: InputColorProps) {
-    const ref = React.useRef<null | HTMLInputElement>(null)
+    const innerRef = React.useRef<null | HTMLInputElement>(null)
     const refEditorOpen = React.useRef(false)
     const { value, onChange, size = "M" } = props
     console.log("<ViewInputColor />", value)
@@ -60,7 +63,7 @@ export function ViewInputColor(props: InputColorProps) {
         [onChange]
     )
     const handleClick = () => {
-        const input = ref.current
+        const input = innerRef.current
         if (!input) return
 
         refEditorOpen.current = true
@@ -77,7 +80,7 @@ export function ViewInputColor(props: InputColorProps) {
                 onClick={handleClick}
             >
                 <input
-                    ref={ref}
+                    ref={mergeRefs(innerRef, props.ref)}
                     type="color"
                     value={sanitizeColor(value)}
                     onChange={handleChange}

@@ -10,6 +10,7 @@ import {
 import { OpaqueColorName, ViewWithValue } from "@/types"
 import * as React from "react"
 import { useChangeableValue } from "../../hooks/changeable-value"
+import { mergeRefs } from "../../util/refs.js"
 import IconStar from "../icons/IconStar"
 import { Icon } from "../icons/generic"
 
@@ -20,6 +21,8 @@ export type ViewRatingProps = ViewWithValue<number> &
     SpaceStyleProps &
     DimensionStyleProps &
     CommonProps & {
+        /** Forwarded to the wrapping `<span>` element. */
+        ref?: React.Ref<HTMLSpanElement>
         /** Number of stars to display. Default to 5. */
         max?: number
         /** Defaukts to `false`. */
@@ -59,7 +62,7 @@ export function ViewRating(props: ViewRatingProps) {
     return (
         <ViewLabel value={props.label}>
             <span
-                ref={handleMount}
+                ref={mergeRefs(handleMount, props.ref)}
                 className={getClassNames(props)}
                 tabIndex={0}
                 style={{

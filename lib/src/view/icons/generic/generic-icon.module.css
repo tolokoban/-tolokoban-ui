@@ -1,5 +1,4 @@
 .GenericIcon {
-    --custom-animation: none;
     display: inline-block;
     transition: all 0.2s;
 }

@@ -1,8 +1,4 @@
 .Button {
-    --custom-color-main-alpha: #f908;
-    --custom-color-main: #f90;
-    --custom-color-text: #000;
-    --custom-thickness: 0.125em;
     font: inherit;
     appearance: none;
     border: none;
@@ -22,11 +18,11 @@
     text-decoration: none;
 }
 
-.Button > * {
+.Button>* {
     flex: 0 0 auto;
 }
 
-.Button > div.label {
+.Button>div.label {
     flex: 1 1 auto;
     min-width: 0;
     overflow: hidden;

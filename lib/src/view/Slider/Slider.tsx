@@ -10,6 +10,8 @@ const $ = Theme.classNames
 
 export type ViewSliderProps = ViewWithValue<number> & {
     className?: string
+    /** Forwarded to the underlying `<input>` element. */
+    ref?: React.Ref<HTMLInputElement>
     /** If defined, displayed at the right of the slider. */
     text?: string | number | ((value: number) => string)
     /** If `true`, the width is set to `100%`. */
@@ -27,6 +29,7 @@ export function ViewSlider({
     max,
     step,
     className,
+    ref,
     wide,
     text,
     value,
@@ -36,6 +39,7 @@ export function ViewSlider({
     return (
         <div className={$.join(className, Styles.Slider, wide ? "wide" : "")}>
             <input
+                ref={ref}
                 type="range"
                 min={min ?? 0}
                 max={max ?? 0}

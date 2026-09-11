@@ -7,6 +7,7 @@ import { ViewPanel } from "../Panel/index.js"
 import { ViewTouchable } from "../Touchable/index.js"
 import IconLoading from "../icons/IconLoading.js"
 import { GenericIconProps } from "../icons/generic/index.js"
+import { mergeRefs } from "../../util/refs.js"
 
 import BackURL from "./back.jpg"
 
@@ -17,6 +18,8 @@ export interface InputImageProps
     extends ViewWithValue<string | undefined>,
         ChildStyleProps {
     className?: string
+    /** Forwarded to the underlying `<input>` element. */
+    ref?: React.Ref<HTMLInputElement>
     label?: React.ReactNode
     /** Image width */
     width: number
@@ -109,7 +112,7 @@ export function ViewInputImage(props: InputImageProps) {
                         <BusyIcon size="XL" animate />
                     </ViewPanel>
                     <input
-                        ref={refInput}
+                        ref={mergeRefs(refInput, props.ref)}
                         type="file"
                         style={{ display: "none" }}
                         accept="image/*"

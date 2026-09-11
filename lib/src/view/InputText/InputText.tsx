@@ -20,6 +20,8 @@ export type ViewInputTextProps = ViewWithValue<string> &
     DimensionStyleProps &
     CommonProps & {
         id?: string
+        /** Forwarded to the underlying `<input>` element. */
+        ref?: React.Ref<HTMLInputElement>
         /** Text to display when the input is empty. */
         placeholder?: string
         /** If defined,  label will be added to the input. */
@@ -71,6 +73,7 @@ export function ViewInputText(props: ViewInputTextProps) {
     const {
         className,
         id,
+        ref,
         placeholder,
         value = "",
         enabled = true,
@@ -119,6 +122,7 @@ export function ViewInputText(props: ViewInputTextProps) {
                 classnameCommon(props)
             )}
             id={id}
+            ref={ref}
             style={style}
             disabled={!enabled}
             autoFocus={autofocus}

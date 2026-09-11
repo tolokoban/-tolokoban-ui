@@ -1,4 +1,4 @@
-// This file has been generated on Wed, 15 Jul 2026 10:16:44 GMT
+// This file has been generated on Thu, 16 Jul 2026 13:36:32 GMT
 export * from "./Button"
 export * from "./Chip"
 export * from "./CodeHighlighter"
@@ -57,6 +57,7 @@ export {default as IconBullet} from "./icons/IconBullet"
 export {default as IconCamera} from "./icons/IconCamera"
 export {default as IconCancel} from "./icons/IconCancel"
 export {default as IconCenter} from "./icons/IconCenter"
+export {default as IconChatQuestion} from "./icons/IconChatQuestion"
 export {default as IconChecked} from "./icons/IconChecked"
 export {default as IconChevronDoubleDown} from "./icons/IconChevronDoubleDown"
 export {default as IconChevronDoubleLeft} from "./icons/IconChevronDoubleLeft"

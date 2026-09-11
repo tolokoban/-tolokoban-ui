@@ -1,17 +1,20 @@
 import React from "react"
 
 import { ViewButton, ViewButtonProps } from "../Button/index.js"
+import { mergeRefs } from "../../util/refs.js"
 
 export interface ViewInputFileProps extends ViewButtonProps {
+    /** Forwarded to the underlying `<input>` element. */
+    ref?: React.Ref<HTMLInputElement>
     onLoad(files: File[]): void
     multiple?: boolean
     accept?: string
 }
 
 export function ViewInputFile(props: ViewInputFileProps) {
-    const ref = React.useRef<HTMLInputElement | null>(null)
+    const innerRef = React.useRef<HTMLInputElement | null>(null)
     const handleClick = () => {
-        const input = ref.current
+        const input = innerRef.current
         if (!input) return
 
         input.click()
@@ -35,7 +38,7 @@ export function ViewInputFile(props: ViewInputFileProps) {
             <ViewButton {...props} onClick={handleClick} />
             <input
                 style={{ display: "none" }}
-                ref={ref}
+                ref={mergeRefs(innerRef, props.ref)}
                 type="file"
                 accept={props.accept ?? "*/*"}
                 multiple={props.multiple ? true : false}

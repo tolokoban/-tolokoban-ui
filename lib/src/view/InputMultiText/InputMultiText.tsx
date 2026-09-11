@@ -22,6 +22,8 @@ export interface InputMultiTextProps
         PositionStyleProps,
         DimensionStyleProps {
     className?: string;
+    /** Forwarded to the underlying `<input>` element. */
+    ref?: React.Ref<HTMLInputElement>;
     label?: React.ReactNode;
     /** What element of the `value` to edit. */
     lang: string;
@@ -40,6 +42,7 @@ export const ViewInputMultiText = React.memo(MemoInputMultiText);
 function MemoInputMultiText(props: InputMultiTextProps) {
     const {
         value,
+        ref,
         label,
         onChange,
         onLangChange,
@@ -69,7 +72,11 @@ function MemoInputMultiText(props: InputMultiTextProps) {
                 )}
                 style={style}
             >
-                <input value={itemVal} onChange={handleChange} />
+                <input
+                    ref={ref}
+                    value={itemVal}
+                    onChange={handleChange}
+                />
                 <div>
                     {keys.map((key) => (
                         <button
