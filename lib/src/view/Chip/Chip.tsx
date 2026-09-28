@@ -44,6 +44,7 @@ export function ViewChip<T = unknown>(props: ViewChipProps<T>) {
         size = "M",
         onClick,
         onRemove,
+        enabled=true,
     } = props
     const handleClick = () => {
         if (onClick) onClick(tag)
@@ -66,6 +67,7 @@ export function ViewChip<T = unknown>(props: ViewChipProps<T>) {
                 fontSize: `${SIZES[size]}%`,
             }}
             onClick={handleClick}
+            disabled={!enabled}
         >
             {thumbnail && <div className={Styles.thumbnail}>{thumbnail}</div>}
             <div className={Styles.label}>{label}</div>

@@ -17,22 +17,26 @@
     overflow: hidden;
 }
 
+button.main[disabled] {
+    cursor: default;
+}
+
 .main.outline {
     border: 1px solid currentColor;
 }
 
-.main > svg {
+.main>svg {
     width: 1.5em;
     height: 1.5em;
 }
 
-.main > div.thumbnail {
+.main>div.thumbnail {
     overflow: hidden;
     width: 1.5em;
     height: 1.5em;
     border-radius: 50%;
 }
 
-.main > div.label {
+.main>div.label {
     margin: 0 0.5em;
 }
