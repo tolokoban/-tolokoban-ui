@@ -27,3 +27,10 @@ This is because this library uses CSS modules and custom CSS variables.
 npm run build
 npm run pub
 ```
+
+## Release notes
+
+### v0.25.11
+
+- `ViewOptionsMultiple`: double-clicking an option selects all options if it was the only one selected, otherwise selects only that option.
+- `ViewTouchable`: new `onDoubleClick` prop.

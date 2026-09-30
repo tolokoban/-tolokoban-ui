@@ -44,6 +44,17 @@ export function ViewOptionsMultiple<T extends string>(
             setValues(values.filter((item) => item !== value))
         }
     }
+    /**
+     * A double click fires two clicks first, which toggle the option
+     * twice and leave `values` as it was before the double click.
+     */
+    const handleDoubleClick = (value: T) => {
+        if (values.length === 1 && values[0] === value) {
+            setValues(children.map((child) => child.key as T))
+        } else {
+            setValues([value])
+        }
+    }
     return (
         <ViewLabel value={label}>
             <div
@@ -70,6 +81,7 @@ export function ViewOptionsMultiple<T extends string>(
                                     : props.color,
                             })}
                             onClick={() => toggle(key)}
+                            onDoubleClick={() => handleDoubleClick(key)}
                         >
                             {child}
                         </ViewTouchable>

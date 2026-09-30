@@ -22,6 +22,11 @@ export interface ViewTouchableProps<T> {
      * @param tag Any piece of data associated to this component.
      */
     onClick?(tag: T | undefined): void
+    /**
+     * Event dispatched when a double click is detected on the component.
+     * @param tag Any piece of data associated to this component.
+     */
+    onDoubleClick?(tag: T | undefined): void
 }
 
 export function ViewTouchable<T>({
@@ -31,6 +36,7 @@ export function ViewTouchable<T>({
     style,
     tooltip,
     onClick,
+    onDoubleClick,
 }: ViewTouchableProps<T>) {
     if (!onClick) return <>{children}</>
 
@@ -39,6 +45,7 @@ export function ViewTouchable<T>({
             className={$.join(className, Styles.Touchable)}
             title={tooltip}
             onClick={() => onClick(tag)}
+            onDoubleClick={onDoubleClick ? () => onDoubleClick(tag) : undefined}
             style={style}
         >
             {children}
