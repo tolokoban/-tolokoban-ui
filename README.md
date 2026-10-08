@@ -30,6 +30,10 @@ npm run pub
 
 ## Release notes
 
+### v0.25.12
+
+- New icons: "history" and "check".
+
 ### v0.25.11
 
 - `ViewOptionsMultiple`: double-clicking an option selects all options if it was the only one selected, otherwise selects only that option.
