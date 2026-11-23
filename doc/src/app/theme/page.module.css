@@ -1,0 +1,46 @@
+.page {
+    max-width: 60em;
+}
+
+.ramp {
+    margin-block: 1em;
+}
+
+.ramp > header {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    margin-block-end: 0.25em;
+}
+
+.ramp > header > b {
+    margin: 0;
+    min-width: 6em;
+}
+
+.stops {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.swatches {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    border-radius: 0.25em;
+    overflow: hidden;
+    box-shadow: var(--theme-shadow-2);
+}
+
+.swatches > div {
+    padding: 0.5em;
+    text-align: center;
+    font-weight: bold;
+}
+
+.singles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+}

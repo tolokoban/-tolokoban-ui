@@ -1,224 +1,229 @@
-import * as React from "react"
-import { Theme } from "../../theme"
-import {
-    classnameCommon,
-    CommonProps,
-    styleCommon,
-} from "../../theme/styles/common"
-import {
-    cssForColor,
-    cssForColorOn,
-    cssForGaps,
-} from "../../theme/styles/styles.js"
-import { OpaqueColorName } from "../../types"
-import { setDefaults } from "../../util/set-defaults"
-import IconGear from "../icons/IconGear"
-import { GenericIconProps } from "../icons/generic"
+import * as React from "react";
+import { Theme } from "../../theme";
+import { classnameCommon, CommonProps, styleCommon } from "../../theme/styles/common";
+import { cssForColor, cssForColorOn, cssForGaps } from "../../theme/styles/styles.js";
+import { OpaqueColorName } from "../../types";
+import { setDefaults } from "../../util/set-defaults";
+import IconGear from "../icons/IconGear";
+import { GenericIconProps } from "../icons/generic";
 
-import Styles from "./Button.module.css"
+import Styles from "./Button.module.css";
 
-const $ = Theme.classNames
+const $ = Theme.classNames;
 
 export type ViewButtonProps = {
-    /**
-     * The look of a button depends on its variant:
-     *
-     * * __filled__ (default): button ith background.
-     * * __elevated__: with a shadow below.
-     * * __outline__: no background but a surrounding border.
-     * * __text__: text only, no background, no border.
-     *
-     * Default to `"filled"`.
-     */
-    variant?: "elevated" | "filled" | "outlined" | "text"
-    /**
-     * This property is here for backward compatibility.
-     * It is an alias for `children`. But if both props are
-     * defined, `children` takes precedence.
-     */
-    label?: React.ReactNode
-    /** Content of the button. Most often a text, but can be anything. */
-    children?: React.ReactNode
-    /**
-     * Click handler.
-     *
-     * If you set a string, the button will be turned into
-     * a link to an URL. But the style will remain the same.
-     */
-    onClick?: string | ((this: void) => void)
-    /**
-     * If the button is a link (onClick is a string),
-     * then `target` is used to open in a new tab.
-     */
-    target?: string
-    /**
-     * Default to `true`.
-     *
-     * If set to `false`, the button cannot get the focus and cannot be clicked.
-     */
-    enabled?: boolean
-    /**
-     * Main color of the button.
-     * It will be the background, unless we use `variant="text"`
-     * or `variant="outline"`.
-     */
-    color?: OpaqueColorName
-    /**
-     * Icon to display to the left.
-     */
-    icon?: React.FC<GenericIconProps>
-    /**
-     * Icon to display to the right.
-     */
-    iconRight?: React.FC<GenericIconProps>
-    /**
-     * If `true`, an icon will rotate and the button will be disabled.
-     */
-    waiting?: boolean
-    /**
-     * Thickness of the button's border.
-     */
-    thickness?: string | number
-} & CommonProps
+  /**
+   * The look of a button depends on its variant:
+   *
+   * * __filled__ (default): button ith background.
+   * * __elevated__: with a shadow below.
+   * * __outline__: no background but a surrounding border.
+   * * __text__: text only, no background, no border.
+   *
+   * Default to `"filled"`.
+   */
+  variant?: "elevated" | "filled" | "outlined" | "text";
+  /**
+   * This property is here for backward compatibility.
+   * It is an alias for `children`. But if both props are
+   * defined, `children` takes precedence.
+   */
+  label?: React.ReactNode;
+  /** Content of the button. Most often a text, but can be anything. */
+  children?: React.ReactNode;
+  /**
+   * Click handler.
+   *
+   * If you set a string, the button will be turned into
+   * a link to an URL. But the style will remain the same.
+   */
+  onClick?: string | ((this: void) => void);
+  /**
+   * If the button is a link (onClick is a string),
+   * then `target` is used to open in a new tab.
+   */
+  target?: string;
+  /**
+   * Default to `true`.
+   *
+   * If set to `false`, the button cannot get the focus and cannot be clicked.
+   */
+  enabled?: boolean;
+  /**
+   * Main color of the button.
+   * It will be the background, unless we use `variant="text"`
+   * or `variant="outline"`.
+   */
+  color?: OpaqueColorName;
+  /**
+   * Icon to display to the left.
+   */
+  icon?: React.FC<GenericIconProps>;
+  /**
+   * Icon to display to the right.
+   */
+  iconRight?: React.FC<GenericIconProps>;
+  /**
+   * If `true`, an icon will rotate and the button will be disabled.
+   */
+  waiting?: boolean;
+  /**
+   * Thickness of the button's border.
+   *
+   * For `variant="outlined"`, the border has the main color.
+   * For the other variants, its color is a mix between the
+   * main color and the text color.
+   *
+   * The border is drawn inside the button: its height does not change.
+   *
+   * Default to `0.125` for `variant="outlined"`, and to `"1px"` otherwise.
+   */
+  thickness?: string | number;
+  /**
+   * Horizontal alignment of the content (`children` or `label`).
+   *
+   * Default to `"center"`.
+   */
+  textAlign?: "center" | "left" | "right";
+} & CommonProps;
 
 export function ViewButton(partialProps: ViewButtonProps) {
-    const props = setDefaults(partialProps, {
-        enabled: true,
-        borderRadius: ".125em",
-        margin: ["XS", "0"],
-        padding: [0, "M"],
-        onClick: DEFAULT_CLICK_HANDLER,
-        width: "auto",
-        height: "2em",
-        variant: "elevated",
-        thickness: 0.125,
-    })
-    const {
-        className,
-        children,
-        label,
-        enabled,
-        variant,
-        onClick,
-        waiting,
-        target,
-    } = props
-    const { color } = partialProps
-    const thickness = cssForGaps(props.thickness)
-    const style: React.CSSProperties = {
-        "--custom-color-main-alpha": getMainAlphaColor(color, variant),
-        "--custom-color-main": getMainColor(color, variant),
-        "--custom-color-text": getTextColor(color, variant),
-        "--custom-thickness": thickness,
-        ...styleCommon(props),
-    }
-    const Icon = props.icon
-    const IconRight = props.iconRight
-    const body = (
-        <>
-            {" "}
-            {waiting && <IconGear animate={true} />}
-            {!waiting && Icon && <Icon />}
-            <div className={Styles.label}>{children ?? label ?? "Button"}</div>
-            {IconRight && <IconRight />}
-        </>
-    )
-    if (typeof onClick === "string") {
-        return (
-            <a
-                style={style}
-                className={$.join(
-                    className,
-                    Styles.Button,
-                    Styles[variant],
-                    Boolean(Icon) && Styles.icon,
-                    !enabled && !waiting && Styles.disabled,
-                    classnameCommon(props)
-                )}
-                target={target}
-                href={onClick}
-            >
-                {body}
-            </a>
-        )
-    }
+  const props = setDefaults(partialProps, {
+    enabled: true,
+    borderRadius: ".125em",
+    margin: 0,
+    padding: [0, "S"],
+    onClick: DEFAULT_CLICK_HANDLER,
+    width: "auto",
+    variant: "elevated",
+    textAlign: "center",
+  });
+  const { className, children, label, enabled, variant, onClick, waiting, target, textAlign } =
+    props;
+  const { color } = partialProps;
+  const thickness = cssForGaps(props.thickness ?? (variant === "outlined" ? 0.125 : "1px"));
+  const style: React.CSSProperties = {
+    "--custom-color-main-alpha": getMainAlphaColor(color, variant),
+    "--custom-color-main": getMainColor(color, variant),
+    "--custom-color-text": getTextColor(color, variant),
+    "--custom-thickness": thickness,
+    ...styleCommon(props),
+  };
+  const Icon = props.icon;
+  const IconRight = props.iconRight;
+  const content = children ?? label ?? "Button";
+  const isText = typeof content === "string" || typeof content === "number";
+  const body = (
+    <>
+      {" "}
+      {waiting && <IconGear animate={true} />}
+      {!waiting && Icon && <Icon />}
+      <div
+        className={$.join(Styles.label, isText && Styles.plainText)}
+        style={{
+          textAlign,
+          justifyContent: JUSTIFY_CONTENT[textAlign],
+        }}
+      >
+        {content}
+      </div>
+      {IconRight && <IconRight />}
+    </>
+  );
+  if (typeof onClick === "string") {
     return (
-        <button
-            style={style}
-            className={$.join(
-                className,
-                Styles.Button,
-                Styles[variant],
-                Boolean(Icon) && Styles.icon,
-                classnameCommon(props)
-            )}
-            disabled={!enabled || waiting}
-            type="button"
-            onClick={(evt) => {
-                if (!onClick) return
+      <a
+        style={style}
+        className={$.join(
+          className,
+          Styles.Button,
+          Styles[variant],
+          Boolean(Icon) && Styles.icon,
+          !enabled && !waiting && Styles.disabled,
+          classnameCommon(props),
+        )}
+        target={target}
+        href={onClick}
+      >
+        {body}
+      </a>
+    );
+  }
+  return (
+    <button
+      style={style}
+      className={$.join(
+        className,
+        Styles.Button,
+        Styles[variant],
+        Boolean(Icon) && Styles.icon,
+        classnameCommon(props),
+      )}
+      disabled={!enabled || waiting}
+      type="button"
+      onClick={(evt) => {
+        if (!onClick) return;
 
-                evt.preventDefault()
-                evt.stopPropagation()
-                onClick()
-            }}
-        >
-            {body}
-        </button>
-    )
+        evt.preventDefault();
+        evt.stopPropagation();
+        onClick();
+      }}
+    >
+      {body}
+    </button>
+  );
 }
 
 export function makeCustomButton<T extends Partial<ViewButtonProps>>(
-    defaultProps: T
-): (
-    props: Omit<ViewButtonProps, keyof T>
-) => React.ReactElement<Omit<ViewButtonProps, keyof T>> {
-    return (props: ViewButtonProps) =>
-        ViewButton({
-            ...defaultProps,
-            ...props,
-        })
+  defaultProps: T,
+): (props: Omit<ViewButtonProps, keyof T>) => React.ReactElement<Omit<ViewButtonProps, keyof T>> {
+  return (props: ViewButtonProps) =>
+    ViewButton({
+      ...defaultProps,
+      ...props,
+    });
 }
+
+const JUSTIFY_CONTENT: Record<
+  NonNullable<ViewButtonProps["textAlign"]>,
+  React.CSSProperties["justifyContent"]
+> = {
+  left: "flex-start",
+  center: "center",
+  right: "flex-end",
+};
 
 const DEFAULT_CLICK_HANDLER = () => {
-    console.log("Unhandled click event!")
+  console.log("Unhandled click event!");
+};
+
+function getMainColor(color: OpaqueColorName | undefined, variant: string): string {
+  switch (variant) {
+    case "text":
+      return "transparent";
+    // "elevated" | "filled" | "outlined"
+    default:
+      return cssForColor(color ?? "secondary-5");
+  }
 }
 
-function getMainColor(
-    color: OpaqueColorName | undefined,
-    variant: string
-): string {
-    switch (variant) {
-        case "text":
-            return "transparent"
-        // "elevated" | "filled" | "outlined"
-        default:
-            return cssForColor(color ?? "secondary-5")
-    }
+function getMainAlphaColor(color: OpaqueColorName | undefined, variant: string): string {
+  switch (variant) {
+    case "text":
+      return "transparent";
+    // "elevated" | "filled" | "outlined"
+    default:
+      return cssForColor(color ?? "primary-5", 0.5);
+  }
 }
 
-function getMainAlphaColor(
-    color: OpaqueColorName | undefined,
-    variant: string
-): string {
-    switch (variant) {
-        case "text":
-            return "transparent"
-        // "elevated" | "filled" | "outlined"
-        default:
-            return cssForColor(color ?? "primary-5", 0.5)
-    }
-}
-
-function getTextColor(
-    color: OpaqueColorName | undefined,
-    variant: string
-): string {
-    switch (variant) {
-        case "text":
-        case "outlined":
-            return color ? cssForColor(color) : "currentColor"
-        // "elevated" | "filled"
-        default:
-            return cssForColorOn(color ?? "primary-5")
-    }
+function getTextColor(color: OpaqueColorName | undefined, variant: string): string {
+  switch (variant) {
+    case "text":
+    case "outlined":
+      return color ? cssForColor(color) : "currentColor";
+    // "elevated" | "filled"
+    default:
+      return cssForColorOn(color ?? "primary-5");
+  }
 }

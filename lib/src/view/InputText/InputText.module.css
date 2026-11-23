@@ -9,8 +9,7 @@
         transparent 40%
     );
     padding: 0 0.5em;
-    line-height: 2em;
-    height: 2em;
+    height: var(--theme-input-height);
     color: inherit;
     border-bottom: 2px solid currentColor;
     transition: all 0.2s;

@@ -1,0 +1,61 @@
+.frame {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: stretch;
+    color: var(--theme-color-on-primary-1);
+
+    &.compact {
+        box-shadow: var(--theme-shadow-2);
+        gap: 1px;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        background-color: var(--theme-color-primary-1);
+    }
+
+    &.chips {
+        gap: 0;
+    }
+}
+
+.item {
+    margin: 0;
+    padding: 0 0.5rem;
+    /* Same height as <ViewInputText>, <ViewCombo> and <ViewButton>. */
+    box-sizing: border-box;
+    min-height: var(--theme-input-height);
+    flex: 1 1 auto;
+    display: grid;
+    place-items: center;
+
+    &.compact {
+        box-shadow: 0 0 1px currentColor;
+    }
+
+    &.chips {
+        margin: 0.125em;
+        /* The margins must not change the total height. */
+        min-height: calc(var(--theme-input-height) - 0.25em);
+        border-radius: 200vmax;
+        box-shadow: var(--theme-shadow-1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.25em;
+    }
+
+    &.selected {
+        background-color: var(--theme-color-primary-6);
+        color: var(--theme-color-on-primary-6);
+    }
+
+    &.unselected {
+        background-color: var(--theme-color-primary-4);
+        color: var(--theme-color-on-primary-4);
+    }
+
+    & > svg.check {
+        flex: 0 0 auto;
+        margin-left: -0.125em;
+    }
+}

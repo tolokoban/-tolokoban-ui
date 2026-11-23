@@ -1,15 +1,18 @@
-import { version } from "@tolokoban/ui"
+import { version, ViewButton } from "@tolokoban/ui";
 
-import { Highlight } from "../view/Highlight"
+import { Highlight } from "../view/Highlight";
 
 export default function Page() {
-    return (
-        <div>
-            <h1>@tolokoban/ui {version}</h1>
-            <h2>Installation</h2>
-            <Highlight>npm install --save @tolokoban/ui</Highlight>
-            <h2>Basic usage</h2>
-            <Highlight>{`import { createRoot } from "react-dom/client"
+  return (
+    <div>
+      <p>
+        <ViewButton onClick="#/theme">Theme: light / dark mode and colors</ViewButton>
+      </p>
+      <h1>@tolokoban/ui {version}</h1>
+      <h2>Installation</h2>
+      <Highlight>npm install --save @tolokoban/ui</Highlight>
+      <h2>Basic usage</h2>
+      <Highlight>{`import { createRoot } from "react-dom/client"
 import { Theme, ViewButton, IconClose } from "@tolokoban/ui"
 
 function handleClose() {
@@ -27,12 +30,9 @@ root.render(
     </React.StrictMode>
 )
 `}</Highlight>
-            <h2>Customization</h2>
-            <p>
-                You can use `customizeView()` to create new Views with
-                predefined properties.
-            </p>
-            <Highlight>{`import React from "react"
+      <h2>Customization</h2>
+      <p>You can use `customizeView()` to create new Views with predefined properties.</p>
+      <Highlight>{`import React from "react"
 import {
     customizeView,
     IconArrowDown,
@@ -66,6 +66,6 @@ export default function Demo() {
     )
 }
 `}</Highlight>
-        </div>
-    )
+    </div>
+  );
 }

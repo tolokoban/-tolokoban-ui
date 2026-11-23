@@ -9,8 +9,7 @@
 
 .InputMultiText > input {
     border: none;
-    height: 2em;
-    line-height: 2em;
+    height: var(--theme-input-height);
     padding: 0 0.5em;
     background-color: var(--theme-color-input);
     color: var(--theme-color-on-input);

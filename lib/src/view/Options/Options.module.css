@@ -1,33 +1,9 @@
-.Options {
-    box-shadow: var(--theme-shadow-2);
-    display: inline-flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: stretch;
-    gap: 1px;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    background-color: var(--theme-color-primary-1);
-    color: var(--theme-color-on-primary-1);
+/* Common styles are in "./common/OptionsCommon.module.css". */
+
+.selected {
+    font-weight: bold;
 }
 
-.button {
-    margin: 0;
-    padding: 0.125rem 0.5rem;
-    flex: 1 1 auto;
-    box-shadow: 0 0 1px currentColor;
-    display: grid;
-    place-items: center;
-
-    &.selected {
-        background-color: var(--theme-color-primary-6);
-        color: var(--theme-color-on-primary-6);
-        font-weight: bold;
-    }
-
-    &.unselected {
-        opacity: 0.5;
-        background-color: var(--theme-color-primary-4);
-        color: var(--theme-color-on-primary-4);
-    }
+.unselected {
+    opacity: 0.5;
 }

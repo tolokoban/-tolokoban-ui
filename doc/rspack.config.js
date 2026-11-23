@@ -46,6 +46,16 @@ const config = (env) => {
         resolve: {
             extensions: [".tsx", ".ts", ".js", ".jsx", ".wasm"],
             alias: {
+                // With the dev server, use the copy of the lib that is only updated
+                // after a successful compilation (see "sync" script in lib/package.json).
+                ...(env.RSPACK_SERVE
+                    ? {
+                          "@tolokoban/ui$": Path.resolve(
+                              __dirname,
+                              "../lib/.dev-dist/index.js"
+                          ),
+                      }
+                    : {}),
                 "@": Path.resolve(__dirname, "src/"),
                 "react/jsx-runtime": Path.resolve(
                     __dirname,

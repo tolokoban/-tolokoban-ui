@@ -1,11 +1,125 @@
-.ui-view-ComboView {
+.Combo {
     display: inline-flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: stretch;
+    min-width: 0;
+    max-width: 100%;
 }
 
-.ui-view-ComboView.wide {
+/* Same look and same height as <ViewInputText>. */
+.trigger {
+    anchor-name: var(--custom-anchor);
+    font: inherit;
+    color: inherit;
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.25em;
     width: 100%;
+    height: var(--theme-input-height);
+    margin: 0;
+    padding: 0 0 0 0.5em;
+    text-align: left;
+    cursor: pointer;
+    border: 1px solid color-mix(in srgb, currentColor, transparent 90%);
+    border-bottom: 2px solid currentColor;
+    border-radius: 0;
+    background-color: color-mix(
+        in srgb,
+        var(--theme-color-input),
+        transparent 40%
+    );
+    transition: all 0.2s;
+}
+
+.trigger:focus-visible,
+.trigger[aria-expanded="true"] {
+    background-color: var(--theme-color-input);
+    color: var(--theme-color-on-input);
+    outline: none;
+    border-bottom-color: var(--theme-color-primary-5);
+}
+
+.trigger:disabled {
+    cursor: default;
+    opacity: 0.5;
+    font-style: italic;
+}
+
+.value {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.placeholder {
+    opacity: 0.6;
+}
+
+.arrow {
+    flex: 0 0 auto;
+    width: 1.5em;
+    height: 1.5em;
+    transition: transform 0.2s;
+}
+
+.trigger[aria-expanded="true"] > .arrow {
+    transform: rotate(180deg);
+}
+
+/* The list is a popover, displayed in the top layer. */
+.list {
+    position: fixed;
+    inset: auto;
+    margin: 0;
+    padding: 0;
+    border: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: min(50vh, 20em);
+    max-width: calc(100vw - 1rem);
+    background-color: var(--theme-color-input);
+    color: var(--theme-color-on-input);
+    box-shadow: var(--theme-shadow-3);
+    /*
+     * Below the trigger, left edges aligned.
+     * If there is not enough room, try the top, then the left side
+     * (right edges aligned) at the bottom, then at the top.
+     */
+    position-anchor: var(--custom-anchor);
+    position-area: block-end span-inline-end;
+    position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
+    min-width: anchor-size(width);
+}
+
+/* Browsers without CSS anchor positioning: placed by JavaScript. */
+.list.fallback {
+    top: 0;
+    left: 0;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    min-height: var(--theme-input-height);
+    padding: 0 0.5em;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.option.active {
+    background-color: var(--theme-color-primary-5-2);
+    box-shadow: inset 0.25em 0 0 var(--theme-color-primary-5);
+}
+
+.option[aria-selected="true"] {
+    background-color: var(--theme-color-primary-7);
+    color: var(--theme-color-on-primary-7);
+}
+
+.option[aria-selected="true"].active {
+    background-color: var(--theme-color-primary-6);
+    color: var(--theme-color-on-primary-6);
 }

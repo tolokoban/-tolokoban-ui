@@ -19,6 +19,7 @@ export const ROUTES: Record<RoutePath, string[]> = {
     "/icons": ["/icons"],
     "/reference": ["/reference"],
     "/test": ["/test"],
+    "/theme": ["/theme"],
     "/view": ["/view"],
     "/view/Button": ["/view/Button"],
     "/view/Chip": ["/view/Chip"],

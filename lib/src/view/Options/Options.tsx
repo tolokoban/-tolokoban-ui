@@ -2,8 +2,7 @@ import React from "react"
 
 import { useChangeableValue } from "../../hooks/changeable-value.js"
 import { Children, OpaqueColorName, ViewWithValue } from "../../types.js"
-import { ViewLabel } from "../Label/index.js"
-import { ViewTouchable } from "../Touchable/index.js"
+import { OptionsFrame, OptionsItem, ViewOptionsVariant } from "./common/index.js"
 import {
     CommonProps,
     Theme,
@@ -14,6 +13,8 @@ import {
 
 import Styles from "./Options.module.css"
 
+export type { ViewOptionsVariant } from "./common/index.js"
+
 export type ViewOptionsProps<T> = ViewWithValue<T> &
     CommonProps & {
         className?: string
@@ -21,6 +22,12 @@ export type ViewOptionsProps<T> = ViewWithValue<T> &
         label?: string
         color?: OpaqueColorName
         colorSelection?: OpaqueColorName
+        /**
+         * - `"compact"` (default): items glued together in a single box.
+         * - `"chips"`: separated items with a shadow, and a check mark
+         *   in front of the selected one.
+         */
+        variant?: ViewOptionsVariant
         children: Array<React.ReactElement<ViewOptionsItemProps<T>>>
     }
 
@@ -32,44 +39,48 @@ export type ViewOptionsItemProps<T> = {
 const $ = Theme.classNames
 
 export function ViewOptions<T>(props: ViewOptionsProps<T>) {
-    const { label, children } = props
+    const { label, children, variant = "compact" } = props
     const [value, setValue] = useChangeableValue(props)
     return (
-        <ViewLabel value={label} fullwidth={props.fullwidth}>
-            <div
-                className={$.join(
-                    Styles.Options,
-                    props.className,
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-                    classnameCommon(props)
-                )}
-                style={{ ...styleCommon(props), ...styleColor(props) }}
-            >
-                {children.map((child) => {
-                    const key =
-                        typeof value === "number"
-                            ? parseFloat(`${child.key ?? "0"}`)
-                            : child.key
-                    return key === value ? (
-                        <div
-                            className={$.join(Styles.button, Styles.selected)}
-                            key={key}
-                            style={styleColor({ color: props.colorSelection })}
-                        >
-                            {child}
-                        </div>
-                    ) : (
-                        <ViewTouchable
-                            className={$.join(Styles.button, Styles.unselected)}
-                            key={key}
-                            style={styleColor({ color: props.color })}
-                            onClick={() => setValue(key as T)}
-                        >
-                            {child}
-                        </ViewTouchable>
-                    )
-                })}
-            </div>
-        </ViewLabel>
+        <OptionsFrame
+            label={label}
+            fullwidth={props.fullwidth}
+            variant={variant}
+            className={$.join(
+                props.className,
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+                classnameCommon(props)
+            )}
+            style={styleCommon(props)}
+            colorStyle={styleColor(props)}
+        >
+            {children.map((child) => {
+                const key =
+                    typeof value === "number"
+                        ? parseFloat(`${child.key ?? "0"}`)
+                        : child.key
+                const selected = key === value
+                return (
+                    <OptionsItem
+                        key={key}
+                        variant={variant}
+                        selected={selected}
+                        className={
+                            selected ? Styles.selected : Styles.unselected
+                        }
+                        style={styleColor({
+                            color: selected
+                                ? props.colorSelection
+                                : props.color,
+                        })}
+                        onClick={
+                            selected ? undefined : () => setValue(key as T)
+                        }
+                    >
+                        {child}
+                    </OptionsItem>
+                )
+            })}
+        </OptionsFrame>
     )
 }

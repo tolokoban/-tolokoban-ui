@@ -2,8 +2,11 @@ import React from "react"
 
 import { useChangeableValue } from "../../hooks/changeable-value.js"
 import { Children, OpaqueColorName, ViewWithValue } from "../../types.js"
-import { ViewLabel } from "../Label/index.js"
-import { ViewTouchable } from "../Touchable/index.js"
+import {
+    OptionsFrame,
+    OptionsItem,
+    ViewOptionsVariant,
+} from "../Options/common/index.js"
 import {
     CommonProps,
     Theme,
@@ -21,6 +24,12 @@ export type ViewOptionsMultipleProps<T> = ViewWithValue<T[]> &
         label?: string
         color?: OpaqueColorName
         colorSelection?: OpaqueColorName
+        /**
+         * - `"compact"` (default): items glued together in a single box.
+         * - `"chips"`: separated items with a shadow, and a check mark
+         *   in front of the selected ones.
+         */
+        variant?: ViewOptionsVariant
         children: Array<React.ReactElement<ViewOptionsMultipleItemProps<T>>>
     }
 
@@ -34,7 +43,7 @@ const $ = Theme.classNames
 export function ViewOptionsMultiple<T extends string>(
     props: ViewOptionsMultipleProps<T>
 ) {
-    const { label, children } = props
+    const { label, children, variant = "compact" } = props
     const [values, setValues] = useChangeableValue(props)
     const toggle = (value: T) => {
         const index = values.indexOf(value)
@@ -56,38 +65,34 @@ export function ViewOptionsMultiple<T extends string>(
         }
     }
     return (
-        <ViewLabel value={label}>
-            <div
-                className={$.join(
-                    Styles.OptionsMultiple,
-                    props.className,
-                    classnameCommon(props)
-                )}
-                style={{ ...styleCommon(props), ...styleColor(props) }}
-            >
-                {children.map((child) => {
-                    const key = child.key as T
-                    const selected = values.includes(key)
-                    return (
-                        <ViewTouchable
-                            className={$.join(
-                                Styles.button,
-                                selected ? Styles.selected : Styles.unselected
-                            )}
-                            key={key}
-                            style={styleColor({
-                                color: selected
-                                    ? props.colorSelection
-                                    : props.color,
-                            })}
-                            onClick={() => toggle(key)}
-                            onDoubleClick={() => handleDoubleClick(key)}
-                        >
-                            {child}
-                        </ViewTouchable>
-                    )
-                })}
-            </div>
-        </ViewLabel>
+        <OptionsFrame
+            label={label}
+            variant={variant}
+            className={$.join(props.className, classnameCommon(props))}
+            style={styleCommon(props)}
+            colorStyle={styleColor(props)}
+        >
+            {children.map((child) => {
+                const key = child.key as T
+                const selected = values.includes(key)
+                return (
+                    <OptionsItem
+                        key={key}
+                        variant={variant}
+                        selected={selected}
+                        className={selected ? undefined : Styles.unselected}
+                        style={styleColor({
+                            color: selected
+                                ? props.colorSelection
+                                : props.color,
+                        })}
+                        onClick={() => toggle(key)}
+                        onDoubleClick={() => handleDoubleClick(key)}
+                    >
+                        {child}
+                    </OptionsItem>
+                )
+            })}
+        </OptionsFrame>
     )
 }
